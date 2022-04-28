@@ -3,24 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%
-	Calendar cal=Calendar.getInstance();
-	int currentYear=cal.get(java.util.Calendar.YEAR); 
-	int currentMonth=cal.get(java.util.Calendar.MONTH);
-	int currentDate=cal.get(java.util.Calendar.DATE);
-	String Year=request.getParameter("year");
-	String Month=request.getParameter("month");
-	int year, month;
-	if(Year == null && Month == null){
-	  year=currentYear;
-	  month=currentMonth;
-	}else { 
-	  year=Integer.parseInt(Year);
-	  month=Integer.parseInt(Month);
-	  if(month<0) { month=11; year=year-1; }
-	  if(month>11) { month=0; year=year+1; }
-	 }
-  %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +10,7 @@
 <title>Insert title here</title>
 <link href="/f5/resources/css/store/store_information.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-
-</script>
+<script src="/f5/resources/js/store/store_information.js"></script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -53,7 +33,6 @@
 		<div class = "store-intro">
 			<h2>댄싱 홍콩 강남1호점</h2>
 			<div class= "store-intro-img-box">
-		
 				<a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a>
 				<a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a>
 				<a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a>
@@ -118,9 +97,47 @@
 				<h2>예약</h2>
 				<h4>나는 편하게!</h4>
 				<h3>가게 스케줄링~</h3>
-				<table class= "reservation-table">
-					
-				</table>
+				 <div class="sec_cal">
+				  <div class="cal_nav">
+				    <a href="javascript:;" class="nav-btn go-prev"><<</a>
+				    <div class="year-month"></div>
+				    <a href="javascript:;" class="nav-btn go-next">>></a>
+				  </div>
+				  <div class = "dates"></div>
+				</div>
+				<!-- 모달창-->
+				<div class = "reservation-modal">
+					<div class = "modal-window">
+						<div class = "modal-title">예약설정</div>
+						<div class = "modal-contents">
+							<div class = "selected-date"></div>
+							<div class = "modal-input">
+								<div>인원수 선택</div>
+								<select class = "modal-select-number">
+									<option>--선택--</option>
+									<option>1명</option>
+									<option>2~3명</option>
+									<option>4~5명</option>
+									<option>6명 이상</option>
+								</select>
+								<div>시간대 선택</div>
+								<select class = "modal-select-time">
+									<option>--선택--</option>
+									<option>오전</option>
+									<option>점심시간</option>
+									<option>13:00~15:00</option>
+									<option>15:00~17:00</option>
+									<option>저녘시간</option>
+									<option>20:00 이후</option>
+								</select>
+							</div>
+							<div class="button-location">
+								<button type="button" class="reservation-button" id="reservation-submit-button">예약접수</button>
+								<button type="button" class="reservation-button" id="reservation-close-button">닫기</button>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 			<h2 id="delivery">주문</h2>
 			<h4>집에서 즐기세요</h4>
