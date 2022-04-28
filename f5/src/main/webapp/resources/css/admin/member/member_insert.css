@@ -1,0 +1,119 @@
+@charset "UTF-8";
+
+table {
+	border: 1px solid;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th{
+	border-width:1px !important;
+	text-align: center;
+}
+
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#join_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#join_table tr, #join_table td {
+	border-style: none;
+}
+
+#join_table input {
+	
+	width: 50%;
+}
+
+#join_table input#year{
+	width: 30%;
+}
+
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#join_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#join_table tr, #join_table td {
+	border-style: none;
+}
+
+#join_table input {
+	
+	width: 50%;
+}
+
+#join_table input#year{
+	width: 30%;
+}
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+#content {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#member_table {
+	font-size: 10px;
+}
+
+#join_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#join_table tr, #join_table td {
+	border-style: none;
+}
+
+#join_table input {
+	
+	width: 50%;
+}
+
+#join_table input#year{
+	width: 30%;
+}
+
+}

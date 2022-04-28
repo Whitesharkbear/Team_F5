@@ -1,0 +1,163 @@
+@charset "UTF-8";
+
+table {
+	border: 1px solid;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th{
+	border-width:1px !important;
+	text-align: center;
+}
+
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+#content h4 {
+	border-bottom: 1px solid;
+    width: 25%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+#content > .faq_table {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#content input.faq_title {
+	width: 100%;
+	border: none;
+}
+
+#content .faq_answer {
+	width: 100%;
+	border: none;
+	resize: none;
+	height: 100%;
+}
+
+#content > .faq_btn {
+	padding: 5%;
+	text-align: center;
+}
+
+#content > .faq_btn > .faq_update {
+	margin-right: 5%;
+}
+
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+#content h4 {
+	border-bottom: 1px solid;
+    width: 30%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+#content > .faq_table {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#content input.faq_title {
+	width: 100%;
+	border: none;
+}
+
+#content .faq_answer {
+	width: 100%;
+	border: none;
+	resize: none;
+	height: 100%;
+}
+
+#content > .faq_btn {
+	padding: 5%;
+	text-align: center;
+}
+
+#content > .faq_btn > .faq_update {
+	margin-right: 5%;
+}
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+#content {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10%;
+}
+
+#content h4 {
+	border-bottom: 1px solid;
+    width: 50%;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+#content > .faq_table {
+	margin: 0 auto;
+	width: 80%;
+}
+
+#content input.faq_title {
+	width: 100%;
+	border: none;
+}
+
+#content .faq_answer {
+	width: 100%;
+	border: none;
+	resize: none;
+	height: 100%;
+}
+
+#content > .faq_btn {
+	padding: 5%;
+	text-align: center;
+}
+
+#content > .faq_btn > .faq_update {
+	margin-right: 5%;
+}
+
+}

@@ -1,0 +1,619 @@
+@charset "UTF-8";
+table {
+	border: 1px solid;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th{
+	border-width:1px !important;
+	text-align: center;
+}
+
+
+.head-nav-container {
+   position: relative;
+   background-color: rgb(255,210,0);
+   height: 80px; 
+   text-align: center;
+   vertical-align: middle;
+   margin-bottom: 50px;
+}
+
+.head-nav-title {
+   position: relative;
+   color: orange;
+   font-size: 15pt;
+   font-weight: bold;
+   top: 5px;
+}
+
+.head-nav-inner {
+   display: inline-block;
+   width: 100%;
+   height: 50%;
+   position: absolute;
+   bottom: 0px;
+   left: 0px;
+   
+} 
+
+.nav-col-ul {
+   display: inline-block;
+   margin: 0;
+  padding: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: space-around;
+  list-style: none;
+  height: 100%;
+  vertical-align: middle;
+   
+}
+
+.nav-col-ul li{
+   width: calc(80%/5);
+   position: relative;
+   float: left;
+   display: inline-block;
+   text-align: center;
+   font-size: 15pt;
+   font-weight: bold;
+   height: 100%;
+   vertical-align: middle;
+}
+
+
+
+.nav-col-ul li:hover {
+   background: rgb(255,187,0);
+   transition: 0.3s;
+   
+}
+
+.nav-col-ul li a {
+   vertical-align: middle;
+   text-decoration: none;
+   color: white;
+}
+
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+   
+   
+   .board-caption {
+   font-size: 2em;
+   }
+
+}
+
+
+@media (max-width:992px) {
+   .table {
+    font-size: 0.7%;
+   }
+}
+
+@media screen and (min-width: 425px) and (max-width:768px) {
+   .board-caption {
+   font-size: 1.5em;
+   }
+   
+   .nav-col-ul li {
+      width: calc(80%/4);
+      font-size: 12pt;
+   }
+   
+   .nav-col-ul li:nth-last-child(1) {
+   display: none;
+   }
+   
+   .btn-board_write {
+      width: 60px;
+      height: 25px;
+      
+   }
+}
+
+@media screen and (min-width: 250px) and (max-width:425px) {
+   .board-caption {
+   font-size: 1.5em;
+   }
+   
+   .nav-col-ul li {
+      width: calc(80%/3);
+      font-size: 11pt;
+   }
+   
+   .nav-col-ul li:nth-last-child(1) {
+   display: none;
+   }
+   .nav-col-ul li:nth-last-child(2) {
+   display: none;
+   }
+   .btn-board_write {
+      width: 60px;
+      height: 25px;
+      
+   }
+   
+}
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+	.store-intro{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+	}
+	.store-intro-img-box{
+		display: flex;
+		flex-direction: row;
+		width : 100%;
+		align-items: center;
+		margin-bottom: 30px;
+		justify-content: space-between;
+	}
+	.store-intro-img{
+		margin-right : 10px;
+		max-width : 300px;
+		background-size: cover;
+		margin-bottom: 20px;
+	}
+
+	.store-intro-box{
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		border-top: 1px black solid;
+		border-bottom: 1px grey solid;
+	}
+	.store-intro-text-box{
+		padding : 15px;
+		margin-right:20px;
+		
+	
+	}
+	.store-intro-icon-box{
+		padding : 15px;
+		display: flex;
+		flex-direction: row;
+	}
+	.store-intro-img-2{
+		width:50px;
+		background-size: cover;
+	}
+	.store-intro-text-box >ul>li{
+		font-size: 25px;
+		color: orange;
+	}
+	h2{
+		margin-bottom: 30px;
+	}
+	.store-intro-map{
+		padding :15px;
+	}
+
+	.store-intro-maintext-box{
+		display: flex;
+		flex-direction: row;
+	}
+	.store-user{
+		display: flex;
+		flex-direction: row;
+
+		border-bottom: 2px solid grey;
+		margin: 20px;
+		color
+	}
+	.store-review-content{
+		margin-left: 20px;
+	}
+	.review-score{
+		color: orange;
+		font-size : 25px;
+	}
+
+	td{
+		width : 200px;
+		background-color:rgb(255,216,216); 
+	}
+	.reservation{
+		border-top:1px grey solid;
+		border-bottom:1px grey solid;
+		margin-top : 50px;
+	}
+	.reservation-table{
+		margin-bottom : 60px;
+		
+	}
+	.delivery{
+		display: flex;
+		flex-direction: row;
+	}
+	.goods{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.review-score-2{
+		display: none;	
+	}
+	.review-write{
+		width : 100%;
+	}
+	.review-write-box{
+		display: flex;
+		flex-direction: row;
+	}
+	.review-button{
+		width:70px;
+	}
+}
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+	.store-intro{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+	}
+	.store-intro-img-box{
+		display: flex;
+		flex-direction: column;
+		width : 100%;
+		align-items: center;
+		margin-bottom: 30px;
+		justify-content: space-between;
+	}
+	.store-intro-img{
+		margin-right : 10px;
+		max-width : 300px;
+		background-size: cover;
+		margin-bottom: 20px;
+	}
+
+	.store-intro-box{
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		border-top: 1px black solid;
+		border-bottom: 1px grey solid;
+	}
+	.store-intro-text-box{
+		padding : 15px;
+		margin-right:20px;
+		
+	
+	}
+	.store-intro-icon-box{
+		padding : 15px;
+		display: flex;
+		flex-direction: row;
+	}
+	.store-intro-img-2{
+		width:50px;
+		background-size: cover;
+	}
+	.store-intro-text-box >ul>li{
+		font-size: 25px;
+		color: orange;
+	}
+	h2{
+		margin-bottom: 30px;
+	}
+	.store-intro-map{
+		padding :15px;
+	}
+
+	.store-intro-maintext-box{
+		display: flex;
+		flex-direction: column;
+	}
+	.store-user{
+		display: flex;
+		flex-direction: column;
+
+		border-bottom: 2px solid grey;
+		margin: 20px;
+		color
+	}
+	.store-review-content{
+		margin-left: 20px;
+	}
+	.review-score{
+		color: orange;
+		font-size : 25px;
+		display: none;
+	}
+		td{
+		background-color:rgb(255,216,216); 
+	
+	}
+	.reservation{
+		border-top:1px grey solid;
+		border-bottom:1px grey solid;
+		margin-top : 50px;
+	}
+	.reservation-table{
+		margin-bottom : 60px;
+		
+	}
+	.delivery{
+		display: flex;
+		flex-direction: column;
+	}
+	.goods{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.review-score-2{
+		color: orange;
+		font-size : 25px;
+		display: block;	
+		margin-left: 20px;
+	}
+	.score-mobile{
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 10px;
+		
+	}
+		.review-write{
+		width : 100%;
+	}
+	.review-write-box{
+		display: flex;
+		flex-direction: row;
+	}
+	.review-button{
+		width:70px;
+	}
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+	.store-intro{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+
+	}
+	.store-intro-img-box{
+		display: flex;
+		flex-direction: column;
+		width : 100%;
+		align-items: center;
+		margin-bottom: 30px;
+		justify-content: space-between;
+	}
+	.store-intro-img{
+		margin-right : 10px;
+		max-width : 300px;
+		background-size: cover;
+		margin-bottom: 20px;
+	}
+
+	.store-intro-box{
+		display: flex;
+		flex-direction: column-reverse;
+		justify-content: space-between;
+		border-top: 1px black solid;
+		border-bottom: 1px grey solid;
+	}
+	.store-intro-text-box{
+		padding : 15px;
+		margin-right:20px;
+		
+	
+	}
+	.store-intro-icon-box{
+		padding : 15px;
+		display: flex;
+		flex-direction: row;
+	}
+	.store-intro-img-2{
+		width:50px;
+		background-size: cover;
+	}
+	.store-intro-text-box >ul>li{
+		font-size: 25px;
+		color: orange;
+	}
+	h2{
+		margin-bottom: 30px;
+	}
+	.store-intro-map{
+		padding :15px;
+	}
+
+	.store-intro-maintext-box{
+		display: flex;
+		flex-direction: column;
+	}
+	.store-user{
+		display: flex;
+		flex-direction: column;
+
+		border-bottom: 2px solid grey;
+		margin: 20px;
+		color
+	}
+	.store-review-content{
+		margin-left: 20px;
+	}
+	.review-score{
+		color: orange;
+		font-size : 25px;
+		display: none;
+	}
+	span{
+		display: block;
+	}
+	td{
+		background-color:rgb(255,216,216); 
+	
+	}
+	.reservation{
+		border-top:1px grey solid;
+		border-bottom:1px grey solid;
+		margin-top : 50px;
+	}
+	.reservation-table{
+		margin-bottom : 60px;
+		
+	}
+	.delivery{
+		display: flex;
+		flex-direction: column;
+	}
+	.goods{
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+	.review-score-2{
+		color: orange;
+		font-size : 25px;
+		display: block;	
+		margin-left:20px;
+	}
+	.score-mobile{
+		display: flex;
+		flex-direction: row;
+		margin-bottom: 10px;
+	}
+}
+
+/* .sec_cal {
+
+    margin: 0 auto;
+    font-family: "NotoSansR";
+}
+
+.sec_cal .cal_nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 78px;
+}
+
+.sec_cal .cal_nav .year-month {
+    width: 300px;
+    text-align: center;
+    line-height: 1;
+}
+
+.sec_cal .cal_nav .nav {
+    display: flex;
+    border: 1px solid #333333;
+    border-radius: 5px;
+}
+
+.sec_cal .cal_nav .go-prev,
+.sec_cal .cal_nav .go-next {
+    display: block;
+    width: 50px;
+    height: 78px;
+    font-size: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sec_cal .cal_nav .go-prev::before,
+.sec_cal .cal_nav .go-next::before {
+    content: "";
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #000;
+    border-width: 3px 3px 0 0;
+    transition: border 0.1s;
+}
+
+.sec_cal .cal_nav .go-prev:hover::before,
+.sec_cal .cal_nav .go-next:hover::before {
+    border-color: #ed2a61;
+}
+
+.sec_cal .cal_nav .go-prev::before {
+    transform: rotate(-135deg);
+}
+
+.sec_cal .cal_nav .go-next::before {
+    transform: rotate(45deg);
+}
+
+.sec_cal .cal_wrap {
+    padding-top: 40px;
+    position: relative;
+    margin: 0 auto;
+}
+
+.sec_cal .cal_wrap .days {
+    display: flex;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.sec_cal .cal_wrap::after {
+    top: 368px;
+}
+
+.sec_cal .cal_wrap .day {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(100% / 7);
+    text-align: left;
+    color: #999;
+    font-size: 12px;
+    text-align: center;
+    border-radius:5px
+}
+
+.current.today {background: rgb(242 242 242);}
+
+.sec_cal .cal_wrap {
+    display: flex;
+    flex-flow: wrap;
+    height: 290px;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n -1) {
+    color: #3c6ffa;
+}
+
+.sec_cal .cal_wrap .day:nth-child(7n) {
+    color: #ed2a61;
+}
+
+.sec_cal .cal_wrap .day.disable {
+    color: #ddd;
+} */

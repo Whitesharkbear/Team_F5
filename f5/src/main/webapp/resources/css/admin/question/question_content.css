@@ -1,0 +1,169 @@
+@charset "UTF-8";
+
+table {
+	border: 1px solid;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th{
+	border-width:1px !important;
+	text-align: center;
+}
+
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#content h4 {
+	border-bottom: 1px solid;
+    width: 35% !important;
+    margin-bottom: 5%;
+    margin-left: 10%;
+}
+
+#content  > .question_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.question_table  #question_title {
+	width: 100%;
+	border: none;
+}
+
+.question_table  #sender {
+	width: 100%;
+	border: none;	
+}
+
+.question_table  #question_content {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+.question_btn {
+	text-align: center;
+	padding: 5%;
+}
+
+.question_btn > .question_update {
+	margin-right: 5%;
+}
+
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#content h4 {
+	border-bottom: 1px solid;
+    width: 45% !important;
+    margin-bottom: 5%;
+}
+
+#content  > .question_table {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.question_table #question_title {
+	width: 100%;
+	border: none;
+}
+
+.question_table #sender {
+	width: 100%;
+	border: none;
+}
+
+.question_table #question_content {
+	width: 100%;
+	height: 100%;
+	resize: none;
+}
+
+.question_btn {
+	text-align: center;
+	padding: 5%;
+}
+
+.question_btn > .question_update {
+	margin-right: 5%;
+}
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+#content {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#content h4 {
+	border-bottom: 1px solid;
+    width: 75% !important;
+    margin-bottom: 5%;
+}
+
+#content  > .question_table {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.question_table #question_title {
+	width: 100%;
+	border: none;
+}
+
+.question_table #sender {
+	width: 100%;
+	border: none;
+}
+
+.question_table #question_content {
+	width: 100%;
+	height: 100%;
+}
+
+.question_btn {
+	text-align: center;
+	padding: 5%;
+}
+
+.question_btn > .question_update {
+	margin-right: 5%;
+}
+
+}

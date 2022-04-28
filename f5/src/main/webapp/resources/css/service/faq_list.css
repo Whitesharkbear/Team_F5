@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+table {
+	border: 1px solid;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+thead,
+tbody,
+tfoot,
+tr,
+td,
+th{
+	border-width:1px !important;
+	text-align: center;
+}
+
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#content > .faq_write {
+	text-align: right;
+}
+
+#content .search {
+	text-align: center;
+	margin-bottom: 40px;
+	margin: 0 auto;
+	width: 80%;
+}
+
+.search .search_text > .title {
+	text-align: center;
+}
+
+.search_text > .search_btn {
+	width: 50px;
+}
+
+#faqList {
+	box-shadow: 5px 8px 6px #00000029;
+	margin-bottom: 30px;
+	background-color: #fff;
+}
+
+#faqList details {
+	border-bottom: 1px black solid;
+}
+
+#faqList details:last-child {
+	border-bottom: none;
+}
+
+#faqList details > summary {
+	padding: 10px;
+}
+
+#faqList details > summary::marker {
+	text-align: right;
+}
+
+#faqList details > p {
+	background-color: lightgray;
+}
+
+#content > .paging {
+	clear: right;
+	text-align: center;
+}
+
+#content ul li {
+	display: inline-block;
+}
+
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#content > .faq_write {
+	text-align: right;
+}
+
+#content .search {
+	text-align: center;
+	margin: 0 auto;
+	width: 80%;
+}
+
+.search_text > .title {
+	font-size: 12px;
+}
+
+.search_text > #searchbar {
+	font-size: 12px;
+}
+
+.search_text > .search_btn {
+	font-size: 12px;
+	width: 50px;
+}
+
+#faqList {
+	box-shadow: 5px 8px 6px #00000029;
+	margin-bottom: 30px;
+	background-color: #fff;
+}
+
+#faqList details {
+	border-bottom: 1px black solid;
+}
+
+#faqList details:last-child {
+	border-bottom: none;
+}
+
+#faqList details > summary {
+	padding: 10px;
+}
+
+#faqList details > summary::marker {
+	text-align: right;
+}
+
+#faqList details > p {
+	background-color: lightgray;
+}
+
+#content > .paging {
+	clear: right;
+	text-align: center;
+}
+
+#content ul li {
+	display: inline-block;
+}
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+#content {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+#content > .faq_write {
+	text-align: right;
+}
+
+#content .search {
+	text-align: center;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.search .search_text > .title {
+	text-align: center;
+	font-size: 10px;
+}
+
+.search .search_text > #searchbar {
+	font-size: 10px;
+}
+
+.search_text > .search_btn {
+	font-size: 10px;
+	width: 50px;
+}
+
+#faqList {
+	box-shadow: 5px 8px 6px #00000029;
+	margin-bottom: 30px;
+	background-color: #fff;
+}
+
+#faqList details {
+	border-bottom: 1px black solid;
+}
+
+#faqList details:last-child {
+	border-bottom: none;
+}
+
+#faqList details > summary {
+	padding: 10px;
+}
+
+#faqList details > summary::marker {
+	text-align: right;
+}
+
+#faqList details > p {
+	background-color: lightgray;
+}
+
+#content > .paging {
+	clear: right;
+	text-align: center;
+}
+
+#content ul li {
+	display: inline-block;
+}
+}
