@@ -73,7 +73,39 @@
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
-							<a><img class = "store-side-img" src = "/f5/resources/images/storesample1.jpeg"></a>
+							
+							<!-- 지도 -->
+
+                <div id="map" style="width:100%;height:200px;"></div>
+
+                <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c88216da6af0d0b0fef722865614d397"></script>
+                <script>
+                var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = { 
+                center: new kakao.maps.LatLng(37.51138560583406, 127.02167126223836), // 지도의 중심좌표
+                level: 3 // 지도의 확대 레벨
+              };
+
+                var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+                function setCenter() {            
+                // 이동할 위도 경도 위치를 생성합니다 
+                var moveLatLon = new kakao.maps.LatLng(37.51138560583406, 127.02167126223836);
+    
+                // 지도 중심을 이동 시킵니다
+                map.setCenter(moveLatLon);
+              }
+
+                function panTo() {
+                // 이동할 위도 경도 위치를 생성합니다 
+                var moveLatLon = new kakao.maps.LatLng(37.51138560583406, 127.02167126223836);
+    
+                // 지도 중심을 부드럽게 이동시킵니다
+                
+                // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
+                map.panTo(moveLatLon);            
+              }        
+              </script>	
                         </div>
                     </div>
                     <!-- Categories widget-->
