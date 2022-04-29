@@ -32,12 +32,15 @@
 		<div class = "store-intro">
 			<h2>댄싱 홍콩 강남1호점</h2>
 			<div class= "store-intro-img-box">
+				<img class ="button_before button_before_mobile" src = "/f5/resources/images/before_button_mobile.png">
+				<img class ="button_before" src = "/f5/resources/images/before_button.png">
 				<ul class = "store-intro-img-ul">
 					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
-					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
-					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
+					<li class="mobile-hidden"><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
+					<li class="laptop-hidden"><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
 				</ul>
-				<button type="button" class = "button_next">다음사진</button>
+				<img class ="button_next" src = "/f5/resources/images/next_button.png">
+				<img class ="button_next button_next_mobile" src = "/f5/resources/images/next_button_mobile.png">
 			</div>
 			<h2>평점 4.6</h2>
 			<h2 id="intro">#핫플레이스 #중국 #친절</h2>
