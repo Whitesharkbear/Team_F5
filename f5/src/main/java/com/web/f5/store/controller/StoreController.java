@@ -7,7 +7,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class StoreController {
 
 
-	
+		@RequestMapping(value = "/store_join.do", method = RequestMethod.GET)
+		public String Store_join() {
+			
+			return "store/store_join";
+		}
 	
 		@RequestMapping(value = "/store.do" , method = RequestMethod.GET)
 		public String store() {
