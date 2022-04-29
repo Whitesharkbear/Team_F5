@@ -1,0 +1,64 @@
+@charset "UTF-8";
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+	.com_container{
+		width: 50%;
+		margin: auto;
+	}
+	.com_btn{
+		float: right;
+		font-size: 10px;
+		padding: 1%;
+	}
+	#com_button1 {
+		font-size: 8px;
+	}
+}
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+	.com_container{
+		width: 60%;
+		margin: auto;
+	}
+	.com_btn{
+		float: right;
+		font-size: 10px;
+		padding: 1%;
+	}
+	#com_button1 {
+		font-size: 8px;
+	}
+}
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+	.com_container{
+		width: 70%;
+		margin: auto;
+	}
+	.com_btn{
+		float: right;
+		font-size: 10px;
+		padding: 1%;
+	}
+	#com_button1 {
+		font-size: 8px;
+	}
+}
+	
+}
+
