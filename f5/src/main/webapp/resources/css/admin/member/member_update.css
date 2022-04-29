@@ -1,20 +1,20 @@
 @charset "UTF-8";
 
 table {
-	border: 1px solid;
+	box-shadow: 5px 8px 6px #00000029;
 	width: 100%;
 	border-collapse: collapse;
 }
 
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th{
-	border-width:1px !important;
-	text-align: center;
-}
+/* thead, */
+/* tbody, */
+/* tfoot, */
+/* tr, */
+/* td, */
+/* th{ */
+/* 	border-width:1px !important; */
+/* 	text-align: center; */
+/* } */
 
 /*-----------------------------------------------------------------------
 
@@ -31,13 +31,30 @@ th{
 
 #content h4 {
 	border-bottom: 1px solid;
-    width: 25% !important;
+    width: 35% !important;
     margin-bottom: 5%;
+    margin-left: 10%;
 }
 
-#question_table a {
-	text-decoration: none;
-	color: #000;
+#member_update_table {
+	width: 70%;
+	margin: 0 auto;
+}
+
+#member_update_table tr td > label {
+	float: left;
+}
+
+#member_update_table input {
+	width: 100%;
+}
+
+#member_update_table input#year {
+	width: 30%;
+}
+
+#member_update_table #gender {
+	width: 100%;
 }
 
 }
@@ -57,11 +74,30 @@ th{
 
 #content h4 {
 	border-bottom: 1px solid;
-    width: 25% !important;
+    width: 45% !important;
     margin-bottom: 5%;
-    margin-left: 10%;
 }
 
+#member_update_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#member_update_table tr td > label {
+	float: left;
+}
+
+#member_update_table input {
+	width: 100%;
+}
+
+#member_update_table input#year {
+	width: 30%;
+}
+
+#member_update_table #gender {
+	width: 100%;
+}
 }
 /*-----------------------------------------------------------------------
 
@@ -78,9 +114,33 @@ th{
 
 #content h4 {
 	border-bottom: 1px solid;
-    width: 25% !important;
+    width: 75% !important;
     margin-bottom: 5%;
-    margin-left: 10%;
+}
+
+#member_update_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#member_update_table tr td > label {
+	float: left;
+}
+
+#member_update_table input {
+	width: 100%;
+}
+
+#member_update_table input#year {
+	width: 30%;
+}
+
+#member_update_table #gender {
+	width: 100%;
+}
+
+#member_table {
+	font-size: 10px;
 }
 
 }

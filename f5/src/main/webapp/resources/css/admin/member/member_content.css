@@ -29,15 +29,22 @@ th{
     margin: 0 auto;
 }
 
-#content h4 {
-	border-bottom: 1px solid;
-    width: 25% !important;
-    margin-bottom: 5%;
+#join_table {
+	width: 80%;
+	margin: 0 auto;
 }
 
-#question_table a {
-	text-decoration: none;
-	color: #000;
+#join_table tr, #join_table td {
+	border-style: none;
+}
+
+#join_table input {
+	
+	width: 50%;
+}
+
+#join_table input#year{
+	width: 30%;
 }
 
 }
@@ -55,11 +62,22 @@ th{
     margin: 0 auto;
 }
 
-#content h4 {
-	border-bottom: 1px solid;
-    width: 25% !important;
-    margin-bottom: 5%;
-    margin-left: 10%;
+#join_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#join_table tr, #join_table td {
+	border-style: none;
+}
+
+#join_table input {
+	
+	width: 50%;
+}
+
+#join_table input#year{
+	width: 30%;
 }
 
 }
@@ -76,11 +94,26 @@ th{
     margin: 0 auto;
 }
 
-#content h4 {
-	border-bottom: 1px solid;
-    width: 25% !important;
-    margin-bottom: 5%;
-    margin-left: 10%;
+#member_table {
+	font-size: 10px;
+}
+
+#join_table {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#join_table tr, #join_table td {
+	border-style: none;
+}
+
+#join_table input {
+	
+	width: 50%;
+}
+
+#join_table input#year{
+	width: 30%;
 }
 
 }

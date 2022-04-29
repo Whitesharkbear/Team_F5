@@ -13,6 +13,12 @@ public class AdminMemberController {
 		return "admin/member/member_list";
 	}
 	
+	@RequestMapping ( value = "/admin/member_content.do", method = RequestMethod.GET )
+	public String admin_member_content() {
+		
+		return "admin/member/member_content";
+	}
+	
 	@RequestMapping ( value = "/admin/member_insert.do", method = RequestMethod.GET )
 	public String admin_member_insert() {
 		
@@ -35,6 +41,12 @@ public class AdminMemberController {
 	public String admin_ceo_member_list() {
 		
 		return "admin/member/ceo_member_list";
+	}
+	
+	@RequestMapping ( value = "/admin/ceo_member_content.do", method = RequestMethod.GET )
+	public String admin_ceo_member_content() {
+		
+		return "admin/member_ceo_member_content";
 	}
 	
 	@RequestMapping ( value = "/admin/ceo_member_insert.do", method = RequestMethod.GET )

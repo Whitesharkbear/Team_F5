@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 일반회원가입</title>
-<link href="/f5/resources/css/admin/member/member_insert.css" rel="stylesheet" />
+<link href="/f5/resources/css/admin/member/member_content.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 </head>
 <body>

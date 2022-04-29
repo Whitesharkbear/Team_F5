@@ -4589,7 +4589,8 @@ textarea.form-control-lg {
 
 .card-body {
   flex: 1 1 auto;
-  padding: 1rem 1rem;
+  text-align: center;
+  padding: 0 2%;
 }
 
 .card-title {
@@ -11380,4 +11381,36 @@ textarea.form-control-lg {
 	margin-left : -26px;
 	padding-left :-20px;
 }
+}
+
+@media ( min-width: 992px ) {
+
+.navbar-nav .nav-item:first-child{
+	display: none;
+}
+	
+.mber_bar {
+	display: none;
+}
+
+.mber_bar:hover {
+	display: none;
+}
+
+}
+
+@media( max-width : 991px ) {
+
+.mber_bar {
+	display: block;
+}
+
+.login_sec {
+	display: none;
+}
+
+.noneli {
+	display: none;
+}
+
 }

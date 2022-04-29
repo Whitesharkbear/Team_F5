@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="row">
 			<section>
-				<div id="content1">
+				<div id="content">
 					<h4>관리자 | 문의내역</h4>
 					<div class="question_btn">
 					</div>
@@ -38,7 +38,7 @@
 						<% for ( int i = 10; i >= 0; i-- ) { %>
 						<tr>
 							<td><%= i %></td>
-							<td>user<%= i %></td>
+							<td><a href="member_content.do">user<%= i %></a></td>
 							<td>문의<%= i %></td>
 							<td><a href="question_content.do">문의내용<%= i %></a></td>
 							<td>접수중</td>

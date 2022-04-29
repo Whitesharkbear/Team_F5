@@ -50,20 +50,21 @@
             
                 <div class="col-lg-4">
               
-                    <div class="card mb-4">
+                    <div class="card mb-4 login_sec">
                         <div class="card-body">
-                        	<img class = "login_image" src = "/f5/resources/images/person.png"><input class = "input_id" type = "text" placeholder = "Username">
-                        </div>
-                        <div class="card-body">
-							<img class = "login_image" src = "/f5/resources/images/password.png"><input class = "input_id" type = "password" placeholder = "****">
+                        	<button class = "main_login_button">로그인</button>
+                        	<input class = "input_id" type = "text" placeholder = "Username">
+							<input class = "input_id" type = "password" placeholder = "****">
                         </div>
                         <div class= "card-body">
-                        	<button class = "main_login_button">로그인</button>
-                        	<button class = "main_join_button">회원가입</button>
+                        	<a class = "main_join_button">아이디/비밀번호 찾기</a>
+                        	<a class = "main_join_button">회원가입</a>
                         </div>
                         <div class="card-body">
                         	<div class = "login-easily">
-                        		<img class = "login-logo" src = "/f5/resources/images/kakao_logo.jpeg"><img class = "login-logo" src = "/f5/resources/images/naver_logo.jpeg">간편로그인
+                        		<img class = "login-logo" src = "/f5/resources/images/kakao_logo.jpeg">
+                        		<img class = "login-logo" src = "/f5/resources/images/naver_logo.jpeg">
+                        		<button type="button" class="easy_login">간편로그인</button>
                         	</div>
                         </div>
                     </div>
