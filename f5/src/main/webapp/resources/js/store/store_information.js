@@ -93,7 +93,12 @@ function calendarInit() {
     	$(".modal-select-time option:eq(0)").prop("selected",true);
 	});
 	$('#reservation-submit-button').on('click',function(){
-		var confirm_result=confirm($('.selected-date').text()+" 일 "+ $('.modal-select-number option:selected').val() + " "+$('.modal-select-time option:selected').val()+"으로 예약신청하시겠습니까?")
+		if($('.modal-select-number option:selected').val() == $(".modal-select-time option:eq(0)").val()){
+			alert("인원수를 입력해주세요");
+		}else if($('.modal-select-time option:selected').val()==$(".modal-select-time option:eq(0)").val()){
+			alert("시간대를 입력해주세요");
+		}else{
+		var confirm_result=confirm($('.selected-date').text()+" 일 "+ $('.modal-select-number option:selected').val() + " "+$('.modal-select-time option:selected').val()+"(으)로 예약신청하시겠습니까?")
 		if(confirm_result){
 			alert("예약이 완료되었습니다.");
 			$('.modal-window').css("display","none");
@@ -101,12 +106,7 @@ function calendarInit() {
 	    	$('body').css("overflow","auto");
 	    	$(".modal-select-number option:eq(0)").prop("selected",true);
 	    	$(".modal-select-time option:eq(0)").prop("selected",true);
-		}else{
-			$('.modal-window').css("display","none");
-	    	$('.reservation-modal').css("display","none");
-	    	$('body').css("overflow","auto");
-	    	$(".modal-select-number option:eq(0)").prop("selected",true);
-	    	$(".modal-select-time option:eq(0)").prop("selected",true);
+		}
 		}
 	});
    }

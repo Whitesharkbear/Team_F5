@@ -28,6 +28,11 @@ th{
 	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
 }
+.store-intro-img-ul{
+	display: flex;
+    margin:auto;
+    list-style: none;
+}
 .reservation{
 	position: relative;
 }
@@ -452,7 +457,10 @@ th{
 .modal-window{
 	left:30%;
 }
-
+.store-intro-img-ul{
+	display: flex;
+	flex-direction: column;
+}
 }
 /*-----------------------------------------------------------------------
 
@@ -460,26 +468,6 @@ th{
  								
  ------------------------------------------------------------------------*/
 @media (max-width : 425.9998px) {
-	.store-intro{
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-
-	}
-	.store-intro-img-box{
-		display: flex;
-		flex-direction: column;
-		width : 100%;
-		align-items: center;
-		margin-bottom: 30px;
-		justify-content: space-between;
-	}
-	.store-intro-img{
-		margin-right : 10px;
-		max-width : 300px;
-		background-size: cover;
-		margin-bottom: 20px;
-	}
 
 	.store-intro-box{
 		display: flex;
@@ -488,12 +476,7 @@ th{
 		border-top: 1px black solid;
 		border-bottom: 1px grey solid;
 	}
-	.store-intro-text-box{
-		padding : 15px;
-		margin-right:20px;
-		
-	
-	}
+
 	.store-intro-icon-box{
 		padding : 15px;
 		display: flex;
@@ -503,10 +486,7 @@ th{
 		width:50px;
 		background-size: cover;
 	}
-	.store-intro-text-box >ul>li{
-		font-size: 25px;
-		color: orange;
-	}
+
 	h2{
 		margin-bottom: 30px;
 	}
@@ -576,5 +556,21 @@ th{
 .modal-window{
 	left:12.5%;
 	
+}
+.store-intro-img-ul{
+	display: flex;
+	flex-direction:column;
+    list-style: none;
+}
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile width :320px
+ 								
+ ------------------------------------------------------------------------*/
+
+@media (max-width : 320px){
+	.modal-window{
+	left:0;
 }
 }

@@ -1,5 +1,5 @@
 @charset "UTF-8";
- 	.store_content{
+/*  	.store_content{
 	 	display: block !important; 
 	}
 
@@ -40,4 +40,7 @@
 	.store-side-img{
 		width : 100%;
 		background-size: cover;
+	} */
+		.card-img-top{
+		height: 300px; 
 	}

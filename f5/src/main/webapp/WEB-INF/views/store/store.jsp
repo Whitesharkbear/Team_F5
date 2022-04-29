@@ -20,7 +20,7 @@
                                 <div class="card-body">
                                     <h2 class="card-title h4">논현동 최고의 맛집! 4.5</h2>
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">매장 보러가기 →</a>
+                                    <a class="btn btn-primary" href="store_information.do">매장 보러가기 →</a>
                                 </div>
                             </div>
                             <div class="store-card mb-4">

@@ -19,7 +19,7 @@
                   <label class="head-nav-title">Free Board</label>
                   <div class="head-nav-inner">
                      <ul class="nav-col-ul">
-                        <li><a href="#intro">소개</a></li>
+                        <li><a href="#">소개</a></li>
                         <li><a href="#location">위치</a></li>
                         <li><a href="#review">리뷰</a></li>
                         <li><a href="#reservation">예약</a></li>
@@ -27,15 +27,16 @@
                      </ul>
                   </div>
                </div>
-               
             </div>
 	<div class = "container">
 		<div class = "store-intro">
 			<h2>댄싱 홍콩 강남1호점</h2>
 			<div class= "store-intro-img-box">
-				<a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a>
-				<a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a>
-				<a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a>
+				<ul class = "store-intro-img-ul">
+					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
+					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
+					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
+				</ul>
 				<button type="button" class = "button_next">다음사진</button>
 			</div>
 			<h2>평점 4.6</h2>
@@ -61,7 +62,7 @@
 					</div>
 				</div>
 				<div class = "store-intro-map" id="location">
-					<a><img class= "store-intro-img" src = "/f5/resources/images/storesample1.jpeg">></a>
+					<a><img class= "store-intro-img" src = "/f5/resources/images/storesample1.jpeg"></a>
 				</div>
 			</div>
 			<h2 id="review">리뷰</h2>
