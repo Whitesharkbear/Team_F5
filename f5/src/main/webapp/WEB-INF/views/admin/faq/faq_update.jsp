@@ -37,23 +37,21 @@ function list() {
 		<div class="row">
 			<div id="content">
 				<h4>FAQ관리 | 수정</h4>
-				<table class="faq_table" border="1">
-				<colgroup>
-					<col width="20%">
-					<col width="80%">
-				</colgroup>
+				<table class="faq_table">
 					<tr>
-						<td>제목</td>
+						<td><label>제목</label></td>
+					</tr>
+					<tr>
 						<td>
 							<input type="text" class="faq_title"
 							 placeholder="  제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  제목을 입력해주세요.'">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">답변</td>
+						<td><label>답변</label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea rows="10" class="faq_answer"
+						<td><textarea rows="10" class="faq_answer"
 						 placeholder="  내용을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  내용을 입력해주세요.'"></textarea>
 					</tr>
 				</table>

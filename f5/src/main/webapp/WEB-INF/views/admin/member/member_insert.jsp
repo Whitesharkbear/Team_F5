@@ -16,7 +16,7 @@
 					<h4>관리자 | 일반회원가입</h4>
 					<table id="join_table">
 						<tr>
-							<td>아이디</td>
+							<td><label>아이디</label></td>
 						</tr>
 						<tr>
 							<td>
@@ -25,7 +25,7 @@
 							</td>
 						</tr>
 						<tr>
-							<td>비밀번호</td>
+							<td><label>비밀번호</label></td>
 						</tr>
 						<tr>
 							<td>
@@ -34,16 +34,15 @@
 							</td>
 						</tr>
 						<tr>
-							<td>비밀번호 재확인</td>
+							<td><label>비밀번호 재확인</label></td>
 						</tr>
 						<tr>
 							<td>
-								<input type="text" id="pwChk"
-								placeholder="  제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  제목을 입력해주세요.'">
+								<input type="text" id="pwChk">
 							</td>
 						</tr>
 						<tr>
-							<td>이름</td>
+							<td><label>이름</label></td>
 						</tr>
 						<tr>
 							<td>
@@ -51,27 +50,27 @@
 							</td>
 						</tr>
 						<tr>
-							<td>생년월일</td>
+							<td><label>생년월일</label></td>
 						</tr>
 						<tr>
 							<td>
 								<input type="text" id="year">
 								<select id="month">
 									<option value="0">월</option>
-								<% for ( int i = 1; i <= 12; i++ ) { %>
-									<option value="<%= i %>"><%= i %></option>
+								<% for ( int i = 1; i < 13; i++ ) { %>
+									<option value="<%= i %>"><%= i %>월</option>
 								<% } %>
 								</select>
 								<select id="day">
 									<option value="0">일</option>
 								<% for ( int i = 1; i <= 31; i++ ) { %>
-									<option value="<%= i %>"><%= i %></option>
+									<option value="<%= i %>"><%= i %>일</option>
 								<% } %>
 								</select>
 							</td>
 						</tr>
 						<tr>
-							<td>성별</td>
+							<td><label>성별</label></td>
 						</tr>
 						<tr>
 							<td>
@@ -83,24 +82,28 @@
 							</td>
 						</tr>
 						<tr>
-							<td>본인확인 이메일(선택)</td>
+							<td><label>본인확인 이메일(선택)</label></td>
 						</tr>
 						<tr>
 							<td><input type="text" id="email"></td>
 						</tr>
 						<tr>
-							<td>휴대전화</td>
+							<td><label>휴대전화</label></td>
 						</tr>
 						<tr>
 							<td><input type="text" id="tel"></td>
 						</tr>
 						<tr>
-							<td>주소</td>
+							<td><label>주소</label></td>
 						</tr>
 						<tr>
 							<td><input type="text" id="address"></td>
 						</tr>
 					</table>
+					<div class="table_btn">
+						<button type="button" class="insert">수정</button>
+						<a href="member_list.do"><button type="button" class="list">목록</button></a>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -46,7 +46,7 @@ public class AdminMemberController {
 	@RequestMapping ( value = "/admin/ceo_member_content.do", method = RequestMethod.GET )
 	public String admin_ceo_member_content() {
 		
-		return "admin/member_ceo_member_content";
+		return "admin/member/ceo_member_content";
 	}
 	
 	@RequestMapping ( value = "/admin/ceo_member_insert.do", method = RequestMethod.GET )

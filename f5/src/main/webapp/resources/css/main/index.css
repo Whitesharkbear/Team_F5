@@ -51,10 +51,6 @@ table{
 	border-collapse: collapse;
 	width:100%;
 }
-.main_news{
-	padding-left : 15px;
-	background-color:rgb(234,234,234);
-}
 .card-img-top{
 	height:400px;
 	background-size: cover;
@@ -72,4 +68,47 @@ th{
 .side-image {
 	width: 100%;
 	background-size :cover;
+}
+
+li {
+	list-style: none;
+}
+
+.new_notice a, .new_board a, .new_news a{
+	text-decoration: none;
+	color: #000;
+}
+
+.new_notice li, .new_board li, .new_news li{
+	text-align: left;
+}
+
+.new_notice, .new_board, .new_news{
+	padding-left: 15px;
+}
+
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+	
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
 }

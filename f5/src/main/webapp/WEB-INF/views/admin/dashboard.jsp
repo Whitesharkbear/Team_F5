@@ -85,7 +85,7 @@
 							<a href="#">더 보기</a>
 						</div>
 						<div>
-							<table id="member_table" border="1">
+							<table id="member_table">
 							<colgroup>
 								<!-- 번호 -->
 								<col width="10%">
@@ -106,7 +106,7 @@
 								<tr>
 									<td>1</td>
 									<td>name</td>
-									<td>id</td>
+									<td><a href="member_content.do">id</a></td>
 									<td>2022-01-01</td>
 									<td>
 									<!-- 
@@ -125,7 +125,7 @@
 								<tr>
 									<td>2</td>
 									<td>CEO</td>
-									<td>CEO_ID</td>
+									<td><a href="ceo_member_content.do">CEO_ID</a></td>
 									<td>2022-01-01</td>
 									<td>
 									<!-- 
@@ -149,9 +149,9 @@
 					<div id="content3">
 						<h3>문의내역</h3>
 						<div class="question_btn">
-							<a href="#">더 보기</a>
+							<a href="question_list.do">더 보기</a>
 						</div>
-						<table id="question_table" border="1">
+						<table id="question_table">
 						<colgroup>
 								<!-- 번호 -->
 								<col width="10%">
@@ -172,7 +172,7 @@
 								<td>1</td>
 								<td>user1</td>
 								<td>문의1</td>
-								<td><a href="#">문의내용</a></td>
+								<td><a href="question_content.do">문의내용</a></td>
 								<td>접수중</td>
 							</tr>
 							<% } %>

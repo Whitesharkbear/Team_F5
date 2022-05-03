@@ -1,7 +1,6 @@
 @charset "UTF-8";
 
 table {
-	box-shadow: 5px 8px 6px #00000029;
 	width: 100%;
 	border-collapse: collapse;
 }
@@ -30,14 +29,12 @@ table {
 }
 
 #content h4 {
-	border-bottom: 1px solid;
     width: 35% !important;
-    margin-bottom: 5%;
-    margin-left: 10%;
+    margin: 5% 15%;
 }
 
 #member_update_table {
-	width: 70%;
+	width: 50%;
 	margin: 0 auto;
 }
 
@@ -55,6 +52,30 @@ table {
 
 #member_update_table #gender {
 	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 20%;
+}
+
+.table_btn .update {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }
@@ -98,6 +119,31 @@ table {
 #member_update_table #gender {
 	width: 100%;
 }
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 30%;
+}
+
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
 }
 /*-----------------------------------------------------------------------
 
@@ -141,6 +187,30 @@ table {
 
 #member_table {
 	font-size: 10px;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 30%;
+}
+
+.table_btn .update {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }

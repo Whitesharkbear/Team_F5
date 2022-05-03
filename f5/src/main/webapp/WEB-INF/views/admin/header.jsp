@@ -39,10 +39,8 @@
                         <li class="nav-item">
                         	<a class="nav-link" href="#">게시판 관리</a>
                         	<ul class ="nav-inner">
-                        	<li>자유게시판</li>
-                        	<li>공지사항</li>
-                        	<li><a href="question_list.do">문의</a></li>
-                       		<li>FAQ</li>
+	                        	<li><a href="board_list.do">자유게시판</a></li>
+	                        	<li><a href="notice_list.do">공지사항</a></li>
                         	</ul>
                         </li>
                         <li class="nav-item">
@@ -64,10 +62,5 @@
                 </div>
             </div>
         </nav>
-        <!-- Page header with logo and tagline-->
-        <header class="bg-light border-bottom mb-4">
-            <div class="container">
-            </div>
-        </header>
 </body>
 </html>

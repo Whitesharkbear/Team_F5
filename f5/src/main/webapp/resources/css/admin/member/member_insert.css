@@ -1,19 +1,8 @@
 @charset "UTF-8";
 
 table {
-	border: 1px solid;
 	width: 100%;
 	border-collapse: collapse;
-}
-
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th{
-	border-width:1px !important;
-	text-align: center;
 }
 
 /*-----------------------------------------------------------------------
@@ -29,22 +18,55 @@ th{
     margin: 0 auto;
 }
 
+#content h4 {
+    width: 55% !important;
+    margin: 5% 25%;
+}
+
 #join_table {
-	width: 80%;
+	width: 50%;
 	margin: 0 auto;
 }
 
-#join_table tr, #join_table td {
-	border-style: none;
+#join_table tr td > label {
+	float: left;
 }
 
 #join_table input {
 	
-	width: 50%;
+	width: 100%;
 }
 
 #join_table input#year{
 	width: 30%;
+}
+
+#join_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 20%;
+}
+
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }
@@ -62,22 +84,55 @@ th{
     margin: 0 auto;
 }
 
+#content h4 {
+    width: 80% !important;
+    margin: 5% 15%;
+}
+
 #join_table {
-	width: 80%;
+	width: 70%;
 	margin: 0 auto;
 }
 
-#join_table tr, #join_table td {
-	border-style: none;
+#join_table tr td > label {
+	float: left;
 }
 
 #join_table input {
 	
-	width: 50%;
+	width: 100%;
 }
 
 #join_table input#year{
 	width: 30%;
+}
+
+#join_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 30%;
+}
+
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }
@@ -94,26 +149,55 @@ th{
     margin: 0 auto;
 }
 
-#member_table {
-	font-size: 10px;
+#content h4 {
+    width: 100% !important;
+    margin: 5% 0;
 }
 
 #join_table {
-	width: 80%;
+	width: 100%;
 	margin: 0 auto;
 }
 
-#join_table tr, #join_table td {
-	border-style: none;
+#join_table tr td > label {
+	float: left;
 }
 
 #join_table input {
 	
-	width: 50%;
+	width: 100%;
 }
 
 #join_table input#year{
 	width: 30%;
+}
+
+#join_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 40%;
+}
+
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }

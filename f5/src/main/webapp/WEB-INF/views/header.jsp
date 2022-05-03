@@ -26,6 +26,13 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item mber_bar">
+                        <a class="nav-link" href="#">회원관리</a>
+                        	<ul class ="nav-inner">
+                        		<li><a href="http://localhost:9000/f5/login.do">로그인</a></li>
+                    			<li><a href="http://localhost:9000/f5/join.do">회원가입</a></li>
+                        	</ul>
+                        </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">소개</a>
                         	<ul class ="nav-inner">
@@ -59,14 +66,14 @@
                     			<li> </li>
                     		</ul>
                     	</li>
-                    	<li class="nav-item" class = "nav-litem"><a class="nav-link" href="#!">회원관리</a><div></div>
-                    		<ul class ="nav-inner">
-                    			<li><a href="http://localhost:9000/f5/login.do">로그인</a></li>
-                    			<li><a href="http://localhost:9000/f5/join.do">회원가입</a></li>
-                    			<li><a href="http://localhost:9000/f5/mypage.do">마이페이지</a></li>
-                    			<li> </li>
-                    		</ul>
-                    	</li>
+<!--                     	<li class="nav-item" class = "nav-litem"><a class="nav-link" href="#!">회원관리</a><div></div> -->
+<!--                     		<ul class ="nav-inner"> -->
+<!--                     			<li><a href="http://localhost:9000/f5/login.do">로그인</a></li> -->
+<!--                     			<li><a href="http://localhost:9000/f5/join.do">회원가입</a></li> -->
+<!--                     			<li><a href="http://localhost:9000/f5/mypage.do">마이페이지</a></li> -->
+<!--                     			<li> </li> -->
+<!--                     		</ul> -->
+<!--                     	</li> -->
                     </ul>
                 </div>
             </div>

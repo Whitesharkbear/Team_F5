@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | FAQ수정</title>
+<title>관리자 | FAQ등록</title>
 <link href="/f5/resources/css/admin/faq/faq_write.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
@@ -37,23 +37,21 @@ function list() {
 		<div class="row">
 			<div id="content">
 				<h4>FAQ관리 | 등록</h4>
-				<table class="faq_table" border="1">
-				<colgroup>
-					<col width="20%">
-					<col width="80%">
-				</colgroup>
+				<table class="faq_table">
 					<tr>
-						<td>제목</td>
+						<td><label>제목</label></td>
+					</tr>
+					<tr>
 						<td>
 							<input type="text" class="faq_title"
 							 placeholder="  제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  제목을 입력해주세요.'">
 						</td>
 					</tr>
 					<tr>
-						<td colspan="2">답변</td>
+						<td><label>답변</label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea rows="10" class="faq_answer"
+						<td><textarea rows="10" class="faq_answer"
 						 placeholder="  내용을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  내용을 입력해주세요.'"></textarea>
 					</tr>
 				</table>

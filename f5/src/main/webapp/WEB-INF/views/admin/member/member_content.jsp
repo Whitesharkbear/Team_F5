@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | 일반회원가입</title>
+<title>관리자 | 일반회원 상세페이지</title>
 <link href="/f5/resources/css/admin/member/member_content.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 </head>
@@ -13,8 +13,8 @@
 		<div class="container">
 			<div class="row">
 				<div id="content">
-					<h4>관리자 | 일반회원가입</h4>
-					<table id="join_table">
+					<h4>관리자 | 일반회원 상세페이지</h4>
+					<table id="content_table">
 						<tr>
 							<td>아이디</td>
 						</tr>
@@ -101,6 +101,10 @@
 							<td><input type="text" id="address"></td>
 						</tr>
 					</table>
+					<div class="table_btn">
+						<button type="button" class="update">수정</button>
+						<a href="member_list.do"><button type="button" class="list">목록</button></a>
+					</div>
 				</div>
 			</div>
 		</div>

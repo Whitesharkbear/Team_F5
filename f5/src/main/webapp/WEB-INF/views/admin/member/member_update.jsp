@@ -100,6 +100,10 @@
 							<td><input type="text" id="address"></td>
 						</tr>
 					</table>
+					<div class="table_btn">
+						<button type="button" class="update">수정</button>
+						<a href="member_list.do"><button type="button" class="list">목록</button></a>
+					</div>
 				</div>
 			</div>
 		</div>

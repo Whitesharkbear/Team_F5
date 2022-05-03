@@ -1,8 +1,17 @@
 @charset "UTF-8";
 table {
-	border: 1px solid;
 	width: 100%;
 	border-collapse: collapse;
+	box-shadow: 5px 8px 6px #00000029;
+}
+
+table th {
+	background-color: oldlace;
+}
+
+table a {
+	text-decoration: none;
+	color: #000;
 }
 
 thead,
@@ -11,8 +20,11 @@ tfoot,
 tr,
 td,
 th{
-	border-width:1px !important;
 	text-align: center;
+}
+
+section {
+	margin-top: 5% !important;
 }
 /*-----------------------------------------------------------------------
 
@@ -20,10 +32,6 @@ th{
  								
  ------------------------------------------------------------------------*/
 @media (min-width : 767.9999px) {
-
-section {
-	margin-bottom: 5%;
-}
 
 #content1 {
     height: 100%;
@@ -97,10 +105,6 @@ section {
  ------------------------------------------------------------------------*/
 @media (max-width : 767.9998px) {
 
-section {
-	margin-bottom: 5%;
-}
-
 #content1 {
     height: 100%;
     width: 80%;
@@ -161,10 +165,6 @@ section {
  								
  ------------------------------------------------------------------------*/
 @media (max-width : 425.9998px) {
-
-section {
-	margin-bottom: 5%;
-}
 
 #content1 {
     height: 100%;

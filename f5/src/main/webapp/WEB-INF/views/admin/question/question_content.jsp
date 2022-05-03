@@ -24,31 +24,33 @@ function list() {
 				<h4>문의관리 | 상세페이지</h4>
 <!-- 				<form action="question_receive.do" method="get" enctype="multipart/form-data"> -->
 				<table class="question_table">
-				<colgroup>
-					<col width="20%">
-					<col width="80%">
-				</colgroup>
 					<tr>
-						<td>제목</td>
+						<td><label>제목</label></td>
+					</tr>
+					<tr>
 						<td><input type="text" id="question_title"></td>
 					</tr>
 					<tr>
-						<td>보낸사람</td>
+						<td><label>보낸사람</label></td>
+					</tr>
+					<tr>
 						<td><input type="text" id="sender"></td>
 					</tr>
 					<tr>
-						<td colspan="2">내용</td>
+						<td><label>내용</label></td>
 					</tr>
 					<tr>
-						<td colspan="2"><textarea rows="10" id="question_content"></textarea></td>
+						<td><textarea rows="10" id="question_content"></textarea></td>
 					</tr>
 					<tr>
-						<td>파일첨부</td>
+						<td><label>파일첨부</label></td>
+					</tr>
+					<tr>
 						<td><input type="file" id="file"></td>
 					</tr>
 				</table>
 				<div class="question_btn">
-					<button class="question_update" onclick="receive()">답장하기</button>
+					<button class="question_receiver" onclick="receive()">답장하기</button>
 					<button class="question_list" onclick="list()">목록</button>
 				</div>
 <!-- 				</form> -->

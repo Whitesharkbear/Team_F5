@@ -4590,7 +4590,7 @@ textarea.form-control-lg {
 .card-body {
   flex: 1 1 auto;
   text-align: center;
-  padding: 0 2%;
+  padding: 2% 2%;
 }
 
 .card-title {
@@ -7419,7 +7419,7 @@ textarea.form-control-lg {
 }
 
 .mb-4 {
-  margin-bottom: 1.5rem !important;
+  margin-bottom: 1.5rem;
 }
 
 .mb-5 {
@@ -11339,11 +11339,11 @@ textarea.form-control-lg {
 	}
 	
 } 
-@media (max-width: 1200px){
- 	.navbar-nav{
- 		width : 100%;
- 	}
- }
+/* @media (max-width: 1200px){ */
+/*  	.navbar-nav{ */
+/*  		width : 100%; */
+/*  	} */
+/*  } */
 .header-image{
 	width : 250px;
 	height : 50px;
@@ -11367,7 +11367,23 @@ textarea.form-control-lg {
  }
 .fw-bt{
 	height: 25px;
-	font-size: 6px;
+    font-size: 6px;
+    background: brown;
+    border: none;
+    border-radius: 5%;
+    color: #fff;
+    width: 5%;
+}
+@media (max-width : 767.9998px) {
+.fw-bt{
+	height: 25px;
+    font-size: 6px;
+    background: brown;
+    border: none;
+    border-radius: 5%;
+    color: #fff;
+    width: 10%;
+}
 }
 .py-5_co{
 	text-align: center;

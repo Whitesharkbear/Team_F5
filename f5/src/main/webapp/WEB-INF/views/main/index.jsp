@@ -73,34 +73,26 @@
                     <div class="card mb-4">
                         <div class="card-header">공지사항</div>
                         <div class="card-body">
-							<table border="1">
-								<tr>
-									<th>목차</th>
-									<th>제목</th>
-									<th>작성일</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>강남Foodly 이용시 주의사항 안내</td>
-									<td>오늘</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>3차 방문포장 이벤트 당첨자를 확인하세요</td>
-									<td>어제</td>
-								</tr>
-								
-							</table>
+                        	<div class="main_notice">
+								<ul class="new_notice">
+									<li><a>공지1</a></li>
+									<li><a>공지2</a></li>
+									<li><a>공지3</a></li>
+								</ul>
+                        	</div>
                         </div>
                     </div>
                
                     <div class="card mb-4">
-                        <div class="card-header"><img></div>
-                        <div class="card-body">HeadLine News!</div>
-                        <div class = "main_news">
-                        	코로나 19로 인해 절찬 할인 중!<br>
-							닭, 돼지고기 반값 세일 중!<br>
-							6월부터 재난지원금 추가 신청<br>
+                        <div class="card-header">최신 뉴스</div>
+                        <div class="card-body">
+	                        <div class = "main_news">
+	                        	<ul class="new_news">
+	                        		<li><a>뉴스1</a></li>
+	                        		<li><a>뉴스2</a></li>
+	                        		<li><a>뉴스3</a></li>
+	                        	</ul>
+	                        </div>
                         </div>
                     </div>
                     <div class="card mb-4">
@@ -127,29 +119,13 @@
                 	 <div class="card mb-4 ">
                         <div class="card-header">자유게시판</div>
                         <div class="card-body">
-							<table border="1">
-								<tr>
-									<th>목차</th>
-									<th>제목</th>
-									<th>작성일</th>
-								</tr>
-								<tr>
-									<td>1</td>
-									<td>[리뷰글] 강남대박 맛집 다녀왔어요~</td>
-									<td>오늘</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>매운카레 5단계도전파티 모집</td>
-									<td>오늘</td>
-								</tr>
-								<tr>
-									<td>3</td>
-									<td>논현동 맛집 방문후기</td>
-									<td>오늘</td>
-								</tr>
-								
-							</table>
+                        	<div class="main_board">
+								<ul class="new_board">
+									<li><a>게시글1</a></li>
+									<li><a>게시글2</a></li>
+									<li><a>게시글3</a></li>
+								</ul>
+                        	</div>
                         </div>
                     </div>
                     

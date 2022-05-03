@@ -11,9 +11,12 @@
 	<jsp:include page="../header.jsp" />
 		<div class="container">
 			<div class="row">
-				<div class="content1">
-					<h1>CEO회원관리</h1>
-					<table>
+				<div id="content">
+					<h4>CEO회원관리</h4>
+					<div class="register">
+						<a href="ceo_member_insert.do"><button type="button" class="register_btn">CEO회원 추가</button></a>
+					</div>
+					<table id="member_table">
 						<colgroup>
 								<!-- 번호 -->
 								<col width="10%">
@@ -21,46 +24,43 @@
 								<col width="15%">
 								<!-- 아이디 -->
 								<col width="15%">
-								<!-- 생년월일 -->
-								<col width="15%">
 								<!-- 회원권한 -->
 								<col width="15%">
 								<!-- 탈퇴 -->
-								<col width="15%">
+								<col width="17%">
 								<!-- 탈퇴 -->
-								<col width="10%">
+								<col width="13%">
 							</colgroup>
 							<tr>
-								<th>번호</th><th>이름</th><th>아이디</th><th>생년월일</th><th>회원권한</th><th>탈퇴</th><th>폐점신청</th>
+								<th>번호</th><th>이름</th><th>아이디</th><th>매장이름</th><th>탈퇴</th><th>폐점신청</th>
 							</tr>
 							<% for ( int i = 1; i <= 10; i++ ) { %>
 								<tr>
 									<td><%= i %></td>
 									<td>name<%= i %></td>
-									<td>id<%= i %></td>
-									<td>2022-01-01</td>
+									<td><a href="ceo_member_content.do">id<%= i %></a></td>
 									<td>
-									<!-- 
-										<select class="auth">
-											<option value="0" selected="selected">일반회원</option>
-											<option value="1">CEO</option>
-											<option value="2">관리자</option>
-										</select>
-									-->
-									<label>CEO회원</label>
+									<label>음식점<%= i %></label>
 									</td>
 									<td>
-										<button value="0">승인</button>
+										<button value="0" class="secession">승인</button>
 									</td>
 									<td>
-										<button value="0">승인</button>
+										<button value="0" class="closing">승인</button>
 									</td>
 								</tr>
 							<% } %>
-							<tr>
-								<td colspan="7"><div class="paging"><< 1  2  3  4  5 >></div></td>
-							</tr>
 					</table>
+					<div class="search">
+						<div class="search_text">
+							<input type="text" id="searchbar" 
+							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
+							<button type="button" class="search_btn" onclick="search()">검색</button>
+						</div>
+					</div>
+					<div class="paging">
+						<div><< 1  2  3  4  5 >></div>
+					</div>
 				</div>
 			</div>
 		</div>

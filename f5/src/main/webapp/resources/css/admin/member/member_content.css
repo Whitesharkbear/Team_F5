@@ -1,20 +1,19 @@
 @charset "UTF-8";
 
 table {
-	border: 1px solid;
 	width: 100%;
 	border-collapse: collapse;
 }
 
-thead,
-tbody,
-tfoot,
-tr,
-td,
-th{
-	border-width:1px !important;
-	text-align: center;
-}
+/* thead, */
+/* tbody, */
+/* tfoot, */
+/* tr, */
+/* td, */
+/* th{ */
+/* 	border-width:1px !important; */
+/* 	text-align: center; */
+/* } */
 
 /*-----------------------------------------------------------------------
 
@@ -29,22 +28,75 @@ th{
     margin: 0 auto;
 }
 
-#join_table {
-	width: 80%;
+#content h4 {
+    width: 45% !important;
+    margin: 5% 15%;
+}
+
+#content_table {
+	width: 50%;
 	margin: 0 auto;
 }
 
-#join_table tr, #join_table td {
+#content_table tr td > label {
+	float: left;
+}
+
+#content_table input {
+	width: 100%;
+}
+
+#content_table input#year {
+	width: 30%;
+}
+
+#content_table #gender {
+	width: 100%;
+}
+#content_table {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#content_table tr, #join_table td {
 	border-style: none;
 }
 
-#join_table input {
+#content_table input {
 	
-	width: 50%;
+	width: 100%;
 }
 
-#join_table input#year{
+#content_table input#year{
 	width: 30%;
+}
+
+#content_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 20%;
+}
+
+.table_btn .update {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }
@@ -62,22 +114,75 @@ th{
     margin: 0 auto;
 }
 
-#join_table {
-	width: 80%;
+#content h4 {
+    width: 55% !important;
+    margin: 5% 15%;
+}
+
+#content_table {
+	width: 50%;
 	margin: 0 auto;
 }
 
-#join_table tr, #join_table td {
+#content_table tr td > label {
+	float: left;
+}
+
+#content_table input {
+	width: 100%;
+}
+
+#content_table input#year {
+	width: 30%;
+}
+
+#content_table #gender {
+	width: 100%;
+}
+#content_table {
+	width: 70%;
+	margin: 0 auto;
+}
+
+#content_table tr, #join_table td {
 	border-style: none;
 }
 
-#join_table input {
+#content_table input {
 	
-	width: 50%;
+	width: 100%;
 }
 
-#join_table input#year{
+#content_table input#year{
 	width: 30%;
+}
+
+#content_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 30%;
+}
+
+.table_btn .update {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }
@@ -90,30 +195,77 @@ th{
 
 #content {
     height: 100%;
-    width: 100%;
+    width: 80%;
     margin: 0 auto;
 }
 
-#member_table {
-	font-size: 10px;
+#content h4 {
+    width: 100% !important;
+    margin: 5% 0;
+    font-size: 1em;
+    font-weight: bolder;
 }
 
-#join_table {
-	width: 80%;
+#content_table {
+	width: 100%;
 	margin: 0 auto;
 }
 
-#join_table tr, #join_table td {
+#content_table tr td > label {
+	float: left;
+}
+
+#content_table input {
+	width: 100%;
+}
+
+#content_table input#year {
+	width: 30%;
+}
+
+#content_table #gender {
+	width: 100%;
+}
+
+#content_table tr, #join_table td {
 	border-style: none;
 }
 
-#join_table input {
+#content_table input {
 	
-	width: 50%;
+	width: 100%;
 }
 
-#join_table input#year{
+#content_table input#year{
 	width: 30%;
+}
+
+#content_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 40%;
+}
+
+.table_btn .update {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 }

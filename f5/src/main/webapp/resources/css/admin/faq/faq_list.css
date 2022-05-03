@@ -29,8 +29,22 @@ th{
     margin: 0 auto;
 }
 
+#content h4 {
+    width: 45% !important;
+    margin: 5% 0;
+}
+
 #content > .faq_write {
 	text-align: right;
+}
+
+.faq_write a > .faq_write_btn {
+	background-color: brown;
+	width: 20%;
+	border: none;
+	border-radius: 5%;
+	color: #fff;
+	margin-bottom: 5%;
 }
 
 #content .search {
@@ -42,10 +56,7 @@ th{
 
 .search .search_text > .title {
 	text-align: center;
-}
-
-.search_text > .search_btn {
-	width: 50px;
+	height: 30px;
 }
 
 #faqList {
@@ -66,12 +77,37 @@ th{
 	padding: 10px;
 }
 
-#faqList details > summary::marker {
-	text-align: right;
-}
-
 #faqList details > p {
 	background-color: lightgray;
+}
+
+#faqList details a {
+	text-decoration: none;
+}
+
+.faq_btn .update {
+	width: 6%;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.faq_btn .delete {
+	width: 6%;
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.search_text .search_btn {
+	width: 10%;
+	height: 30px;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 #content > .paging {
@@ -79,8 +115,9 @@ th{
 	text-align: center;
 }
 
-#content ul li {
-	display: inline-block;
+.paging {
+	text-align: center;
+	margin: 5% 0;
 }
 
 }
@@ -94,31 +131,38 @@ th{
 
 #content {
     height: 100%;
-    width: 80%;
+    width: 90%;
     margin: 0 auto;
+}
+
+#content h4 {
+    width: 45% !important;
+    margin: 5% 0;
 }
 
 #content > .faq_write {
 	text-align: right;
 }
 
+.faq_write a > .faq_write_btn {
+	background-color: brown;
+	width: 20%;
+	border: none;
+	border-radius: 5%;
+	color: #fff;
+	margin-bottom: 5%;
+}
+
 #content .search {
 	text-align: center;
+	margin-bottom: 40px;
 	margin: 0 auto;
 	width: 80%;
 }
 
-.search_text > .title {
-	font-size: 12px;
-}
-
-.search_text > #searchbar {
-	font-size: 12px;
-}
-
-.search_text > .search_btn {
-	font-size: 12px;
-	width: 50px;
+.search .search_text > .title {
+	text-align: center;
+	height: 30px;
 }
 
 #faqList {
@@ -139,12 +183,37 @@ th{
 	padding: 10px;
 }
 
-#faqList details > summary::marker {
-	text-align: right;
-}
-
 #faqList details > p {
 	background-color: lightgray;
+}
+
+#faqList details a {
+	text-decoration: none;
+}
+
+.faq_btn .update {
+	width: 10%;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.faq_btn .delete {
+	width: 10%;
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.search_text .search_btn {
+	width: 20%;
+	height: 30px;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 #content > .paging {
@@ -152,8 +221,9 @@ th{
 	text-align: center;
 }
 
-#content ul li {
-	display: inline-block;
+.paging {
+	text-align: center;
+	margin: 5% 0;
 }
 
 }
@@ -170,28 +240,22 @@ th{
     margin: 0 auto;
 }
 
+#content h4 {
+    width: 45% !important;
+    margin: 5% 0;
+}
+
 #content > .faq_write {
 	text-align: right;
 }
 
-#content .search {
-	text-align: center;
-	margin: 0 auto;
-	width: 100%;
-}
-
-.search .search_text > .title {
-	text-align: center;
-	font-size: 10px;
-}
-
-.search .search_text > #searchbar {
-	font-size: 10px;
-}
-
-.search_text > .search_btn {
-	font-size: 10px;
-	width: 50px;
+.faq_write a > .faq_write_btn {
+	background-color: brown;
+	width: 20%;
+	border: none;
+	border-radius: 5%;
+	color: #fff;
+	margin-bottom: 5%;
 }
 
 #faqList {
@@ -212,12 +276,49 @@ th{
 	padding: 10px;
 }
 
-#faqList details > summary::marker {
-	text-align: right;
-}
-
 #faqList details > p {
 	background-color: lightgray;
+}
+
+#faqList details a {
+	text-decoration: none;
+}
+
+.faq_btn .update {
+	width: 20%;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.faq_btn .delete {
+	width: 20%;
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+#content .search {
+	text-align: center;
+	margin-bottom: 40px;
+	margin: 0 auto;
+	width: 100%;
+}
+
+.search .search_text > .title {
+	text-align: center;
+	height: 30px;
+}
+
+.search_text .search_btn {
+	width: 20%;
+	height: 30px;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
 #content > .paging {
@@ -225,7 +326,9 @@ th{
 	text-align: center;
 }
 
-#content ul li {
-	display: inline-block;
+.paging {
+	text-align: center;
+	margin: 5% 0;
 }
+
 }

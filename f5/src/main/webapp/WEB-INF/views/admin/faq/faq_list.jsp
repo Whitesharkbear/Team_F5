@@ -12,8 +12,11 @@
 		<div class="container">
 			<div class="row">
 				<div id="content">
+				<h4>관리자 | FAQ관리</h4>
 					<div class="faq_write">
-						<a href="faq_write.do"><button type="button" class="faq_write">등록</button></a>
+						<a href="faq_write.do">
+							<button type="button" class="faq_write_btn">등록</button>
+						</a>
 					</div>
 					<div id="faqList">
 						<% for ( int i = 10; i > 0; i-- ) { %>
@@ -21,32 +24,25 @@
 							<summary>질문 <%= i %></summary>
 							<p><span>답변 <%= i %></span></p>
 							<div class="faq_btn">
-								<a href="faq_update.do">수정</a>
-								<a href="faq_delete.do">삭제</a>
+								<a href="faq_update.do">
+									<button type="button" class="update">수정</button>
+								</a>
+								<a href="faq_delete.do">
+									<button type="button" class="delete">삭제</button>
+								</a>
 							</div>
 						</details>
 						<% } %>
 					</div>
 					<div class="search">
 						<div class="search_text">
-							<select class="title">
-								<option value="title_text" selected="selected">제목 + 내용</option>
-								<option value="title">제목만</option>
-								<option value="text">내용만</option>
-							</select>
 							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
 							<button type="button" class="search_btn" onclick="search()">검색</button>
 						</div>
 					</div>
 					<div class="paging">
-						<ul>
-							<li><a href="#">&lt;&lt;</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">&gt;&gt;</a></li>
-						</ul>
+						<div><< 1  2  3  4  5 >></div>
 					</div>
 				</div>
 			</div>
