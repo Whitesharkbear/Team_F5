@@ -22,10 +22,6 @@ public class StoreController {
 		public String store_infor() {
 			return "store/store_information";
 		}
-		@RequestMapping(value = "/store_information2.do" , method = RequestMethod.GET)
-		public String store_infor2() {
-			return "store/store_information2";
-		}
 		@RequestMapping(value = "/store_goods.do" , method = RequestMethod.GET)
 		public String store_goods() {
 			return "store/store_goods";

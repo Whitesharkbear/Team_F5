@@ -32,15 +32,11 @@
 		<div class = "store-intro">
 			<h2>댄싱 홍콩 강남1호점</h2>
 			<div class= "store-intro-img-box">
-				<img class ="button_before button_before_mobile" src = "/f5/resources/images/before_button_mobile.png">
+				<img class ="button_before_mobile" src = "/f5/resources/images/before_button_mobile.png">
 				<img class ="button_before" src = "/f5/resources/images/before_button.png">
-				<ul class = "store-intro-img-ul">
-					<li><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
-					<li class="mobile-hidden"><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
-					<li class="laptop-hidden"><a><img class= "store-intro-img" src = "/f5/resources/images/sample5.jpg"></a></li>
-				</ul>
+				<div id = "img-div-cover"><div id="img-div"></div></div>
 				<img class ="button_next" src = "/f5/resources/images/next_button.png">
-				<img class ="button_next button_next_mobile" src = "/f5/resources/images/next_button_mobile.png">
+				<img class ="button_next_mobile" src = "/f5/resources/images/next_button_mobile.png">
 			</div>
 			<h2>평점 4.6</h2>
 			<h2 id="intro">#핫플레이스 #중국 #친절</h2>
@@ -110,6 +106,7 @@
 				  <div class = "dates"></div>
 				</div>
 				<!-- 모달창-->
+				<form name="store_information_reservation_form" action="store_information.do" method="post">
 				<div class = "reservation-modal">
 					<div class = "modal-window">
 						<div class = "modal-title">예약설정</div>
@@ -117,7 +114,7 @@
 							<div class = "selected-date"></div>
 							<div class = "modal-input">
 								<div>인원수 선택</div>
-								<select class = "modal-select-number">
+								<select class = "modal-select-number" name = "reservation_count">
 									<option>--선택--</option>
 									<option>1명</option>
 									<option>2~3명</option>
@@ -125,7 +122,7 @@
 									<option>6명 이상</option>
 								</select>
 								<div>시간대 선택</div>
-								<select class = "modal-select-time">
+								<select class = "modal-select-time" name = "reservation_date">
 									<option>--선택--</option>
 									<option>오전</option>
 									<option>점심시간</option>
@@ -142,6 +139,8 @@
 						</div>
 					</div>
 				</div>
+				</form>
+				<!-- 모달끝  -->
 			</div>
 			<h2 id="delivery">주문</h2>
 			<h4>집에서 즐기세요</h4>
