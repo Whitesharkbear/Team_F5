@@ -51,7 +51,7 @@
 		)
 	</insert>
 	
-	<update id="faqUpdate" parameterType="com.web.f5.admin.vo.AdminFaqVO">
+	<update id="faqUpdate" parameterType="com.web.f5.vo.AdminFaqVO">
 		update faq
 		set
 			faqTitle = #{faqTitle},

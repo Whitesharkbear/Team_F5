@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,27 +47,16 @@
             				<th class="board-table-col4">no</th>
             				<th class="board-table-col5">작성일</th>
             			</tr>
+            			
+            			<c:forEach var="vo" items="${list}">
             			<tr class="tr-sec">
-            				<td class="board-table-col1"><span class="asd">1</span></td>
-            				<td class="board-table-col2"><a href="board_content.do">제목11asdasdasdsa</a></td>
-            				<td class="board-table-col3">작성자1</td>
-            				<td class="board-table-col4">11</td>
-            				<td class="board-table-col5">2022-04-21</td>
+            				<td class="board-table-col1"><span class="asd">${vo.board_idx}</span></td>
+            				<td class="board-table-col2"><a href="board_content.do?board_idx=${vo.board_idx}">${vo.board_title}</a></td>
+            				<td class="board-table-col3">${vo.member_id}</td>
+            				<td class="board-table-col4">${vo.board_hits}</td>
+            				<td class="board-table-col5">${vo.board_date}</td>
             			</tr>
-            			<tr class="tr-sec">
-            				<td class="board-table-col1"><span class="asd">1</span></td>
-            				<td class="board-table-col2">제목1</td>
-            				<td class="board-table-col3">작성자1</td>
-            				<td class="board-table-col4">11</td>
-            				<td class="board-table-col5">2022-04-21</td>
-            			</tr>
-            			<tr class="tr-sec">
-            				<td class="board-table-col1"><span class="asd">1</span></td>
-            				<td class="board-table-col2">제목1</td>
-            				<td class="board-table-col3">작성자1</td>
-            				<td class="board-table-col4">11</td>
-            				<td class="board-table-col5">2022-04-21</td>
-            			</tr>
+            			</c:forEach>
             			
             			<tr>
             				<td colspan=5>

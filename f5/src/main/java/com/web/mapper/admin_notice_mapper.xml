@@ -9,7 +9,7 @@
 		select count(*) from board where boardSort = 2
 	</select>
 	
-	<select id="list" parameterType="map" resultType="com.web.f5.admin.vo.AdminNoticeVO">
+	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
 		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardSort
@@ -19,7 +19,7 @@
 			(rno between #{start} and #{end}) and (boardSort = '2')
 	</select>
 	
-	<select id="limitList" resultType="com.web.f5.admin.vo.AdminNoticeVO">
+	<select id="limitList" resultType="com.web.f5.vo.AdminNoticeVO">
 		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardSort
@@ -29,7 +29,7 @@
 			 rno &lt; 4
 	</select>
 	
-	<select id="noticeContent" parameterType="java.lang.String" resultType="com.web.f5.admin.vo.AdminNoticeVO">
+	<select id="noticeContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminNoticeVO">
 		select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardSort, boardCategory
 		from
 			board
@@ -37,7 +37,7 @@
 			boardIdx = #{boardIdx}
 	</select>
 	
-	<insert id="noticeInsert" parameterType="com.web.f5.admin.vo.AdminNoticeVO">
+	<insert id="noticeInsert" parameterType="com.web.f5.vo.AdminNoticeVO">
 		insert into board
 		(
 			boardIdx,
@@ -64,7 +64,7 @@
 		)
 	</insert>
 	
-	<update id="noticeUpdate" parameterType="com.web.f5.admin.vo.AdminNoticeVO">
+	<update id="noticeUpdate" parameterType="com.web.f5.vo.AdminNoticeVO">
 		update board
 		set
 			boardTitle = #{boardTitle},

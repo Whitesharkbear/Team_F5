@@ -29,7 +29,7 @@
             <div class="row">
 	            
             	<div class="board_container">
-            		<label class="board-caption">Fooldey의 자랑거리</label>
+            		<label class="board-caption">Foodly의 자랑거리</label>
 	            	<div class="board-write-container">
 	            		<div class="board-write-container-wrap">
 		            		<table class="write-table">

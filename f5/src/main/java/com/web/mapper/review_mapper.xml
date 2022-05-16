@@ -4,7 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.review">
-	<select id="selectlist" parameterType="map" resultType="com.web.f5.store.vo.ReviewVO">
+	<select id="selectlist" parameterType="map" resultType="com.web.f5.vo.ReviewVO">
 		select * from review where review_idx between #{Start} and #{End}
 	</select>
 	<insert id="insert" parameterType="com.web.f5.store.vo.ReviewVO">

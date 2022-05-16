@@ -29,7 +29,7 @@
             <div class="row">
             
             	<div class="board_container">
-            	<label class="board-caption">Fooldey의 자랑거리</label>
+            	<label class="board-caption">Foodly의 자랑거리</label>
 				<div style="text-align: right; margin-bottom: 50px;">
 					<a href="promote_write.do">
 					<button class="cusbtn btn-promote_write" type="button"

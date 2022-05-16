@@ -266,15 +266,22 @@
 	
 }
 
+
+.reply-re-write-area {
+	width: 70%;
+	margin: 10px 5% 20px;
+	border: 1px solid rgba(0,0,0,0.5);
+	display: none;
+}
+
+
 .board-content-container button:hover {
 	background-color: rgba(0,0,0,0.1);
 	transition: 0.3s;
 	
 }
 
-.reply-etc div:nth-last-child(1) {
-	text-align: right;
-}
+
 
 
 
