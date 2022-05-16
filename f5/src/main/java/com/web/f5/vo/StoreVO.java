@@ -1,4 +1,4 @@
-package com.web.f5.store.vo;
+package com.web.f5.vo;
 
 public class StoreVO {
 	
@@ -67,6 +67,5 @@ public class StoreVO {
 	public void setStore_category(String store_category) {
 		this.store_category = store_category;
 	}
-	
 	
 }

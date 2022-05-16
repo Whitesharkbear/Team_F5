@@ -1,9 +1,9 @@
-package com.web.f5.store.vo;
+package com.web.f5.vo;
 
 public class ReservationVO {
-	String reservation_idx,store_idx,member_id,reservation_date;
+	String reservation_idx,store_idx,member_id,reservation_date,reservation_count;
 	
-	int reservation_num,reservation_count;
+	int reservation_num;
 
 	public String getReservation_idx() {
 		return reservation_idx;
@@ -45,11 +45,11 @@ public class ReservationVO {
 		this.reservation_num = reservation_num;
 	}
 
-	public int getReservation_count() {
+	public String getReservation_count() {
 		return reservation_count;
 	}
 
-	public void setReservation_count(int reservation_count) {
+	public void setReservation_count(String reservation_count) {
 		this.reservation_count = reservation_count;
 	}
 	

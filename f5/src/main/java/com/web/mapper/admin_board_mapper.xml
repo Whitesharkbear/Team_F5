@@ -5,7 +5,7 @@
     
 <mapper namespace="mapper.board">
 	
-	<select id="limitList" resultType="com.web.f5.admin.vo.AdminBoardVO">
+	<select id="limitList" resultType="com.web.f5.vo.AdminBoardVO">
 		select rno, boardIdx, memberId, boardTitle, boardContent, boardDate, boardSort
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, to_char(boardDate,'yyyy-mm-dd') boardDate, boardSort
@@ -19,7 +19,7 @@
 		select count(*) from board where boardSort = 0
 	</select>
 	
-	<select id="list" parameterType="map" resultType="com.web.f5.admin.vo.AdminBoardVO">
+	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminBoardVO">
 		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardSort
@@ -29,7 +29,7 @@
 			(rno between #{start} and #{end}) and (boardSort = '0')
 	</select>
 	
-	<select id="boardContent" parameterType="java.lang.String" resultType="com.web.f5.admin.vo.AdminBoardVO">
+	<select id="boardContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminBoardVO">
 		select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardSort, boardCategory
 		from
 			board
@@ -37,7 +37,7 @@
 			boardIdx = #{boardIdx}
 	</select>
 	
-	<insert id="boardInsert" parameterType="com.web.f5.admin.vo.AdminBoardVO">
+	<insert id="boardInsert" parameterType="com.web.f5.vo.AdminBoardVO">
 		insert into board
 		(
 			boardIdx,
@@ -64,7 +64,7 @@
 		)
 	</insert>
 	
-	<update id="boardUpdate" parameterType="com.web.f5.admin.vo.AdminBoardVO">
+	<update id="boardUpdate" parameterType="com.web.f5.vo.AdminBoardVO">
 		update board
 		set
 			boardTitle = #{boardTitle},

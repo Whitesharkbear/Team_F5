@@ -1,4 +1,4 @@
-package com.web.f5.store.vo;
+package com.web.f5.vo;
 
 public class OrdersVO {
 	String orders_idx,store_idx,member_id,orders_food;

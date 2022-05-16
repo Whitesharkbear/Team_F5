@@ -4,5 +4,18 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.store">
-
+	<insert id="insert" parameterType="com.web.f5.vo.StoreVO">
+		insert into store
+				values(store_sequ.nextval,#{store_name},#{store_place},#{store_content},#{store_tel},#{store_event},#{store_benefit},#{store_category})
+	</insert>
+	<select id="select" parameterType="java.lang.String" resultType="com.web.f5.vo.StoreVO">
+		select * from store
+				where Store_idx=#{store_idx}
+	</select>
+	<select id="selectlist" parameterType="map" resultType="com.web.f5.vo.StoreVO">
+		select * from store where store_idx between #{Start} and #{End}
+	</select>
+	<select id="totalCount" resultType="int">
+		select count(*) from store
+	</select>
 </mapper>

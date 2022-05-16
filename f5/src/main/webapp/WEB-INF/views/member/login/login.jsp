@@ -18,6 +18,14 @@
         <link rel="stylesheet" type="text/css" href="/f5/resources/css/member/login/font-awesome.css" />
         <!-- main styles-->
         <link rel="stylesheet" type="text/css" href="/f5/resources/css/member/login/styles.css" />
+        <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+        <script type="text/javascript">
+    	$(document).ready(function(){
+    		$('#btnLogin').on('click',function(){
+    			member_login_form.submit();
+    		});
+    	});
+        </script>
     </head>
     <!--==================== body ======================= -->
 
@@ -27,15 +35,15 @@
 
             
             <div class="login-form">
-                <form>
+                <form name = "member_login_form" action="login.do" method="post">
                     <div class="login-form-title"><img alt="" src="/f5/resources/images/mainlogo2.png"></div>
                     <div class="form-group">
                         <label for="InputUserEmail1">Username</label>
-                        <input type="email" class="form-control" id="InputUserEmail1"/>
+                        <input type="email" class="form-control" id="InputUserEmail1" name="member_id"/>
                     </div>
                     <div class="form-group">
                         <label for="InputPassword">Password</label>
-                        <input type="password" class="form-control" id="InputPassword">
+                        <input type="password" class="form-control" id="InputPassword" name="member_pass">
                     </div>
                     <div class="form-group forgo-remember">
                         <div class="form-check">
@@ -47,7 +55,7 @@
                             <a href="#" class="txt1"> Forget me</a>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary custom-btn">S U B M I T</button>
+                    <button type="button" id = "btnLogin"  class="btn btn-primary custom-btn">S U B M I T</button>
 
                 </form>
 

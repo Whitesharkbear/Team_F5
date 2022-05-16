@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +9,21 @@
 <title>Insert title here</title>
 <link href="/f5/resources/css/store/store_join.css" rel="stylesheet" />
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
+<script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#btnJoin').on('click',function(){
+			store_join_form.submit();
+		});
+	});
+</script>
+<style type="text/css">
+	.store-table tr th {
+		 background-color: rgb(255,225,140);
+		 text-align: left;
+		 padding-left:20px;
+	}
+</style>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
 	<div class="head-nav-container">
@@ -20,7 +37,6 @@
 				<li><a href="#"></a></li>
 			</ul>
 		</div>
-
 	</div>
 	<div class="container">
 	<div class="con">
@@ -35,7 +51,7 @@
         </colgroup>
         	<tr>
         		<td><img src="resources/images/user.png"></td>
-        		<td rowspan="2"><h1 style="text-align: center;">Username님, 환영합니다!</h1></td>
+        		<td rowspan="2"><h1>Username님, 환영합니다!</h1></td>
         	</tr>
         	<tr>
         		<td style="text-align: center">
@@ -47,6 +63,7 @@
         
         <div id="table-wrap">
             <!-- content-->
+             <form name = "store_join_form" action="store_join.do" method="post">
             <table class="store-table">
             <colgroup>
             	<col width="30%">
@@ -56,25 +73,38 @@
             	<col width="15%">
             	
             </colgroup>
-            	<tr><td colspan="5">가게상호명</td></tr>
+           
+            	<tr><th colspan="5">가게상호명</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text"></td>
+            		<td colspan="5"><input type="text" name = "store_name" placeholder="가게이름을 입력해주세요"></td>
             	</tr>
             	
-            	<tr><td colspan="5">주소</td></tr>
+            	<tr><th colspan="5">주소</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text"></td>
+            		<td colspan="5"><input type="text" name = "store_place" placeholder="가게 주소를 입력해주세요"></td>
             	</tr>
             	
-            	<tr><td colspan="5">전화번호</td></tr>
+            	<tr><th colspan="5">전화번호</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text"></td>
+            		<td colspan="5"><input type="text" name = "store_tel" placeholder="가게 전화번호를 입력해주세요"></td>
+            	</tr>
+            	<tr><th colspan="5">가게소개</th></tr>
+            	<tr>
+            		<td colspan="5"><input type="text" name = "store_content" placeholder="소개글을 입력해주세요"></td>
+            	</tr>
+            	<tr><th colspan="5">이벤트</th></tr>
+            	<tr>
+            		<td colspan="5"><input type="text" name = "store_event" placeholder="이벤트를 입력해주세요"></td>
+            	</tr>
+            	<tr><th colspan="5">혜택</th></tr>
+            	<tr>
+            		<td colspan="5"><input type="text" name = "store_benefit" placeholder="혜택을 입력해주세요"></td>
             	</tr>
             	
-            	<tr><td colspan="5">메뉴 유형</td></tr>
+            	<tr><th colspan="5">메뉴 유형</th></tr>
             	<tr>
             		<td>
-            			<select>
+            			<select name = "store_category">
             				<option>한식</option>
             				<option>양식</option>
             				<option>중식</option>
@@ -83,9 +113,9 @@
 					</td>
             	</tr>
             	
-            	<tr><td colspan="5">가격대</td></tr>
+            	<tr><th colspan="5">가격대</th></tr>
             	<tr class="flex-rw">
-            		<td><input class="min" type="text"></td>
+            		<td><input class="min" type="text" placeholder="최소가격을 입력해주세요"></td>
 					<td>
 						<select>
 							<option>천원</option>
@@ -96,7 +126,7 @@
 						~ 
 					</td>
 					
-					<td><input class="max" type="text"></td>
+					<td><input class="max" type="text" placeholder="최대가격을 입력해주세요"></td>
 					<td style="text-align: center">
 						<select>
 							<option>천원</option>
@@ -106,7 +136,7 @@
 
             	</tr>
             	
-            	<tr><td colspan="5">주차</td></tr>
+            	<tr><th colspan="5">주차</th></tr>
             	<tr>
             		<td colspan="5">
             			<select>
@@ -116,12 +146,12 @@
             		</td>
             	</tr>
             	
-            	<tr><td colspan="5">웹사이트</td></tr>
+            	<tr><th colspan="5">웹사이트</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text"></td>
+            		<td colspan="5"><input type="text" placeholder="웹사이트 주소를 입력해주세요"></td>
             	</tr>
             	
-            	<tr><td colspan="5">파일첨부</td></tr>
+            	<tr><th colspan="5">파일첨부</th></tr>
             	<tr>
             		<td colspan="5">
             			<div class="file-add">
@@ -133,9 +163,9 @@
             			</div>
             		</td>
             	</tr>
-            	
+            
             </table>
-
+			</form>
 
 	       <!-- JOIN BTN-->
 	       <div class="btn_area">

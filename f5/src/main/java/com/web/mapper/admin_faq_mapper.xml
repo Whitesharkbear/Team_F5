@@ -16,7 +16,7 @@
 		</choose>
 	</select>
 	
-	<select id="list" parameterType="map" resultType="com.web.f5.admin.vo.AdminFaqVO">
+	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminFaqVO">
 		select rno, faqIdx, faqTitle, faqContent, faqDate
 		from
 			(select rownum rno, faqIdx, faqTitle, faqContent, to_char(faqDate, 'yy-mm-dd') faqDate
@@ -26,7 +26,7 @@
 			rno between #{start} and #{end}
 	</select>
 	
-	<select id="faqContent" parameterType="java.lang.String" resultType="com.web.f5.admin.vo.AdminFaqVO">
+	<select id="faqContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminFaqVO">
 		select faqIdx, faqTitle, faqContent, to_char(faqDate, 'yyyy-mm-dd') faqDate
 		from
 			faq
@@ -34,7 +34,7 @@
 			faqIdx = #{faqIdx}
 	</select>
 	
-	<insert id="faqInsert" parameterType="com.web.f5.admin.vo.AdminFaqVO">
+	<insert id="faqInsert" parameterType="com.web.f5.vo.AdminFaqVO">
 		insert into faq
 		(
 			faqIdx,

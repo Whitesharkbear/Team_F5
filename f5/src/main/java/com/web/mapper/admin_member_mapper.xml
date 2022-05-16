@@ -37,7 +37,7 @@
 			</if>
 	</select>
 	
-	<select id="limitList" resultType="com.web.f5.admin.vo.AdminMemberVO">
+	<select id="limitList" resultType="com.web.f5.vo.AdminMemberVO">
 		select rno, memberId, memberName, memberBirth, memberAuthority, memberAgree, memberDate
 		from
 			(select rownum rno, memberId, memberName, memberBirth, memberAuthority, memberAgree, to_char(memberDate,'yyyy-mm-dd') memberDate
@@ -47,7 +47,7 @@
 			rno &lt; 4
 	</select>
 	
-	<select id="list" parameterType="map" resultType="com.web.f5.admin.vo.AdminMemberVO">
+	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">
 		select rno, memberId, memberName, memberBirth, memberDate
 		from
 			(select rownum rno, memberId, memberName, memberBirth, to_char(memberDate,'yyyy-mm-dd') memberDate
@@ -57,7 +57,7 @@
 			rno between #{start} and #{end}
 	</select>
 	
-	<select id="searchList" parameterType="map" resultType="com.web.f5.admin.vo.AdminMemberVO">
+	<select id="searchList" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">
 		select rno, memberId, memberName, memberBirth, memberDate
 		from
 			(select rownum rno, memberId, memberName, memberBirth, to_char(memberDate,'yyyy-mm-dd') memberDate
@@ -77,7 +77,7 @@
 			</choose>
 	</select>
 	
-	<select id="memberContent" parameterType="java.lang.String" resultType="com.web.f5.admin.vo.AdminMemberVO">
+	<select id="memberContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminMemberVO">
 		select
 			memberId, memberName, memberBirth, memberTel, memberEmail,
 			memberAddress, memberPassHint, memberPassHintAnswer,
@@ -88,7 +88,7 @@
 			memberId = #{memberId}
 	</select>
 	
-	<insert id="memberInsert" parameterType="com.web.f5.admin.vo.AdminMemberVO">
+	<insert id="memberInsert" parameterType="com.web.f5.vo.AdminMemberVO">
 		insert into member
 		(
 			memberId,
@@ -127,7 +127,7 @@
 		)
 	</insert>
 	
-	<update id="memberUpdate" parameterType="com.web.f5.admin.vo.AdminMemberVO">
+	<update id="memberUpdate" parameterType="com.web.f5.vo.AdminMemberVO">
 		update member
 		set
 			memberName = #{memberName}

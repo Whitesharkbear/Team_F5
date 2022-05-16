@@ -1,11 +1,41 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %> 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/f5/resources/css/store/store.css" rel="stylesheet" />
+<script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
+<link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">
+<script>
+	$(document).ready(function(){
+		
+		var pager = jQuery('#ampaginationsm').pagination({
+		
+		    maxSize: 7,	    		// max page size
+		    totals: '${dbCount}',	// total pages	
+		    page: '${reqPage}',		// initial page		
+		    pageSize: '${pageSize}',			// max number items per page
+		
+		    // custom labels		
+		    lastText: '&raquo;&raquo;', 		
+		    firstText: '&laquo;&laquo;',		
+		    prevText: '&laquo;',		
+		    nextText: '&raquo;',
+				     
+		    btnSize:'sm'	// 'sm'  or 'lg'		
+		});
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/f5/store.do?rpage="+e.page);         
+	    });
+		
+ 	});
+</script> 
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -15,44 +45,45 @@
                     <div class="row store_content">
                         <div class="col-lg-6">
                             <!-- Blog post-->
-                            <div class="store-card mb-4">
-                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample1.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <h2 class="card-title h4">논현동 최고의 맛집! 4.5</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="store_information.do">매장 보러가기 →</a>
-                                </div>
-                            </div>
-                            <div class="store-card mb-4">
-                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample2.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <h2 class="card-title h4">논현동 최고의 맛집! 4.3</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">매장 보러가기 →</a>
-                                </div>
-                            </div>
+                            <c:forEach var="vo"  items="${list}">
+                            <c:choose>
+                            <c:when test="${vo.store_idx % 4 == 1 || vo.store_idx % 4 == 3}">
+	                            <div class="store-card mb-4">
+	                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample1.jpg" alt="..." /></a>
+	                                <div class="card-body">
+	                                    <h2 class="card-title h4">${vo.store_name }</h2>
+	                                    <p class="card-text">${vo.store_place }</p>
+	                                    <a class="btn btn-primary" href="store_information.do?store_idx=${vo.store_idx }">매장 보러가기 →</a>
+	                                </div>
+	                            </div>
+	                        </c:when>
+                            </c:choose>
+                            </c:forEach>
                         </div>
                         <div class="col-lg-6">
                             <!-- Blog post-->
+                            <c:forEach var="vo"  items="${list}">
+                            <c:choose>
+                            <c:when test="${vo.store_idx % 4 == 2 || vo.store_idx % 4 == 0}">
                             <div class="store-card mb-4">
                                 <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample3.jpg" alt="..." /></a>
                                 <div class="card-body">
-                                    <h2 class="card-title h4">논현동 최고의 맛집 4.2</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                                    <a class="btn btn-primary" href="#!">매장 보러가기 →</a>
+                                    <h2 class="card-title h4">${vo.store_name }</h2>
+                                    <p class="card-text">${vo.store_place }</p>
+                                    <a class="btn btn-primary" href="store_information.do?store_idx=${vo.store_idx }">매장 보러가기 →</a>
                                 </div>
                             </div>
-                            <!-- Blog post-->
-                            <div class="store-card mb-4">
-                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample4.jpg" alt="..." /></a>
-                                <div class="card-body">
-                                    <h2 class="card-title h4">논현동 최고의 맛집 4.2</h2>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam.</p>
-                                    <a class="btn btn-primary" href="#!">매장 보러가기 →</a>
-                                </div>
-                            </div>
+	                        </c:when>
+                            </c:choose>                           
+                            </c:forEach>
                         </div>
                     </div>
+                    <!-- Pagination-->
+	               <table>
+	                <tr>
+						<td colspan="4"><div id="ampaginationsm"></div></td>					
+					</tr>
+					</table>
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
@@ -129,19 +160,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Pagination-->
-            <nav aria-label="Pagination">
-                <hr class="my-0" />
-                <ul class="pagination justify-content-center my-4">
-                    <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
-                    <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">3</a></li>
-                    <li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">15</a></li>
-                    <li class="page-item"><a class="page-link" href="#!">Older</a></li>
-                </ul>
-            </nav>
         </div>
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>
