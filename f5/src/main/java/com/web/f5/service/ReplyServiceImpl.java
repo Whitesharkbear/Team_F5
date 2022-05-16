@@ -1,11 +1,11 @@
-package com.web.f5.board.service;
+package com.web.f5.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.web.f5.board.dao.ReplyDAO;
-import com.web.f5.board.vo.ReplyVO;
+import com.web.f5.dao.ReplyDAO;
+import com.web.f5.vo.ReplyVO;
 
 public class ReplyServiceImpl implements ReplyService {
 	

@@ -1,8 +1,8 @@
-package com.web.f5.board.service;
+package com.web.f5.service;
 
 import java.util.List;
 
-import com.web.f5.board.vo.ReplyVO;
+import com.web.f5.vo.ReplyVO;
 
 public interface ReplyService {
 	List<ReplyVO> getSelectList(String board_idx);

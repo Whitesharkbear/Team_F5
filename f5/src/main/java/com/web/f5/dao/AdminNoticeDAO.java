@@ -14,7 +14,7 @@ public class AdminNoticeDAO implements AdminObjDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String namespace = "mapper.notice";
+	private String namespace = "mapper.adminnotice";
 	
 	@Override
 	public List<Object> select(int startCount, int endCount) {

@@ -1,8 +1,8 @@
-package com.web.f5.board.service;
+package com.web.f5.service;
 
 import java.util.List;
 
-import com.web.f5.board.vo.BoardVO;
+import com.web.f5.vo.BoardVO;
 
 public interface BoardService {
 	

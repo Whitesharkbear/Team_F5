@@ -14,7 +14,7 @@ public class AdminFaqDAO implements AdminObjDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String namespace = "mapper.faq";
+	private String namespace = "mapper.adminfaq";
 	
 	@Override
 	public List<Object> select(int startCount, int endCount) {

@@ -14,7 +14,7 @@ public class AdminMemberDAO implements AdminObjDAO {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	private String namespace = "mapper.member";
+	private String namespace = "mapper.adminmember";
 	
 	@Override
 	public List<Object> select( int startCount, int endCount ) {

@@ -1,11 +1,11 @@
-package com.web.f5.board.service;
+package com.web.f5.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.web.f5.board.dao.BoardDAO;
-import com.web.f5.board.vo.BoardVO;
+import com.web.f5.dao.BoardDAO;
+import com.web.f5.vo.BoardVO;
 
 public class BoardServiceImpl implements BoardService {
 	

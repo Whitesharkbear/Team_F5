@@ -1,4 +1,4 @@
-package com.web.f5.info.dao;
+package com.web.f5.dao;
 
 public class InfoDAO {
 

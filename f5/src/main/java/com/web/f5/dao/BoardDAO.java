@@ -1,4 +1,4 @@
-package com.web.f5.board.dao;
+package com.web.f5.dao;
 
 
 import java.util.List;
@@ -6,8 +6,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.web.f5.board.vo.ReplyVO;
-import com.web.f5.board.vo.BoardVO;
+import com.web.f5.vo.BoardVO;
 
 public class BoardDAO {
 	

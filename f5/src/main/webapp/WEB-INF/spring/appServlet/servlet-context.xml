@@ -31,8 +31,8 @@
 	<beans:bean id="reservationDao" class="com.web.f5.dao.ReservationDAO"></beans:bean>
 	<beans:bean id="memberDao" class="com.web.f5.member.dao.MemberDAO"></beans:bean>
 	<beans:bean id="reviewDao" class="com.web.f5.dao.ReviewDAO"></beans:bean>
-	<beans:bean id="boardDao" class="com.web.f5.board.dao.BoardDAO"></beans:bean>
-	<beans:bean id="replyDao" class="com.web.f5.board.dao.ReplyDAO"></beans:bean>
+	<beans:bean id="boardDao" class="com.web.f5.dao.BoardDAO"></beans:bean>
+	<beans:bean id="replyDao" class="com.web.f5.dao.ReplyDAO"></beans:bean>
 	
 	<!-- service -->
 	<beans:bean id="StoreService" class="com.web.f5.service.StoreServiceImpl"></beans:bean>
@@ -44,8 +44,8 @@
 	<beans:bean id="memberService" class="com.web.f5.member.service.MemberServiceImpl"></beans:bean>
 	<beans:bean id="reviewService" class="com.web.f5.service.ReviewServiceImpl"></beans:bean>
 	<beans:bean id="reservationService" class="com.web.f5.service.ReservationServiceImpl"></beans:bean>
-	<beans:bean id="boardService" class="com.web.f5.board.service.BoardServiceImpl"></beans:bean>
-	<beans:bean id="replyService" class="com.web.f5.board.service.ReplyServiceImpl"></beans:bean>
+	<beans:bean id="boardService" class="com.web.f5.service.BoardServiceImpl"></beans:bean>
+	<beans:bean id="replyService" class="com.web.f5.service.ReplyServiceImpl"></beans:bean>
 
 	<context:component-scan base-package="com.web.f5" />
 	

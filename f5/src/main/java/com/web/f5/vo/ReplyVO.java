@@ -1,4 +1,4 @@
-package com.web.f5.board.vo;
+package com.web.f5.vo;
 
 public class ReplyVO {
 	String reply_idx, board_idx, member_id, reply_content,

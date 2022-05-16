@@ -1,4 +1,4 @@
-package com.web.f5.board.vo;
+package com.web.f5.vo;
 
 public class BoardVO {
 	String board_idx, member_id, board_title, board_content,
