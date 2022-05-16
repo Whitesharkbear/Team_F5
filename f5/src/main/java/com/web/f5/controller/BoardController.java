@@ -1,4 +1,4 @@
-package com.web.f5.board.controller;
+package com.web.f5.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.web.f5.board.service.BoardServiceImpl;
-import com.web.f5.board.service.ReplyServiceImpl;
-import com.web.f5.board.vo.BoardVO;
-import com.web.f5.board.vo.ReplyVO;
+import com.web.f5.service.BoardServiceImpl;
+import com.web.f5.service.ReplyServiceImpl;
+import com.web.f5.vo.BoardVO;
+import com.web.f5.vo.ReplyVO;
 
 @Controller
 public class BoardController {
