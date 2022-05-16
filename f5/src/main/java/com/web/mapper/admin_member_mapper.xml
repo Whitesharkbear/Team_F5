@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="mapper.member">
+	
+	<select id="mberTotalCnt" resultType="int">
+		select
+			count(*)
+		from
+			member
+	</select>
+	
+	<select id="mberTodayCnt" resultType="int">
+		select
+			count(*)
+		from
+			member
+		where
+			memberDate &gt;= to_char( sysdate, 'yy/mm/dd' )
+	</select>
+	
+	<select id="count" resultType="int">
+		select count(*) from member
+	</select>
+	
+	<select id="searchCount" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from
+			member
+		where
+			<if test="search != ''">
+				memberId = '%'||#{search}||'%'
+			or
+				memberName = '%'||#{search}||'%'
+			</if>
+	</select>
+	
+	<select id="limitList" resultType="com.web.f5.admin.vo.AdminMemberVO">
+		select rno, memberId, memberName, memberBirth, memberAuthority, memberAgree, memberDate
+		from
+			(select rownum rno, memberId, memberName, memberBirth, memberAuthority, memberAgree, to_char(memberDate,'yyyy-mm-dd') memberDate
+		from
+			(select memberId, memberName, memberBirth, memberAuthority, memberAgree, memberDate from member order by memberDate desc))
+		where
+			rno &lt; 4
+	</select>
+	
+	<select id="list" parameterType="map" resultType="com.web.f5.admin.vo.AdminMemberVO">
+		select rno, memberId, memberName, memberBirth, memberDate
+		from
+			(select rownum rno, memberId, memberName, memberBirth, to_char(memberDate,'yyyy-mm-dd') memberDate
+		from
+			(select memberId, memberName, memberBirth, memberDate from member order by memberDate desc))
+		where
+			rno between #{start} and #{end}
+	</select>
+	
+	<select id="searchList" parameterType="map" resultType="com.web.f5.admin.vo.AdminMemberVO">
+		select rno, memberId, memberName, memberBirth, memberDate
+		from
+			(select rownum rno, memberId, memberName, memberBirth, to_char(memberDate,'yyyy-mm-dd') memberDate
+		from
+			(select memberId, memberName, memberBirth, memberDate from member order by memberDate desc))
+		where
+			(rno between #{start} and #{end})
+			and
+			<choose>
+				<when test="memberName != ''">
+					memberName like '%'||#{search}||'%'
+					or
+					memberId like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+	</select>
+	
+	<select id="memberContent" parameterType="java.lang.String" resultType="com.web.f5.admin.vo.AdminMemberVO">
+		select
+			memberId, memberName, memberBirth, memberTel, memberEmail,
+			memberAddress, memberPassHint, memberPassHintAnswer,
+			postcode, address, detailAddress, extraAddress
+		from
+			member
+		where
+			memberId = #{memberId}
+	</select>
+	
+	<insert id="memberInsert" parameterType="com.web.f5.admin.vo.AdminMemberVO">
+		insert into member
+		(
+			memberId,
+			memberPass,
+			memberName,
+			memberBirth,
+			memberGender,
+			memberTel,
+			memberEmail,
+			memberAddress,
+			memberDate,
+			memberPassHint,
+			memberPassHintAnswer,
+			postcode,
+			address,
+			detailAddress,
+			extraAddress
+		)
+		values
+		(
+			#{memberId}
+			,#{memberPass}
+			,#{memberName}
+			,#{memberBirth}
+			,#{memberGender}
+			,#{memberTel}
+			,#{memberEmail}
+			,#{memberAddress}
+			,sysdate
+			,#{memberPassHint}
+			,#{memberPassHintAnswer}
+			,#{postcode}
+			,#{address}
+			,#{detailAddress}
+			,#{extraAddress}
+		)
+	</insert>
+	
+	<update id="memberUpdate" parameterType="com.web.f5.admin.vo.AdminMemberVO">
+		update member
+		set
+			memberName = #{memberName}
+			,memberBirth = #{memberBirth}
+			,memberGender = #{memberGender}
+			,memberTel = #{memberTel}
+			,memberEmail = #{memberEmail}
+			,memberAddress = #{memberAddress}
+			,memberPassHint = #{memberPassHint}
+			,memberPassHintAnswer = #{memberPassHintAnswer}
+			,postcode = #{postcode}
+			,address = #{address}
+			,detailAddress = #{detailAddress}
+			,extraAddress = #{extraAddress}
+		where
+			memberId = #{memberId}
+	</update>
+	
+	<delete id="memberDelete" parameterType="java.lang.String">
+		delete from member
+		where
+			memberId = #{memberId}
+	</delete>
+	
+</mapper>

@@ -4106,7 +4106,7 @@ textarea.form-control-lg {
   padding-left: 0;
   margin-bottom: 0;
   list-style: none;
-  width : 50%;
+  width : 60%;
 }
 
 .navbar-nav .nav-link {
@@ -11397,36 +11397,4 @@ textarea.form-control-lg {
 	margin-left : -26px;
 	padding-left :-20px;
 }
-}
-
-@media ( min-width: 992px ) {
-
-.navbar-nav .nav-item:first-child{
-	display: none;
-}
-	
-.mber_bar {
-	display: none;
-}
-
-.mber_bar:hover {
-	display: none;
-}
-
-}
-
-@media( max-width : 991px ) {
-
-.mber_bar {
-	display: block;
-}
-
-.login_sec {
-	display: none;
-}
-
-.noneli {
-	display: none;
-}
-
 }

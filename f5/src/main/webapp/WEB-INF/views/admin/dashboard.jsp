@@ -1,10 +1,43 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <link href="/f5/resources/css/admin/dashboard.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".black_list").click(function(){
+		
+		if ( $(this).val() == "0" ) {
+			
+			$(this).css("background-color", "orange").text("석방");
+			$(this).val(1);
+		} else {
+			
+			$(this).css("background-color", "brown").text("추가");
+			$(this).val(0);
+		}
+	});
+	
+	$(".member_more_btn").hover(function(){
+		
+		$(this).text("더 보기");
+	}, function(){
+		
+		$(this).text("일반");
+	});
+	
+	$(".ceo_member_more_btn").hover(function(){
+		
+		$(this).text("더 보기");
+	}, function(){
+		
+		$(this).text("CEO");
+	});
+});
+</script>
 </head>
 <body>
     	<jsp:include page="header.jsp" />
@@ -36,10 +69,10 @@
 									<div id="users">
 										<ul>
 											<li>
-												<label>today : 0</label>
+												<label>today : ${ result.todayCnt }</label>
 											</li>
 											<li>
-												<label>total : 0</label>
+												<label>total : ${ result.totalCnt }</label>
 											</li>
 										</ul>
 									</div>
@@ -82,7 +115,8 @@
 					<div id="content2">
 						<h3>회원관리</h3>
 						<div class="member_btn">
-							<a href="#">더 보기</a>
+							<a href="member_list.do"><button type="button" class="member_more_btn">일반</button></a>
+							<a href="ceo_member_list.do"><button type="button" class="ceo_member_more_btn">CEO</button></a>
 						</div>
 						<div>
 							<table id="member_table">
@@ -96,51 +130,23 @@
 								<!-- 생년월일 -->
 								<col width="20%">
 								<!-- 회원권한 -->
-								<col width="20%">
-								<!-- 탈퇴 -->
 								<col width="15%">
+								<!-- 탈퇴 -->
+								<col width="20%">
 							</colgroup>
 								<tr>
-									<th>번호</th><th>이름</th><th>아이디</th><th>생년월일</th><th>회원권한</th><th>탈퇴</th>
+									<th>번호</th><th>이름</th><th>아이디</th><th>생년월일</th><th>회원권한</th><th>블랙리스트</th>
 								</tr>
-								<tr>
-									<td>1</td>
-									<td>name</td>
-									<td><a href="member_content.do">id</a></td>
-									<td>2022-01-01</td>
-									<td>
-									<!-- 
-										<select class="auth">
-											<option value="0" selected="selected">일반회원</option>
-											<option value="1">CEO</option>
-											<option value="2">관리자</option>
-										</select>
-									-->
-									<label>일반회원</label>
-									</td>
-									<td>
-										<button value="0">승인</button>
-									</td>
-								</tr>
-								<tr>
-									<td>2</td>
-									<td>CEO</td>
-									<td><a href="ceo_member_content.do">CEO_ID</a></td>
-									<td>2022-01-01</td>
-									<td>
-									<!-- 
-										<select class="auth">
-											<option value="0" selected="selected">일반회원</option>
-											<option value="1">CEO</option>
-											<option value="2">관리자</option>
-										</select>
-									-->
-									<label>CEO</label>
-									</td>
-									<td>
-										<button value="0">승인</button>
-									</td>
-								</tr>
+								<c:forEach var="vo" items="${ result.memberList }">
+									<tr>
+										<td>${ vo.rno }</td>
+										<td>${ vo.memberName }</td>
+										<td>${ vo.memberId }</td>
+										<td>${ vo.memberBirth }</td>
+										<td>${ vo.memberAuthority }</td>
+										<td>${ vo.memberAgree}</td>
+									</tr>
+								</c:forEach>
 							</table>
 						</div>
 					</div>
@@ -149,7 +155,7 @@
 					<div id="content3">
 						<h3>문의내역</h3>
 						<div class="question_btn">
-							<a href="question_list.do">더 보기</a>
+							<a href="question_list.do"><button type="button" class="question_more_btn">더 보기</button></a>
 						</div>
 						<table id="question_table">
 						<colgroup>
@@ -167,15 +173,15 @@
 							<tr>
 								<th>번호</th><th>문의자 id</th><th>문의제목</th><th>문의내용</th><th>답변여부</th>
 							</tr>
-							<% for ( int i = 1; i <= 10; i++) { %>
-							<tr>
-								<td>1</td>
-								<td>user1</td>
-								<td>문의1</td>
-								<td><a href="question_content.do">문의내용</a></td>
-								<td>접수중</td>
-							</tr>
-							<% } %>
+							<c:forEach var="vo" items="${ result.boardList }">
+								<tr>
+									<td>${ vo.rno }</td>
+									<td>${ vo.memberId }</td>
+									<td>${ vo.boardTitle }</td>
+									<td>${ vo.boardContent }</td>
+									<td>${ vo.boardSort }</td>
+								</tr>
+							</c:forEach>
 						</table>
 					</div>
 				</section>

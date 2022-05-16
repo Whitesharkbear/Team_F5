@@ -26,6 +26,13 @@ th{
 section {
 	margin-top: 5% !important;
 }
+
+#member_table .black_list {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
 /*-----------------------------------------------------------------------
 
  								PC 
@@ -83,7 +90,26 @@ section {
 }
 
 #content2 > .member_btn {
-	float: right;
+	width: 100%;
+	text-align: right;
+}
+
+.member_btn button {
+	width: 15%;
+}
+
+.member_btn .member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
+
+.member_btn .ceo_member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: orange;
+	color: #fff;
 }
 
 #content3 {
@@ -94,6 +120,13 @@ section {
 
 #content3 > .question_btn {
 	float: right;
+}
+
+.question_btn .question_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
 }
 
 }
@@ -145,7 +178,26 @@ section {
 }
 
 #content2 > .member_btn {
-	float: right;
+	width: 100%;
+	text-align: right;
+}
+
+.member_btn button {
+	width: 15%;
+}
+
+.member_btn .member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
+
+.member_btn .ceo_member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: orange;
+	color: #fff;
 }
 
 #content3 {
@@ -158,6 +210,12 @@ section {
 	float: right;
 }
 
+.question_btn .question_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
 }
 /*-----------------------------------------------------------------------
 
@@ -210,7 +268,26 @@ section {
 }
 
 #content2 > .member_btn {
-	float: right;
+	width: 100%;
+	text-align: right;
+}
+
+.member_btn button {
+	width: 15%;
+}
+
+.member_btn .member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
+
+.member_btn .ceo_member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: orange;
+	color: #fff;
 }
 
 #content3 {
@@ -227,4 +304,10 @@ section {
 	font-size: 1pt;
 }
 
+.question_btn .question_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
 }

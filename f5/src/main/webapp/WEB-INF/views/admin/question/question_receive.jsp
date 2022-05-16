@@ -6,35 +6,7 @@
 <title>관리자 | 문의상세</title>
 <link href="/f5/resources/css/admin/question/question_receive.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-function send() {
-	
-	var title = $("#question_title").val();
-	var receiver = $("#receiver").val();
-	var content = $("#question_content").val();
-	
-	if ( title == "" ) {
-		
-		alert("제목을 입력해주세요.");
-		$("#question_title").focus();
-	} else if ( receiver == "" ) {
-		
-		alert("받는사람 정보를 입력해주세요.");
-		$("#receiver").focus();
-	} else if ( content == "" ) {
-		
-		alert("답변 내용을 입력해주세요.");
-		$("#question_content").focus();
-	} else {
-		
-		submit();
-	}
-}
-
-function list() {
-	location.href="question_list.do";
-}
-</script>
+<script type="text/javascript" src="/f5/resources/js/admin/question/question.js"></script>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />

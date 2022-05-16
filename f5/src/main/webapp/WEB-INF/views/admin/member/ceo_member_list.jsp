@@ -6,6 +6,36 @@
 <title>관리자 | CEO회원관리</title>
 <link href="/f5/resources/css/admin/member/member_list.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	$(".black_list").click(function(){
+		
+		if ( $(this).val() == "0" ) {
+			
+			$(this).css('background-color', 'orange').text("석방");
+			$(this).val(1);
+		} else {
+			
+			$(this).css('background-color', 'brown').text("추가");
+			$(this).val(0);
+		}
+	});
+	
+	$(".closing").click(function(){
+		
+		if ( $(this).val() == "0" ) {
+			
+			$(this).css('background-color', 'brown').text("취소");
+			$(this).val(1);
+		} else {
+			
+			$(this).css('background-color', 'orange').text("승인");
+			$(this).val(0);
+		}
+	});
+});
+</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
@@ -26,13 +56,13 @@
 								<col width="15%">
 								<!-- 회원권한 -->
 								<col width="15%">
-								<!-- 탈퇴 -->
+								<!-- 블랙리스트 -->
 								<col width="17%">
 								<!-- 탈퇴 -->
 								<col width="13%">
 							</colgroup>
 							<tr>
-								<th>번호</th><th>이름</th><th>아이디</th><th>매장이름</th><th>탈퇴</th><th>폐점신청</th>
+								<th>번호</th><th>이름</th><th>아이디</th><th>매장이름</th><th>블랙리스트</th><th>폐점신청</th>
 							</tr>
 							<% for ( int i = 1; i <= 10; i++ ) { %>
 								<tr>
@@ -43,10 +73,10 @@
 									<label>음식점<%= i %></label>
 									</td>
 									<td>
-										<button value="0" class="secession">승인</button>
+										<button value="0" class="black_list" id="black<%= i %>">승인</button>
 									</td>
 									<td>
-										<button value="0" class="closing">승인</button>
+										<button value="0" class="closing" id="store<%= i %>">승인</button>
 									</td>
 								</tr>
 							<% } %>

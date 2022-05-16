@@ -61,7 +61,7 @@ table {
 	width: 30%;
 }
 
-.board_btn > .board_update {
+.board_btn > .board_write {
 	border: none;
 	border-radius: 5%;
 	background-color: brown;
@@ -124,7 +124,7 @@ table {
 	width: 35%;
 }
 
-.board_btn > .board_update {
+.board_btn > .board_write {
 	border: none;
 	border-radius: 5%;
 	background-color: brown;
@@ -186,7 +186,7 @@ table {
 	width: 35%;
 }
 
-.board_btn > .board_update {
+.board_btn > .board_write {
 	border: none;
 	border-radius: 5%;
 	background-color: brown;

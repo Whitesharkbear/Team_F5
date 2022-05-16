@@ -1,4 +1,4 @@
-package com.web.f5.admin.controller;
+package com.web.f5.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

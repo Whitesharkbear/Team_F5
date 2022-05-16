@@ -7,7 +7,7 @@
 <link href="/f5/resources/css/admin/notice/notice_write.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function update() {
+function register() {
 	
 	var title = $("#notice_title").val();
 	var content = $("#notice_content").val();
@@ -22,12 +22,27 @@ function update() {
 		$("#notice_content").focus();
 	} else {
 		
-		submit();
+		if ( confirm("등록하시겠습니까?") ) {
+			
+			alert("등록되었습니다.");
+			location.href="notice_list.do";
+// 			submit();
+		} else {
+			
+			return;
+		}
 	}
 }
 
 function list() {
-	location.href="notice_list.do";
+	
+	if ( confirm("입력하신 내용은 저장되지 않습니다. 이 페이지를 나가시겠습니까?") ) {
+		
+		location.href="notice_list.do";
+	} else {
+		
+		return;
+	}
 }
 </script>
 </head>
@@ -37,19 +52,22 @@ function list() {
 		<div class="row">
 			<div id="content">
 				<h4>공지사항 관리 | 공지사항 등록</h4>
-<!-- 				<form action="#" method="get" enctype="multipart/form-data"> -->
+				<form action="notice_write.do" method="post" name="noticeInsert">
+				<input type="text" name="memberId">
+				<input type="text" name="boardSort">
+				<input type="text" name="boardCategory">
 				<table class="notice_table">
 					<tr>
 						<td><label>제목</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="notice_title"></td>
+						<td><input type="text" id="notice_title" name="boardTitle"></td>
 					</tr>
 					<tr>
 						<td><label>내용</label></td>
 					</tr>
 					<tr>
-						<td><textarea rows="10" id="notice_content"></textarea></td>
+						<td><textarea rows="10" id="notice_content" name="boardContent"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>파일첨부</label></td>
@@ -59,10 +77,10 @@ function list() {
 					</tr>
 				</table>
 				<div class="notice_btn">
-					<button class="notice_register" onclick="register()">등록</button>
+					<button type="submit" class="notice_register">등록</button>
 					<button class="notice_list" onclick="list()">목록</button>
 				</div>
-<!-- 				</form> -->
+				</form>
 			</div>
 		</div>
 	</div>

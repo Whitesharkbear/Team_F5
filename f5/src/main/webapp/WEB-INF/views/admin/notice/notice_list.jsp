@@ -1,13 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>관리자 | 공지사항 관리</title>
 <link href="/f5/resources/css/admin/notice/notice_list.css" rel="stylesheet" />
+<link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
 <script type="text/javascript">
-
+function search() {
+	
+	var search = $("#searchbar").val();
+	
+	if ( search == "" ) {
+		
+		alert("검색어를 입력해주세요.");
+		$("#searchbar").focus();
+	} else {
+		
+		alert("검색하신 "+ search +" 결과입니다.");
+	}
+}
+$(document).ready(function(){
+	
+	var pager = jQuery('#ampaginationsm').pagination({
+		
+	    maxSize: 7,	    		// max page size
+	    totals: '${ dbCount }',	// total pages	
+	    page: '${ reqPage }',		// initial page		
+	    pageSize: '${ pageSize }',	// max number items per page
+	
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: '&laquo;',		
+	    nextText: '&raquo;',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
+	});
+	
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+           $(location).attr('href', "http://localhost:9000/f5/admin/notice_list.do?rpage="+e.page);         
+    });
+});
 </script>
 </head>
 <body>
@@ -36,15 +74,15 @@
 						<tr>
 							<th>번호</th><th>게시자</th><th>제목</th><th>날짜</th><th>조회수</th>
 						</tr>
-						<% for ( int i = 10; i >= 0; i-- ) { %>
-						<tr>
-							<td><%= i %></td>
-							<td>관리자</td>
-							<td><a href="notice_content.do">공지제목<%= i %></a></td>
-							<td>2022-04-29</td>
-							<td><%= i %></td>
-						</tr>
-						<% } %>
+						<c:forEach var="vo" items="${ list }">
+							<tr>
+								<td>${ vo.rno }</td>
+								<td>${ vo.memberId }</td>
+								<td><a href="notice_content.do?idx=${ vo.boardIdx }&rno=${ vo.rno }">${ vo.boardTitle }</a></td>
+								<td>${ vo.boardDate }</td>
+								<td>${ vo.boardHits }</td>
+							</tr>
+						</c:forEach>
 					</table>
 					<div class="search">
 						<div class="search_text">
@@ -54,7 +92,7 @@
 						</div>
 					</div>
 					<div class="paging">
-						<div><< 1  2  3  4  5 >></div>
+						<div id="ampaginationsm"></div>
 					</div>
 				</div>
 			</section>

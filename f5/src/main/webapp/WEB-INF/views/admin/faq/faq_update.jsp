@@ -21,13 +21,27 @@ function update(){
 		$(".faq_answer").focus();
 	} else {
 		
-		submit();
+// 		submit();
+		if ( confirm("수정하시겠습니까?") ) {
+			
+			faqUpdate.submit();
+		} else {
+			
+			return;
+		}
 	}
 }
 
 function list() {
 	
-	location.href = "faq_list.do";
+	if ( confirm("입력하신 내용은 저장되지 않습니다. 이 페이지를 나가시겠습니까?") ) {
+		
+		location.href = "faq_list.do";
+	} else {
+		
+		return;
+	}
+	
 }
 </script>
 </head>
@@ -37,13 +51,16 @@ function list() {
 		<div class="row">
 			<div id="content">
 				<h4>FAQ관리 | 수정</h4>
+				<form action="faq_update.do" name="faqUpdate" method="post">
+				<input type="hidden" value="${ vo.faqIdx }" name="faqIdx">
+				<input type="hidden" value="${ vo.rno }" name="rno">
 				<table class="faq_table">
 					<tr>
 						<td><label>제목</label></td>
 					</tr>
 					<tr>
 						<td>
-							<input type="text" class="faq_title"
+							<input type="text" class="faq_title" value="${ vo.faqTitle }" name="faqTitle"
 							 placeholder="  제목을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  제목을 입력해주세요.'">
 						</td>
 					</tr>
@@ -51,14 +68,15 @@ function list() {
 						<td><label>답변</label></td>
 					</tr>
 					<tr>
-						<td><textarea rows="10" class="faq_answer"
-						 placeholder="  내용을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  내용을 입력해주세요.'"></textarea>
+						<td><textarea rows="10" class="faq_answer" name="faqContent"
+						 placeholder="  내용을 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  내용을 입력해주세요.'">${ vo.faqContent }</textarea>
 					</tr>
 				</table>
 				<div class="faq_btn">
 					<button class="faq_update" onclick="update()">수정</button>
 					<button class="faq_list" onclick="list()">목록</button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

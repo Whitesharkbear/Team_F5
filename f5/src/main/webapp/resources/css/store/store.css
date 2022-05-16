@@ -1,46 +1,68 @@
 @charset "UTF-8";
-/*  	.store_content{
-	 	display: block !important; 
-	}
-
-	.col-lg-6{
-		width :100% !important;
-	}
-	
-	.card-img-top{
-		background-size: cover;
-		max-width : 425px !important;
-		
-	}
-	.card-body{
-		width: 100%;
-	}
-	
-	@media(max-width:425px){
-		.store-card{
-			flex-direction : column !important;
-		}
-	}
-
-	.store-card {
-	position: relative;
-	display: flex;
-	flex-direction: row;
-	min-width: 0;
-	word-wrap: break-word;
-	background-color: #fff;
-	background-clip: border-box;
-	border: 1px solid rgba(0, 0, 0, 0.125);
-	border-radius: 0.25rem;
-	width : 100%;
+.card-img-top{
+	height: 300px;
+	width: 90% !important;
 }
-	.card-title{
-	font-size: 2em !important;
-	}
-	.store-side-img{
-		width : 100%;
-		background-size: cover;
-	} */
-		.card-img-top{
-		height: 300px; 
-	}
+
+.btn-primary {
+    border: none !important;
+    border-radius: 5%;
+    color: #fff;
+    background-color: brown !important;
+}
+
+.card-text {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* 라인수 */
+    -webkit-box-orient: vertical;
+    word-wrap:break-word; 
+    line-height: 1.2em;
+    height: 3.6em;
+}
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
+
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 426px) and (max-width : 767.9998px) {
+
+.store-card {
+	width: 40% !important;
+	float: left;
+	margin: 0 5%;
+}
+.card-img-top{
+	height: 300px;
+	width: 100% !important;
+}
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+.store_content {
+	margin: 0 auto !important;
+}
+	
+.store-card {
+	width: 100% !important;
+}
+.card-img-top{
+	height: 300px;
+	width: 100% !important;
+}
+}

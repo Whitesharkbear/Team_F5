@@ -15,6 +15,30 @@ table {
 /* 	text-align: center; */
 /* } */
 
+#postcode {
+	width: 30% !important;
+}
+
+.addr_btn {
+	width: 40% !important;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+#address {
+	width: 100% !important;
+}
+
+#detailAddress {
+	width: 60% !important;
+}
+
+#extraAddress {
+	width: 35% !important;
+}
+
 /*-----------------------------------------------------------------------
 
  								PC 
@@ -44,6 +68,17 @@ table {
 
 #member_update_table input {
 	width: 100%;
+}
+
+#member_update_table input#id {
+	width: 75% !important;
+}
+
+#member_update_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
 }
 
 #member_update_table input#year {
@@ -112,6 +147,17 @@ table {
 	width: 100%;
 }
 
+#member_update_table input#id {
+	width: 70% !important;
+}
+
+#member_update_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
+
 #member_update_table input#year {
 	width: 30%;
 }
@@ -175,6 +221,17 @@ table {
 
 #member_update_table input {
 	width: 100%;
+}
+
+#member_update_table input#id {
+	width: 70% !important;
+}
+
+#member_update_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
 }
 
 #member_update_table input#year {

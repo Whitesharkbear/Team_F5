@@ -14,6 +14,14 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <meta charset="UTF-8">
 <link href="/f5/resources/css/styles.css" rel="stylesheet" />
+<style type="text/css">
+/* ::-webkit-scrollbar { */
+/* 	display: none; */
+/* } */
+html > body {
+	overflow-y:scroll; 
+}
+</style>
 </head>
 <body>
         <!-- Responsive navbar-->
@@ -23,12 +31,6 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item noneli">
-                        	<a class="nav-link" href="#">회원관리</a>
-                        	<ul class ="nav-inner">
-                        		<li></li>
-                        	</ul>
-                        </li>
                         <li class="nav-item">
                         	<a class="nav-link" href="#">회원관리</a>
                         	<ul class ="nav-inner">
@@ -37,7 +39,7 @@
                         	</ul>
                         </li>
                         <li class="nav-item">
-                        	<a class="nav-link" href="#">게시판 관리</a>
+                        	<a class="nav-link" href="#">게시판</a>
                         	<ul class ="nav-inner">
 	                        	<li><a href="board_list.do">자유게시판</a></li>
 	                        	<li><a href="notice_list.do">공지사항</a></li>
@@ -52,10 +54,6 @@
                     		<ul class ="nav-inner">
                     			<li><a href="faq_list.do">FAQ</a></li>
                     			<li><a href="question_list.do">문의하기</a></li>
-                    		</ul>
-                    	</li>
-                    	<li class="nav-item" class = "nav-litem"><a class="nav-link" href="#!">회원관리</a><div></div>
-                    		<ul class ="nav-inner">
                     		</ul>
                     	</li>
                     </ul>

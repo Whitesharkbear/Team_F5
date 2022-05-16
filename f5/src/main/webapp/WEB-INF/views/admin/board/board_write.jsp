@@ -7,7 +7,7 @@
 <link href="/f5/resources/css/admin/board/board_write.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
-function update() {
+function write() {
 	
 	var title = $("#board_title").val();
 	var content = $("#board_content").val();
@@ -22,7 +22,7 @@ function update() {
 		$("#board_content").focus();
 	} else {
 		
-		submit();
+		boardWrite.submit();
 	}
 }
 
@@ -37,19 +37,19 @@ function list() {
 		<div class="row">
 			<div id="content">
 				<h4>게시판관리 | 게시글 등록</h4>
-<!-- 				<form action="#" method="get" enctype="multipart/form-data"> -->
+				<form action="board_write.do" method="post" name="boardWrite">
 				<table class="board_table">
 					<tr>
 						<td><label>제목</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="board_title"></td>
+						<td><input type="text" id="board_title" name="boardTitle"></td>
 					</tr>
 					<tr>
 						<td><label>내용</label></td>
 					</tr>
 					<tr>
-						<td><textarea rows="10" id="board_content"></textarea></td>
+						<td><textarea rows="10" id="board_content" name="boardContent"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>파일첨부</label></td>
@@ -59,10 +59,10 @@ function list() {
 					</tr>
 				</table>
 				<div class="board_btn">
-					<button class="board_update" onclick="update()">수정</button>
+					<button class="board_write" onclick="write()">수정</button>
 					<button class="board_list" onclick="list()">목록</button>
 				</div>
-<!-- 				</form> -->
+				</form>
 			</div>
 		</div>
 	</div>

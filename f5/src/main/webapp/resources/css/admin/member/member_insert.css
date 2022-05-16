@@ -5,6 +5,87 @@ table {
 	border-collapse: collapse;
 }
 
+#postcode {
+	width: 30% !important;
+}
+
+.addr_btn {
+	width: 40% !important;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+#address {
+	width: 100% !important;
+}
+
+#detailAddress {
+	width: 60% !important;
+}
+
+#extraAddress {
+	width: 35% !important;
+}
+
+ul > li { 
+	list-style: none
+}
+
+a {
+	text-decoration: none;
+}
+
+.clearfix::after { 
+	content: "";display: block;clear: both;
+}
+
+ul.join_box {
+	border: 1px solid #ddd;
+	background-color: #fff;
+}
+
+.checkBox, .checkBox > ul {
+	position: relative;
+}
+
+.checkBox > ul > li {
+	float: left;
+}
+
+.checkBox > ul > li:first-child {
+	width: 85%;
+	padding: 15px;
+	font-weight: 600;
+	color: #888;
+}
+
+.checkBox > ul > li:nth-child(2) {
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	margin-top: -12px;
+}
+
+.checkBox textarea {
+	width: 96%;
+	height: 90px;
+	margin: 0 2%;
+	background-color: #f7f7f7;
+	color: #888;
+	border: none;
+}
+
+.join_box .chk, .chkAll {
+	width: 15px !important;
+}
+
+.agree {
+	font-size: 10px;
+	margin-top: 3%;
+}
+
 /*-----------------------------------------------------------------------
 
  								PC 
@@ -35,6 +116,17 @@ table {
 #join_table input {
 	
 	width: 100%;
+}
+
+#join_table input#id {
+	width: 75% !important;
+}
+
+#join_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
 }
 
 #join_table input#year{
@@ -103,6 +195,17 @@ table {
 	width: 100%;
 }
 
+#join_table input#id {
+	width: 70% !important;
+}
+
+#join_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
+
 #join_table input#year{
 	width: 30%;
 }
@@ -166,6 +269,17 @@ table {
 #join_table input {
 	
 	width: 100%;
+}
+
+#join_table input#id {
+	width: 70% !important;
+}
+
+#join_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
 }
 
 #join_table input#year{
