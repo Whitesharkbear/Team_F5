@@ -1,55 +1,55 @@
 package com.web.f5.vo;
 
 public class ReplyVO {
-	String reply_idx, board_idx, member_id, reply_content,
-	reply_date, reply_update_date;
+	String replyIdx, boardIdx, memberId, replyContent,
+	replyDate, replyUpdateDate;
 
-	public String getReply_idx() {
-		return reply_idx;
+	public String getreplyIdx() {
+		return replyIdx;
 	}
 
-	public void setReply_idx(String reply_idx) {
-		this.reply_idx = reply_idx;
+	public void setreplyIdx(String replyIdx) {
+		this.replyIdx = replyIdx;
 	}
 
-	public String getBoard_idx() {
-		return board_idx;
+	public String getboardIdx() {
+		return boardIdx;
 	}
 
-	public void setBoard_idx(String board_idx) {
-		this.board_idx = board_idx;
+	public void setboardIdx(String boardIdx) {
+		this.boardIdx = boardIdx;
 	}
 
-	public String getMember_id() {
-		return member_id;
+	public String getmemberId() {
+		return memberId;
 	}
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setmemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getReply_content() {
-		return reply_content;
+	public String getreplyContent() {
+		return replyContent;
 	}
 
-	public void setReply_content(String reply_content) {
-		this.reply_content = reply_content;
+	public void setreplyContent(String replyContent) {
+		this.replyContent = replyContent;
 	}
 
-	public String getReply_date() {
-		return reply_date;
+	public String getreplyDate() {
+		return replyDate;
 	}
 
-	public void setReply_date(String reply_date) {
-		this.reply_date = reply_date;
+	public void setreplyDate(String replyDate) {
+		this.replyDate = replyDate;
 	}
 
-	public String getReply_update_date() {
-		return reply_update_date;
+	public String getreplyUpdateDate() {
+		return replyUpdateDate;
 	}
 
-	public void setReply_update_date(String reply_update_date) {
-		this.reply_update_date = reply_update_date;
+	public void setreplyUpdateDate(String replyUpdateDate) {
+		this.replyUpdateDate = replyUpdateDate;
 	}
 	
 	

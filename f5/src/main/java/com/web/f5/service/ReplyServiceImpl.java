@@ -18,13 +18,13 @@ public class ReplyServiceImpl implements ReplyService {
 	}
 
 	@Override
-	public List<ReplyVO> getSelectList(String board_idx) {
-		return replyDao.select(board_idx);
+	public List<ReplyVO> getSelectList(String boardIdx) {
+		return replyDao.select(boardIdx);
 	}
 
 	@Override
-	public int getDeleteResult(String reply_idx) {
-		return replyDao.delete(reply_idx);
+	public int getDeleteResult(String replyIdx) {
+		return replyDao.delete(replyIdx);
 	}
 	
 	

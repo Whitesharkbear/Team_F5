@@ -18,10 +18,10 @@ public class ReplyController {
 	
 	// 댓글삭제
 	@RequestMapping(value="/reply_delete.do", method=RequestMethod.POST)
-	public String board_reply_delete(String reply_idx, String board_idx) {
-		replyService.getDeleteResult(reply_idx);
+	public String board_reply_delete(String replyIdx, String boardIdx) {
+		replyService.getDeleteResult(replyIdx);
 		
-		return "redirect:/board_content.do?board_idx=" + board_idx;
+		return "redirect:/board_content.do?boardIdx=" + boardIdx;
 	}
 	
 	// 댓글쓰기
@@ -30,7 +30,7 @@ public class ReplyController {
 		ModelAndView mv = new ModelAndView();
 		replyService.getInsertResult(vo);
 		mv.addObject("re_vo", vo);
-		mv.setViewName("redirect:/board_content.do?board_idx="+vo.getBoard_idx());
+		mv.setViewName("redirect:/board_content.do?boardIdx="+vo.getboardIdx());
 		
 		return mv;
 		

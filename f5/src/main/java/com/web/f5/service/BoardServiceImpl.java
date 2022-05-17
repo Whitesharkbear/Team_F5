@@ -26,8 +26,8 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public BoardVO getContentList(String board_idx) {
-		return boardDao.select(board_idx);
+	public BoardVO getContentList(String boardIdx) {
+		return boardDao.select(boardIdx);
 	}
 
 
@@ -38,14 +38,14 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public int getDeleteResult(String board_idx) {
-		return boardDao.delete(board_idx);
+	public int getDeleteResult(String boardIdx) {
+		return boardDao.delete(boardIdx);
 	}
 
 
 	@Override
-	public void getUpdateHits(String board_idx) {
-		boardDao.update_hits(board_idx);
+	public void getUpdateHits(String boardIdx) {
+		boardDao.update_hits(boardIdx);
 		
 	}
 

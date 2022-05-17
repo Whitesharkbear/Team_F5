@@ -24,7 +24,7 @@
 			$.ajax({
 				// 서버주소
 				url:"reply_list.do",
-				data: {"board_idx":"${vo.board_idx}"},
+				data: {"boardIdx":"${vo.boardIdx}"},
 				dataType: 'json',
 				type: 'POST',
 				
@@ -168,25 +168,25 @@
 
 					<div class="board-info">
 						<form name="delete_form" action="board_delete.do" method="post">
-							<a href="board_update.do?board_idx=${vo.board_idx}"
+							<a href="board_update.do?boardIdx=${vo.boardIdx}"
 								class="board_update_link">수정하기</a> <input type="hidden"
-								name="board_idx" value="${vo.board_idx}">
+								name="boardIdx" value="${vo.boardIdx}">
 							<button id="content_delete" type="button" class="content-delete">삭제하기</button>
 						</form>
 						<div class="content-title-div">
-							<h2 class="content-title">${vo.board_title}</h2>
+							<h2 class="content-title">${vo.boardTitle}</h2>
 						</div>
 						<dl>
 							<dt>작성자:</dt>
-							<dd>${vo.member_id}</dd>
+							<dd>${vo.memberId}</dd>
 						</dl>
 						<dl>
 							<dt>카테고리:</dt>
-							<dd>${vo.board_category}</dd>
+							<dd>${vo.boardCategory}</dd>
 						</dl>
 						<dl>
 							<dt>작성날짜:</dt>
-							<dd>${vo.board_date}</dd>
+							<dd>${vo.boardDate}</dd>
 						</dl>
 						<dl>
 							<dt>추천:</dt>
@@ -199,17 +199,17 @@
 					</div>
 					<div class="board-content-article">
 						<div class="board-content">
-							<p>${vo.board_content}</p>
+							<p>${vo.boardContent}</p>
 						</div>
 						<div class="reply-write-area">
 						
 							<form name="reply_form" action="reply_write.do" method="post">
-								<input type="hidden" name="board_idx" value="${vo.board_idx}">
+								<input type="hidden" name="boardIdx" value="${vo.boardIdx}">
 								<div>
 									<label class="reply-member">신순호</label>
 								</div>
 								<div class="reply-content-container">
-									<input name="reply_content" class="reply-content" type="text"
+									<input name="replyContent" class="reply-content" type="text"
 										placeholder="댓글을입력해주세요.">
 								</div>
 								
@@ -235,20 +235,20 @@
 							
 							<c:forEach var="list" items="${rlist}">
 							<div class="reply-area">
-								<input type="hidden" name="board_idx" value="${vo.board_idx }">
+								<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
 									<div class="reply-member">
-										<a>${list.reply_idx }</a>
+										<a>${list.replyIdx }</a>
 										
 										<form name="reply_update_form" action="reply_update.do" method="post">
 											<button class="reply_update_btn">수정</button>
 										</form>
 										<form name="reply_delete_form" action="reply_delete.do" method="post">
-											<input type="hidden" name="reply_idx" value="${list.reply_idx }">
-											<input type="hidden" name="board_idx" value="${vo.board_idx }">
+											<input type="hidden" name="replyIdx" value="${list.replyIdx }">
+											<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
 											<button class="reply_delete_btn">삭제</button>
 										</form>
 									</div>
-									<div class="reply-content-div">${list.reply_content }</div>
+									<div class="reply-content-div">${list.replyContent }</div>
 									<div class="reply-etc">
 
 										<dl>
@@ -271,7 +271,7 @@
 										</dl>
 
 										<dl>
-											<dt>${list.reply_date }</dt>
+											<dt>${list.replyDate }</dt>
 										</dl>
 									</div>
 								

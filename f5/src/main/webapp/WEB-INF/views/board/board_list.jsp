@@ -50,11 +50,11 @@
             			
             			<c:forEach var="vo" items="${list}">
             			<tr class="tr-sec">
-            				<td class="board-table-col1"><span class="asd">${vo.board_idx}</span></td>
-            				<td class="board-table-col2"><a href="board_content.do?board_idx=${vo.board_idx}">${vo.board_title}</a></td>
-            				<td class="board-table-col3">${vo.member_id}</td>
-            				<td class="board-table-col4">${vo.board_hits}</td>
-            				<td class="board-table-col5">${vo.board_date}</td>
+            				<td class="board-table-col1"><span class="asd">${vo.rno}</span></td>
+            				<td class="board-table-col2"><a href="board_content.do?boardIdx=${vo.boardIdx}">${vo.boardTitle}</a></td>
+            				<td class="board-table-col3">${vo.memberId}</td>
+            				<td class="board-table-col4">${vo.boardHits}</td>
+            				<td class="board-table-col5">${vo.boardDate}</td>
             			</tr>
             			</c:forEach>
             			

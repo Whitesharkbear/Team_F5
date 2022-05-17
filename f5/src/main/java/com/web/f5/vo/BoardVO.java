@@ -1,56 +1,63 @@
 package com.web.f5.vo;
 
 public class BoardVO {
-	String board_idx, member_id, board_title, board_content,
-		board_date, board_update_date, board_category ; 
-	int board_hits;
-	public String getBoard_idx() {
-		return board_idx;
+	String boardIdx, memberId, boardTitle, boardContent,
+		boardDate, boardUpdateDate, boardCategory;
+	int boardHits, rno;
+	
+	public int getRno() {
+		return rno;
 	}
-	public void setBoard_idx(String board_idx) {
-		this.board_idx = board_idx;
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
-	public String getMember_id() {
-		return member_id;
+	public String getBoardIdx() {
+		return boardIdx;
 	}
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setBoardIdx(String boardIdx) {
+		this.boardIdx = boardIdx;
 	}
-	public String getBoard_title() {
-		return board_title;
+	public String getMemberId() {
+		return memberId;
 	}
-	public void setBoard_title(String board_title) {
-		this.board_title = board_title;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
-	public String getBoard_content() {
-		return board_content;
+	public String getBoardTitle() {
+		return boardTitle;
 	}
-	public void setBoard_content(String board_content) {
-		this.board_content = board_content;
+	public void setBoardTitle(String boardTitle) {
+		this.boardTitle = boardTitle;
 	}
-	public String getBoard_date() {
-		return board_date;
+	public String getBoardContent() {
+		return boardContent;
 	}
-	public void setBoard_date(String board_date) {
-		this.board_date = board_date;
+	public void setBoardContent(String boardContent) {
+		this.boardContent = boardContent;
 	}
-	public String getBoard_update_date() {
-		return board_update_date;
+	public String getBoardDate() {
+		return boardDate;
 	}
-	public void setBoard_update_date(String board_update_date) {
-		this.board_update_date = board_update_date;
+	public void setBoardDate(String boardDate) {
+		this.boardDate = boardDate;
 	}
-	public String getBoard_category() {
-		return board_category;
+	public String getBoardUpdateDate() {
+		return boardUpdateDate;
 	}
-	public void setBoard_category(String board_category) {
-		this.board_category = board_category;
+	public void setBoardUpdateDate(String boardUpdateDate) {
+		this.boardUpdateDate = boardUpdateDate;
 	}
-	public int getBoard_hits() {
-		return board_hits;
+	public String getBoardCategory() {
+		return boardCategory;
 	}
-	public void setBoard_hits(int board_hits) {
-		this.board_hits = board_hits;
+	public void setBoardCategory(String boardCategory) {
+		this.boardCategory = boardCategory;
+	}
+	public int getBoardHits() {
+		return boardHits;
+	}
+	public void setBoardHits(int boardHits) {
+		this.boardHits = boardHits;
 	}
 	
 	

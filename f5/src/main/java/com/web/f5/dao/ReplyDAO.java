@@ -16,13 +16,13 @@ public class ReplyDAO {
 	
 	
 	// 댓글삭제
-	public int delete(String reply_idx) {
-		return sqlSession.delete(namespace+".delete", reply_idx);
+	public int delete(String replyIdx) {
+		return sqlSession.delete(namespace+".delete", replyIdx);
 	}
 	
 	// 댓글리스트
-	public List<ReplyVO> select(String board_idx) {
-		return sqlSession.selectList(namespace+".list", board_idx);
+	public List<ReplyVO> select(String boardIdx) {
+		return sqlSession.selectList(namespace+".list", boardIdx);
 	}
 	
 	

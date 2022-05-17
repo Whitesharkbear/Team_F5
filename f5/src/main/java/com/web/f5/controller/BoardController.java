@@ -25,8 +25,8 @@ public class BoardController {
 	
 	// 게시판 삭제 처리
 	@RequestMapping(value = "/board_delete.do", method=RequestMethod.POST)
-	public String board_delete(String board_idx) {
-		boardService.getDeleteResult(board_idx);
+	public String board_delete(String boardIdx) {
+		boardService.getDeleteResult(boardIdx);
 		
 		
 		return "redirect:/board_list.do";
@@ -48,9 +48,9 @@ public class BoardController {
 
 	// 게시판 수정
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
-	public ModelAndView board_update(String board_idx) {
+	public ModelAndView board_update(String boardIdx) {
 		ModelAndView mv = new ModelAndView();
-		BoardVO vo = boardService.getContentList(board_idx);
+		BoardVO vo = boardService.getContentList(boardIdx);
 		mv.addObject("vo", vo);
 		mv.setViewName("/board/board_update");
 
@@ -59,14 +59,14 @@ public class BoardController {
 
 	// 게시판 상세
 	@RequestMapping(value = "/board_content.do", method = RequestMethod.GET)
-	public ModelAndView board_content(String board_idx) {
+	public ModelAndView boardContent(String boardIdx) {
 		ModelAndView mv = new ModelAndView();
-		boardService.getUpdateHits(board_idx);
+		boardService.getUpdateHits(boardIdx);
 		
 		List<ReplyVO> rlist = new ArrayList<ReplyVO>();
-		rlist = replyService.getSelectList(board_idx);
+		rlist = replyService.getSelectList(boardIdx);
 		
-		BoardVO vo = boardService.getContentList(board_idx);
+		BoardVO vo = boardService.getContentList(boardIdx);
 		
 		mv.addObject("vo", vo);
 		mv.addObject("rlist", rlist);

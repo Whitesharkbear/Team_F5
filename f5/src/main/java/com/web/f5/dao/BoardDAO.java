@@ -17,13 +17,13 @@ public class BoardDAO {
 	
 	
 	// 게시판 조회수 업데이트
-	public void update_hits(String board_idx) {
-		sqlSession.update(namespace+".update_hits", board_idx);
+	public void update_hits(String boardIdx) {
+		sqlSession.update(namespace+".update_hits", boardIdx);
 	}
 	
 	// 게시판 삭제
-	public int delete(String board_idx) {
-		return sqlSession.delete(namespace+".delete", board_idx);
+	public int delete(String boardIdx) {
+		return sqlSession.delete(namespace+".delete", boardIdx);
 	}
 	
 	
@@ -34,8 +34,8 @@ public class BoardDAO {
 	
 	
 	// 게시판 상세보기
-	public BoardVO select(String board_idx) {
-		return sqlSession.selectOne(namespace+".content", board_idx);
+	public BoardVO select(String boardIdx) {
+		return sqlSession.selectOne(namespace+".content", boardIdx);
 	}
 	
 	

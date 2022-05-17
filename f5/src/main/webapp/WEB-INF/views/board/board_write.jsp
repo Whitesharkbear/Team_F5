@@ -64,11 +64,11 @@ $(document).ready(function() {
 		            				</th>
 		            			</tr>
 		            			<tr>
-		            				<td colspan="2"><input type="text" name="board_title" placeholder="제목을 입력해주세요" class="title"></td>
+		            				<td colspan="2"><input type="text" name="boardTitle" placeholder="제목을 입력해주세요" class="title"></td>
 		            			</tr>
 		            			<tr><th colspan="2"><label class="label">내용</label></th></tr>
 		            			<tr>
-		            				<td colspan="2"><textarea name="board_content" class="content" placeholder="내용을 입력해주세요"></textarea></td>
+		            				<td colspan="2"><textarea name="boardContent" class="content" placeholder="내용을 입력해주세요"></textarea></td>
 		            			</tr>
 		            			<tr><th colspan="2"><label class="label">파일첨부</label></th></tr>
 		            			<tr>
