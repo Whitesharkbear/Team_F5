@@ -56,11 +56,7 @@ public class AdminMemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		System.out.println(search);
-		
 		Map<String, String> param = pageService.getSearchResult(search, rpage,  "member", adminMemberService);
-		
-		System.out.println(param);
 		
 		int startCount = Integer.parseInt( param.get("start") );
 		int endCount = Integer.parseInt( param.get("end") );
@@ -72,7 +68,7 @@ public class AdminMemberController {
 			
 			list.add( (AdminMemberVO) obj );
 		}
-		System.out.println(list);
+		
 		mv.addObject("list", list);
 		mv.addObject("dbCount", Integer.parseInt( param.get("dbCount") ));
 		mv.addObject("pageSize", Integer.parseInt( param.get("pageSize") ));

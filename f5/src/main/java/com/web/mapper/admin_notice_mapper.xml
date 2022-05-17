@@ -6,31 +6,31 @@
 <mapper namespace="mapper.adminnotice">
 	
 	<select id="count" resultType="int">
-		select count(*) from board where boardSort = 2
+		select count(*) from board where boardCategory = 2
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
-		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort
+		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
 		from
-			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardSort
+			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort from board order by boardDate desc))
+			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
 		where
-			(rno between #{start} and #{end}) and (boardSort = '2')
+			(rno between #{start} and #{end}) and (boardCategory = '2')
 	</select>
 	
 	<select id="limitList" resultType="com.web.f5.vo.AdminNoticeVO">
-		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort
+		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
 		from
-			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardSort
+			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardSort from board order by boardDate desc) where boardSort = '2')
+			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '2')
 		where
 			 rno &lt; 4
 	</select>
 	
 	<select id="noticeContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminNoticeVO">
-		select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardSort, boardCategory
+		select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
 		from
 			board
 		where
@@ -47,7 +47,6 @@
 			boardContent,
 			boardDate,
 			boardUpdateDate,
-			boardSort,
 			boardCategory
 		)
 		values
@@ -59,8 +58,7 @@
 			#{boardContent},
 			sysdate,
 			null,
-			#{boardSort},
-			#{boardCategory}
+			2
 		)
 	</insert>
 	
@@ -70,8 +68,7 @@
 			boardTitle = #{boardTitle},
 			boardContent = #{boardContent},
 			boardUpdateDate = sysdate,
-			boardSort = #{boardSort},
-			boardCategory = #{boardCategory}
+			boardCategory = 2
 		where
 			boardIdx = #{boardIdx}
 	</update>

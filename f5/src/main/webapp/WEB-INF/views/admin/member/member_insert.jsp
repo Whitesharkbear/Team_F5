@@ -96,62 +96,60 @@ var userEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 var userIdNum = /^[0-9]+$/;
  */
  
-// function join() {
+function join() {
 	
-// 	if ( confirm("가입하시겠습니까?") ) {
+	if ( confirm("가입하시겠습니까?") ) {
 		
+		check();
+	} else {
 		
-// 	} else {
-		
-// 		return;
-// 	}
-// }
+		return;
+	}
+}
 
-// function check(){
+function check(){
 	
-// 	if ( $("#id").val() == "" ) {
+	if ( $("#id").val() == "" ) {
 		
-// 		alert("아이디를 입력해주세요");
-// 		$("#id").focus();
-// 	} else if ( $("#pw").val() == "" ) {
+		alert("아이디를 입력해주세요");
+		$("#id").focus();
+	} else if ( $("#pw").val() == "" ) {
 		
-// 		alert("비밀번호를 입력해주세요.")
-// 		$("#pw").focus();
-// 	} else if ( $("#pwChk").val() == "" ) {
+		alert("비밀번호를 입력해주세요.")
+		$("#pw").focus();
+	} else if ( $("#pwChk").val() == "" ) {
 		
-// 		alert("비밀번호 확인을 입력해주세요");
-// 		$("#pwChk").focus();
-// 	} else if ( $("#name").val() == "" ) {
+		alert("비밀번호 확인을 입력해주세요");
+		$("#pwChk").focus();
+	} else if ( $("#name").val() == "" ) {
 		
-// 		alert("이름을 입력해주세요");
-// 		$("#name").focus();
-// 	} else if ( $("#birth").val() == "" ) {
+		alert("이름을 입력해주세요");
+		$("#name").focus();
+	} else if ( $("#birth").val() == "" ) {
 		
-// 		alert("생일을 입력해주세요");
-// 		$("#birth").focus();
-// 	} else if ( $("#gender").val() == "" ) {
+		alert("생일을 입력해주세요");
+		$("#birth").focus();
+	} else if ( $("#gender").val() == "" ) {
 		
-// 		alert("성별을 선택해주세요.");
-// 		$("#gender").focus();
-// 	} else if ( $("#email").val() == "" ) {
+		alert("성별을 선택해주세요.");
+		$("#gender").focus();
+	} else if ( $("#email").val() == "" ) {
 		
-// 		alert("이메일을 입력해주세요.");
-// 		$("#email").focus();
-// 	} else if ( $("#tel").val() == "" ) {
+		alert("이메일을 입력해주세요.");
+		$("#email").focus();
+	} else if ( $("#tel").val() == "" ) {
 		
-// 		alert("전화번호를 입력해주세요.");
-// 		$("#tel").focus();
-// 	} else if ( $("#postcode").val() == "" && $("#address").val() == "" && $("#detailAddress").val() == "" ) {
+		alert("전화번호를 입력해주세요.");
+		$("#tel").focus();
+	} else if ( $("#postcode").val() == "" && $("#address").val() == "" && $("#detailAddress").val() == "" ) {
 		
-// 		alert("주소를 입력해주세요.");
-// 		$("#address").focus();
-// 	} else {
+		alert("주소를 입력해주세요.");
+		$("#address").focus();
+	} else {
 		
-// 		alert("가입이 완료되었습니다.");
-// 		location.href="member_list.do";
-// 		submit();
-// 	}
-// }
+		insertForm.submit();
+	}
+}
 
 // function idChk(){
 	
@@ -173,22 +171,22 @@ var userIdNum = /^[0-9]+$/;
 // 	}
 // }
 
-// $(document).ready(function(){
+$(document).ready(function(){
 	
-// 	$("#pwChk").blur(function(){
+	$("#pwChk").blur(function(){
 		
-// 		if ( $("#pw").val() != $("#pwChk").val() ) {
+		if ( $("#pw").val() != $("#pwChk").val() ) {
 			
-// 			$(".pwChk_text").text("비밀번호와 일치하지 않습니다.");
-// 			$(".pwChk_text").css("color", "red").css("font-size", "10px");
-// 			$("#pw").css("border-color", "red");
-// 		} else {
+			$(".pwChk_text").text("비밀번호와 일치하지 않습니다.");
+			$(".pwChk_text").css("color", "red").css("font-size", "10px");
+			$("#pw").css("border-color", "red");
+		} else {
 			
-// 			$(".pwChk_text").text("비밀번호와 일치합니다.");
-// 			$(".pwChk_text").css("color", "lightgreen").css("font-size", "10px");
-// 			$("#pw").css("border-color", "lightgreen");
-// 		}
-// 	});
+			$(".pwChk_text").text("비밀번호와 일치합니다.");
+			$(".pwChk_text").css("color", "lightgreen").css("font-size", "10px");
+			$("#pw").css("border-color", "lightgreen");
+		}
+	});
 	
 // 	$("#chk").click(function() {
 		
@@ -224,7 +222,7 @@ var userIdNum = /^[0-9]+$/;
 // 			$(this).val(0);
 // 		}
 // 	});
-// });
+});
 </script>
 </head>
 <body>
@@ -388,7 +386,7 @@ var userIdNum = /^[0-9]+$/;
 						</tr>
 					</table>
 					<div class="table_btn">
-						<button type="submit" class="insert">가입</button>
+						<button type="button" class="insert" onclick="join()">가입</button>
 						<a href="member_list.do"><button type="button" class="list">목록</button></a>
 					</div>
 					</form>

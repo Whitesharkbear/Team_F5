@@ -30,11 +30,15 @@
 		from
 			member
 		where
-			<if test="search != ''">
-				memberId = '%'||#{search}||'%'
-			or
-				memberName = '%'||#{search}||'%'
-			</if>
+			<choose>
+				<when test="result != ''">
+					memberId = '%'||#{search}||'%'
+				or
+					memberName = '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
 	</select>
 	
 	<select id="limitList" resultType="com.web.f5.vo.AdminMemberVO">

@@ -53,9 +53,8 @@ function list() {
 			<div id="content">
 				<h4>공지사항 관리 | 공지사항 등록</h4>
 				<form action="notice_write.do" method="post" name="noticeInsert">
-				<input type="text" name="memberId">
-				<input type="text" name="boardSort">
-				<input type="text" name="boardCategory">
+				<input type="hidden" name="memberId" value="admin">
+				<input type="hidden" name="boardCategory">
 				<table class="notice_table">
 					<tr>
 						<td><label>제목</label></td>

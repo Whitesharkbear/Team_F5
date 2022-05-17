@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,12 +46,12 @@ function del() {
 				<div id="content">
 				<h4>foodly | FAQ관리</h4>
 					<div id="faqList">
-						<% for ( int i = 10; i > 0; i-- ) { %>
+					<c:forEach var="vo" items="${ list }">
 						<details>
-							<summary>질문 <%= i %></summary>
-							<p><span>답변 <%= i %></span></p>
+							<summary>${ vo.faqTitle }</summary>
+							<p><span>${ vo.faqContent }</span></p>
 						</details>
-						<% } %>
+					</c:forEach>
 					</div>
 					<div class="search">
 						<div class="search_text">
