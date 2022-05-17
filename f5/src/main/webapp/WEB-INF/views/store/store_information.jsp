@@ -73,10 +73,10 @@
 					<div class="store-intro-maintext-box">
 						<div class="store-intro-text-box">
 							<ul>
-								<li>${vo.store_name }</li>
-								<li>${vo.store_place }</li>
-								<li>${vo.store_tel }</li>
-								<li>${vo.store_category }</li>
+								<li>${vo.storeName }</li>
+								<li>${vo.storePlace }</li>
+								<li>${vo.storeTel }</li>
+								<li>${vo.storeCategory }</li>
 								<li>가격대 : 6천원 ~ 4만원</li>
 								<li>주차 : 무</li>
 								<li>웹사이트 : www.hongkong.co.kr</li>
@@ -143,8 +143,8 @@
 					</div>
 					<form name="review_form" action="store_information.do" method="POST">
 					<div class="review-write-box">
-						<input class="review-write" type="text" placeholder="리뷰를 작성해주세요" name = "review_content">
-						<select name ="review_score">
+						<input class="review-write" type="text" placeholder="리뷰를 작성해주세요" name = "reviewContent">
+						<select name ="reviewScore">
 								<option>별점주기</option>
 								<option>1</option>
 								<option>2</option>
@@ -152,7 +152,7 @@
 								<option>4</option>
 								<option>5</option>
 						</select>
-						<input type="hidden" name = "store_idx" value="${vo.store_idx }">
+						<input type="hidden" name = "storeIdx" value="${vo.storeIdx }">
 						<button id = "review_submit" class="review-button" type="button">리뷰작성</button>
 					</div>
 					</form> 
@@ -179,7 +179,7 @@
 									<div class="selected-date"></div>
 									<div class="modal-input">
 										<div>인원수 선택</div>
-										<select class="modal-select-number" name="reservation_count">
+										<select class="modal-select-number" name="reservationCount">
 											<option>--선택--</option>
 											<option>1명</option>
 											<option>2~3명</option>
@@ -187,7 +187,7 @@
 											<option>6명 이상</option>
 										</select>
 										<div>시간대 선택</div>
-										<select class="modal-select-time" name="reservation_date">
+										<select class="modal-select-time" name="reservationDate">
 											<option>--선택--</option>
 											<option>오전</option>
 											<option>점심시간</option>
@@ -196,7 +196,8 @@
 											<option>저녘시간</option>
 											<option>20:00 이후</option>
 										</select>
-										<input type="hidden" name = "store_idx" value="${vo.store_idx }">
+										<input type="hidden" name = "storeIdx" value="${vo.storeIdx }">
+										<input type="hidden" name = "reservationNum" value =0>
 									</div>
 									<div class="button-location">
 										<button type="button" class="reservation-button" id="reservation-submit-button">예약접수</button>

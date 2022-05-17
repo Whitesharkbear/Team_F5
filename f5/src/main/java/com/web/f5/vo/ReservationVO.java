@@ -1,57 +1,58 @@
 package com.web.f5.vo;
 
 public class ReservationVO {
-	String reservation_idx,store_idx,member_id,reservation_date,reservation_count;
+	String reservationIdx,storeIdx,memberId,reservationDate,reservationCount;
 	
-	int reservation_num;
+	String reservationNum;
 
-	public String getReservation_idx() {
-		return reservation_idx;
+	public String getReservationIdx() {
+		return reservationIdx;
 	}
 
-	public void setReservation_idx(String reservation_idx) {
-		this.reservation_idx = reservation_idx;
+	public void setReservationIdx(String reservationIdx) {
+		this.reservationIdx = reservationIdx;
 	}
 
-	public String getStore_idx() {
-		return store_idx;
+	public String getStoreIdx() {
+		return storeIdx;
 	}
 
-	public void setStore_idx(String store_idx) {
-		this.store_idx = store_idx;
+	public void setStoreIdx(String storeIdx) {
+		this.storeIdx = storeIdx;
 	}
 
-	public String getMember_id() {
-		return member_id;
+	public String getMemberId() {
+		return memberId;
 	}
 
-	public void setMember_id(String member_id) {
-		this.member_id = member_id;
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
-	public String getReservation_date() {
-		return reservation_date;
+	public String getReservationDate() {
+		return reservationDate;
 	}
 
-	public void setReservation_date(String reservation_date) {
-		this.reservation_date = reservation_date;
+	public void setReservationDate(String reservationDate) {
+		this.reservationDate = reservationDate;
 	}
 
-	public int getReservation_num() {
-		return reservation_num;
+	public String getReservationCount() {
+		return reservationCount;
 	}
 
-	public void setReservation_num(int reservation_num) {
-		this.reservation_num = reservation_num;
+	public void setReservationCount(String reservationCount) {
+		this.reservationCount = reservationCount;
 	}
 
-	public String getReservation_count() {
-		return reservation_count;
+	public String getReservationNum() {
+		return reservationNum;
 	}
 
-	public void setReservation_count(String reservation_count) {
-		this.reservation_count = reservation_count;
+	public void setReservationNum(String reservationNum) {
+		this.reservationNum = reservationNum;
 	}
+
 	
 	
 	

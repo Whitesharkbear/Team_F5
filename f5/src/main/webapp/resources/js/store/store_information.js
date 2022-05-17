@@ -107,9 +107,10 @@ function calendarInit() {
 			$('.modal-window').css("display","none");
 	    	$('.reservation-modal').css("display","none");
 	    	$('body').css("overflow","auto");
+	    	store_information_reservation_form.submit();
 	    	$(".modal-select-number option:eq(0)").prop("selected",true);
 	    	$(".modal-select-time option:eq(0)").prop("selected",true);
-	    	store_information_reservation_form.submit();
+	    	
 		}
 
 		}

@@ -18,4 +18,9 @@ public int login_result(MemberVO vo) {
 
 	return memberDao.select(vo);
 }
+@Override
+	public int insert_result(MemberVO vo) {
+		// TODO Auto-generated method stub
+		return memberDao.insert(vo);
+	}
 }

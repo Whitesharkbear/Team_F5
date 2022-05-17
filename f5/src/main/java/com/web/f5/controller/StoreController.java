@@ -68,7 +68,7 @@ public class StoreController {
 		}
 	
 		@RequestMapping(value = "/store_information.do" , method = RequestMethod.GET)
-		public ModelAndView store_infor(String store_idx,String rpage) {
+		public ModelAndView store_infor(String storeIdx,String rpage,HttpSession session) {
 			StoreVO vo = new StoreVO();
 			ModelAndView mv = new ModelAndView();
 			int startCount = 0;
@@ -92,8 +92,9 @@ public class StoreController {
 				startCount = 1;
 				endCount = pageSize;
 			}
-			vo = storeService.selectResult(store_idx);
+			vo = storeService.selectResult(storeIdx);
 			ArrayList<ReviewVO> list = reviewService.selectListResult(startCount,endCount);
+			session.setAttribute("rpage",rpage);
 			mv.addObject("vo",vo);
 			mv.addObject("list",list);
 			mv.setViewName("store/store_information");
@@ -114,23 +115,31 @@ public class StoreController {
 		@RequestMapping(value = "/store_information.do" , method = RequestMethod.POST)
 		public ModelAndView store_infor(ReviewVO rvo,ReservationVO revo,HttpSession session) {
 			ModelAndView mv = new ModelAndView();
+			StoreVO vo = new StoreVO();
 			int result = 0,reviewResult = 0;
-			if(revo.getReservation_date() != null) {
-		    	revo.setMember_id((String)session.getAttribute("member_id"));
+			System.out.println(rvo.getStoreIdx());
+			if(revo.getReservationDate() != null) {
+		    	revo.setMemberId((String)session.getAttribute("memberId"));
+		    	System.out.println(revo.getMemberId()+","+revo.getReservationCount()+","+revo.getReservationDate()+","+revo.getReservationIdx()+","+revo.getReservationNum()+","+revo.getStoreIdx());
 			    result = reservationService.insertResult(revo);
+			    vo= storeService.selectResult(revo.getStoreIdx());
 			}
-			if(rvo.getReview_content() !=null) {
-				rvo.setMember_id((String)session.getAttribute("member_id"));
-				System.out.println(rvo.getMember_id());
+			if(rvo.getReviewContent() !=null) {
+				rvo.setMemberId((String)session.getAttribute("memberId"));
+				System.out.println(rvo.getMemberId());
 				reviewResult = reviewService.insertResult(rvo);
+				System.out.println(revo.getMemberId());
+				vo= storeService.selectResult(rvo.getStoreIdx());
 			}
 			if(result == 1 || reviewResult==1) {
 				System.out.println("성공");
-				mv.setViewName("store/store_information.do?store_idx="+rvo.getStore_idx());
+				
+				mv.addObject("vo",vo);
+				mv.setViewName("redirect:/store_information.do?storeIdx="+vo.getStoreIdx());
 				return mv;
 			}else {
 				System.out.println("실패");
-				mv.setViewName("store/store_information.do?store_idx="+rvo.getStore_idx());
+				mv.setViewName("redirect:/store_information.do?storeIdx="+vo.getStoreIdx());
 				return mv;
 			}
 		}

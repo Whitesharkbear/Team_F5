@@ -6,6 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/f5/resources/css/member/join/join.css" rel="stylesheet" />
+<script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#btnJoin").on("click",function(){
+		join_form.submit();
+	});
+});
+
+</script>
 <body>
 <div class="container">
 	<div class="con">
@@ -17,7 +26,7 @@
 
         <!-- wrapper -->
         <div id="wrapper">
-
+			<form name = "join_form" action="join.do" method="post">
             <!-- content-->
             <div id="content">
 
@@ -27,7 +36,7 @@
                         <label for="id">아이디</label>
                     </h3>
                     <span class="box int_id">
-                        <input type="text" id="id" class="int" maxlength="20">
+                        <input type="text" id="id" class="int" maxlength="20" name = "memberId">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -36,7 +45,7 @@
                 <div>
                     <h3 class="join_title"><label for="pswd1">비밀번호</label></h3>
                     <span class="box int_pass">
-                        <input type="text" id="pswd1" class="int" maxlength="20">
+                        <input type="text" id="pswd1" class="int" maxlength="20" name="memberPass">
                         <span id="alertTxt">사용불가</span>
                         <img src="/f5/resources/images/m_icon_pass.png" id="pswd1_img1" class="pswdImg">
                     </span>
@@ -57,7 +66,7 @@
                 <div>
                     <h3 class="join_title"><label for="name">이름</label></h3>
                     <span class="box int_name">
-                        <input type="text" id="name" class="int" maxlength="20">
+                        <input type="text" id="name" class="int" maxlength="20" name="memberName">
                     </span>
                     <span class="error_next_box"></span>
                 </div>
@@ -70,14 +79,14 @@
                         <!-- BIRTH_YY -->
                         <div id="bir_yy">
                             <span class="box">
-                                <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)">
+                                <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)" name="memberBirthYear">
                             </span>
                         </div>
 
                         <!-- BIRTH_MM -->
                         <div id="bir_mm">
                             <span class="box">
-                                <select id="mm" class="sel">
+                                <select id="mm" class="sel" name="memberBirthMonth">
                                     <option>월</option>
                                     <option value="01">1</option>
                                     <option value="02">2</option>
@@ -99,7 +108,7 @@
                         <div id="bir_dd">
                             <span class="box">
                                <!-- <input type="text" id="dd" class="int" maxlength="2" placeholder="일"> -->
-                                 <select id="dd" class="sel">
+                                 <select id="dd" class="sel" name="memberBirthDate">
                                     <option>일</option>
                                     <option value="01">1</option>
                                     <option value="02">2</option>
@@ -144,7 +153,7 @@
                 <div>
                     <h3 class="join_title"><label for="gender">성별</label></h3>
                     <span class="box gender_code">
-                        <select id="gender" class="sel">
+                        <select id="gender" class="sel" name = "memberGender">
                             <option>성별</option>
                             <option value="M">남자</option>
                             <option value="F">여자</option>
@@ -157,7 +166,7 @@
                 <div>
                     <h3 class="join_title"><label for="email">본인확인 이메일<span class="optional">(선택)</span></label></h3>
                     <span class="box int_email">
-                        <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력">
+                        <input type="text" id="email" class="int" maxlength="100" placeholder="선택입력" name="memberEmail">
                     </span>
                     <span class="error_next_box">이메일 주소를 다시 확인해주세요.</span>    
                 </div>
@@ -166,11 +175,17 @@
                 <div>
                     <h3 class="join_title"><label for="phoneNo">휴대전화</label></h3>
                     <span class="box int_mobile">
-                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력">
+                        <input type="tel" id="mobile" class="int" maxlength="16" placeholder="전화번호 입력" name="memberTel">
                     </span>
                     <span class="error_next_box"></span>    
                 </div>
-
+				<input type="hidden" name ="memberAuthority">
+				<input type="hidden" name ="memberPassHint">
+				<input type="hidden" name ="memberPassHintAnswer">
+				<input type="hidden" name ="memberPassRand">
+				<input type="hidden" name ="memberAgree">
+				<input type="hidden" name ="memberAddress">
+				
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
@@ -182,6 +197,7 @@
                 
 
             </div> 
+            </form>
             <!-- content-->
 
         </div> 

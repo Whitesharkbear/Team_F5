@@ -5,6 +5,10 @@
 
 <mapper namespace="mapper.member">
 	<select id="loginCheck" parameterType="com.web.f5.member.vo.MemberVO" resultType="int">
-		select count(*) from member where member_id = #{member_id} and member_pass= #{member_pass}
+		select count(*) from member where memberId = #{memberId} and memberPass= #{memberPass}
 	</select>
+	<insert id="insert" parameterType="com.web.f5.member.vo.MemberVO">
+		insert into member values
+			(#{memberId} , #{memberPass},#{memberName},#{memberBirth},#{memberGender},#{memberTel},#{memberEmail},0,sysdate,0,0,0,0,0)
+	</insert>
 </mapper>

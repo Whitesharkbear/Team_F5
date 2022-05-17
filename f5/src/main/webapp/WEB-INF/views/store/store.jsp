@@ -47,13 +47,13 @@
                             <!-- Blog post-->
                             <c:forEach var="vo"  items="${list}">
                             <c:choose>
-                            <c:when test="${vo.store_idx % 4 == 1 || vo.store_idx % 4 == 3}">
+                            <c:when test="${vo.storeIdx % 4 == 1 || vo.storeIdx % 4 == 3}">
 	                            <div class="store-card mb-4">
 	                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample1.jpg" alt="..." /></a>
 	                                <div class="card-body">
-	                                    <h2 class="card-title h4">${vo.store_name }</h2>
-	                                    <p class="card-text">${vo.store_place }</p>
-	                                    <a class="btn btn-primary" href="store_information.do?store_idx=${vo.store_idx }">매장 보러가기 →</a>
+	                                    <h2 class="card-title h4">${vo.storeName }</h2>
+	                                    <p class="card-text">${vo.storePlace }</p>
+	                                    <a class="btn btn-primary" href="store_information.do?storeIdx=${vo.storeIdx }">매장 보러가기 →</a>
 	                                </div>
 	                            </div>
 	                        </c:when>
@@ -64,13 +64,13 @@
                             <!-- Blog post-->
                             <c:forEach var="vo"  items="${list}">
                             <c:choose>
-                            <c:when test="${vo.store_idx % 4 == 2 || vo.store_idx % 4 == 0}">
+                            <c:when test="${vo.storeIdx % 4 == 2 || vo.storeIdx % 4 == 0}">
                             <div class="store-card mb-4">
                                 <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample3.jpg" alt="..." /></a>
                                 <div class="card-body">
-                                    <h2 class="card-title h4">${vo.store_name }</h2>
-                                    <p class="card-text">${vo.store_place }</p>
-                                    <a class="btn btn-primary" href="store_information.do?store_idx=${vo.store_idx }">매장 보러가기 →</a>
+                                    <h2 class="card-title h4">${vo.storeName }</h2>
+                                    <p class="card-text">${vo.storePlace }</p>
+                                    <a class="btn btn-primary" href="store_information.do?storeIdx=${vo.storeIdx }">매장 보러가기 →</a>
                                 </div>
                             </div>
 	                        </c:when>

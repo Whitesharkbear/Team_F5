@@ -9,6 +9,7 @@ public class ReservationDAO {
 	private String namespace = "mapper.reservation";
 	
 	public int insert(ReservationVO vo) {
+		System.out.println(sqlSession.insert(namespace+".insert",vo));
 		return sqlSession.insert(namespace+".insert",vo);
 	}
 }

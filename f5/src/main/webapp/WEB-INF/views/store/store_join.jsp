@@ -76,35 +76,35 @@
            
             	<tr><th colspan="5">가게상호명</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" name = "store_name" placeholder="가게이름을 입력해주세요"></td>
+            		<td colspan="5"><input type="text" name = "storeName" placeholder="가게이름을 입력해주세요"></td>
             	</tr>
             	
             	<tr><th colspan="5">주소</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" name = "store_place" placeholder="가게 주소를 입력해주세요"></td>
+            		<td colspan="5"><input type="text" name = "storePlace" placeholder="가게 주소를 입력해주세요"></td>
             	</tr>
             	
             	<tr><th colspan="5">전화번호</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" name = "store_tel" placeholder="가게 전화번호를 입력해주세요"></td>
+            		<td colspan="5"><input type="text" name = "storeTel" placeholder="가게 전화번호를 입력해주세요"></td>
             	</tr>
             	<tr><th colspan="5">가게소개</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" name = "store_content" placeholder="소개글을 입력해주세요"></td>
+            		<td colspan="5"><input type="text" name = "storeContent" placeholder="소개글을 입력해주세요"></td>
             	</tr>
             	<tr><th colspan="5">이벤트</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" name = "store_event" placeholder="이벤트를 입력해주세요"></td>
+            		<td colspan="5"><input type="text" name = "storeEvent" placeholder="이벤트를 입력해주세요"></td>
             	</tr>
             	<tr><th colspan="5">혜택</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" name = "store_benefit" placeholder="혜택을 입력해주세요"></td>
+            		<td colspan="5"><input type="text" name = "storeBenefit" placeholder="혜택을 입력해주세요"></td>
             	</tr>
             	
             	<tr><th colspan="5">메뉴 유형</th></tr>
             	<tr>
             		<td>
-            			<select name = "store_category">
+            			<select name = "storeCategory">
             				<option>한식</option>
             				<option>양식</option>
             				<option>중식</option>

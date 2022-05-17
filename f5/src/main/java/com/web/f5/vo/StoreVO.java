@@ -2,70 +2,71 @@ package com.web.f5.vo;
 
 public class StoreVO {
 	
-	String store_idx,store_name,store_place,store_content,store_tel,store_event,store_benefit,store_category;
+	String storeIdx,storeName,storePlace,storeContent,storeTel,storeEvent,storeBenefit,storeCategory;
 
-	public String getStore_idx() {
-		return store_idx;
+	public String getStoreIdx() {
+		return storeIdx;
 	}
 
-	public void setStore_idx(String store_idx) {
-		this.store_idx = store_idx;
+	public void setStoreIdx(String storeIdx) {
+		this.storeIdx = storeIdx;
 	}
 
-	public String getStore_name() {
-		return store_name;
+	public String getStoreName() {
+		return storeName;
 	}
 
-	public void setStore_name(String store_name) {
-		this.store_name = store_name;
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
 	}
 
-	public String getStore_place() {
-		return store_place;
+	public String getStorePlace() {
+		return storePlace;
 	}
 
-	public void setStore_place(String store_place) {
-		this.store_place = store_place;
+	public void setStorePlace(String storePlace) {
+		this.storePlace = storePlace;
 	}
 
-	public String getStore_content() {
-		return store_content;
+	public String getStoreContent() {
+		return storeContent;
 	}
 
-	public void setStore_content(String store_content) {
-		this.store_content = store_content;
+	public void setStoreContent(String storeContent) {
+		this.storeContent = storeContent;
 	}
 
-	public String getStore_tel() {
-		return store_tel;
+	public String getStoreTel() {
+		return storeTel;
 	}
 
-	public void setStore_tel(String store_tel) {
-		this.store_tel = store_tel;
+	public void setStoreTel(String storeTel) {
+		this.storeTel = storeTel;
 	}
 
-	public String getStore_event() {
-		return store_event;
+	public String getStoreEvent() {
+		return storeEvent;
 	}
 
-	public void setStore_event(String store_event) {
-		this.store_event = store_event;
+	public void setStoreEvent(String storeEvent) {
+		this.storeEvent = storeEvent;
 	}
 
-	public String getStore_benefit() {
-		return store_benefit;
+	public String getStoreBenefit() {
+		return storeBenefit;
 	}
 
-	public void setStore_benefit(String store_benefit) {
-		this.store_benefit = store_benefit;
+	public void setStoreBenefit(String storeBenefit) {
+		this.storeBenefit = storeBenefit;
 	}
 
-	public String getStore_category() {
-		return store_category;
+	public String getStoreCategory() {
+		return storeCategory;
 	}
 
-	public void setStore_category(String store_category) {
-		this.store_category = store_category;
+	public void setStoreCategory(String storeCategory) {
+		this.storeCategory = storeCategory;
 	}
+
 	
 }

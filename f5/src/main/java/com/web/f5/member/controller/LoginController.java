@@ -28,7 +28,7 @@ MemberService memberService;
 		int result = memberService.login_result(vo);
 		System.out.println("controller_result = "+result);
 		if(result == 1) {
-			session.setAttribute("member_id", vo.getMember_id());
+			session.setAttribute("memberId", vo.getMemberId());
 			System.out.println("로그인성공");
 			return "main/index";
 		}else {

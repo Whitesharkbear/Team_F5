@@ -5,10 +5,10 @@
 
 <mapper namespace="mapper.review">
 	<select id="selectlist" parameterType="map" resultType="com.web.f5.vo.ReviewVO">
-		select * from review where review_idx between #{Start} and #{End}
+		select * from review where reviewIdx between #{Start} and #{End}
 	</select>
 	<insert id="insert" parameterType="com.web.f5.vo.ReviewVO">
 			insert into review
-				values(review_sequ.nextval,#{store_idx},#{member_id},#{review_content},#{review_score})
+				values(review_sequ.nextval,#{storeIdx},#{memberId},#{reviewContent},#{reviewScore})
 	</insert>
 </mapper>

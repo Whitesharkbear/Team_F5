@@ -39,11 +39,11 @@
                     <div class="login-form-title"><img alt="" src="/f5/resources/images/mainlogo2.png"></div>
                     <div class="form-group">
                         <label for="InputUserEmail1">Username</label>
-                        <input type="email" class="form-control" id="InputUserEmail1" name="member_id"/>
+                        <input type="email" class="form-control" id="InputUserEmail1" name="memberId"/>
                     </div>
                     <div class="form-group">
                         <label for="InputPassword">Password</label>
-                        <input type="password" class="form-control" id="InputPassword" name="member_pass">
+                        <input type="password" class="form-control" id="InputPassword" name="memberPass">
                     </div>
                     <div class="form-group forgo-remember">
                         <div class="form-check">

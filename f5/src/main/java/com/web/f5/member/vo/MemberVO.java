@@ -1,96 +1,139 @@
 package com.web.f5.member.vo;
 
 public class MemberVO {
-String member_id,member_pass,member_name,member_birth,member_tel,member_email,member_date,member_authority,member_agree,member_pass_hint,member_pass_rand;
+String memberId,memberPass,memberName,memberBirth,memberTel,memberEmail,memberDate,memberAuthority,memberAgree,memberPassHint,memberPassRand,memberGender,memberAddress;
+String memberPassHintAnswer;
+String memberBirthYear,memberBirthMonth,memberBirthDate;
 
-public String getMember_id() {
-	return member_id;
+
+
+public String getMemberBirthYear() {
+	return memberBirthYear;
 }
 
-public void setMember_id(String member_id) {
-	this.member_id = member_id;
+public void setMemberBirthYear(String memberBirthYear) {
+	this.memberBirthYear = memberBirthYear;
 }
 
-public String getMember_pass() {
-	return member_pass;
+public String getMemberBirthMonth() {
+	return memberBirthMonth;
 }
 
-public void setMember_pass(String member_pass) {
-	this.member_pass = member_pass;
+public void setMemberBirthMonth(String memberBirthMonth) {
+	this.memberBirthMonth = memberBirthMonth;
 }
 
-public String getMember_name() {
-	return member_name;
+public String getMemberBirthDate() {
+	return memberBirthDate;
 }
 
-public void setMember_name(String member_name) {
-	this.member_name = member_name;
+public void setMemberBirthDate(String memberBirthDate) {
+	this.memberBirthDate = memberBirthDate;
 }
 
-public String getMember_birth() {
-	return member_birth;
+public String getMemberGender() {
+	return memberGender;
 }
 
-public void setMember_birth(String member_birth) {
-	this.member_birth = member_birth;
+public void setMemberGender(String memberGender) {
+	this.memberGender = memberGender;
 }
 
-public String getMember_tel() {
-	return member_tel;
+public String getMemberAddress() {
+	return memberAddress;
 }
 
-public void setMember_tel(String member_tel) {
-	this.member_tel = member_tel;
+public void setMemberAddress(String memberAddress) {
+	this.memberAddress = memberAddress;
 }
 
-public String getMember_email() {
-	return member_email;
+public String getMemberId() {
+	return memberId;
 }
 
-public void setMember_email(String member_email) {
-	this.member_email = member_email;
+public void setMemberId(String memberId) {
+	this.memberId = memberId;
 }
 
-public String getMember_date() {
-	return member_date;
+public String getMemberPass() {
+	return memberPass;
 }
 
-public void setMember_date(String member_date) {
-	this.member_date = member_date;
+public void setMemberPass(String memberPass) {
+	this.memberPass = memberPass;
 }
 
-public String getMember_authority() {
-	return member_authority;
+public String getMemberName() {
+	return memberName;
 }
 
-public void setMember_authority(String member_authority) {
-	this.member_authority = member_authority;
+public void setMemberName(String memberName) {
+	this.memberName = memberName;
 }
 
-public String getMember_agree() {
-	return member_agree;
+public String getMemberBirth() {
+	return memberBirthYear+"년"+memberBirthMonth+"월"+memberBirthDate+"일";
 }
 
-public void setMember_agree(String member_agree) {
-	this.member_agree = member_agree;
+public void setMemberBirth(String memberBirth) {
+	this.memberBirth = memberBirth;
 }
 
-public String getMember_pass_hint() {
-	return member_pass_hint;
+public String getMemberTel() {
+	return memberTel;
 }
 
-public void setMember_pass_hint(String member_pass_hint) {
-	this.member_pass_hint = member_pass_hint;
+public void setMemberTel(String memberTel) {
+	this.memberTel = memberTel;
 }
 
-public String getMember_pass_rand() {
-	return member_pass_rand;
+public String getMemberEmail() {
+	return memberEmail;
 }
 
-public void setMember_pass_rand(String member_pass_rand) {
-	this.member_pass_rand = member_pass_rand;
+public void setMemberEmail(String memberEmail) {
+	this.memberEmail = memberEmail;
 }
 
+public String getMemberDate() {
+	return memberDate;
+}
+
+public void setMemberDate(String memberDate) {
+	this.memberDate = memberDate;
+}
+
+public String getMemberAuthority() {
+	return memberAuthority;
+}
+
+public void setMemberAuthority(String memberAuthority) {
+	this.memberAuthority = memberAuthority;
+}
+
+public String getMemberAgree() {
+	return memberAgree;
+}
+
+public void setMemberAgree(String memberAgree) {
+	this.memberAgree = memberAgree;
+}
+
+public String getMemberPassHint() {
+	return memberPassHint;
+}
+
+public void setMemberPassHint(String memberPassHint) {
+	this.memberPassHint = memberPassHint;
+}
+
+public String getMemberPassRand() {
+	return memberPassRand;
+}
+
+public void setMemberPassRand(String memberPassRand) {
+	this.memberPassRand = memberPassRand;
+}
 
 
 }
