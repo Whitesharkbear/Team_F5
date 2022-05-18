@@ -23,4 +23,9 @@ public int login_result(MemberVO vo) {
 		// TODO Auto-generated method stub
 		return memberDao.insert(vo);
 	}
+@Override
+	public MemberVO select_result(String memberId) {
+		// TODO Auto-generated method stub
+		return memberDao.select(memberId);
+	}
 }

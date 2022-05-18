@@ -2,9 +2,7 @@ package com.web.f5.vo;
 
 public class ReservationVO {
 	String reservationIdx,storeIdx,memberId,reservationDate,reservationCount;
-	
-	String reservationNum;
-
+	String reservationTime;
 	public String getReservationIdx() {
 		return reservationIdx;
 	}
@@ -45,15 +43,4 @@ public class ReservationVO {
 		this.reservationCount = reservationCount;
 	}
 
-	public String getReservationNum() {
-		return reservationNum;
-	}
-
-	public void setReservationNum(String reservationNum) {
-		this.reservationNum = reservationNum;
-	}
-
-	
-	
-	
 }

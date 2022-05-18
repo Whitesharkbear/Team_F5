@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.web.f5.member.service.MemberService;
 import com.web.f5.member.vo.MemberVO;
@@ -23,17 +24,22 @@ MemberService memberService;
 	}
 	
 	@RequestMapping(value="/login.do", method = RequestMethod.POST)
-	public String login(MemberVO vo, HttpSession session) {
-		
+	public ModelAndView login(MemberVO vo, HttpSession session) {
+		ModelAndView mv = new ModelAndView();
 		int result = memberService.login_result(vo);
-		System.out.println("controller_result = "+result);
+		MemberVO mvo = new MemberVO();
+		mvo = memberService.select_result(vo.getMemberId());
 		if(result == 1) {
 			session.setAttribute("memberId", vo.getMemberId());
+			session.setAttribute("memberName", mvo.getMemberName());
+			mv.addObject("mvo",mvo);
+			mv.setViewName("main/index");
 			System.out.println("로그인성공");
-			return "main/index";
+			return mv;
 		}else {
 			System.out.println("로그인실패");
-			return "member/login/login";
+			mv.setViewName("member/login/login");
+			return mv;
 		}
 	}
 }

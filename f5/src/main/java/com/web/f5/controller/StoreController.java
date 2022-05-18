@@ -116,19 +116,16 @@ public class StoreController {
 		public ModelAndView store_infor(ReviewVO rvo,ReservationVO revo,HttpSession session) {
 			ModelAndView mv = new ModelAndView();
 			StoreVO vo = new StoreVO();
-			int result = 0,reviewResult = 0;
-			System.out.println(rvo.getStoreIdx());
+			int result = 0;
+			int reviewResult = 0;
 			if(revo.getReservationDate() != null) {
 		    	revo.setMemberId((String)session.getAttribute("memberId"));
-		    	System.out.println(revo.getMemberId()+","+revo.getReservationCount()+","+revo.getReservationDate()+","+revo.getReservationIdx()+","+revo.getReservationNum()+","+revo.getStoreIdx());
 			    result = reservationService.insertResult(revo);
 			    vo= storeService.selectResult(revo.getStoreIdx());
 			}
 			if(rvo.getReviewContent() !=null) {
 				rvo.setMemberId((String)session.getAttribute("memberId"));
-				System.out.println(rvo.getMemberId());
 				reviewResult = reviewService.insertResult(rvo);
-				System.out.println(revo.getMemberId());
 				vo= storeService.selectResult(rvo.getStoreIdx());
 			}
 			if(result == 1 || reviewResult==1) {

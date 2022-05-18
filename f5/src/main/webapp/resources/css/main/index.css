@@ -20,6 +20,24 @@
 	border-radius: 10px;
 	border:none;
 }
+.logout-button{
+	background-color: brown;
+	color : white;
+	border-radius: 5px;
+	border:none;
+}
+.mypage-button{
+	border: none;
+	background-color: orange;
+	color: #fff;
+	border-radius: 5px;
+}
+.reservation-button{
+	border: none;
+	background-color: orange;
+	color: #fff;
+	border-radius: 5px;
+}
 .main_join_button{
 	color : #000;
 	margin: 0 5%;
@@ -33,7 +51,7 @@
 	background-size: cover;
 }
 
-.easy_login {
+.easy_login{
 	width: 80%;
 	border: none;
 	background-color: orange;
@@ -93,7 +111,7 @@ li {
  								
  ------------------------------------------------------------------------*/
 @media (min-width : 767.9999px) {
-	
+
 }
 
 /*-----------------------------------------------------------------------
@@ -110,5 +128,7 @@ li {
  								
  ------------------------------------------------------------------------*/
 @media (max-width : 425.9998px) {
-
+	.logout-button {
+		width : 100%;	
+	}
 }

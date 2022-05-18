@@ -77,9 +77,9 @@
 								<li>${vo.storePlace }</li>
 								<li>${vo.storeTel }</li>
 								<li>${vo.storeCategory }</li>
-								<li>가격대 : 6천원 ~ 4만원</li>
-								<li>주차 : 무</li>
-								<li>웹사이트 : www.hongkong.co.kr</li>
+<%-- 							<li>가격대 : ${vo.storePrice }</li>
+								<li>주차 : ${vo.storeParking }</li>
+								<li>웹사이트 : ${vo.storeWebSite }</li> --%>
 							</ul>
 						</div>
 						<div class="store-intro-icon-box">

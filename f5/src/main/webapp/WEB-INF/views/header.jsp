@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %> 
 <!DOCTYPE html>
 <html lang = "en">
 	<head>
@@ -27,11 +28,22 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item mber_bar">
+                        <c:choose>
+                        <c:when  test="${sessionScope.memberId ==null}">
                         <a class="nav-link" href="#">회원관리</a>
                         	<ul class ="nav-inner">
                         		<li><a href="http://localhost:9000/f5/login.do">로그인</a></li>
                     			<li><a href="http://localhost:9000/f5/join.do">회원가입</a></li>
                         	</ul>
+                        </c:when>
+                        <c:otherwise>
+                        <a class="nav-link" href="#">회원관리</a>
+                        	<ul class ="nav-inner">
+                        		<li><a href="http://localhost:9000/f5/login.do">로그아웃</a></li>
+                    			<li><a href="http://localhost:9000/f5/join.do">마이페이지</a></li>
+                        	</ul>
+                        </c:otherwise>
+                        </c:choose>
                         </li>
                         <li class="nav-item">
                         <a class="nav-link" href="#">소개</a>

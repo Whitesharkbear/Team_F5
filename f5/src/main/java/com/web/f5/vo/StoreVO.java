@@ -3,7 +3,7 @@ package com.web.f5.vo;
 public class StoreVO {
 	
 	String storeIdx,storeName,storePlace,storeContent,storeTel,storeEvent,storeBenefit,storeCategory;
-
+	int storeMaxCount;
 	public String getStoreIdx() {
 		return storeIdx;
 	}

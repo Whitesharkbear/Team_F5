@@ -13,10 +13,12 @@ public class MemberDAO {
 	
 	public int select(MemberVO vo) {
 		int result =session.selectOne(namespace+".loginCheck",vo);
-		System.out.println("dao result = "+result);
 		return result;
 }
 	public int insert(MemberVO vo) {
 		return session.insert(namespace+".insert",vo);
+	}
+	public MemberVO select(String memberId) {
+		return session.selectOne(namespace+".select",memberId);
 	}
 }

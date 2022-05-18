@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %> 
 <!DOCTYPE html>
 
 <html lang="en">
@@ -50,6 +51,8 @@
             
                 <div class="col-lg-4">
               
+              		<c:choose>
+              		<c:when test="${sessionScope.memberId == null}">
                     <div class="card mb-4 login_sec">
                         <div class="card-body">
                         	<button class = "main_login_button">로그인</button>
@@ -68,7 +71,19 @@
                         	</div>
                         </div>
                     </div>
-                    
+                    </c:when>
+                    <c:otherwise>
+                    	<div class = "card mb-4">
+                    		<div class = "card-header">${sessionScope.memberName }님 환영합니다~</div>
+                    		<div class = "card-body">
+                    			<button type="button" class="mypage-button">마이페이지</button>
+                    			<button type="button" class="reservation-button">예약확인</button>
+                    			<button type="button" class="reservation-button">장바구니</button>
+                    			<button type="button" class="logout-button">로그아웃</button>
+                    		</div>
+                    	</div>
+                    </c:otherwise>
+                    </c:choose>
                  
                     <div class="card mb-4">
                         <div class="card-header">공지사항</div>
