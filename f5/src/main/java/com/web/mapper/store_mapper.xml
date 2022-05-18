@@ -6,7 +6,7 @@
 <mapper namespace="mapper.store">
 	<insert id="insert" parameterType="com.web.f5.vo.StoreVO">
 		insert into store
-				values(store_sequ.nextval,#{storeName},#{storePlace},#{storeContent},#{storeTel},#{storeEvent},#{storeBenefit},#{storeCategory})
+				values('s_'||sequ_store.nextval,#{storeName},#{storePlace},#{storeContent},#{storeTel},#{storeEvent},#{storeBenefit},#{storeCategory})
 	</insert>
 	<select id="select" parameterType="java.lang.String" resultType="com.web.f5.vo.StoreVO">
 		select * from store

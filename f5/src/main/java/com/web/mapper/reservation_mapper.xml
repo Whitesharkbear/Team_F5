@@ -5,6 +5,6 @@
 
 <mapper namespace="mapper.reservation">
 	<insert id="insert" parameterType="com.web.f5.vo.ReservationVO">
-		insert into reservation values(reservation_sequ.nextval,0,#{storeIdx},#{memberId},#{reservationCount},#{reservationDate})
+		insert into reservation values('rez_'||sequ_reservation.nextval,0,#{storeIdx},#{memberId},#{reservationCount},#{reservationDate})
 	</insert>
 </mapper>

@@ -51,7 +51,7 @@
 		)
 		values
 		(
-			sequ_board_boardIdx.nextval,
+			'b_'||sequ_board.nextval,
 			#{memberId},
 			0,
 			#{boardTitle},

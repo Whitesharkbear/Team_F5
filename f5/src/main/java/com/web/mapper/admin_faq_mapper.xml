@@ -44,7 +44,7 @@
 		)
 		values
 		(
-			sequ_faq_faqIdx.nextval,
+			'f_'||sequ_faq.nextval,
 			#{faqTitle},
 			#{faqContent},
 			sysdate
