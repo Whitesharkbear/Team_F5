@@ -6,7 +6,7 @@
 <mapper namespace="mapper.adminnotice">
 	
 	<select id="count" resultType="int">
-		select count(*) from board where boardCategory = 2
+		select count(*) from board where boardCategory = '공지'
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
@@ -16,7 +16,7 @@
 		from
 			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
 		where
-			(rno between #{start} and #{end}) and (boardCategory = '2')
+			(rno between #{start} and #{end}) and (boardCategory = '공지')
 	</select>
 	
 	<select id="limitList" resultType="com.web.f5.vo.AdminNoticeVO">
@@ -24,7 +24,7 @@
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '2')
+			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '공지')
 		where
 			 rno &lt; 4
 	</select>
@@ -58,7 +58,7 @@
 			#{boardContent},
 			sysdate,
 			null,
-			2
+			'공지'
 		)
 	</insert>
 	
@@ -68,7 +68,7 @@
 			boardTitle = #{boardTitle},
 			boardContent = #{boardContent},
 			boardUpdateDate = sysdate,
-			boardCategory = 2
+			boardCategory = '공지'
 		where
 			boardIdx = #{boardIdx}
 	</update>

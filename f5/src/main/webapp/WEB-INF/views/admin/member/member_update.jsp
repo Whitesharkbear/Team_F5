@@ -31,10 +31,10 @@
 						<tr>
 							<td>
 								<select id="pwHint" name="memberPassHint">
-									<option value="0" selected="selected">--비밀번호 힌트--</option>
-									<option value="1">출신학교</option>
-									<option value="2">별명</option>
-									<option value="3">기억에 남는 장소</option>
+									<option value="0" <c:if test="${ vo.memberPassHint eq '0' }">selected</c:if>>--비밀번호 힌트--</option>
+									<option value="1" <c:if test="${ vo.memberPassHint eq '1' }">selected</c:if>>출신학교</option>
+									<option value="2" <c:if test="${ vo.memberPassHint eq '2' }">selected</c:if>>별명</option>
+									<option value="3" <c:if test="${ vo.memberPassHint eq '3' }">selected</c:if>>기억에 남는 장소</option>
 								</select>
 							</td>
 						</tr>
@@ -71,9 +71,9 @@
 						<tr>
 							<td>
 								<select id="gender" name="memberGender">
-									<option value="0" selected="selected">성별을 선택하세요</option>
-									<option value="1">남자</option>
-									<option value="2">여자</option>
+									<option value="0" <c:if test="${ vo.memberGender eq '0' }">selected</c:if>>성별을 선택하세요</option>
+									<option value="1" <c:if test="${ vo.memberGender eq '1' }">selected</c:if>>남자</option>
+									<option value="2" <c:if test="${ vo.memberGender eq '2' }">selected</c:if>>여자</option>
 								</select>
 							</td>
 						</tr>

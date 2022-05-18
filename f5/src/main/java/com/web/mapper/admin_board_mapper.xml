@@ -10,13 +10,13 @@
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardContent, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '0')
+			(select boardIdx, memberId, boardTitle, boardContent, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '자유')
 		where
 			rno &lt; 4
 	</select>
 	
 	<select id="count" resultType="int">
-		select count(*) from board where boardCategory = 0
+		select count(*) from board where boardCategory = '자유'
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminBoardVO">
@@ -26,7 +26,7 @@
 		from
 			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
 		where
-			(rno between #{start} and #{end}) and (boardCategory = '0')
+			(rno between #{start} and #{end}) and (boardCategory = '자유')
 	</select>
 	
 	<select id="boardContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminBoardVO">
@@ -58,7 +58,7 @@
 			#{boardContent},
 			sysdate,
 			null,
-			0
+			'자유'
 		)
 	</insert>
 	
@@ -68,7 +68,7 @@
 			boardTitle = #{boardTitle},
 			boardContent = #{boardContent},
 			boardUpdateDate = sysdate,
-			boardCategory = 0
+			boardCategory = '자유'
 		where
 			boardIdx = #{boardIdx}
 	</update>
