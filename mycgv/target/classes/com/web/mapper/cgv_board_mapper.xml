@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.board">
+
+	<select id="bsfile" parameterType="java.lang.String" resultType="java.lang.String">
+		select bsfile from cgv_board where bid=#{bid}
+	</select>
+
+	<delete id="delete" parameterType="java.lang.String">
+		delete from cgv_board where bid=#{bid}
+	</delete>
+
+	<update id="update" parameterType="com.web.vo.CgvBoardVO">
+		update cgv_board 
+		<choose>
+			<when test="bfile != null">
+				set btitle=#{btitle}, bcontent=#{bcontent}
+							, bfile=#{bfile}, bsfile=#{bsfile}
+			</when>
+			<otherwise>
+				set btitle=#{btitle}, bcontent=#{bcontent}			
+			</otherwise>
+		</choose>
+		where bid=#{bid}
+	</update>
+	
+	<update id="update_hits" parameterType="java.lang.String">
+		update cgv_board set bhits=bhits+1 where bid=#{bid}
+	</update>
+	
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.CgvBoardVO">
+		select bid,btitle,bcontent, bhits, bdate, bsfile, bfile 
+				from cgv_board 	 where bid=#{bid}	
+	</select>
+
+	<insert id="insert" parameterType="com.web.vo.CgvBoardVO">
+		insert into cgv_board 
+		<choose>
+			<when test="bfile != null">
+				values('b_'||sequ_cgv_board_bid.nextval
+					,#{btitle},#{bcontent},0,sysdate,#{bfile},#{bsfile})
+			</when>
+			<otherwise>
+				values('b_'||sequ_cgv_board_bid.nextval
+					,#{btitle},#{bcontent},0,sysdate,null,null)
+			</otherwise>
+		</choose>			
+	</insert>
+
+	<select id="list" parameterType="map" resultType="com.web.vo.CgvBoardVO">
+		select rno, bid, btitle, bhits, bdate 
+				from  (select rownum rno, bid, btitle, bhits, 
+				 			to_char(bdate,'yyyy/mm/dd') bdate   
+				 		from (select bid, btitle, bhits, bdate from cgv_board order by bdate desc) 
+				 ) where rno between #{start} and #{end}	
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from cgv_board
+	</select>
+	
+</mapper>    
+
+
+
+
+
+
+
+
+

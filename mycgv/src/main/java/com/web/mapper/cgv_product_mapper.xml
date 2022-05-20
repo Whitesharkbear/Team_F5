@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.product">
+
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.CgvProductVO">
+		select cp.pid,pcategory,pname,price,pinfo,pdate,pfile1,pfile2,pfile3,pfile4,pfile5
+		      ,psfile1,psfile2,psfile3,psfile4,psfile5
+		from cgv_product cp, cgv_product_file cpf
+		where cp.pid = cpf.fid and cp.pid=#{pid}
+	</select>
+
+	<select id="select" parameterType="map" resultType="com.web.vo.CgvProductVO">
+		select rno, pid,pcategory,pname,price,to_char(pdate,'yyyy-mm-dd') pdate
+		from (select rownum rno, pid,pcategory,pname,price,pdate
+		        from (select pid,pcategory,pname,price,pdate
+		                from cgv_product order by pdate desc))
+		where rno between 1 and 5
+	</select>
+
+
+	<insert id="insert" parameterType="com.web.vo.CgvProductVO">
+		insert into cgv_product		
+				values('p_'||sequ_cgv_product_pid.nextval
+					,#{pcategory},#{pname},#{price},#{pinfo},sysdate)		
+	</insert>
+	
+	<select id="select_pid" resultType="java.lang.String">
+		select pid 
+			  from (select pid from cgv_product order by pdate desc) 
+			where rownum =1
+	</select>
+	
+	<insert id="insert_file" parameterType="com.web.vo.CgvProductVO">
+		insert into cgv_product_file		
+				values(#{pid},			
+			<foreach collection="pfiles" item="pfile" separator="," index="i">
+				<if test="i &lt; 5">  <!-- i<5 -->
+	           		#{pfile}
+	           	</if>
+           </foreach>
+           ,
+           <foreach collection="psfiles" item="psfile"  separator="," close=")">
+	           <if test="i &lt; 5"> 
+	           	#{psfile}
+	           	</if>
+           </foreach>
+	</insert>
+
+	
+</mapper>    
+
+
+
+
+
+
+

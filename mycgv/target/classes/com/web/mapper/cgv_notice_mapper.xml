@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.notice">
+
+	<select id="nsfile" parameterType="java.lang.String" resultType="java.lang.String">
+		select nsfile from cgv_notice where nid=#{nid}
+	</select>
+	
+	<delete id="delete" parameterType="java.lang.String">
+		delete from cgv_notice where nid=#{nid}
+	</delete>
+
+	<update id="update" parameterType="com.web.vo.CgvNoticeVO">
+		update cgv_notice 
+		<choose>
+			<when test="nfile != null">
+				set ntitle=#{ntitle}, ncontent=#{ncontent}
+								, nfile=#{nfile}, nsfile=#{nsfile} 		
+			</when>
+			<otherwise>
+				set ntitle=#{ntitle}, ncontent=#{ncontent}
+			</otherwise>
+		</choose>
+		 where nid=#{nid}	
+	</update>
+
+	<update id="updateHits" parameterType="java.lang.String">
+		update cgv_notice set nhits=nhits+1 where nid=#{nid}
+	</update>
+
+	<select id="content" parameterType="java.lang.String" resultType="com.web.vo.CgvNoticeVO">
+		select nid, ntitle, ncontent, nhits, to_char(ndate,'yyyy-mm-dd') ndate
+				 , nsfile, nfile
+				 from cgv_notice where nid=#{nid}
+	</select>
+
+	<select id="count" resultType="int">
+		select count(*) from cgv_notice
+	</select>
+
+	<select id="list" parameterType="map" resultType="com.web.vo.CgvNoticeVO">
+		select rno, nid, ntitle, nhits, ndate 
+				 from (select rownum rno, nid, ntitle, nhits, to_char(ndate,'yyyy-mm-dd') ndate 
+				        from ( select nid, ntitle, nhits, ndate from cgv_notice order by ndate desc)
+				      )  where rno between #{start} and #{end}
+	</select>
+
+	<insert id="insert" parameterType="com.web.vo.CgvNoticeVO">
+		insert into cgv_notice 
+			<choose>
+				<when test="nfile != null">
+					values('n_'||SEQU_CGV_NOTICE_NID.nextval
+							,#{ntitle},#{ncontent},0,sysdate,#{nfile},#{nsfile})				
+				</when>
+				<otherwise>
+					values('n_'||SEQU_CGV_NOTICE_NID.nextval
+							,#{ntitle},#{ncontent},0,sysdate,null,null)									
+				</otherwise>
+			</choose>
+	</insert>
+	
+</mapper>    
+
+
+
+
+
+
+
+
+
