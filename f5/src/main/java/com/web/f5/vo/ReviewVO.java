@@ -3,6 +3,7 @@ package com.web.f5.vo;
 public class ReviewVO {
 	String reviewIdx,storeIdx,memberId,reviewContent;
 	float reviewScore;
+	int rno;
 	public String getReviewIdx() {
 		return reviewIdx;
 	}
@@ -32,6 +33,12 @@ public class ReviewVO {
 	}
 	public void setReviewScore(float reviewScore) {
 		this.reviewScore = reviewScore;
+	}
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
 	}
 	
 	

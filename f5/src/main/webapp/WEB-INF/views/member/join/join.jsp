@@ -185,7 +185,11 @@ $(document).ready(function(){
 				<input type="hidden" name ="memberPassRand">
 				<input type="hidden" name ="memberAgree">
 				<input type="hidden" name ="memberAddress">
-				
+				<input type="hidden" name ="postCode">
+				<input type="hidden" name ="address">
+				<input type="hidden" name ="detailAddress">
+				<input type="hidden" name ="extraAddress">
+
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">

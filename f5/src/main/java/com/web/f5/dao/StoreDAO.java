@@ -26,7 +26,7 @@ public class StoreDAO {
 	}
 	
 	public ArrayList<StoreVO> select(int startCount,int endCount) {
-		Map<String,Integer> param = new HashMap<String, Integer>();
+		Map<String,Integer> param = new HashMap<String,Integer>();
 		param.put("Start", startCount);
 		param.put("End", endCount);
 		List<StoreVO> list = new ArrayList<StoreVO>();

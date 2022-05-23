@@ -23,6 +23,9 @@
 		 text-align: left;
 		 padding-left:20px;
 	}
+	.store-join-price td{
+		width : 30%;
+	}
 </style>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -112,34 +115,26 @@
             			</select>
 					</td>
             	</tr>
-            	
+            	<tr><th colspan="5">가용인원</th></tr>
+            	<tr>
+            		<td colspan="5"><input type="text" placeholder="가용인원수를 입력해주세요(숫자만입력)" name="storeMaxCount"></td>
+            	</tr>
             	<tr><th colspan="5">가격대</th></tr>
-            	<tr class="flex-rw">
-            		<td><input class="min" type="text" placeholder="최소가격을 입력해주세요"></td>
-					<td>
-						<select>
-							<option>천원</option>
-							<option>만원</option>
-						</select>
-					</td>
+            	<tr class="store-join-price">
+            		<td><input class="min" type="text" placeholder="최소가격을 입력해주세요(숫자만입력)" name = "storeMinPrice"></td>
+
 					<td>
 						~ 
 					</td>
 					
-					<td><input class="max" type="text" placeholder="최대가격을 입력해주세요"></td>
-					<td style="text-align: center">
-						<select>
-							<option>천원</option>
-							<option>만원</option>
-						</select>
-					</td>	
+					<td><input class="max" type="text" placeholder="최대가격을 입력해주세요(숫자만입력)" name="storeMaxPrice"></td>
 
             	</tr>
             	
             	<tr><th colspan="5">주차</th></tr>
             	<tr>
             		<td colspan="5">
-            			<select>
+            			<select name ="storeParking">
             				<option>유</option>
             				<option>무</option>
             			</select>
@@ -148,9 +143,9 @@
             	
             	<tr><th colspan="5">웹사이트</th></tr>
             	<tr>
-            		<td colspan="5"><input type="text" placeholder="웹사이트 주소를 입력해주세요"></td>
+            		<td colspan="5"><input type="text" placeholder="웹사이트 주소를 입력해주세요" name="storeWebSite"></td>
             	</tr>
-            	
+
             	<tr><th colspan="5">파일첨부</th></tr>
             	<tr>
             		<td colspan="5">

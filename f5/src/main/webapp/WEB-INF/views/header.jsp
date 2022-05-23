@@ -12,6 +12,7 @@
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/f5/resources/favicon.ico" />
         <script src="/f5/resources/js/scripts.js"></script>
+
         <!-- Core theme CSS (includes Bootstrap)-->
 
 <meta charset="UTF-8">

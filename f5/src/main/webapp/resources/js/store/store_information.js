@@ -1,7 +1,7 @@
  $(document).ready(function() {
 	img_slide()
     calendarInit();
-
+    
 });
 
 function calendarInit() {
@@ -84,6 +84,7 @@ function calendarInit() {
     });
     $(document).on('click','.calendar_reservation',function(){
     	$('.selected-date').text($(this).attr('id'));
+    	$('.selected-date-hidden').val($(this).attr('id'));
     	$('.modal-window').css("display","block");
     	$('.reservation-modal').css("display","block");
     	$('body').css("overflow","hidden");
@@ -203,3 +204,4 @@ function img_slide(){
 	};
 	
 };
+
