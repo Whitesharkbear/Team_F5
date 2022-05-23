@@ -157,7 +157,17 @@ th{
 	flex-direction: row;
 }
 
-
+.review-delete-button , .review-update-button , .review-update-cancle , .review-update-submit{
+	position: relative;
+	left: 100%;
+	border-style:none;
+	background-color: white;
+	color : red;
+	font-size: 12px;
+}
+.review-update-button, .review-update-submit{
+	color : blue;
+}
 @media screen and (min-width: 768px) and (max-width:992px) {
    
    

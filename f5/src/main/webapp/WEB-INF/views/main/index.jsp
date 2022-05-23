@@ -6,7 +6,9 @@
 <html lang="en">
 <link href="/f5/resources/css/main/index.css" rel="stylesheet" />
 
+
     <body>
+    	session memberId = ${sessionScope.memberId }
     	<jsp:include page="../header.jsp"></jsp:include>
         <!-- Page content-->
         <div class="container">

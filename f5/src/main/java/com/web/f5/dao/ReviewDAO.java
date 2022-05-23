@@ -17,13 +17,22 @@ public class ReviewDAO {
 
 	public ArrayList<ReviewVO> select(int startCount,int endCount) {
 		Map<String,Integer> param = new HashMap<String, Integer>();
-		param.put("Start", startCount);
-		param.put("End", endCount);
+		param.put("start", startCount);
+		param.put("end", endCount);
 		List<ReviewVO> list= sqlSession.selectList(namespace+".selectlist",param);
 		return (ArrayList<ReviewVO>)list;
 	}
 	
 	public int insert(ReviewVO vo) {
 		return sqlSession.insert(namespace+".insert",vo);
+	}
+	public int delete(String reviewIdx) {
+		return sqlSession.delete(namespace+".delete",reviewIdx);
+	}
+	public int update(String reviewIdx,String reviewContent) {
+		Map<String, String> param = new HashMap<String, String>();
+		param.put("reviewIdx", reviewIdx);
+		param.put("reviewContent", reviewContent);
+		return sqlSession.update(namespace+".update",param);
 	}
 }

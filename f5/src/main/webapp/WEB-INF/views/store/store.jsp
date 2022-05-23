@@ -47,7 +47,7 @@
                             <!-- Blog post-->
                             <c:forEach var="vo"  items="${list}">
                             <c:choose>
-                            <c:when test="${vo.storeIdx % 4 == 1 || vo.storeIdx % 4 == 3}">
+                            <c:when test="${vo.rno % 4 == 1 || vo.rno % 4 == 3}">
 	                            <div class="store-card mb-4">
 	                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample1.jpg" alt="..." /></a>
 	                                <div class="card-body">
@@ -64,7 +64,7 @@
                             <!-- Blog post-->
                             <c:forEach var="vo"  items="${list}">
                             <c:choose>
-                            <c:when test="${vo.storeIdx % 4 == 2 || vo.storeIdx % 4 == 0}">
+                            <c:when test="${vo.rno % 4 == 2 || vo.rno % 4 == 0}">
                             <div class="store-card mb-4">
                                 <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample3.jpg" alt="..." /></a>
                                 <div class="card-body">
