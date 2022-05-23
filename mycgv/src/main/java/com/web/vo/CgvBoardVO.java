@@ -3,9 +3,10 @@ package com.web.vo;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class CgvBoardVO {
-	int bhits, rno;
-	String bid, btitle,bcontent, bdate, bfile, bsfile;
+	String bid, btitle, bcontent, bdate, bfile, bsfile;
+	int bhit, rno;
 	CommonsMultipartFile file1;
+	
 	
 	
 	public String getBfile() {
@@ -25,18 +26,6 @@ public class CgvBoardVO {
 	}
 	public void setFile1(CommonsMultipartFile file1) {
 		this.file1 = file1;
-	}
-	public int getRno() {
-		return rno;
-	}
-	public void setRno(int rno) {
-		this.rno = rno;
-	}
-	public int getBhits() {
-		return bhits;
-	}
-	public void setBhits(int bhits) {
-		this.bhits = bhits;
 	}
 	public String getBid() {
 		return bid;
@@ -62,7 +51,16 @@ public class CgvBoardVO {
 	public void setBdate(String bdate) {
 		this.bdate = bdate;
 	}
-	
-	
- 
+	public int getBhit() {
+		return bhit;
+	}
+	public void setBhit(int bhit) {
+		this.bhit = bhit;
+	}
+	public int getRno() {
+		return rno;
+	}
+	public void setRno(int rno) {
+		this.rno = rno;
+	}
 }

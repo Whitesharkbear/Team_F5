@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.web.dao.CgvMemberDAO;
 import com.web.vo.CgvMemberVO;
 
-
-public class MemberServiceImpl extends ObjectServiceAdapter implements MemberService{
+public class MemberServiceImpl extends ObjectServiceAdapter implements MemberService {
 	
 	@Autowired
 	private CgvMemberDAO memberDao;
 	
-
+	
 	@Override  //MemberService
 	public int getStatusUpdate(String id, String status) {
 		return memberDao.updateJoinStatus(id, status);
@@ -57,7 +56,7 @@ public class MemberServiceImpl extends ObjectServiceAdapter implements MemberSer
 	public int getIdCheckResult(String id) {
 		return memberDao.idCheck(id);
 	}
-	
+
 	
 	
 }

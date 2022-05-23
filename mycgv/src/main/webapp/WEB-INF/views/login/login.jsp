@@ -9,16 +9,16 @@
 <script src="http://localhost:9000/mycgv/resources/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/mycgv/resources/js/mycgv.js"></script>
 <script>
+
 	var login_result = "${login_result}";
-	var join_result = "${join_result}";
-	
-	if(login_result == "fail"){
-		alert("아이디 또는 패스워드가 다릅니다. 다시 로그인 진행해 주세요.");
+	if(login_result == "fail") {
+		alert("로그인에 실패하셨습니다. 아이디 또는 비밀번호를 확인해주세요.");
 	}
-	if(join_result == "succ"){
+	
+	var join_result = "${join_result}";
+	if(join_result == "succ") {
 		alert("회원가입에 성공하셨습니다.");
 	}
-	
 	
 </script>
 </head>
@@ -42,8 +42,7 @@
 					</li>
 					<li>
 						<button type="button" class="btn_style" id="btnLogin">로그인</button>
-						<button type="reset" class="btn_style" id="test">다시쓰기</button>
-						<span id="test1">자세히보기</span>
+						<button type="reset" class="btn_style">다시쓰기</button>
 					</li>
 				</ul>
 			</form>

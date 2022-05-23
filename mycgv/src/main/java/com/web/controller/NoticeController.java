@@ -22,56 +22,44 @@ public class NoticeController {
 	
 	@Autowired
 	private PageServiceImpl pageService;
-
 	
+	// 공지상세
 	@RequestMapping(value="/notice_content.do", method=RequestMethod.GET)
 	public ModelAndView notice_content(String nid, String rno) {
 		ModelAndView mv = new ModelAndView();
+		//CgvNoticeDAO dao = new CgvNoticeDAO();
 		noticeService.getUpdateHits(nid);
-		CgvNoticeVO vo = (CgvNoticeVO)noticeService.getContent(nid);
-		
-		mv.addObject("vo",vo);
-		mv.addObject("rno",rno);
+		CgvNoticeVO vo = noticeService.getContent(nid);
+		mv.addObject("vo", vo);
+		mv.addObject("rno", rno);
 		mv.setViewName("/notice/notice_content");
 		
 		return mv;
 	}
 	
-	
+	// 공지리스트
 	@RequestMapping(value="/notice_list.do", method=RequestMethod.GET)
 	public ModelAndView notice_list(String rpage) {
 		ModelAndView mv = new ModelAndView();
-		Map<String,String> param = pageService.getPageResult(rpage, "notice", noticeService);
+		//CgvNoticeDAO dao = new CgvNoticeDAO();
+		
+		Map<String, String> param = pageService.getPageResult(rpage, "notice", noticeService);
 		int startCount = Integer.parseInt(param.get("start"));
-		int endCount = Integer.parseInt(param.get("end"));		
-				
-		ArrayList<CgvNoticeVO> list =  new ArrayList<CgvNoticeVO>();
-		List<Object> olist = noticeService.getListResult(startCount, endCount); //start,end
-		for(Object obj:olist) {
+		int endCount = Integer.parseInt(param.get("end"));
+		
+		List<Object> list = noticeService.getListResult(startCount, endCount);
+		ArrayList<CgvNoticeVO> olist = new ArrayList<CgvNoticeVO>();
+		for(Object obj : olist) {
 			list.add((CgvNoticeVO)obj);
-		}		
+		}
 		
 		mv.addObject("list", list);
 		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
 		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
-		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));	
+		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
 		
-		mv.setViewName("/notice/notice_list");
+		mv.setViewName("notice/notice_list");
 		
 		return mv;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

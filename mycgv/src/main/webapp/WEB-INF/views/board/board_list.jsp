@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c" %>    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 		    maxSize: 7,	    		// max page size
 		    totals: '${dbCount}',	// total pages	
 		    page: '${reqPage}',		// initial page		
-		    pageSize: '${pageSize}',			// max number items per page
+		    pageSize: '${pageSize}',		// max number items per page
 		
 		    // custom labels		
 		    lastText: '&raquo;&raquo;', 		
@@ -57,11 +57,11 @@
 					<th>조회수</th>
 					<th>등록일</th>
 				</tr>
-				<c:forEach var="vo"  items="${list}">
+				<c:forEach var="vo" items="${list }">
 				<tr>
-					<td>${vo.rno}</td>
+					<td>${vo.rno }</td>
 					<td><a href="board_content.do?bid=${vo.bid }&rno=${vo.rno}">${vo.btitle }</a></td>
-					<td>${vo.bhits }</td>
+					<td>${vo.bhit }</td>
 					<td>${vo.bdate }</td>
 				</tr>
 				</c:forEach>

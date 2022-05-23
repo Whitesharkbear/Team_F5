@@ -1,16 +1,16 @@
 package com.web.vo;
 
-/**
- * 1. Æû¿¡¼­ ³Ñ¾î¿À´Â µ¥ÀÌÅÍ ¸ÅÇÎ
- * 2. Å×ÀÌºí¿¡ CRUD ÀÛ¾÷¿¡ ÇÊ¿äÇÑ µ¥ÀÌÅÍ ¸ÅÇÎ
- */
+/*
+	1. í¼ì—ì„œ ë„˜ì–´ì˜¤ëŠ” ë°ì´í„° ë§¤í•‘
+	2. í…Œì´ë¸”ì— CRUD ì‘ì—…ì— í•„ìš”í•œ ë°ì´í„° ë§¤í•‘
+	
+*/
 public class CgvMemberVO {
 	//Field
-	String id, pass, name, gender, email, hp, hobbylist,intro, mdate,
-				email1, email2, hp1, hp2, hp3;
+	String id, pass, name, gender, email, hp, hobbylist, intro, mdate,
+			email1, email2, hp1, hp2, hp3;
 	String[] hobby;
-	int join_status, rno;	
-	
+	int join_status, rno;
 	
 	public int getRno() {
 		return rno;
@@ -48,9 +48,9 @@ public class CgvMemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getEmail() {  //DAO°´Ã¼¿¡¼­ SQL insert ½ÇÇà½Ã È£ÃâÇÏ´Â ¸Ş¼Òµå 
-		if(email1 != null) { //Æû¿¡¼­ ÀÔ·ÂÀ» ¹Ş´Â °æ¿ì
-			email = email1 +"@"+email2;
+	public String getEmail() {	// DAOê°ì²´ì—ì„œ SQL insert ì‹¤í–‰ì‹œ í˜¸ì¶œí•˜ëŠ” ë©”ì†Œë“œ
+		if(email1 != null) {	// í¼ì—ì„œ ì…ë ¥ì„ ë°›ëŠ” ê²½ìš°
+			email = email1 + "@" + email2;
 		}
 		return email;
 	}
@@ -59,7 +59,7 @@ public class CgvMemberVO {
 	}
 	public String getHp() {
 		if(hp1 != null) {
-			hp = hp1 +"-"+hp2+"-"+hp3;
+			hp = hp1 + "-" + hp2 + "-" + hp3;
 		}
 		return hp;
 	}
@@ -67,7 +67,7 @@ public class CgvMemberVO {
 		this.hp = hp;
 	}
 	public String getHobbylist() {
-		//hobby ¹è¿­¿¡ µé¾îÀÖ´Â µ¥ÀÌÅÍµéÀ» ÄŞ¸¶(,)·Î ±¸ºĞÇÏ¿© ¹®ÀÚ¿­·Î º¯È¯	
+		//hobby ë°°ì—´ì— ë“¤ì–´ìˆëŠ” ë°ì´í„°ë“¤ì„ ì½¤ë§ˆ(,)ë¡œ êµ¬ë¶„í•˜ì—¬ ë¬¸ìì—´ë¡œ ë³€í™˜
 		if(hobby != null) {
 			hobbylist = String.join(",", hobby);
 		}
@@ -124,6 +124,7 @@ public class CgvMemberVO {
 	public void setHobby(String[] hobby) {
 		this.hobby = hobby;
 	}
+	
 	
 	
 	

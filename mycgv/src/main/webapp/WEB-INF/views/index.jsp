@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-    
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,14 +9,17 @@
 <title>Insert title here</title>
 <link rel="stylesheet" href="http://localhost:9000/mycgv/resources/css/mycgv.css">
 <script>
+
 	var login_result = "${login_result}";
-	if(login_result == "succ"){
+	if(login_result == "succ") {
 		alert("로그인에 성공하셨습니다.");
 	}
+
 </script>
 </head>
 <body>
-		
+	
+	
 	<!-- header -->
 	<jsp:include page="header.jsp"></jsp:include>
 

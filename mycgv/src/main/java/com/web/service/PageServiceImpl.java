@@ -18,18 +18,18 @@ public class PageServiceImpl {
 	
 	
 	/**
-	 * ÆäÀÌÂ¡ Ã³¸® 
+	 * í˜ì´ì§• ì²˜ë¦¬ 
 	 */
 	public Map<String,String> getPageResult(String rpage, String serviceName, ObjectService service) {
 		Map<String,String> param = new HashMap<String,String>();
 		
-		//ÆäÀÌÂ¡ Ã³¸® - startCount, endCount ±¸ÇÏ±â
+		//í˜ì´ì§• ì²˜ë¦¬ - startCount, endCount êµ¬í•˜ê¸°
 		int startCount = 0;
 		int endCount = 0;
-		int pageSize = 3;	//ÇÑÆäÀÌÁö´ç °Ô½Ã¹° ¼ö
-		int reqPage = 1;	//¿äÃ»ÆäÀÌÁö	
-		int pageCount = 1;	//ÀüÃ¼ ÆäÀÌÁö ¼ö
-		int dbCount = 0;    //DB¿¡¼­ °¡Á®¿Â ÀüÃ¼ Çà¼ö
+		int pageSize = 3;	//í•œí˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜
+		int reqPage = 1;	//ìš”ì²­í˜ì´ì§€	
+		int pageCount = 1;	//ì „ì²´ í˜ì´ì§€ ìˆ˜
+		int dbCount = 0;    //DBì—ì„œ ê°€ì ¸ì˜¨ ì „ì²´ í–‰ìˆ˜
 		
 		if(serviceName.equals("member")) {
 			memberService = (MemberServiceImpl)service;
@@ -43,14 +43,14 @@ public class PageServiceImpl {
 		}
 		
 		
-		//ÃÑ ÆäÀÌÁö ¼ö °è»ê
+		//ì´ í˜ì´ì§€ ìˆ˜ ê³„ì‚°
 		if(dbCount % pageSize == 0){
 			pageCount = dbCount/pageSize;
 		}else{
 			pageCount = dbCount/pageSize+1;
 		}
 		
-		//¿äÃ» ÆäÀÌÁö °è»ê
+		//ìš”ì²­ í˜ì´ì§€ ê³„ì‚°
 		if(rpage != null){
 			reqPage = Integer.parseInt(rpage);
 			startCount = (reqPage-1) * pageSize+1;
@@ -70,13 +70,5 @@ public class PageServiceImpl {
 				
 		return param;
 	}
+	
 }
-
-
-
-
-
-
-
-
-

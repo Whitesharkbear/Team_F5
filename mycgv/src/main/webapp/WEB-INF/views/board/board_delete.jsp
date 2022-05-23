@@ -17,7 +17,7 @@
 			<h1 class="title">게시판</h1>
 			<div class="content_layout">
 				<h3>정말로 삭제하시겠습니까?</h3>
-				<img src="/mycgv/resources/images/delete.jpg">
+				<img src="http://localhost:9000/mycgv/resources/images/delete.jpg">
 				<form name="delForm" action="board_delete.do" method="post">
 					<div>
 						<input type="hidden" name="bid" value="${bid}">

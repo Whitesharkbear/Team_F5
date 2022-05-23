@@ -17,9 +17,8 @@
 			<h1 class="title">관리자 페이지</h1>
 			<div class="content_layout">
 				<a href="admin/member_list.do"><div>회원 관리</div></a>
-				<a href="admin/notice_list.do"><div>공지사항 관리</div></a>				
+				<a href="admin/notice_list.do"><div>공지사항 관리</div></a>
 			</div>
-			<a href="admin/product_list.do">상품 리스트</a>
 		</section>
 		
 	</div>

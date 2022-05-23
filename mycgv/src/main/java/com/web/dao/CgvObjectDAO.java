@@ -3,7 +3,7 @@ package com.web.dao;
 import java.util.List;
 
 public interface CgvObjectDAO {
-	int insert(Object obj);	
+	int insert(Object obj);
 	List<Object> select(int startCount, int endCount);
 	Object select(String str);
 	void updateHits(String id);

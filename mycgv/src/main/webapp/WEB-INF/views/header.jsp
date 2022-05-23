@@ -13,7 +13,7 @@
 				<ul>
 					<li><a href="http://localhost:9000/mycgv/login.do">로그인</a><div></div></li>
 					<li><a href="http://localhost:9000/mycgv/join.do">회원가입</a><div></div></li>
-					<li><a href="http://localhost:9000/mycgv/mypage.do">MyPage</a><div></div></li>
+					<li><a href="http://localhost:9000/mycgv/mypage.do">MyPAGE</a><div></div></li>
 					<li><a href="http://localhost:9000/mycgv/board_list.do">게시판</a><div></div></li>
 					<li><a href="http://localhost:9000/mycgv/notice_list.do">공지사항</a><div></div></li>
 					<li><a href="#">VIP라운지</a><div></div></li>

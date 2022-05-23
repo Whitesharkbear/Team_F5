@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +18,7 @@
 		    maxSize: 7,	    		// max page size
 		    totals: '${dbCount}',	// total pages	
 		    page: '${reqPage}',		// initial page		
-		    pageSize: '${pageSize}',			// max number items per page
+		    pageSize: '${pageSize}',		// max number items per page
 		
 		    // custom labels		
 		    lastText: '&raquo;&raquo;', 		
@@ -55,23 +55,23 @@
 					<th>가입일자</th>
 					<th>회원탈퇴</th>
 				</tr>
-				<c:forEach var="vo" items="${list}">
-					<tr>
-						<td>${vo.rno }</td>
-						<td><a href="member_content.do?id=${vo.id}&rno=${vo.rno}">${vo.id }</a></td>
-						<td>${vo.name }</td>
-						<td>${vo.hp }</td>
-						<td>${vo.gender }</td>
-						<td>${vo.mdate }</td>	
-						<c:choose>	
-							<c:when test="${vo.join_status == 0}">				
-								<td><button type="button" disabled>신청</button></td>
-							</c:when>
-							<c:otherwise>
-								<td><button type="button">신청</button></td>
-							</c:otherwise>
-						</c:choose>						
-					</tr>
+				<c:forEach var="vo" items="${list }">
+				<tr>
+					<td>${vo.rno }</td>
+					<td><a href="member_content.do?id=${vo.id}&rno=${vo.rno}">${vo.id }</a></td>
+					<td>${vo.name }</td>
+					<td>${vo.hp }</td>
+					<td>${vo.gender }</td>
+					<td>${vo.mdate }</td>
+					<c:choose>
+						<c:when test="${vo.join_status == 0}">
+							<td><button type="button" disabled>신청</button></td>
+						</c:when>
+						<c:otherwise>
+							<td><button type="button">신청</button></td>
+						</c:otherwise>
+					</c:choose>
+				</tr>
 				</c:forEach>
 				<tr>
 					<td colspan="7"><div id="ampaginationsm"></div></td>					
@@ -85,7 +85,3 @@
 	<jsp:include page="../../footer.jsp"></jsp:include>
 </body>
 </html>
-
-
-
-

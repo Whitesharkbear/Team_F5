@@ -3,9 +3,12 @@ package com.web.vo;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 public class CgvNoticeVO {
-	int nhits, rno;
 	String nid, ntitle, ncontent, ndate, nfile, nsfile;
+	int nhits, rno;
 	CommonsMultipartFile file1;
+	
+	
+	
 	
 	public String getNfile() {
 		return nfile;
@@ -24,12 +27,6 @@ public class CgvNoticeVO {
 	}
 	public void setFile1(CommonsMultipartFile file1) {
 		this.file1 = file1;
-	}
-	public int getNhits() {
-		return nhits;
-	}
-	public void setNhits(int nhits) {
-		this.nhits = nhits;
 	}
 	public int getRno() {
 		return rno;
@@ -61,6 +58,14 @@ public class CgvNoticeVO {
 	public void setNdate(String ndate) {
 		this.ndate = ndate;
 	}
+	public int getNhits() {
+		return nhits;
+	}
+	public void setNhits(int nhits) {
+		this.nhits = nhits;
+	}
+	
+	
 	
 	
 }

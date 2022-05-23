@@ -17,48 +17,41 @@ public class JoinController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	
-
-	/**
-	 * ¾ÆÀÌµğ Áßº¹Ã¼Å© Ã³¸®
-	 */
+	@Autowired
+	private CgvMemberDAO memberDao;
+	
+	
+	// ì•„ì´ë”” ì¤‘ë³µí™•ì¸
 	@ResponseBody
 	@RequestMapping(value="/idcheck.do", method=RequestMethod.GET)
 	public String idcheck(String id) {
-		int result = memberService.getIdCheckResult(id);		
+		
+		//CgvMemberDAO dao = new CgvMemberDAO();
+		int result = memberService.getIdCheckResult(id);
+		
 		return String.valueOf(result);
-	}	
+	}
 	
-	/**
-	 * È¸¿ø°¡ÀÔ Ã³¸®
-	 */
+	
+	// íšŒì›ê°€ì… í™”ë©´
 	@RequestMapping(value="/join.do", method=RequestMethod.POST)
 	public ModelAndView join(CgvMemberVO vo) {
 		ModelAndView mv = new ModelAndView();
+		//CgvMemberDAO dao = new CgvMemberDAO();
 		int result = memberService.getInsertResult(vo);
-		
 		if(result == 1) {
-			mv.addObject("join_result", "succ");
+			mv.addObject("join_result","succ");
 			mv.setViewName("/login/login");
-		}else {
-			//¿¡·¯ÆäÀÌÁö·Î ÀÌµ¿
+		} else {
+			// ì—ëŸ¬í˜ì´ì§€ë¡œ ì´ë™
 		}
 		
 		return mv;
 	}
 	
-	
-	/**
-	 * È¸¿ø°¡ÀÔ È­¸é
-	 */
+	// íšŒì›ê°€ì… í™”ë©´
 	@RequestMapping(value="/join.do", method=RequestMethod.GET)
 	public String join() {
-		return "/join/join";
+		return "join/join";
 	}
-
 }
-
-
-
-
-
-

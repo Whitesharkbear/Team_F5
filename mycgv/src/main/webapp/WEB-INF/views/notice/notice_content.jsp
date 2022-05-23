@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>     
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,10 +32,10 @@
 				<tr>
 					<th>내용</th>
 					<td colspan="5">${vo.ncontent }<br><br><br>
-						<c:if test="${vo.nsfile != null }">
-							<img src="http://localhost:9000/mycgv/resources/upload/${vo.nsfile}" 
-								width="100px"  height="50px">
-						</c:if>
+					<c:if test="${vo.nsfile != null}">
+					<img alt="" src="//localhost:9000/mycgv/resources/upload/${vo.nsfile }"
+						width="100px" height="100px">
+					</c:if>
 					</td>
 				</tr>
 				<tr>

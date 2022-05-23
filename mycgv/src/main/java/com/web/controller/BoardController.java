@@ -22,164 +22,241 @@ import com.web.vo.CgvBoardVO;
 @Controller
 public class BoardController {
 	
-	@Autowired
-	private BoardServiceImpl boardService;  //Å¬·¡½ºÅ¸ÀÔ °´Ã¼¸í;
 	
 	@Autowired
-	private PageServiceImpl pageService;  //Å¬·¡½ºÅ¸ÀÔ °´Ã¼¸í;
+	private BoardServiceImpl boardService;
 	
 	@Autowired
-	private FileServiceImpl fileService;  //Å¬·¡½ºÅ¸ÀÔ °´Ã¼¸í;
+	private PageServiceImpl pageService;
 	
-	/**
-	 * °Ô½Ã±Û »èÁ¦ Ã³¸®
-	 * @return
-	 */
-	@RequestMapping(value="/board_delete.do", method=RequestMethod.POST)
-	public ModelAndView board_delete(CgvBoardVO vo, HttpServletRequest request)
-													throws Exception{
-		ModelAndView mv = new ModelAndView();
-		String bsfile = boardService.getFilename(vo.getBid());
-		int result = boardService.getDeleteResult(vo.getBid());
+	@Autowired
+	private FileServiceImpl fileService;
 	
-		if(result == 1) {
-			if(bsfile != null) {
-				String path = request.getSession().getServletContext().getRealPath("/");
-				path += "resources\\upload\\";
-				File file = new File(path + bsfile);
-				if(file.exists()) file.delete();
-			}
-			mv.setViewName("redirect:/board_list.do");			
-		}else {
-			//¿¡·¯ÆäÀÌÁö È£Ãâ
-		}		
-		
-		return mv;
-	}
-	
-	
-	/**
-	 * °Ô½Ã±Û »èÁ¦ È­¸é
-	 * @return
-	 */
-	@RequestMapping(value="/board_delete.do", method=RequestMethod.GET)
-	public ModelAndView board_delete(String bid, String rno) {
-		ModelAndView mv = new ModelAndView();
-		mv.addObject("bid", bid);
-		mv.addObject("rno", rno);
-		mv.setViewName("/board/board_delete");
-		
-		return mv;
-	}
-	
-	
-	/**
-	 * °Ô½Ã±Û ¾÷µ¥ÀÌÆ® Ã³¸®
-	 * @return
-	 */
+	// ê²Œì‹œíŒ ìˆ˜ì •ì²˜ë¦¬
 	@RequestMapping(value="/board_update.do", method=RequestMethod.POST)
-	public ModelAndView board_update(CgvBoardVO vo, HttpServletRequest request) 
-														throws Exception{
+	public ModelAndView board_update(CgvBoardVO vo, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		//CgvBoardDAO dao = new CgvBoardDAO();
+		//String bfile, bsfile = "";
 		String oldFile = vo.getBsfile();
 		
 		vo = fileService.fileCheck(vo);
+		
+		/*
+		// 1. vo.getFile1().getOriginalFilename() ê°’ì´ ë„ì¸ì§€ ì²´í¬
+		// ë„ì¸ ê²½ìš° --> ê¸°ì¡´ì˜ íŒŒì¼ ìœ ì§€, ë„ì´ ì•„ë‹Œ ê²½ìš° --> ê¸°ì¡´íŒŒì¼ì„ ìƒˆë¡œìš´ íŒŒì¼ë¡œ ì—…ë°ì´íŠ¸
+		if(vo.getFile1().getOriginalFilename().equals("")) {
+			UUID uuid = UUID.randomUUID();
+			bfile = vo.getFile1().getOriginalFilename();
+			bsfile = uuid + "_" + bfile;
+			
+			vo.setBfile(bfile);
+			vo.setBsfile(bsfile);
+		} else {
+			vo.setBfile("null");
+			vo.setBsfile("null");
+		}
+		*/
+		
 		int result = boardService.getUpdateResult(vo);
 		
 		if(result == 1) {
+			
 			fileService.fileSave(vo, request, oldFile);
-			mv.setViewName("redirect:/board_list.do");
-		}else {
-			//¿¡·¯ÆäÀÌÁö È£Ãâ
-		}
+			/*
+			if(vo.getFile1().getOriginalFilename().equals("")) {	
+				// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
+				String path = request.getSession().getServletContext().getRealPath("/");
+				path += "resources\\upload\\";
+				//System.out.println(root_path);
 				
+				// íŒŒì¼ì €ì¥
+				File file = new File(path + bsfile);
+				vo.getFile1().transferTo(file);
+				
+				
+				// ê¸°ì¡´ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš° ì‚­ì œì²˜ë¦¬
+				File ofile = new File(path + oldFile);
+				if(ofile.exists()) {
+					ofile.delete();
+				}
+				
+			}
+			*/
+			mv.setViewName("redirect:/board_list.do");
+		} else {
+			// ì—ëŸ¬í˜ì´ì§€
+		}
+		
 		return mv;
 	}
-		
 	
 	
-	/**
-	 * °Ô½Ã±Û ¾÷µ¥ÀÌÆ® Æû
-	 * @return
-	 */
+	// ê²Œì‹œíŒ ìˆ˜ì •
 	@RequestMapping(value="/board_update.do", method=RequestMethod.GET)
 	public ModelAndView board_update(String bid, String rno) {
 		ModelAndView mv = new ModelAndView();
+		//CgvBoardDAO dao = new CgvBoardDAO();
 		CgvBoardVO vo = (CgvBoardVO)boardService.getContent(bid);
-		
 		mv.addObject("vo", vo);
-		mv.addObject("rno",rno);
+		mv.addObject("rno", rno);
 		mv.setViewName("/board/board_update");
-		
 		
 		return mv;
 	}
 	
-	/**
-	 * °Ô½Ã±Û »ó¼¼º¸±â
-	 * @return
-	 */
+	// ê²Œì‹œíŒ ìƒì„¸
 	@RequestMapping(value="/board_content.do", method=RequestMethod.GET)
 	public ModelAndView board_content(String bid, String rno) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("board/board_content"); // setviewnameê³¼ ê°™ìŒ
+		//CgvBoardDAO dao = new CgvBoardDAO();
 		boardService.getUpdateHits(bid);
 		CgvBoardVO vo = (CgvBoardVO)boardService.getContent(bid);
 		
 		mv.addObject("vo", vo);
 		mv.addObject("rno", rno);
-		mv.setViewName("/board/board_content");
+		//mv.setViewName("board/board_content");
 		
 		return mv;
 	}
 	
-	/**
-	 * °Ô½Ã±Û µî·Ï Ã³¸®
-	 * @return
-	 */
-	@RequestMapping(value="/board_write.do", method=RequestMethod.POST)
-	public String board_write(CgvBoardVO vo, HttpServletRequest request) 
-													throws Exception{
-		String result_page = "";		
 	
+	// ê²Œì‹œíŒ ì‚­ì œì²˜ë¦¬
+	@RequestMapping(value="/board_delete.do", method=RequestMethod.POST)
+	public ModelAndView board_delete(CgvBoardVO vo, HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		//CgvBoardDAO dao = new CgvBoardDAO();
+		
+		String bsfile = boardService.getFilename(vo.getBid());	
+		int result = boardService.getDeleteResult(vo.getBid());
+		
+		if(result == 1) {
+			if(bsfile != null) {
+				String path = request.getSession().getServletContext().getRealPath("/");
+				path += "resources\\upload\\";
+				File file = new File(path + bsfile);
+				if(file.exists()) {
+					file.delete();
+				}
+			}
+			mv.setViewName("redirect:/board_list.do");			
+		} else {
+			// ì—ëŸ¬í˜ì´ì§€ ì´ë™
+		}
+		
+		
+		return mv;
+	}
+	
+	
+	// ê²Œì‹œíŒ ì‚­ì œ
+	@RequestMapping(value="/board_delete.do", method=RequestMethod.GET)
+	public ModelAndView board_delete(String bid, String rno) {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("bid", bid);
+		mv.addObject("rno", rno);
+		mv.setViewName("board/board_delete");
+		
+		return mv;
+	}
+	
+	// ê²Œì‹œíŒ ì“°ê¸°ì²˜ë¦¬
+	@RequestMapping(value="/board_write.do", method=RequestMethod.POST)
+	public String board_write(CgvBoardVO vo, HttpServletRequest request) throws Exception {
+		String result_page = "";
+		//String bfile, bsfile = "";
+		
+		//CgvBoardDAO dao = new CgvBoardDAO();
+		
+		// íŒŒì¼ì—…ë¡œë“œ ë°ì´í„° ìƒì„± --> bfile, bsfile
+		/*
+		if(!vo.getFile1().getOriginalFilename().equals("")) { // íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+			UUID uuid = UUID.randomUUID();
+			bfile = vo.getFile1().getOriginalFilename();
+			bsfile = uuid + "_" + vo.getFile1().getOriginalFilename();
+			
+			vo.setBfile(bfile);
+			vo.setBsfile(bsfile);
+		}
+		*/
+			
+/*
+			int result = dao.insert(vo);
+			if(result == 1) {
+				
+//				System.out.println("bfile---> " + vo.getFile1().getOriginalFilename());
+//				System.out.println("bsfile --->" + uuid + "_" + vo.getFile1().getOriginalFilename());
+				
+				// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
+				String root_path = request.getSession().getServletContext().getRealPath("/");
+				root_path += "resources\\upload\\";
+				System.out.println(root_path);
+				
+				// íŒŒì¼ì €ì¥
+				File file = new File(root_path + bsfile);
+				vo.getFile1().transferTo(file);
+				
+			} 
+*/			
+			
+		
+		/*
+		 * else { vo.setBfile("null"); vo.setBsfile("null"); }
+		 */
+
 		vo = fileService.fileCheck(vo);
+		
+		
 		int result = boardService.getInsertResult(vo);
 		
 		if(result == 1) {
-			fileService.fileSave(vo,request);					
-			result_page = "redirect:/board_list.do";
+			fileService.fileSave(vo, request);
+			/*
+			if(!vo.getFile1().getOriginalFilename().equals("")) {
+//				System.out.println("bfile---> " + vo.getFile1().getOriginalFilename());
+//				System.out.println("bsfile --->" + uuid + "_" + vo.getFile1().getOriginalFilename());
+				
+				// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
+				String root_path = request.getSession().getServletContext().getRealPath("/");
+				root_path += "resources\\upload\\";
+				
+				
+				// íŒŒì¼ì €ì¥
+				File file = new File(root_path + bsfile);
+				vo.getFile1().transferTo(file);
+				
+			}
+			*/
 			
-		}else {
-			//¿¡·¯ÆäÀÌÁö È£Ãâ
-		}		
+			result_page = "redirect:/board_list.do";
+		} else {
+			// ì—ëŸ¬í˜ì´ì§€ í˜¸ì¶œ
+		}
 		
 		return result_page;
 	}
 	
 	
-	
-	/**
-	 * °Ô½Ã±Û µî·ÏÆû
-	 * @return
-	 */
+	// ê²Œì‹œíŒ ì“°ê¸°
 	@RequestMapping(value="/board_write.do", method=RequestMethod.GET)
 	public String board_write() {
-		return "/board/board_write";
+		return "board/board_write";
 	}
-
 	
-	/**
-	 * °Ô½Ã±Û ÀüÃ¼ ¸®½ºÆ®
-	 * @return
-	 */
+	
+	// ê²Œì‹œíŒ ë¦¬ìŠ¤íŠ¸
 	@RequestMapping(value="/board_list.do", method=RequestMethod.GET)
 	public ModelAndView board_list(String rpage) {
 		ModelAndView mv = new ModelAndView();
-		Map<String,String> param = pageService.getPageResult(rpage, "board", boardService);
+		//CgvBoardDAO dao = new CgvBoardDAO();
+		
+		Map<String, String> param = pageService.getPageResult(rpage, "board", boardService);
 		int startCount = Integer.parseInt(param.get("start"));
 		int endCount = Integer.parseInt(param.get("end"));
 		
-		ArrayList<CgvBoardVO> list = new  ArrayList<CgvBoardVO>();
-		List<Object> olist = boardService.getListResult(startCount, endCount);
+		//ArrayList<CgvBoardVO> list = dao.select();  // ì „ì²´ ë¦¬ìŠ¤íŠ¸ë¥¼ ëª¨ë‘ ì¶œë ¥
+		List<Object> list = boardService.getListResult(startCount, endCount);
+		ArrayList<CgvBoardVO> olist = new ArrayList<CgvBoardVO>();
 		for(Object obj : olist) {
 			list.add((CgvBoardVO)obj);
 		}
@@ -187,20 +264,14 @@ public class BoardController {
 		mv.addObject("list", list);
 		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
 		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
-		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));		
-		mv.setViewName("/board/board_list");
+		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
+		
+		mv.setViewName("board/board_list");
+		
 		
 		return mv;
 	}
-	
-}//controller
-
-
-
-
-
-
-
+} // controller
 
 
 

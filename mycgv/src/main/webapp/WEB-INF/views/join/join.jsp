@@ -14,31 +14,32 @@
 		//중복체크 처리
 		$("#idCheck").click(function(){
 			var id = $("#id").val();
-			
-			if(id == ""){
-				alert("아이디를 입력해주세요");
+			if(id == "") {
+				alert("아이디를 입력해주세요.");
 				$("#id").focus();
-			}else{
-				//id값을 서버로 전송하여 중복체크 처리한 후 결과 송신
-				//alert(id);
+			} else {
+				// id값을 서버로 전송하여 중복체크 처리한 후 결과 송신
 				$.ajax({
+					// 서버주소
 					url:"idcheck.do?id="+id,
-					success : function(result){
-						if(result == 1){
-							//alert("중복된 아이디가 존재합니다. 다시 입력해주세요");
-							$("#idcheck_msg").text("중복된 아이디가 존재합니다. 다시 입력해주세요");
-							$("#idcheck_msg").css("font-size","9px").css("color","red");						
+					//서버에서 전송되는 결과값
+					success: function(result) {
+						// 결과값을 처리하는 로직	
+						if(result == 1) {
+							//alert("이미 사용중인 아이디입니다. 다시입력해주세요");
+							$("#idcheck_msg").text("이미 사용중인 아이디입니다. 다시입력해주세요");
+							$("#idcheck_msg").css("font-size","9px").css("color","red");
 							$("#id").val("").focus();
-						}else{
-							//alert("사용이 가능한 아이디입니다.");
-							$("#idcheck_msg").text("사용이 가능한 아이디입니다.");
+						} else {
+							//alert("사용가능한 아이디입니다.");
+							$("#idcheck_msg").text("사용가능한 아이디입니다.");
 							$("#idcheck_msg").css("font-size","9px").css("color","blue");
 							$("#pass").focus();
 						}
 					}
+					
 				});
-			}			
-			
+			}
 		});
 	});
 </script>

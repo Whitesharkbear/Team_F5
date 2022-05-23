@@ -2,7 +2,7 @@ package com.web.service;
 
 import java.util.List;
 
-public class ObjectServiceAdapter implements ObjectService{
+public class ObjectServiceAdapter implements ObjectService {
 	public int getInsertResult(Object obj) {
 		return 0;
 	}

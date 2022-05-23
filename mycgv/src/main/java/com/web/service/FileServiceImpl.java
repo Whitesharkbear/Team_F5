@@ -5,184 +5,118 @@ import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.multipart.commons.CommonsMultipartFile;
-
 import com.web.vo.CgvBoardVO;
 import com.web.vo.CgvNoticeVO;
-import com.web.vo.CgvProductVO;
 
 public class FileServiceImpl {
-	/**
-	 * ¸ÖÆ¼ ÆÄÀÏ ÀúÀå
-	 */
-	public void multiFileSave(CgvProductVO vo, HttpServletRequest request) throws Exception{
-		
-		if(vo != null) {
-			for(int i=0; i<vo.getFiles().length; i++) {
-				CommonsMultipartFile pfile = vo.getFiles()[i]; //files ¹è¿­¿¡ ÀúÀåµÈ ÁÖ¼Ò¹øÁöÀÇ ÆÄÀÏ¹İÈ¯
-			
-				if(!pfile.getOriginalFilename().equals("")) {
-				
-					//ÆÄÀÏÀúÀå À§Ä¡ È®ÀÎ
-					String root_path = request.getSession().getServletContext().getRealPath("/");
-					root_path += "resources\\upload\\";
-					System.out.println(root_path);
-					
-					//ÆÄÀÏÀúÀå
-					File file = new File(root_path + vo.getPsfiles().get(i));			
-					pfile.transferTo(file);
-				}
-			}
-		}	
-	}
-	
-	/**
-	 * ¸ÖÆ¼ÆÄÀÏ Ã¼Å©
-	 */
-	public CgvProductVO multiFileCheck(CgvProductVO vo) {		
-		
-		if(vo != null) {
-			for(int i=0; i<vo.getFiles().length; i++) {
-				UUID uuid = UUID.randomUUID();		
-				CommonsMultipartFile file = vo.getFiles()[i]; //files ¹è¿­¿¡ ÀúÀåµÈ ÁÖ¼Ò¹øÁöÀÇ ÆÄÀÏ¹İÈ¯
-				
-				if(!file.getOriginalFilename().equals("")) { //ÆÄÀÏÁ¸Àç ÇÏ´Â °æ¿ì	
-					vo.getPfiles().add(file.getOriginalFilename());
-					vo.getPsfiles().add(uuid + "_" + file.getOriginalFilename());
-				}else {
-					vo.getPfiles().add("");
-					vo.getPsfiles().add("");
-				}
-				System.out.println(vo.getPfiles().size());
-			}
-		}
-				
-				
-		return vo;
-	}
 	
 	
-	/**
-	 * ÆÄÀÏ Ã¼Å© ÈÄ bsfile »ı¼º ---> VO ¸®ÅÏ
-	 */
+	// íŒŒì¼ ì²´í¬ í›„ bsfile ìƒì„± ---> VO ë¦¬í„´
 	public CgvBoardVO fileCheck(CgvBoardVO vo) {
 		
-		UUID uuid = UUID.randomUUID();		
+		UUID uuid = UUID.randomUUID();
 		
 		if(vo != null) {
-			if(!vo.getFile1().getOriginalFilename().equals("")) { //ÆÄÀÏÁ¸Àç ÇÏ´Â °æ¿ì	
+			if(!vo.getFile1().getOriginalFilename().equals("")) { // íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+				
 				vo.setBfile(vo.getFile1().getOriginalFilename());
 				vo.setBsfile(uuid + "_" + vo.getFile1().getOriginalFilename());
-			}
-		}
 				
+			}
+		} 
+		
 		return vo;
 	}
-	
-	
-	/**
-	 * ÆÄÀÏ Ã¼Å© ÈÄ nsfile »ı¼º ---> VO ¸®ÅÏ
-	 */
+	// íŒŒì¼ ì²´í¬ í›„ nsfile ìƒì„± ---> VO ë¦¬í„´
 	public CgvNoticeVO fileCheck(CgvNoticeVO vo) {
 		
-		UUID uuid = UUID.randomUUID();		
+		UUID uuid = UUID.randomUUID();
 		
 		if(vo != null) {
-			if(!vo.getFile1().getOriginalFilename().equals("")) { //ÆÄÀÏÁ¸Àç ÇÏ´Â °æ¿ì	
+			if(!vo.getFile1().getOriginalFilename().equals("")) { // íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš°
+				
 				vo.setNfile(vo.getFile1().getOriginalFilename());
 				vo.setNsfile(uuid + "_" + vo.getFile1().getOriginalFilename());
-			}
-		}
 				
+			}
+		} 
+		
 		return vo;
 	}
-		
 	
-	
-	/**
-	 * ÆÄÀÏ ÀúÀå
-	 */
-	public void fileSave(CgvBoardVO vo, HttpServletRequest request) throws Exception{
+	// board íŒŒì¼ì €ì¥
+	public void fileSave(CgvBoardVO vo, HttpServletRequest request) throws Exception {
 		
 		if(!vo.getFile1().getOriginalFilename().equals("")) {
 		
-			//ÆÄÀÏÀúÀå À§Ä¡ È®ÀÎ
+			// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
 			String root_path = request.getSession().getServletContext().getRealPath("/");
 			root_path += "resources\\upload\\";
-			System.out.println(root_path);
 			
-			//ÆÄÀÏÀúÀå
-			File file = new File(root_path + vo.getBsfile());			
+			
+			// íŒŒì¼ì €ì¥
+			File file = new File(root_path + vo.getBsfile());
 			vo.getFile1().transferTo(file);
 		}
-			
 	}
 	
-	/**
-	 * ÆÄÀÏ ÀúÀå - ±âÁ¸ ÆÄÀÏ »èÁ¦
-	 */
-	public void fileSave(CgvBoardVO vo, HttpServletRequest request, String fname) throws Exception{
+	// board íŒŒì¼ìˆ˜ì •
+	public void fileSave(CgvBoardVO vo, HttpServletRequest request, String fname) throws Exception {
 		
 		if(!vo.getFile1().getOriginalFilename().equals("")) {
-		
-			//ÆÄÀÏÀúÀå À§Ä¡ È®ÀÎ
+			// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
 			String root_path = request.getSession().getServletContext().getRealPath("/");
 			root_path += "resources\\upload\\";
-			System.out.println(root_path);
 			
-			//ÆÄÀÏÀúÀå
-			File file = new File(root_path + vo.getBsfile());			
+			
+			// íŒŒì¼ì €ì¥
+			File file = new File(root_path + vo.getBsfile());
 			vo.getFile1().transferTo(file);
 			
-			//±âÁ¸ ÆÄÀÏÀÌ Á¸ÀçÇÏ´Â °æ¿ì »èÁ¦Ã³¸®
-			File ofile = new File(root_path+fname);
+			// ê¸°ì¡´ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš° ì‚­ì œì²˜ë¦¬
+			File ofile = new File(root_path + fname);
 			if(ofile.exists()) {
 				ofile.delete();
 			}
 		}
-			
 	}
 	
-	/**
-	 * ÆÄÀÏ ÀúÀå
-	 */
-	public void fileSave(CgvNoticeVO vo, HttpServletRequest request) throws Exception{
-		if(!vo.getFile1().getOriginalFilename().equals("")) {			
-			//ÆÄÀÏÀúÀå À§Ä¡ È®ÀÎ
+	// notice íŒŒì¼ì €ì¥
+	public void fileSave(CgvNoticeVO vo, HttpServletRequest request) throws Exception {
+		
+		if(!vo.getFile1().getOriginalFilename().equals("")) {
+			// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
 			String root_path = request.getSession().getServletContext().getRealPath("/");
 			root_path += "resources\\upload\\";
-			System.out.println(root_path);
 			
-			//ÆÄÀÏÀúÀå
-			File file = new File(root_path + vo.getNsfile());			
+			
+			// íŒŒì¼ì €ì¥
+			File file = new File(root_path + vo.getNsfile());
 			vo.getFile1().transferTo(file);
 		}
-		
 	}
 	
-	public void fileSave(CgvNoticeVO vo, HttpServletRequest request, String fname) throws Exception{
-		if(!vo.getFile1().getOriginalFilename().equals("")) {			
-			//ÆÄÀÏÀúÀå À§Ä¡ È®ÀÎ
+	// notice íŒŒì¼ìˆ˜ì •
+	public void fileSave(CgvNoticeVO vo, HttpServletRequest request, String fname) throws Exception {
+		
+		if(!vo.getFile1().getOriginalFilename().equals("")) {
+			// íŒŒì¼ì €ì¥ ìœ„ì¹˜ í™•ì¸
 			String root_path = request.getSession().getServletContext().getRealPath("/");
 			root_path += "resources\\upload\\";
-			System.out.println(root_path);
 			
-			//ÆÄÀÏÀúÀå
-			File file = new File(root_path + vo.getNsfile());			
+			
+			// íŒŒì¼ì €ì¥
+			File file = new File(root_path + vo.getNsfile());
 			vo.getFile1().transferTo(file);
 			
-			//±âÁ¸ ÆÄÀÏÀÌ Á¸ÀçÇÏ´Â °æ¿ì »èÁ¦Ã³¸®
-			File ofile = new File(root_path+fname);
+			// ê¸°ì¡´ íŒŒì¼ì´ ì¡´ì¬í•˜ëŠ” ê²½ìš° ì‚­ì œì²˜ë¦¬
+			File ofile = new File(root_path + fname);
 			if(ofile.exists()) {
 				ofile.delete();
 			}
 		}
-		
 	}
 }
-
-
-
 
 
 

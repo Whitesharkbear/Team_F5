@@ -9,92 +9,267 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.web.vo.CgvBoardVO;
 
-public class CgvBoardDAO implements CgvObjectDAO{
+public class CgvBoardDAO implements CgvObjectDAO {
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	private String namespace = "mapper.board";
 	
-	/**
-	 * bsfile
-	 */
+	//bsfile
 	@Override
 	public String selectFile(String bid) {
-		return sqlSession.selectOne(namespace+".bsfile", bid);		
+		return sqlSession.selectOne(namespace+".bsfile", bid);
+		/*
+		String result = "";
+		String sql = "select bsfile from cgv_board where bid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bid);
+			rs=pstmt.executeQuery();
+			while(rs.next()) {
+				result = rs.getString(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
+		return result;
+		*/
 	}
 	
-	/**
-	 * ÆäÀÌÂ¡ Ã³¸® - ÀüÃ¼ row Ä«¿îÆ®
-	 */
+	
+	// í˜ì´ì§•ì²˜ë¦¬ - ì „ì²´ row ì¹´ìš´ë“œ
 	@Override
 	public int execTotalCount() {
+		
 		return sqlSession.selectOne(namespace + ".count");
 		
+		/*
+		int count = 0;
+		String sql = "select count(*) from cgv_board";
+		getPreparedStatement(sql);
+		
+		try {
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				count = rs.getInt(1);
+			}
+			//close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return count;
+		*/
 	}
 	
 	
-	
-	/**
-	 * °Ô½Ã±Û »èÁ¦ : delete(pk°ª) 
-	 */
+	// ê²Œì‹œê¸€ ì‚­ì œ : delete
 	@Override
 	public int delete(String bid) {
-		return sqlSession.delete(namespace+".delete", bid);	
-	}
+		return sqlSession.delete(namespace+".delete", bid);
+		/*
+		int result = 0;
+		String sql = "delete from cgv_board where bid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bid);
+			result = pstmt.executeUpdate();
 			
+			//close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		*/
+	}
 	
-	/**
-	 * °Ô½Ã±Û ¾÷µ¥ÀÌÆ® : update(pk°ª)
-	 */
+	
+	// ê²Œì‹œíŒ ìˆ˜ì •
 	@Override
 	public int update(Object obj) {
-		CgvBoardVO vo = (CgvBoardVO)obj;	
-		return sqlSession.update(namespace+".update", vo);
-	}
 		
+		//int result = 0;
+		//String sql = "";
+		CgvBoardVO vo = (CgvBoardVO)obj;
+		/*
+		if(vo.getBsfile() != "") {
+			result = sqlSession.update(namespace+".update1", vo);
+		} else {
+			result = sqlSession.update(namespace+".update2", vo);
+		}*/
+		
+		return sqlSession.update(namespace+".update", vo);
+		
+		/*
+		try {
+			if(vo.getBfile() != "") {
+				sql = "update cgv_board set btitle=?, bcontent=?, bfile=?, bsfile=? where bid=?";	
+				getPreparedStatement(sql);
+				pstmt.setString(1, vo.getBtitle());
+				pstmt.setString(2, vo.getBcontent());
+				pstmt.setString(3, vo.getBfile());
+				pstmt.setString(4, vo.getBsfile());
+				pstmt.setString(5, vo.getBid());
+			} else {			
+				sql = "update cgv_board set btitle=?, bcontent=? where bid=?";
+				getPreparedStatement(sql);
+				pstmt.setString(1, vo.getBtitle());
+				pstmt.setString(2, vo.getBcontent());
+				pstmt.setString(3, vo.getBid());
+			}
+			
+			//System.out.println(sql);
+			result = pstmt.executeUpdate();
+			
+			//close();
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		*/
+	}
 	
-	/**
-	 * Á¶È¸¼ö ¾÷µ¥ÀÌÆ® : updateHits(pk°ª)
-	 */
+	
+	// ì¡°íšŒìˆ˜ ì—…ë°ì´íŠ¸
 	@Override
 	public void updateHits(String bid) {
-		sqlSession.update(namespace+".update_hits", bid);		
+		
+		sqlSession.update(namespace+".update_hits", bid);
+		
+		/*
+		String sql = "update cgv_board set bhit=bhit+1 where bid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bid);	// íŒŒë¼ë¯¸í„° ë§¤í•‘
+			pstmt.executeUpdate();		// ì¿¼ë¦¬ì‹¤í–‰
+			
+			//close();		// ë‹¤ìŒ ì‹¤í–‰ë¬¸ì¸ ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°ë¥¼ ìˆ˜í–‰í•˜ê¸° ìœ„í•´ closeë¥¼ ì‚¬ìš©í•˜ì§€ ì•ŠìŒ
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		*/
 	}
 	
-	/**
-	 * °Ô½Ã±Û »ó¼¼ º¸±â : select(pk°ª)
-	 */
+	
+	// ê²Œì‹œê¸€ ìƒì„¸ë³´ê¸°
 	@Override
 	public Object select(String bid) {
-		return sqlSession.selectOne(namespace+".content", bid);	//CgvBoardVO	
+		
+		return sqlSession.selectOne(namespace+".content", bid);
+		
+		/*
+		CgvBoardVO vo = new CgvBoardVO();
+		String sql = "select bid, btitle, bcontent, bhit, bdate, bsfile, bfile from cgv_board"
+				+ " where bid=?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, bid);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				vo.setBid(rs.getString(1));
+				vo.setBtitle(rs.getString(2));
+				vo.setBcontent(rs.getString(3));
+				vo.setBhits(rs.getInt(4));
+				vo.setBdate(rs.getString(5));
+				vo.setBsfile(rs.getString(6));
+				vo.setBfile(rs.getString(7));
+			}
+			//close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return vo;
+		*/
+
 	}
 	
-	
-	/**
-	 * °Ô½Ã±Û ÀüÃ¼ ¸®½ºÆ® : select(int startCount, int endCount)
-	 */
+	// ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
 	@Override
-	public List<Object> select(int startCount, int endCount){
-		Map param = new HashMap<String,String>();
+	public List<Object> select(int startCount, int endCount) {
+		
+		Map param = new HashMap<String, String>();
 		param.put("start", startCount);
 		param.put("end", endCount);
 		
-		return sqlSession.selectList(namespace+".list",param);	
-	}	
+		return sqlSession.selectList(namespace+".list", param);
+		
+		/*
+		ArrayList<CgvBoardVO> list = new ArrayList<CgvBoardVO>();
+		String sql = "select rno, bid, btitle, bhit, bdate from"
+				+ " (select rownum rno, bid, btitle, bhit, to_char(bdate,'yyyy/mm/dd') bdate"
+				+ " from(select bid, btitle, bhit, bdate from  cgv_board order by bdate desc))"
+				+ " where rno between ? and ?";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setInt(1, startCount);
+			pstmt.setInt(2, endCount);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				CgvBoardVO vo = new CgvBoardVO();
+				vo.setRno(rs.getInt(1));
+				vo.setBid(rs.getString(2));
+				vo.setBtitle(rs.getString(3));
+				vo.setBhits(rs.getInt(4));
+				vo.setBdate(rs.getString(5));
+				
+				//listì— ì¶”ê°€í•˜ê¸°!!!
+				list.add(vo);
+			}
+			//close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		*/
+	}
 	
-	
-	/**
-	 * °Ô½Ã±Û µî·Ï : insert
-	 */
+	// ê²Œì‹œê¸€ ë“±ë¡
 	@Override
 	public int insert(Object obj) {
+		
 		CgvBoardVO vo = (CgvBoardVO)obj;
-		return sqlSession.insert(namespace+".insert", vo);		
+		return sqlSession.insert(namespace+".insert", vo);
+		
+		/*
+		int result = 0;
+		String sql = "insert into cgv_board values('b_'||sequ_cgv_board_bid.nextval,?,?,0,sysdate,?,?)";
+		getPreparedStatement(sql);
+		
+		try {
+			pstmt.setString(1, vo.getBtitle());
+			pstmt.setString(2, vo.getBcontent());
+			pstmt.setString(3, vo.getBfile());
+			pstmt.setString(4, vo.getBsfile());
+			
+			result = pstmt.executeUpdate();
+			//close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+		*/
 	}
 	
 }
-
-
-
-

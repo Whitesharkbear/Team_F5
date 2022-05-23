@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.web.dao.CgvMemberDAO;
 import com.web.service.MemberServiceImpl;
 import com.web.vo.CgvMemberVO;
 
@@ -16,37 +17,32 @@ public class MypageController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	
-	/**
-	 * È¸¿øÅ»Åğ ½ÅÃ»
-	 * @return
-	 */
+	// íšŒì›íƒˆí‡´
 	@ResponseBody
 	@RequestMapping(value="/join_status.do", method=RequestMethod.GET)
 	public String join_status(String id, String status) {
+
+		//CgvMemberDAO dao = new CgvMemberDAO();
 		int result = memberService.getStatusUpdate(id, status);
+		
 		
 		return String.valueOf(result);
 	}
 	
 	
+	// ë§ˆì´í˜ì´ì§€ ì •ë³´
 	@RequestMapping(value="/mypage.do", method=RequestMethod.GET)
 	public ModelAndView mypage() {
-		//test,1234 ¶ó´Â °èÁ¤À¸·Î Å×½ºÆ®
-		/** test ¶ó´Â °èÁ¤ÀÇ Á¤º¸¸¦ °¡Á®¿Í¼­ Ãâ·ÂÇØÁÖ¼¼¿ä **/
-		
+		//test,1234 ë¼ëŠ” ê³„ì •ìœ¼ë¡œ í…ŒìŠ¤íŠ¸
+		String id = "test";
 		ModelAndView mv = new ModelAndView();
-		CgvMemberVO vo = (CgvMemberVO)memberService.getContent("hong");
-		
+		//CgvMemberDAO dao = new CgvMemberDAO();
+		CgvMemberVO vo = (CgvMemberVO)memberService.getContent(id);
+
 		mv.addObject("vo", vo);
-		mv.setViewName("/mypage/mypage");		
+		mv.setViewName("/mypage/mypage");
 		
 		return mv;
 	}
+	
 }
-
-
-
-
-
-
-
