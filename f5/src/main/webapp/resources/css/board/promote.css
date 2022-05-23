@@ -1,0 +1,130 @@
+
+
+
+/* button*/
+
+
+.cusbtn {
+	background-color: orange;
+	font-weight: bold;
+	border-radius: 3px;
+	color: white;
+	border: 0;
+}
+
+.cusbtn:hover {
+	background-color: brown;
+	transition: 0.3s;
+}
+
+
+
+/* 홍보리스트 */
+
+.promote-list-container li {
+	width: 21%;
+}
+
+.promote-list-container ul {
+	display: flex;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	align-items: center;
+}
+
+
+.promote-list-container ul > * {
+	display: inline-block;
+	text-decoration: none;
+	list-style: none;
+	margin: 0 auto;
+}
+
+
+.promote-img {
+	position: absolute; 
+	display: block;
+	max-width: 100%; 
+	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
+
+.promote-top {
+	border: 1px solid black;
+	border-radius: 5px;
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+	
+}
+
+.centered {
+	position: relative;
+	width: 95%;
+	height: 0;
+	padding-bottom: 100%;
+	overflow: hidden; 
+	margin: 5px auto;
+}
+
+.promote-bottom {
+	margin-bottom: 15px;
+}
+
+.promote-bottom p {
+	margin-bottom: 5px;
+}
+
+.promote-bottom a {
+	display: block;
+	text-align: right;
+}
+
+
+
+
+
+@media (max-width:992px) {
+	.table {
+	 font-size: 0.7%;
+	}
+}
+
+@media screen and (min-width: 425px) and (max-width:768px) {
+	
+	
+	.btn-promte_write {
+		width: 60px;
+		height: 25px;
+		
+	}
+	
+	.promote-list-container li {
+	width: 30%;
+	}
+}
+
+@media screen and (min-width: 250px) and (max-width:425px) {
+	
+	
+	
+	.promote-list-container li {
+	width: 44%;
+	}
+	
+	.board-caption {
+	font-size: 1.5em;
+	}
+	
+	
+	.btn-board_write {
+		width: 60px;
+		height: 25px;
+		
+	}
+	
+}

@@ -1,0 +1,329 @@
+@charset "UTF-8";
+
+
+
+/* board_list */
+
+.table th, td{
+	vertical-align: middle;
+}
+
+.board-caption {
+	font-size: 3em;
+	color: orange;
+	font-weight: bold;
+}
+
+.cusbtn {
+	background-color: orange;
+	font-weight: bold;
+	border-radius: 3px;
+	color: white;
+	border: 0;
+}
+
+.cusbtn:hover {
+	background-color: brown;
+	transition: 0.3s;
+}
+
+.tr-sec1 {
+	background-color: orange;
+}
+
+
+.tr-sec td:nth-child(2) {
+	background-color: inherit;
+	text-align: left;
+}
+
+.list-table {
+	width: 100%;
+	 margin-bottom: 1rem;
+	color: #212529;
+	vertical-align: top;
+	border-color: #dee2e6;
+	text-align: center;
+}
+
+.table tr:nth-last-child(2) {
+	border-bottom-width: inherit;
+	border: 0px solid white;
+}
+
+.table tr:nth-last-child(3) {
+	border-bottom-width: inherit;
+	border: 0px solid white;
+}
+
+
+.board-table-col1 {
+	width: 15%;
+}
+.board-table-col2 {
+	width: 50%;
+}
+.board-table-col3 {
+	width: 15%;
+}
+.board-table-col4 {
+	width: 7%;
+}
+.board-table-col5 {
+	width: 15%;
+}
+
+.search {
+	border-radius: 3px;
+}
+
+
+
+
+/* board_write */
+.board-write-container {
+	position: relative;
+	width: 100%;
+	background-color: orange;
+	text-align: center;
+	border-radius: 5px;
+	padding: 20px 0;
+	
+}
+
+.board-write-btn-container {
+	text-align: center;
+	padding: 20px 0;
+}
+
+.write-table {
+	width: 80%;
+	margin: auto;
+	padding-top: 20px;
+	background-color: orange;
+	text-align: left;
+}
+
+.write-table td, th {
+	margin-left: 10%;
+}
+
+
+.label{
+	font-size: 15pt;
+	color: white;
+}
+
+.title {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+.content {
+	width: 100%;
+	resize: none;
+	overflow: hidden;
+	height: 100px;
+	margin-bottom: 10px;
+}
+
+.file-table {
+	width: 80%;
+	margin: auto;
+	background-color: white;
+	text-align: center;
+}
+
+.file-table td {
+	width: 20%;
+	height: 50px;
+}
+
+
+
+/* boardContent */
+.board-content-container {
+	margin-top: 30px;
+	width: 100%;
+	
+}
+
+.content-title-div {
+	background-color: orange;
+}
+
+.content-title {
+	font-weight: bold;
+	font-size: 20pt;
+	border-top: 1px solid rgba(0,0,0,0.5);
+	border-bottom: 1px solid rgba(0,0,0,0.3);
+	padding: 5px 0;
+}
+
+.board-content {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+	text-align: center;
+	
+}
+
+
+
+.board-info {
+	text-align: center;
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.board-info dl {
+	display: inline-block;
+	margin-right: 5px;
+}
+
+.board-info dl > * {
+	display: inline-block;
+}
+
+.board-info dl dd {
+	padding-right: 5px;
+	border-right: 1px solid black;
+}
+
+.board-reply-container {
+	margin: 0 auto;
+	width: 100%;
+	
+}
+
+.reply-area {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+
+.board-reply-head {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.board-reply-head dl > * {
+	display: inline-block;
+}
+
+
+.reply-write-area {
+	margin: 20px auto;
+	width: 90%;
+	border: 1px solid rgba(0,0,0,0.5);
+	border-radius: 5px;
+}
+
+.reply-member {
+	padding: 5px 0 5px 5px;
+	font-size: 15pt;
+	font-weight: bold;
+}
+
+.reply-member button {
+	font-size: 12pt;
+	back
+}
+
+.reply-content-container {
+	margin: 5px 0 10px 0;
+	text-align: center;
+}
+
+.reply-content {
+	width: 80%;
+	height: 50px;
+	padding: 5px 2px;
+	margin-top: 5px;
+}
+
+.reply-btn-container {
+	text-align: right;
+	margin-right: 10%;
+	margin-bottom: 10px;
+}
+
+.reply-content-div {
+	margin: 10px 0;
+	padding: 0 5px;
+}
+
+
+
+.reply-etc dl {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.reply-etc dl > * {
+	display: inline-block;
+	color: rgba(0,0,0,0.5);
+}
+
+.board-content-container button {
+	border: 0;
+	border-radius: 5px;
+	
+}
+
+
+.reply-re-write-area {
+	width: 70%;
+	margin: 10px 5% 20px;
+	border: 1px solid rgba(0,0,0,0.5);
+	display: none;
+}
+
+
+.board-content-container button:hover {
+	background-color: rgba(0,0,0,0.1);
+	transition: 0.3s;
+	
+}
+
+
+
+
+
+
+.page-container {
+	margin: 20px auto;
+	text-align: center;
+}
+
+.board-info dd:nth-last-child(1){
+	border-right: 0;
+}
+
+
+
+
+@media (max-width:992px) {
+	.table {
+	 font-size: 0.7%;
+	}
+}
+
+@media screen and (min-width: 425px) and (max-width:768px) {
+	
+	.btn-board_write {
+		width: 60px;
+		height: 25px;
+		
+	}
+}
+
+@media screen and (min-width: 250px) and (max-width:425px) {
+	
+	.btn-board_write {
+		width: 60px;
+		height: 25px;
+		
+	}
+	
+}
+
+
+
+
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.store">
+	<insert id="insert" parameterType="com.web.f5.vo.StoreVO">
+		insert into store
+				values('s_'||sequ_store.nextval,#{storeName},#{storePlace},#{storeContent},#{storeTel},#{storeEvent},#{storeBenefit},#{storeCategory})
+	</insert>
+	<select id="select" parameterType="java.lang.String" resultType="com.web.f5.vo.StoreVO">
+		select * from store
+				where StoreIdx=#{storeIdx}
+	</select>
+	<select id="selectlist" parameterType="map" resultType="com.web.f5.vo.StoreVO">
+		select * from store where storeIdx between #{Start} and #{End}
+	</select>
+	<select id="totalCount" resultType="int">
+		select count(*) from store
+	</select>
+</mapper>
