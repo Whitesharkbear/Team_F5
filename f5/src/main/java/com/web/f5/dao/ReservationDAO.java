@@ -1,5 +1,10 @@
 package com.web.f5.dao;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,5 +17,27 @@ public class ReservationDAO {
 	
 	public int insert(ReservationVO vo) {
 		return sqlSession.insert(namespace+".insert",vo);
+	}
+	public String getcuCount(String storeIdx, String rDate, int rTime) {
+		Map param = new HashMap<String, String>();
+		param.put("storeIdx", storeIdx);
+		param.put("rDate", rDate);
+		param.put("rTime", rTime);
+		String result = sqlSession.selectOne(namespace+".getCuCount",param);
+		if(result == null) {
+			return "0";
+		}else {
+			return result;
+		}
+	}
+	public int getTNumber(String storeIdx, String rDate, int rTime) {
+		Map param = new HashMap<String, String>();
+		param.put("storeIdx", storeIdx);
+		param.put("rDate", rDate);
+		param.put("rTime", rTime);
+		int result = sqlSession.selectOne(namespace+".getTNumber",param);
+
+			return result;
+		
 	}
 }

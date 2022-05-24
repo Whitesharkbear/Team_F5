@@ -12,9 +12,9 @@ public class ReviewServiceImpl implements ReviewService{
 	@Autowired ReviewDAO reviewDao;
 	
 	@Override
-	public ArrayList<ReviewVO> selectListResult(int startCount, int endCount) {
+	public ArrayList<ReviewVO> selectListResult(int startCount, int endCount, String storeIdx) {
 		// TODO Auto-generated method stub
-		return reviewDao.select(startCount, endCount);
+		return reviewDao.select(startCount, endCount, storeIdx);
 	}
 	@Override
 	public int insertResult(ReviewVO vo) {
@@ -27,8 +27,18 @@ public class ReviewServiceImpl implements ReviewService{
 		return reviewDao.delete(reviewIdx);
 	}
 	@Override
-	public int updateResult(String reviewIdx, String reviewContent) {
+	public int updateResult(String reviewIdx, String reviewContent, int reviewScore) {
 		// TODO Auto-generated method stub
-		return reviewDao.update(reviewIdx, reviewContent);
+		return reviewDao.update(reviewIdx, reviewContent, reviewScore);
+	}
+	@Override
+	public ArrayList<ReviewVO> selectMyListResult(String memberId, int endCount,String storeIdx) {
+		// TODO Auto-generated method stub
+		return reviewDao.select(memberId, endCount,storeIdx);
+	}
+	@Override
+	public float getAverageScore(String storeIdx) {
+		// TODO Auto-generated method stub
+		return reviewDao.getAverageScore(storeIdx);
 	}
 }

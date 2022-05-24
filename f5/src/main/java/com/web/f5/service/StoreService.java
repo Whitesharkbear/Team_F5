@@ -9,5 +9,5 @@ public interface StoreService {
 	public ArrayList<StoreVO> select(int startCount,int endCount);
 	public int totalCountResult();
 	public StoreVO selectResult(String Store_idx);
-	
+	public StoreVO getmCountResult(String storeIdx);
 }

@@ -8,7 +8,6 @@
 
 
     <body>
-    	session memberId = ${sessionScope.memberId }
     	<jsp:include page="../header.jsp"></jsp:include>
         <!-- Page content-->
         <div class="container">

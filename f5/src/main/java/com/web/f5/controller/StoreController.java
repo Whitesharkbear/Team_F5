@@ -132,8 +132,6 @@ public class StoreController {
 				vo= storeService.selectResult(rvo.getStoreIdx());
 			}
 			if(result == 1 || reviewResult==1) {
-				System.out.println("성공");
-				
 				mv.addObject("vo",vo);
 				mv.setViewName("redirect:/store_information.do?storeIdx="+vo.getStoreIdx());
 				return mv;
@@ -146,10 +144,10 @@ public class StoreController {
 		
 		@ResponseBody
 		@RequestMapping(value = "/store_information_review.do" , method = RequestMethod.GET)
-		public String store_infor_review(String rpage) {
+		public String store_infor_review(String rpage, String storeIdx) {
 			int startCount = 1;
 			int endCount = Integer.parseInt(rpage)*5;
-			ArrayList<ReviewVO> rlist = reviewService.selectListResult(startCount, endCount);
+			ArrayList<ReviewVO> rlist = reviewService.selectListResult(startCount, endCount, storeIdx);
 			
 			JsonObject jdata = new JsonObject();
 			JsonArray jlist = new JsonArray();
@@ -178,8 +176,50 @@ public class StoreController {
 
 		@ResponseBody
 		@RequestMapping(value = "/store_review_update.do" , method = RequestMethod.GET)
-		public String review_update(String reviewIdx, String reviewContent) {
-			int result = reviewService.updateResult(reviewIdx,reviewContent);
+		public String review_update(String reviewIdx, String reviewContent, int reviewScore) {
+			int result = reviewService.updateResult(reviewIdx,reviewContent,reviewScore);
 			return String.valueOf(result);
+		}
+		@ResponseBody
+		@RequestMapping(value = "/store_information_myreview.do" , method = RequestMethod.GET)
+		public String store_infor_myreview(String mpage,String memberId,String storeIdx) {
+			int endCount = Integer.parseInt(mpage)*5;
+			ArrayList<ReviewVO> mrlist = reviewService.selectMyListResult(memberId, endCount,storeIdx);
+			JsonObject jdata = new JsonObject();
+			JsonArray jlist = new JsonArray();
+			Gson gson = new Gson();
+			for(ReviewVO vo : mrlist) {
+				JsonObject obj = new JsonObject();
+				obj.addProperty("memberId",vo.getMemberId());
+				obj.addProperty("reviewContent", vo.getReviewContent());
+				obj.addProperty("reviewScore", vo.getReviewScore());
+				obj.addProperty("reviewIdx",vo.getReviewIdx());
+				jlist.add(obj);
+			}
+			jdata.add("jlist", jlist);
+
+			return gson.toJson(jdata);
+		}
+		@ResponseBody
+		@RequestMapping(value = "/store_reservation_count_check.do" , method = RequestMethod.GET)
+		public String store_reservation_count_check(String rDate,String storeIdx,int rTime) {
+			
+			int mCount = storeService.getmCountResult(storeIdx).getStoreMaxCount();
+			int cuCount =Integer.parseInt(reservationService.getcuCountResult(rDate,storeIdx,rTime));
+			int tNumber = reservationService.getTNumber(rDate,storeIdx,rTime);
+			int result = mCount-cuCount;
+			Gson gson = new Gson();
+			JsonObject jdata = new JsonObject();
+			jdata.addProperty("tNumber",tNumber );
+			jdata.addProperty("result", result);
+			
+			return gson.toJson(jdata);
+			
+		}
+		@ResponseBody
+		@RequestMapping(value = "/store_information_score.do" , method = RequestMethod.GET)
+		public String store_information_score(String storeIdx) {
+		float result = reviewService.getAverageScore(storeIdx);
+			return String.format("%.2f", result);
 		}
 }

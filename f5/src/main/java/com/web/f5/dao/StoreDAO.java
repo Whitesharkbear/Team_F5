@@ -36,5 +36,7 @@ public class StoreDAO {
 	public int execTotalCount() {
 		return sqlSession.selectOne(namespace+".totalCount");
 	}
-	
+	public StoreVO getMaxCount(String storeIdx) {
+		return sqlSession.selectOne(namespace+".getMaxCount",storeIdx);
+	}
 }

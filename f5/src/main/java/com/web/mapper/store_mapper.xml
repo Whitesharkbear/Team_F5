@@ -26,5 +26,8 @@
 	<select id="totalCount" resultType="int">
 		select count(*) from store
 	</select>
+	<select id="getMaxCount" parameterType="java.lang.String" resultType="com.web.f5.vo.StoreVO">
+		select storeMaxCount from store where storeIdx = #{storeIdx}
+	</select>
 </mapper>
 

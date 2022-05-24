@@ -14,6 +14,9 @@ th{
 	border-width:1px !important;
 	text-align: center;
 }
+.modal-select-time{
+	max-width: 320px;
+}
 .modal-window{
 	position:absolute;
 	width:320px;
@@ -28,7 +31,10 @@ th{
 	box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
 
 }
-
+.text-box{
+	display: flex;
+	flex-direction: row;
+}
 .store-intro-img-ul{
 	display: flex;
     margin:auto;
@@ -249,6 +255,10 @@ th{
 		width : 620px;
 		}
 	}
+	.review-score{
+		color: orange;
+		font-size : 25px;
+	}
 
 /*-----------------------------------------------------------------------
 
@@ -328,10 +338,6 @@ th{
 	.store-review-content{
 		margin-left: 20px;
 	}
-	.review-score{
-		color: orange;
-		font-size : 25px;
-	}
 
 	td{
 		width : 200px;
@@ -355,9 +361,7 @@ th{
 		flex-direction: column;
 		align-items: center;
 	}
-	.review-score-2{
-		display: none;	
-	}
+
 	.review-write{
 		width : 100%;
 	}
@@ -449,11 +453,7 @@ th{
 	.store-review-content{
 		margin-left: 20px;
 	}
-	.review-score{
-		color: orange;
-		font-size : 25px;
-		display: none;
-	}
+
 		td{
 		background-color:rgb(255,216,216); 
 	
@@ -476,12 +476,7 @@ th{
 		flex-direction: column;
 		align-items: center;
 	}
-	.review-score-2{
-		color: orange;
-		font-size : 25px;
-		display: block;	
-		margin-left: 20px;
-	}
+
 	.score-mobile{
 		display: flex;
 		flex-direction: row;
@@ -571,11 +566,7 @@ th{
 	.store-review-content{
 		margin-left: 20px;
 	}
-	.review-score{
-		color: orange;
-		font-size : 25px;
-		display: none;
-	}
+
 	span{
 		display: block;
 	}
@@ -601,12 +592,7 @@ th{
 		flex-direction: column;
 		align-items: center;
 	}
-	.review-score-2{
-		color: orange;
-		font-size : 25px;
-		display: block;	
-		margin-left:20px;
-	}
+
 	.score-mobile{
 		display: flex;
 		flex-direction: row;

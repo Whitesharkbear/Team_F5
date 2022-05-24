@@ -27,4 +27,9 @@ public class StoreServiceImpl implements StoreService{
 	public StoreVO selectResult(String Store_idx) {
 		return storeDao.select(Store_idx);
 	}
+	@Override
+	public StoreVO getmCountResult(String storeIdx) {
+		// TODO Auto-generated method stub
+		return storeDao.getMaxCount(storeIdx);
+	}
 }

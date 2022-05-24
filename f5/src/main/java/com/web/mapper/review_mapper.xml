@@ -10,6 +10,7 @@
 			rownum rno,reviewIdx,storeIdx,memberId,reviewContent,reviewScore
 		 from (select
 			 reviewIdx,storeIdx,memberId,reviewContent,reviewScore from review
+             where storeIdx = #{storeIdx}
              order by reviewIdx desc
              ))
 		 where rno between #{start} and #{end}
@@ -22,6 +23,20 @@
 		delete from review where reviewIdx = #{reviewIdx}
 	</delete>
 	<update id="update" parameterType="map">
-		update review set reviewContent = #{reviewContent} where reviewIdx=#{reviewIdx}
+		update review set reviewContent = #{reviewContent},reviewScore = #{reviewScore} where reviewIdx=#{reviewIdx}
 	</update>
+	<select id="myselectlist" parameterType="map" resultType="com.web.f5.vo.ReviewVO">
+		select rno,reviewIdx,storeIdx,memberId,reviewContent,reviewScore
+		from (select 
+			rownum rno,reviewIdx,storeIdx,memberId,reviewContent,reviewScore
+		 from (select
+			 reviewIdx,storeIdx,memberId,reviewContent,reviewScore from review
+			 where memberId = #{memberId} and storeIdx = #{storeIdx}
+             order by reviewIdx desc
+             ))
+		 where rno between 1 and #{end}
+	</select>
+	<select id="getAverageScore" parameterType="java.lang.String" resultType="float">
+		select avg(nvl(reviewScore,0)) from review where storeIdx = #{storeIdx}
+	</select>
 </mapper>  

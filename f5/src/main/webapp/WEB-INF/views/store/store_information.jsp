@@ -16,146 +16,17 @@
 
 
 <script type="text/javascript">
-	$(document).ready(function(){
-		/* review_table(); */
-		show_review_page(1);
-/* 		$('#review_submit').on('click',function(){
-			review_form.submit();
-		}); */
-		$("#more-review-button").on("click",function(){
-			var rpage = $("#review-page").val();
-			show_review_page(rpage);
-		});
-		$("#close-review-button").on("click",function(){
-			show_review_page(1);
-			});
-		});
-		
-	function show_review_page(rpage){
-		/* var rpage = $("#review-page").val(); */
-		if(rpage == 1){
-			$("#close-review-button").css("display","none");
-		}else{
-			$("#close-review-button").css("display","block");
-		}
-		
-		$.ajax(
-				{
-					url :"store_information_review.do?rpage="+rpage,
-				/* 	data:{"rpage" : rpage,"storeIdx" : storeIdx},
-					datatype : "json", */
-					success : function(content){
-						/*  alert("ajax 성공"+content);  */
-						const reviewObject=JSON.parse(content);
-						//for(var k=0; k=reviewObject.jlist.length; k++){
-							var str='<div id="review_table">';
-							for(var k in reviewObject.jlist){
-								str +='<div class="store-user">';
-								str +='<div class="score-mobile">';
-								str +='<div><div><img src="#"></div>';
-								str +='<div>'+reviewObject.jlist[k].memberId+'</div></div>';
-								str +='<div class="review-score-2">'+reviewObject.jlist[k].reviewScore+'</div></div>';
-								str +='<div class="store-review-content">';
-								str +='<div class="review-score">'+reviewObject.jlist[k].reviewScore+'</div>';
-								str +='<div class="review-text" id="div'+reviewObject.jlist[k].reviewIdx+'">'+reviewObject.jlist[k].reviewContent+'</div>';
-								str +='<input type = "hidden" class="review-text-update" placeholder ="'+reviewObject.jlist[k].reviewContent+'" id="input'+reviewObject.jlist[k].reviewIdx+'">';
-								str +='<div class="review-update-div" id="update'+reviewObject.jlist[k].reviewIdx+'">';
-								str +='<button class = "review-update-cancle" id="'+reviewObject.jlist[k].reviewIdx+'">취소</button>';
-								str +='<button class = "review-update-submit" id="'+reviewObject.jlist[k].reviewIdx+'">수정완료</button></div>';
-								str +='<div class="div'+reviewObject.jlist[k].memberId+'" id="review_control'+reviewObject.jlist[k].reviewIdx+'">';
-								str +='<button class = "review-delete-button" id="'+reviewObject.jlist[k].reviewIdx+'">삭제</button>';
-								str +='<button class = "review-update-button" id="'+reviewObject.jlist[k].reviewIdx+'">수정</button></div></div></div>';
-
-						}
-							str +='</div>';
-								$("#review_table").remove();
-								$("#review-page").after(str);
-								$("#review-page").val(parseInt(rpage)+1);
-								$(".review-update-div").css("display","none");
-								for(var k in reviewObject.jlist){
-									var sessionMemberId = '${sessionScope.memberId}'
-									var memberId = reviewObject.jlist[k].memberId;
-									if(sessionMemberId != reviewObject.jlist[k].memberId ){
-										$('.div'+memberId).css("display","none");
-									}else{
-										$('.div'+memberId).css("display","block");
-									}
-									sessionMemberId="";
-								}
-								
-							},
-					error : function(){
-						alert("ajax 실패");
-					}
-				}
-			);
-				}
-			$(document).on('click','.review-delete-button',function(){
-				var delete_check = confirm("삭제하시겠습니까? 삭제된 정보는 저장되지 않습니다.");
-				if(delete_check){
-					$.ajax(
-						{
-							url : "store_review_delete.do?reviewIdx="+$(this).attr('id'),
-							success : function(content){
-							if(content=='1'){
-								alert("삭제에 성공하였습니다.");
-								show_review_page(rpage);
-						}
-								}
-							}
-						);
-						
-					}
-				});
-			$(document).on('click','.review-update-button',function(){
-				var sessionMemberId = '${sessionScope.memberId}'
-				var review_idx=$(this).attr('id');
-				$('.div'+sessionMemberId).css("display","block");
-				$('.review-text').css('display','block');
-				$('.review-text-update').attr('type','hidden');
-				$('.review-update-div').css("display","none");
-				$('#update'+review_idx).css("display","block");
-				$('#div'+review_idx).css('display','none');
-				$('#input'+review_idx).attr('type','text');
-				$('#review_control'+review_idx).css('display','none');
-			});
-		
-		$(document).on('click','.review-update-submit',function(){
-			var review_idx=$(this).attr('id');
-			var update_check = confirm("수정 하시겠습니까?");
-			var text = $('#input'+review_idx).val();
-			if(update_check){
-				$.ajax(
-					{
-						url : "store_review_update.do?reviewIdx="+review_idx+"&reviewContent="+text,
-						success : function(content){
-							if(content=='1'){
-								alert("수정되었습니다.");
-								$('#update'+review_idx).css("display","none");
-								$('#review_control'+review_idx).css('display','block');
-								$('#input'+review_idx).attr('type','hidden');
-								$('#div'+review_idx).css('display','block');
-								show_review_page(rpage);
-							}
-						}
-					}
-				);
-			}
-		});
-		$(document).on('click','.review-update-cancle',function(){
-			var review_idx=$(this).attr('id');
-			$('#update'+review_idx).css("display","none");
-			$('#review_control'+review_idx).css('display','block');
-			$('#input'+review_idx).attr('type','hidden');
-			$('#div'+review_idx).css('display','block');
-		});
-				
+	var sessionmemberId = '${sessionScope.memberId}'
+	var storeIdx = '${vo.storeIdx}'
 </script>
 <style type="text/css">
 	.more-review{
 		width : 100%;
 		border-style: none;
 		background-color: white;
+	}
+	#all-review-list{
+		display: none;
 	}
 </style>
 </head>
@@ -176,7 +47,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="store-intro">
-				<h2>댄싱 홍콩 강남1호점</h2>
+				<h2>${vo.storeName }</h2>
 				<div class="store-intro-img-box">
 					<img class="button_before" src="/f5/resources/images/before_button.png">
 					<div id="img-div-cover">
@@ -184,7 +55,7 @@
 					</div>
 					<img class="button_next" src="/f5/resources/images/next_button.png">
 				</div>
-				<h2>평점 4.6</h2>
+				<h2 id = "average-score"></h2>
 				<h2 id="intro">#핫플레이스 #중국 #친절</h2>
 				<div class="store-intro-box">
 					<div class="store-intro-maintext-box">
@@ -199,12 +70,12 @@
 								<li>웹사이트 : ${vo.storeWebSite }</li>
 							</ul>
 						</div>
-						<div class="store-intro-icon-box">
+<!-- 						<div class="store-intro-icon-box">
 							<a><img class="store-intro-img-2" src="/f5/resources/images/store-img-review.jpeg"></a>
 							<div>리뷰쓰기</div>
 							<a><img class="store-intro-img-2" src="/f5/resources/images/store-img-thumbup.jpeg"></a>
 							<div>추천하기</div>
-						</div>
+						</div> -->
 					</div>
 					<div class="store-intro-map" id="location">
 						<a><img class="store-intro-img" src="#"></a>
@@ -214,15 +85,18 @@
 				<h4>나도한마디</h4>
 				<div class="store-review">
 				<input type="hidden" id = "review-page" value = "1">
+				<input type="hidden" id = "myreview-page" value = "1">
 				
 					<div>
+						<button type="button" class = "more-review" id="my-review-list">내글보기</button>
+						<button type="button" class = "more-review" id="all-review-list">전체글보기</button>
 						<button type="button" class = "more-review" id="more-review-button">더보기</button>
 						<button type="button" class = "more-review" id="close-review-button">접기</button>
 					</div>
 					<form name="review_form" action="store_information.do" method="POST">
 					<div class="review-write-box">
-						<input class="review-write" type="text" placeholder="리뷰를 작성해주세요" name = "reviewContent">
-						<select name ="reviewScore">
+						<input class="review-write" type="text" placeholder="리뷰를 작성해주세요" name = "reviewContent" >
+						<select name ="reviewScore" id ="review-score-select">
 								<option>별점주기</option>
 								<option>1</option>
 								<option>2</option>
@@ -267,13 +141,6 @@
 										</select>
 										<div>시간대 선택</div>
 										<select class="modal-select-time" name="reservationTime">
-											<option>--선택--</option>
-											<option value=1>오전</option>
-											<option value=2>점심시간</option>
-											<option value=3>13:00~15:00</option>
-											<option value=4>15:00~17:00</option>
-											<option value=5>저녘시간</option>
-											<option value=6>20:00 이후</option>
 										</select>
 										<input type="hidden" name = "storeIdx" value="${vo.storeIdx }">
 									</div>

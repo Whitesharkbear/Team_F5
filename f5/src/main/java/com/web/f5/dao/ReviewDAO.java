@@ -15,10 +15,11 @@ public class ReviewDAO {
 	private SqlSessionTemplate sqlSession;
 	private String namespace = "mapper.review";
 
-	public ArrayList<ReviewVO> select(int startCount,int endCount) {
-		Map<String,Integer> param = new HashMap<String, Integer>();
+	public ArrayList<ReviewVO> select(int startCount,int endCount ,String storeIdx) {
+		Map param = new HashMap<String, String>();
 		param.put("start", startCount);
 		param.put("end", endCount);
+		param.put("storeIdx", storeIdx);
 		List<ReviewVO> list= sqlSession.selectList(namespace+".selectlist",param);
 		return (ArrayList<ReviewVO>)list;
 	}
@@ -29,10 +30,28 @@ public class ReviewDAO {
 	public int delete(String reviewIdx) {
 		return sqlSession.delete(namespace+".delete",reviewIdx);
 	}
-	public int update(String reviewIdx,String reviewContent) {
-		Map<String, String> param = new HashMap<String, String>();
+	public int update(String reviewIdx,String reviewContent,int reviewScore) {
+		Map param = new HashMap<String, String>();
 		param.put("reviewIdx", reviewIdx);
 		param.put("reviewContent", reviewContent);
+		param.put("reviewScore", reviewScore);
 		return sqlSession.update(namespace+".update",param);
+	}
+	
+	public ArrayList<ReviewVO> select(String memberId, int endCount, String storeIdx){
+		Map param = new HashMap<String, String>();
+		param.put("memberId", memberId);
+		param.put("end", endCount);
+		param.put("storeIdx", storeIdx);
+		List<ReviewVO> list= sqlSession.selectList(namespace+".myselectlist",param);
+		return (ArrayList<ReviewVO>)list;
+	}
+	public float getAverageScore(String storeIdx) {
+		if(sqlSession.selectOne(namespace+".getAverageScore",storeIdx) == null) {
+			return 0;
+		}else {
+			return sqlSession.selectOne(namespace+".getAverageScore",storeIdx);
+		}
+		
 	}
 }
