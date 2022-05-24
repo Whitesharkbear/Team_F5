@@ -1,4 +1,4 @@
-package com.web.f5.member.controller;
+package com.web.f5.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.web.f5.member.service.MemberService;
-import com.web.f5.member.vo.MemberVO;
+import com.web.f5.service.MemberService;
+import com.web.f5.vo.MemberVO;
 
 @Controller
 public class JoinController {

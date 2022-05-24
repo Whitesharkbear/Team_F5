@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <head>
 <html lang="en">
-<link href="/f5/resources/css/member/mypage/mypage_com.css" rel="stylesheet" />
+<link href="/f5/resources/css/member/mypage/mypage_rez.css" rel="stylesheet" />
 <link href="/f5/resources/css/member/common.css" rel="stylesheet" />
 <link href="/f5/resources/css/main/index.css" rel="stylesheet" />
 </head>
@@ -12,36 +12,33 @@
     	<!-- UnderBar -->
     	<jsp:include page="../../member/mypage/mypageNav.jsp"></jsp:include>
     	<!-- UnderBar -->
-    	<!-- UnderBar -->
-    	 <div class="profile">
-					<img class="user-img" src="/f5/resources/images/user.png"><br>
-				</div>
-				<span class="profile-h"><h2> Username 님, 환영합니다!</h2></span>
-				<hr>
         
        <!-- comment -->
-       <div>
-	       	<div class="com_container">
-	       		<H2>나의 문의현황</H2>
-	       		<div class="com_btn">
-	       	
+       <div class="rez_container">
+	       		<H2>나의 단골매장</H2>
+	       		<div class="store">
+	       			<img class="store_img"src="/f5/resources/images/sample1.jpg">
+	       			<a>Store Name</a>
+	       			<div class="store_btn">
+	       				<button>예약하기</button>
+	       				<button>단골취소</button>
+	       			</div>
+	       			<img class="store_img"src="/f5/resources/images/sample1.jpg">
+	       			<a>Store Name</a>
+	       			<div class="store_btn">
+	       				<button>예약하기</button>
+	       				<button>단골취소</button>
+	       			</div>
+	       			<img class="store_img"src="/f5/resources/images/sample1.jpg">
+	       			<a>Store Name</a>
+	       			<div class="store_btn">
+	       				<button>예약하기</button>
+	       				<button>단골취소</button>
+	       			</div>
+	       		
 	       		</div>
-	       		<table>
-	       			<tr>
-	       				<th>목차</th>
-	       				<th>제목</th>
-	       				<th>답변</th>
-	       				<th>Check</th>
-	       			</tr>
-	       			<tr>
-	       				<td>num</td>
-	       				<td>title</td>
-	       				<td>ask</td>
-	       				<td><button type="button">변경하기</button></td>
-	       			</tr>
-	       			
-	       		</table><br>
-	       				<!-- Search -->
+	       		<br>
+	       		<!-- Search -->
 	       		<div class="my-search-bar">
 	       			<select>
 	       				<option>매장명</option>	
@@ -50,10 +47,10 @@
 	       			<input class="my-search" type="text" placeholder="매장명 또는 내용을 입력해주세요.">
                    	<span><input class="my-bt"type="button" value="검색"></span>
 	       		</div>
-       			   <!-- Pagination-->
-                    <nav aria-label="Pagination">
-                        <hr class="my-0" />
-                        <ul class="pagination justify-content-center my-4">
+       			<!-- Pagination-->
+                <nav aria-label="Pagination">
+                    <hr class="my-0" />
+                       <ul class="pagination justify-content-center my-4">
                             <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1" aria-disabled="true">Newer</a></li>
                             <li class="page-item active" aria-current="page"><a class="page-link" href="#!">1</a></li>
                             <li class="page-item"><a class="page-link" href="#!">2</a></li>
@@ -64,7 +61,6 @@
                         </ul>
                     </nav>
        	
-       		</div>
        </div>
         
         <!-- Footer-->

@@ -1,170 +1,329 @@
 @charset "UTF-8";
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 100;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Thin.otf) format('opentype');}
-@font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 300;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Light.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 400;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Regular.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 500;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Medium.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 700;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Bold.otf) format('opentype');} @font-face {font-family: 'Noto Sans KR';font-style: normal;font-weight: 900;src: url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff2) format('woff2'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.woff) format('woff'),url(//fonts.gstatic.com/ea/notosanskr/v2/NotoSansKR-Black.otf) format('opentype');}
-
-/* 레이아웃 틀 */
-html {
-    height: 100%;
+html{
+	background-color: #FFB85A;
+}
+table {
+	width: 100%;
+	border-collapse: collapse;
+}
+.headlogo{
+	text-align: center;
+}
+.mainlogo{
+	width: 50%;
+}
+#pwHint{
+	width: 100%;
 }
 
-body {
-    margin: 0;
-    height: 100%;
-    background: #FFB85A;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
-}
-#logo {
-    width: 480px;
-    height: 130px;
-    cursor: pointer;
+#postcode {
+	width: 70% !important;
 }
 
-#header {
-    padding-top: 62px;
-    padding-bottom: 20px;
-    text-align: center;
+.addr_btn {
+	width: 26% !important;
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
-#wrapper {
-    position: relative;
-    height: 100%;
+
+#address {
+	width: 98% !important;
 }
+
+#detailAddress {
+	width: 59% !important;
+}
+
+#extraAddress {
+	width: 35% !important;
+}
+
+ul > li { 
+	list-style: none
+}
+
+a {
+	text-decoration: none;
+}
+
+.clearfix::after { 
+	content: "";display: block;clear: both;
+}
+
+ul.join_box {
+	border: 10px solid #ddd;
+	background-color: #fff;
+}
+
+.checkBox, .checkBox > ul {
+	position: relative;
+}
+
+.checkBox > ul > li {
+	float: left;
+}
+
+.checkBox > ul > li:first-child {
+	width: 75%;
+	padding: 15px;
+	font-weight: 600;
+	color: #888;
+}
+
+.checkBox > ul > li:nth-child(2) {
+	position: absolute;
+	top: 50%;
+	right: 30px;
+	margin-top: -12px;
+}
+
+.checkBox textarea {
+	width: 96%;
+	height: 90px;
+	margin: 0 2%;
+	background-color: #f7f7f7;
+	color: #888;
+	border: none;
+}
+
+.join_box .chk, .chkAll {
+	width: 15px !important;
+}
+
+.agree {
+	font-size: 10px;
+	margin-top: 3%;
+}
+
+/*-----------------------------------------------------------------------
+
+ 								PC 
+ 								
+ ------------------------------------------------------------------------*/
+@media (min-width : 767.9999px) {
 
 #content {
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%);
-    width: 460px;
+    height: 100%;
+    width: 50%;
+    margin: 0 auto;
 }
 
-
-
-
-/* 입력폼 */
-
-
-h3 {
-    margin: 19px 0 8px;
-    font-size: 14px;
-    font-weight: 700;
+#content h4 {
+    width: 55% !important;
+    margin: 5% 25%;
 }
 
+#join_table {
+	width: 50%;
+	margin: 0 auto;
+}
 
-.box {
-    display: block;
+#join_table tr td > label {
+	float: left;
+}
+
+#join_table input {
+	
+	width: 98%;
+}
+
+#join_table input#id {
+	width: 70% !important;
+}
+
+#join_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+	width: 26%;
+}
+
+#join_table input#year{
+	width: 30%;
+}
+
+#join_table #gender {
+	width: 100%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 20%;
+}
+
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+}
+
+/*-----------------------------------------------------------------------
+
+ 								tablet 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 767.9998px) {
+
+#content {
+    height: 100%;
+    width: 80%;
+    margin: 0 auto;
+}
+
+#content h4 {
+    width: 80% !important;
+    margin: 5% 15%;
+}
+
+#join_table {
+	width: 70%;
+	margin: 0 auto;
+}
+
+#join_table tr td > label {
+	float: left;
+}
+
+#join_table input {
+	
+	width: 100%;
+}
+
+#join_table input#id {
+	width: 70% !important;
+}
+
+#join_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
+}
+
+#join_table input#year{
+	width: 30%;
+}
+
+#join_table #gender {
+	width: 102%;
+}
+
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
+}
+
+.table_btn button {
+	margin: 0 3%;
+	width: 30%;
+}
+
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+}
+/*-----------------------------------------------------------------------
+
+ 								mobile 
+ 								
+ ------------------------------------------------------------------------*/
+@media (max-width : 425.9998px) {
+
+#content {
+    height: 100%;
     width: 100%;
-    height: 30px;
-    border: solid 1px #dadada;
-    padding: 2px 14px 2px 14px;
-    box-sizing: border-box;
-    background: #fff;
-    position: relative;
-    border-radius: 5px 5px;
+    margin: 0 auto;
 }
 
-.int {
-    display: block;
-    position: relative;
-    width: 100%;
-    height: 23px;
-    border: none;
-    background: #fff;
-    font-size: 15px;
+#content h4 {
+    width: 100% !important;
+    margin: 5% 0;
 }
 
-input {
-    font-family: Dotum,'돋움',Helvetica,sans-serif;    
+#join_table {
+	width: 100%;
+	margin: 0 auto;
 }
 
-.box.int_id {
-    padding-right: 110px;
+#join_table tr td > label {
+	float: left;
 }
 
-.box.int_pass {
-    padding-right: 40px;
+#join_table input {
+	
+	width: 100%;
 }
 
-.box.int_pass_check {
-    padding-right: 40px;
+#join_table input#id {
+	width: 70% !important;
 }
 
-
-
-.pswdImg {
-    width: 18px;
-    height: 20px;
-    display: inline-block;
-    position: absolute;
-    top: 50%;
-    right: 16px;
-    margin-top: -10px;
-    cursor: pointer;
+#join_table #idChk {
+	border: none;
+	border-radius: 5%;
+	background-color: brown;
+	color: #fff;
 }
 
-#bir_wrap {
-    display: table;
-    width: 100%;
+#join_table input#year{
+	width: 30%;
 }
 
-#bir_yy {
-    display: table-cell;
-    width: 147px;
-    
+#join_table #gender {
+	width: 100%;
 }
 
-#bir_mm, #bir_dd {
-    padding-left: 10px;
-    display: table-cell;
-    width: 147px;
-    vertical-align: middle;
+.table_btn {
+	text-align: center;
+	margin: 5% 0;
 }
 
-select {
-    width: 100%;
-    height: 25px;
-    font-size: 15px;
-    background: #fff url(https://static.nid.naver.com/images/join/pc/sel_arr_2x.gif) 100% 50% no-repeat;
-    background-size: 20px 8px;
-    -webkit-appearance: none;
-    display: inline-block;
-    text-align: start;
-    border: none;
-    cursor: default;
-    font-family: Dotum,'돋움',Helvetica,sans-serif;
+.table_btn button {
+	margin: 0 3%;
+	width: 40%;
 }
 
-/* 에러메세지 */
-
-.error_next_box {
-    margin-top: 9px;
-    font-size: 12px;
-    color: red;    
-    display: none;
+.table_btn .insert {
+	background-color: brown;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
-#alertTxt {
-    position: absolute;
-    top: 19px;
-    right: 38px;
-    font-size: 12px;
-    color: red;
-    display: none;
+.table_btn .list {
+	background-color: orange;
+	color: #fff;
+	border: none;
+	border-radius: 5%;
 }
 
-/* 버튼 */
-
-.btn_area {
-    margin: 30px 0 91px;
-}
-
-#btnJoin {
-    width: 100%;
-    padding: 21px 0 17px;
-    border: 0;
-    border-radius: 13px 13px;
-    cursor: pointer;
-    color: #fff;
-    background-color: #872600;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: Gulim,'굴림';
 }

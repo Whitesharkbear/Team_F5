@@ -6,25 +6,56 @@
 <link href="/f5/resources/css/member/mypage/mypage_info.css" rel="stylesheet" />
 <link href="/f5/resources/css/member/common.css" rel="stylesheet" />
 <link href="/f5/resources/css/main/index.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" ></script>
+
+
+<script>
+$(document).ready(function(){
+
+ 	for(var i = 1; i<=31 ; i++){
+ 		var option = $("<option value='"+i+"'>"+i+"</option>");
+        $('#dd').append(option);
+ 	}
+ 	
+ 	
+ 	 var date = new Date(); 
+     
+ 	for(var i = 1980; i<=date.getFullYear() ; i++){
+ 		var option = $("<option value='"+i+"'>"+i+"</option>");
+        $('#yy').append(option);
+ 	}
+	
+	$('#pswd2').blur(function(){
+		if($('#pswd1').val()!=null && $('#pswd2').val()!=null&&
+			$('#pswd1').val()!='' && $('#pswd2').val()!=''){
+			if($('#pswd1').val()!=$('#pswd2').val()){
+				alert('비번이 다릅니다2');
+			}
+		}
+	});
+})
+
+function btnYes() {
+	
+	
+	
+	
+	if($('#pswd1').val()!=$('#pswd2').val()){
+		alert('비번다름');
+		return;
+	}
+
+	window.confirm("정말로 변경하시겠습니까?");
+	
+}
+
+</script>
 </head>
     <body>
     	<jsp:include page="../../header.jsp"></jsp:include>
     	<!-- UnderBar -->
-    	<div class="container">
-	    	<div class="row">
-	               <div class="head-nav-container">
-	                  <label class="head-nav-title">My Page</label>
-	                  <div class="head-nav-inner">
-	                     <ul class="nav-col-ul">
-	                        <li><a href="#">나의 한마디</a></li>
-	                        <li><a href="#">공지사항</a></li>
-	                        <li><a href="#">1:1 문의</a></li>
-	                        <li><a href="#">환경설정</a></li>
-	                     </ul>
-	                  </div>
-	               </div>
-	         </div>
-        </div> <!-- UnderBar -->
+    	<jsp:include page="../../member/mypage/mypageNav.jsp"></jsp:include>
+    	 <!-- UnderBar -->
         
           <!-- User Information -->
         <div>
@@ -94,7 +125,9 @@
                         <!-- BIRTH_YY -->
                         <div id="bir_yy">
                             <span class="box">
-                                <input type="text" id="yy" class="int" maxlength="4" placeholder="년(4자)">
+                            	<select id="yy" class="sel">
+                                    <option>년도</option>
+                                 </select>
                             </span>
                         </div>
 
@@ -125,37 +158,7 @@
                                <!-- <input type="text" id="dd" class="int" maxlength="2" placeholder="일"> -->
                                  <select id="dd" class="sel">
                                     <option>일</option>
-                                    <option value="01">1</option>
-                                    <option value="02">2</option>
-                                    <option value="03">3</option>
-                                    <option value="04">4</option>
-                                    <option value="05">5</option>
-                                    <option value="06">6</option>
-                                    <option value="07">7</option>
-                                    <option value="08">8</option>
-                                    <option value="09">9</option>                                    
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                    <option value="13">13</option>
-                                    <option value="14">14</option>
-                                    <option value="15">15</option>
-                                    <option value="16">16</option>
-                                    <option value="17">17</option>
-                                    <option value="18">18</option>
-                                    <option value="19">19</option>
-                                    <option value="20">20</option>
-                                    <option value="21">21</option>                                    
-                                    <option value="22">22</option>
-                                    <option value="23">23</option>
-                                    <option value="24">24</option>
-                                    <option value="25">25</option>
-                                    <option value="26">26</option>
-                                    <option value="27">27</option>
-                                    <option value="28">28</option>
-                                    <option value="29">29</option>
-                                    <option value="30">30</option>
-                                    <option value="31">31</option>
+                                    
                                 </select>
                             </span>
                         </div>
@@ -198,12 +201,17 @@
 
                 <!-- JOIN BTN-->
                 <div class="btn_area">
-                    <button type="button" id="btnJoin">
+    
+                    <button type="button" id="btnJoin" onclick="btnYes()">
                         <span>변 경 하 기</span>
                     </button>
+  
+                    <a href="mypage.do" id="btnCancel">
                     <button type="button" id="btnJoin">
-                        <span>취 소 하 기</span>
+                    	
+                       <span>취 소 하 기</span>
                     </button>
+                    </a>
                 </div>
 
                 

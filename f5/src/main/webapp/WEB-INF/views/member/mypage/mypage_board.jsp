@@ -22,7 +22,7 @@
        <!-- comment -->
        <div>
 	       	<div class="com_container">
-	       		<H2>나의 문의현황</H2>
+	       		<H2>나의 게시판현황</H2>
 	       		<div class="com_btn">
 	       	
 	       		</div>
@@ -30,13 +30,13 @@
 	       			<tr>
 	       				<th>목차</th>
 	       				<th>제목</th>
-	       				<th>답변</th>
-	       				<th>Check</th>
+	       				<th>내용</th>
+	       				<th>변경사항</th>
 	       			</tr>
 	       			<tr>
 	       				<td>num</td>
 	       				<td>title</td>
-	       				<td>ask</td>
+	       				<td>content</td>
 	       				<td><button type="button">변경하기</button></td>
 	       			</tr>
 	       			
@@ -44,10 +44,10 @@
 	       				<!-- Search -->
 	       		<div class="my-search-bar">
 	       			<select>
-	       				<option>매장명</option>	
+	       				<option>제목</option>	
 	       				<option>내용</option>
 	       			</select>
-	       			<input class="my-search" type="text" placeholder="매장명 또는 내용을 입력해주세요.">
+	       			<input class="my-search" type="text" placeholder="제목 또는 내용을 입력해주세요.">
                    	<span><input class="my-bt"type="button" value="검색"></span>
 	       		</div>
        			   <!-- Pagination-->
