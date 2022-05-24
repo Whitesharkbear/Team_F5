@@ -1,8 +1,33 @@
 @charset "UTF-8";
 
+.list-table a,.reply-member a {
+	color: black !important;
+	text-decoration: none !important;
+}
 
+.board_update_link {
+	color: black !important;
+	text-decoration: none !important;
+}
 
 /* board_list */
+
+
+.table-top-container {
+	margin: 5px 5px;
+	display: flex;
+	justify-content: space-between;
+}
+
+.table-top-container select {
+	width: 80px;
+	height: 30px;
+}
+
+.btn-board-write {
+	width: 100px;
+	height: 35px;
+}
 
 .table th, td{
 	vertical-align: middle;
@@ -163,14 +188,20 @@
 .board-content {
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	text-align: center;
-	
 }
 
+.board-content > p {
+	margin: 20px auto;
+}
 
 
 .board-info {
 	text-align: center;
 	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.board-info form {
+	text-align: right;
 }
 
 .board-info dl {
@@ -218,6 +249,12 @@
 	padding: 5px 0 5px 5px;
 	font-size: 15pt;
 	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+}
+
+.reply-member form {
+	display: inline-block;
 }
 
 .reply-member button {
@@ -232,9 +269,9 @@
 
 .reply-content {
 	width: 80%;
-	height: 50px;
+	height: 80px;
+	resize: none;
 	padding: 5px 2px;
-	margin-top: 5px;
 }
 
 .reply-btn-container {
@@ -281,7 +318,9 @@
 	
 }
 
-
+.reply-update {
+	display: none;
+}
 
 
 
@@ -296,31 +335,109 @@
 }
 
 
+.comment_info label {
+	display: block !important;
+	font-size: 1.5em;
+	margin-bottom: 5px;
+}
 
+.reply_content {
+	width: 80%;
+	height: 80px;
+	resize: none;
+}
+
+.comment_enter {
+	float: right;
+    height: 80px;
+	width: 20%;
+	border: none;
+	border-radius: 5%;
+	background-color: orange;
+	color: #fff;
+}
+
+
+.reply_update_form {
+		display: none;
+}
 
 @media (max-width:992px) {
 	.table {
 	 font-size: 0.7%;
 	}
+	.btn-board-write {
+		width: 80px;
+		height: 30px;
+	}
+	.table-top-container select {
+		height: 30px;
+	}
+	
 }
 
 @media screen and (min-width: 425px) and (max-width:768px) {
 	
-	.btn-board_write {
+	.btn-board-write {
 		width: 60px;
 		height: 25px;
-		
+		font-size: 8pt;
+	}
+	.table-top-container select {
+		width: 60px;
+		font-size: 8pt;
+		height: 25px;
+	}
+	.board-table-col1 {
+		width: 10%;
+	}
+	.board-table-col2 {
+		width: 45%;
+	}
+	.board-table-col3 {
+		width: 15%;
+	}
+	.board-table-col4 {
+		width: 15%;
+	}
+	.board-table-col5 {
+		width: 15%;
+	}
+	.board-caption {
+	font-size: 2em;
 	}
 }
 
 @media screen and (min-width: 250px) and (max-width:425px) {
 	
-	.btn-board_write {
+	.btn-board-write {
 		width: 60px;
 		height: 25px;
-		
+		font-size: 8pt;
 	}
-	
+	.table-top-container select {
+		width: 60px;
+		font-size: 8pt;
+		height: 25px;
+	}
+	.board-table-col1 {
+		width: 10%;
+	}
+	.board-table-col2 {
+		width: 45%;
+	}
+	.board-table-col3 {
+		width: 15%;
+	}
+	.board-table-col4 {
+		width: 15%;
+	}
+	.board-table-col5 {
+		width: 15%;
+	}
+	.board-caption {
+	font-size: 1.5em;
+	}
 }
 
 

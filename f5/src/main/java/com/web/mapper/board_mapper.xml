@@ -8,7 +8,40 @@
 
 <mapper namespace="mapper.board">
 	
+	<select id="reco_select" parameterType="map" resultType="com.web.f5.vo.RecommendVO">
+		select br.boardIdx, br.memberId, br.boardRecommendCheck
+			from board b join boardRecommend br on b.boardIdx=br.boardIdx
+				where br.boardIdx=#{boardIdx} and br.memberId=#{memberId}
+	</select>
 	
+	<!-- 추천수 -->
+	<select id="reco_count" parameterType="map" resultType="int">
+		select count(*) from boardRecommend
+				where boardRecommendCheck=#{boardRecommendCheck} and boardIdx=#{boardIdx}
+	</select>
+	
+	<!-- 추천 삭제 -->
+	<delete id="reco_delete" parameterType="com.web.f5.vo.RecommendVO">
+		delete from boardRecommend 
+			where boardIdx=#{boardIdx} and memberId=#{memberId}
+	</delete>
+	
+	<!-- 추천 여부조회 -->
+	<select id="reco_check" resultType="int" parameterType="map">
+	 	select count (*) from 
+   			(select memberId from boardRecommend where boardIdx=#{boardIdx} and memberId=#{memberId})
+	</select>
+	
+	<update id="reco_update" parameterType="com.web.f5.vo.RecommendVO">
+		update boardRecommend set boardRecommendCheck=#{boardRecommendCheck}
+			where boardIdx=#{boardIdx} and memberId=#{memberId}
+	</update>
+	
+	<!-- 게시글 추천 -->
+	<insert id="reco_insert" parameterType="com.web.f5.vo.RecommendVO">
+		insert into boardRecommend 
+			values(#{boardIdx},#{memberId},#{boardRecommendCheck})
+	</insert>
 	
 	<!-- 게시판 조회수 -->
 	<update id="update_hits" parameterType="java.lang.String">

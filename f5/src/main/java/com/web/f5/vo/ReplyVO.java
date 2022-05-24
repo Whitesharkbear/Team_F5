@@ -2,10 +2,35 @@ package com.web.f5.vo;
 
 public class ReplyVO {
 	String replyIdx, boardIdx, memberId, replyContent,
-	replyDate, replyUpdateDate;
+	replyDate, replyUpdateDate, replyRecommendCheck;
+	int recoCount, derecoCount;
+
+	public int getDerecoCount() {
+		return derecoCount;
+	}
+
+	public void setDerecoCount(int derecoCount) {
+		this.derecoCount = derecoCount;
+	}
+
+	public int getRecoCount() {
+		return recoCount;
+	}
+
+	public void setRecoCount(int recoCount) {
+		this.recoCount = recoCount;
+	}
 
 	public String getreplyIdx() {
 		return replyIdx;
+	}
+
+	public String getReplyRecommendCheck() {
+		return replyRecommendCheck;
+	}
+
+	public void setReplyRecommendCheck(String replyRecommendCheck) {
+		this.replyRecommendCheck = replyRecommendCheck;
 	}
 
 	public void setreplyIdx(String replyIdx) {

@@ -96,11 +96,13 @@
 
 @media screen and (min-width: 425px) and (max-width:768px) {
 	
+	.board-caption {
+	font-size: 2em;
+	}
 	
 	.btn-promte_write {
 		width: 60px;
 		height: 25px;
-		
 	}
 	
 	.promote-list-container li {

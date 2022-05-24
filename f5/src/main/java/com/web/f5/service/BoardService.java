@@ -3,6 +3,7 @@ package com.web.f5.service;
 import java.util.List;
 
 import com.web.f5.vo.BoardVO;
+import com.web.f5.vo.RecommendVO;
 
 public interface BoardService {
 	
@@ -12,4 +13,10 @@ public interface BoardService {
 	BoardVO getContentList(String boardIdx);
 	List<BoardVO> getSelectList();
 	int getInsertResult(BoardVO vo);
+	int getRecoInsertResult(RecommendVO vo);
+	int getRecoCheckResult(String boardIdx, String memberId);
+	int getRecoUpdateResult(RecommendVO vo);
+	int getRecoDeleteResult(RecommendVO vo);
+	int getRecoCountResult(String boardRecommendCheck, String boardIdx);
+	RecommendVO getRecoSelect(String boardIdx, String memberId);
 }

@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<link href="/f5/resources/css/board/board.css" rel="stylesheet" />
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
+<link href="/f5/resources/css/board/board.css" rel="stylesheet" />
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -29,22 +29,22 @@
         
             <div class="row">
             	<div class="board_container">
-            	<label class="board-caption">Fooldey의 대나무 숲</label>
-            		<table class="table list-table">
-	            	
-            			<tr>
-            				<th scope="col" colspan="4"></th>
-            				<th width="10%" scope="col">
-            				<a href="board_write.do">	
-            					<button class="cusbtn btn-board_write" type="button" onclick="board_wirte()">글쓰기</button>
-            				</a>	
-            				</th>
-            			</tr>
+            	<label class="board-caption">Foodly의 대나무 숲</label>
+            	<div class="table-top-container">
+	            	<select>
+						<option>자유</option>
+						<option>홍보</option>
+						<option>공지</option>
+					</select> <a href="board_write.do">
+						<button class="cusbtn btn-board-write" type="button">글쓰기</button>
+					</a>
+				</div>
+				<table class="table list-table">
             			<tr class="tr-sec1">
             				<th class="board-table-col1">순번</th>
             				<th class="board-table-col2">제목</th>
             				<th class="board-table-col3">작성자</th>
-            				<th class="board-table-col4">no</th>
+            				<th class="board-table-col4">조회수</th>
             				<th class="board-table-col5">작성일</th>
             			</tr>
             			
@@ -60,6 +60,11 @@
             			
             			<tr>
             				<td colspan=5>
+            					<select>
+            						<option>작성자</option>
+            						<option>제목</option>
+            						<option>작성자+제목</option>
+            					</select>
             					<input type="search" class="search">
             					<button class="cusbtn">검색</button>
             				</td>
