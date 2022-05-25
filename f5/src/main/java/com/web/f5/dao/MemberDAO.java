@@ -10,32 +10,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.web.f5.vo.AdminMemberVO;
 import com.web.f5.vo.MemberVO;
 
-public class MemberDAO{
+public class MemberDAO {
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	private String namespace = "mapper.member";
-	
+
+	public int idCheck(String id) {
+		return sqlSession.selectOne(namespace + ".id_check", id);
+	}
+
 	public int select(MemberVO vo) {
-		int result =sqlSession.selectOne(namespace+".loginCheck",vo);
+		int result = sqlSession.selectOne(namespace + ".loginCheck", vo);
 		return result;
-}
-
-
-
+	}
 
 	public int insert(MemberVO vo) {
 
 		return sqlSession.insert(namespace + ".memberInsert", vo);
 	}
+
 	public MemberVO select(String memberId) {
-		return sqlSession.selectOne(namespace+".select",memberId);
+		return sqlSession.selectOne(namespace + ".select", memberId);
 	}
 
-	
-
-	
-
-	
 }

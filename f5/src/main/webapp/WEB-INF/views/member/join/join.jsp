@@ -172,6 +172,35 @@ function check(){
 // }
 
 $(document).ready(function(){
+	//중복체크 처리
+	$("#idChk").click(function(){
+		var id = $("#id").val();
+		
+		if(id == ""){
+			alert("아이디를 입력해주세요");
+			$("#id").focus();
+		}else{
+			//id값을 서버로 전송하여 중복체크 처리한 후 결과 송신
+			//alert(id);
+			$.ajax({
+				url:"idcheck.do?id="+id,
+				success : function(result){
+					if(result == 1){
+						//alert("중복된 아이디가 존재합니다. 다시 입력해주세요");
+						$("#idcheck_msg").text("중복된 아이디가 존재합니다. 다시 입력해주세요");
+						$("#idcheck_msg").css("font-size","9px").css("color","red");						
+						$("#id").val("").focus();
+					}else{
+						//alert("사용이 가능한 아이디입니다.");
+						$("#idcheck_msg").text("사용이 가능한 아이디입니다.");
+						$("#idcheck_msg").css("font-size","9px").css("color","blue");
+						$("#pw").focus();
+					}
+				}
+			});
+		}			
+		
+	});
 	
 	$("#pwChk").blur(function(){
 		
@@ -242,7 +271,8 @@ $(document).ready(function(){
 							<td>
 								<input type="text" id="id" name="memberId"
 								placeholder="  아이디를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  아이디를 입력해주세요.'">
-								<button type="button" id="idChk" onclick="idChk()">중복확인</button>
+								<button type="button" id="idChk">중복확인</button>
+								<div id="idcheck_msg"></div>
 							</td>
 						</tr>
 						<tr>

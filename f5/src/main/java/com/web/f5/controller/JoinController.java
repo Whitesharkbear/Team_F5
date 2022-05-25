@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.f5.service.MemberService;
@@ -13,6 +14,13 @@ import com.web.f5.vo.MemberVO;
 public class JoinController {
 	
 	@Autowired MemberService memberService;
+	
+	@ResponseBody
+	@RequestMapping(value="/idcheck.do", method=RequestMethod.GET)
+	public String idcheck(String id) {
+		int result = memberService.getIdCheckResult(id);		
+		return String.valueOf(result);
+	}	
 	
 	@RequestMapping(value="/join.do", method=RequestMethod.GET)
 	public String join() {

@@ -6,4 +6,5 @@ public interface MemberService {
 	public int login_result(MemberVO vo);	
 	public int insert_result(MemberVO vo);
 	public MemberVO select_result(String memberId);
+	public int getIdCheckResult(String id);
 }
