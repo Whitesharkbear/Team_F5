@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,109 +33,31 @@
             	<label class="board-caption">Foodly의 자랑거리</label>
 				<div style="text-align: right; margin-bottom: 50px;">
 					<a href="promote_write.do">
-					<button class="cusbtn btn-promote_write" type="button"
-						onclick="promote_write()">글쓰기</button>
+						<button class="cusbtn btn-promote-write" type="button">글쓰기</button>
 					</a>
 				</div>
 				<div class="promote-list-container">
 					<ul>
-						<li>
-							<div class="promote-list">
-								<div class="promote-top">
-								<div class="centered">
-									<img class="promote-img" src="/f5/resources/images/person.png">
+						<c:forEach var="vo" items="${list}">
+							<li>
+								<div class="promote-list">
+									<div class="promote-top">
+										<div class="centered">
+											<img class="promote-img"
+												src="/f5/resources/images/person.png">
+										</div>
+										<p>${vo.boardTitle }</p>
+									</div>
+									<div class="promote-bottom">
+										<p>${vo.boardContent }</p>
+									</div>
+										<div class="promote-link">
+											<a href="promote_update.do?boardIdx=${vo.boardIdx }">수정하기</a>
+											<a style="text-decoration : line-through" href="store_information.do"> 놀러가기 </a>
+										</div>
 								</div>
-									<p>1</p>
-								</div>
-								<div class="promote-bottom">
-									<p>삼겹살 사장님이 쏜다쏜다쏜다!</p>
-									<a href="store_information.do">
-										놀러가기
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="promote-list">
-								<div class="promote-top">
-								<div class="centered">
-									<img class="promote-img" src="/f5/resources/images/naver_logo.jpeg">
-								</div>
-									<p>2</p>
-								</div>
-								<div class="promote-bottom">
-									<p>삼겹살 사장님이 쏜다쏜다쏜다!</p>
-									<a href="store_information.do">
-										놀러가기
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="promote-list">
-								<div class="promote-top">
-								<div class="centered">
-									<img class="promote-img" src="/f5/resources/images/kakao_logo.jpeg">
-								</div>
-									<p>2</p>
-								</div>
-								<div class="promote-bottom">
-									<p>삼겹살 사장님이 쏜다쏜다쏜다!</p>
-									<a href="store_information.do">
-										놀러가기
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="promote-list">
-								<div class="promote-top">
-								<div class="centered">
-									<img class="promote-img" src="/f5/resources/images/sample5.jpg">
-								</div>
-									<p>오늘의 맛집입니다다다다다</p>
-								</div>
-								<div class="promote-bottom">
-									<p>삼겹살 사장님이 쏜다쏜다쏜다!</p>
-									<a href="store_information.do">
-										놀러가기
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="promote-list">
-								<div class="promote-top">
-								<div class="centered">
-									<img class="promote-img" src="/f5/resources/images/sample1.jpg">
-								</div>
-									<p>2</p>
-								</div>
-								<div class="promote-bottom">
-									<p>삼겹살 사장님이 쏜다쏜다쏜다!</p>
-									<a href="store_information.do">
-										놀러가기
-									</a>
-								</div>
-							</div>
-						</li>
-						<li>
-							<div class="promote-list">
-								<div class="promote-top">
-								<div class="centered">
-									<img class="promote-img" src="/f5/resources/images/password.png">
-								</div>
-									<p>2</p>
-								</div>
-								<div class="promote-bottom">
-									<p>삼겹살 사장님이 쏜다쏜다쏜다!</p>
-									<a href="store_information.do">
-										놀러가기
-									</a>
-								</div>
-							</div>
-						</li>
-						
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
 				

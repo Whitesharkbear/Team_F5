@@ -32,7 +32,7 @@
             	<label class="board-caption">Foodly의 대나무 숲</label>
             	<div class="table-top-container">
 	            	<select>
-						<option>자유</option>
+						<option>일반</option>
 						<option>홍보</option>
 						<option>공지</option>
 					</select> <a href="board_write.do">
@@ -63,7 +63,8 @@
             					<select>
             						<option>작성자</option>
             						<option>제목</option>
-            						<option>작성자+제목</option>
+            						<option>내용</option>
+            						<option>제목+내용</option>
             					</select>
             					<input type="search" class="search">
             					<button class="cusbtn">검색</button>

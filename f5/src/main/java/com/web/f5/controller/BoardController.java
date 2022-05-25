@@ -155,9 +155,10 @@ public class BoardController {
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
 	public ModelAndView board_write(BoardVO vo) {
 		ModelAndView mv = new ModelAndView();
-
+		
+		vo.setBoardCategory("일반");
 		boardService.getInsertResult(vo);
-
+		
 		mv.setViewName("redirect:/board_list.do");
 
 		return mv;
@@ -175,7 +176,8 @@ public class BoardController {
 	public ModelAndView board_list() {
 		ModelAndView mv = new ModelAndView();
 		List<BoardVO> list = new ArrayList<BoardVO>();
-		list = boardService.getSelectList();
+		String boardCategory = "3";
+		list = boardService.getSelectList(boardCategory);
 		
 		mv.addObject("list", list);
 		mv.setViewName("/board/board_list");

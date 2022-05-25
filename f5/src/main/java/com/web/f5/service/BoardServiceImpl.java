@@ -21,14 +21,14 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<BoardVO> getSelectList() {
-		return boardDao.select();
+	public List<BoardVO> getSelectList(String boardCategory) {
+		return boardDao.select(boardCategory);
 	}
 
 
 	@Override
 	public BoardVO getContentList(String boardIdx) {
-		return boardDao.select(boardIdx);
+		return boardDao.selectContent(boardIdx);
 	}
 
 

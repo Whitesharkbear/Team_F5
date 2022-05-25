@@ -11,7 +11,7 @@ public interface BoardService {
 	int getDeleteResult(String boardIdx);
 	int getContentUpdate(BoardVO vo);
 	BoardVO getContentList(String boardIdx);
-	List<BoardVO> getSelectList();
+	List<BoardVO> getSelectList(String boardCategoty);
 	int getInsertResult(BoardVO vo);
 	int getRecoInsertResult(RecommendVO vo);
 	int getRecoCheckResult(String boardIdx, String memberId);

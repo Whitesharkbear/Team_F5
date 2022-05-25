@@ -13,6 +13,9 @@
 <script>
 	
 $(document).ready(function() {
+	
+	
+	
 	$(".board_write").click(function() {
 		var title = $("#board_title").val();
 		var content = $("#board_content").val();

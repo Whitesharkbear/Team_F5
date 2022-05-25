@@ -69,20 +69,60 @@
 	
 	
 	<!-- 게시판 리스트 -->
-	<select id="list" resultType="com.web.f5.vo.BoardVO">
-		select rownum rno, boardidx, boardtitle, memberid, boardhits, boarddate 
-			from (select boardidx, boardtitle, memberid, boardhits, to_char(boarddate,'yyyy/mm/dd') boarddate
-				from(select boardidx, boardtitle, memberid, boardhits, boarddate 
-					from board order by boarddate desc
-					)
+	<select id="list" resultType="com.web.f5.vo.BoardVO" parameterType="map">
+		select rno, boardIdx, memberId, boardHits, boardTitle, 
+				boardContent, boardDate, boardUpdateDate, boardCategory
+			from (select rownum rno, boardIdx, memberId, boardHits, boardTitle, boardContent, 
+					to_char(boardDate,'yyyy/mm/dd') boardDate, to_char(boardUpdateDate,'yyyy/mm/dd') boardUpdateDate, boardCategory
+				from (select boardIdx, memberId, boardHits, boardTitle, 
+						boardContent, boardDate, boardUpdateDate, boardCategory
+							 from board order by boardDate desc
+					 )
+					<choose>
+						<when test='boardCategory == "0"'>
+							where boardCategory = '일반'
+						</when>
+						<when test='boardCategory == "1"'>
+							where boardCategory = '홍보'
+						</when>
+						<when test='boardCategory == "2"'>
+							where boardCategory = '공지'
+						</when>
+						<when test='boardCategory == "3"'>
+							where boardCategory = '일반' or
+								  boardCategory = '홍보' or
+								  boardCategory = '공지'
+						</when>
+						<when test='boardCategory == "m"'>
+							where boardCategory = '공지' 
+						</when>
+						<when test='boardCategory == "t"'>
+							where boardCategory = '공지'
+						</when>
+						<when test='boardCategory == "c"'>
+							where boardCategory = '공지'
+						</when>
+						<when test='boardCategory == "tc"'>
+							where boardCategory = '공지'
+						</when>
+					</choose>
+					
+					
 				)
 	</select>
 	
 	<!-- 게시판 쓰기 -->
 	<insert id="insert" parameterType="com.web.f5.vo.BoardVO">
-		insert into board values('b_'||sequ_board.nextval,
-			'test1',0,#{boardTitle},#{boardContent},sysdate,
-			#{boardUpdateDate, jdbcType=VARCHAR},'일반')
+		insert into board 
+			values('b_'||sequ_board.nextval,
+					'test1',
+					0,
+					#{boardTitle},
+					#{boardContent},
+					sysdate,
+					null,
+					#{boardCategory}
+					)
 	</insert>
 
 </mapper>

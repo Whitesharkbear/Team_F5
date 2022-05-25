@@ -74,14 +74,16 @@ public class BoardDAO {
 	
 	
 	// 게시판 상세보기
-	public BoardVO select(String boardIdx) {
+	public BoardVO selectContent(String boardIdx) {
 		return sqlSession.selectOne(namespace+".content", boardIdx);
 	}
 	
 	
 	// 게시판 리스트
-	public List<BoardVO> select() {
-		return sqlSession.selectList(namespace+".list");
+	public List<BoardVO> select(String boardCategory) {
+		Map param = new HashMap<String, String>();
+		param.put("boardCategory", boardCategory);
+		return sqlSession.selectList(namespace+".list", param);
 		
 	}
 	

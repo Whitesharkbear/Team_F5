@@ -17,6 +17,8 @@
 	$(document).ready(function() {
 		
 		
+		
+		
 		// 게시판 삭제
 		$("#content_delete").click(function(){
 			var result = confirm("정말로 삭제하시겠습니까?");
