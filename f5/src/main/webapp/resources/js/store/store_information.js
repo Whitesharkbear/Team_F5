@@ -406,6 +406,7 @@ function show_review_page(rpage,storeIdx){
 				$.ajax(
 					{
 						url : "store_review_update.do?reviewIdx="+review_idx+"&reviewContent="+text+"&reviewScore="+score,
+						
 						success : function(content){
 							if(content=='1'){
 								alert("수정되었습니다.");

@@ -15,6 +15,11 @@
 		$('#btnJoin').on('click',function(){
 			store_join_form.submit();
 		});
+		$('#file-upload').on('change',function(){
+		        var filename = $(this)[0].files[0].name;
+		    $('#file-name-holder').val(filename);
+		});
+		
 	});
 </script>
 <style type="text/css">
@@ -25,6 +30,15 @@
 	}
 	.store-join-price td{
 		width : 30%;
+	}
+	#file-upload{
+		display: none;
+	}
+	#file-name-holder{
+		width : 50%;
+	}
+	#file-label{
+		margin-left:10px;
 	}
 </style>
 <body>
@@ -150,11 +164,9 @@
             	<tr>
             		<td colspan="5">
             			<div class="file-add">
-            				<button>+</button>
-            				<button>+</button>
-            				<button>+</button>
-            				<button>+</button>
-            				<button>+</button>
+            				<input id="file-name-holder">
+							<label for="file-upload" id="file-label">파일첨부</label>
+							<input type="file" id="file-upload">
             			</div>
             		</td>
             	</tr>

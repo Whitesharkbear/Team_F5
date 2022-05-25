@@ -143,7 +143,7 @@ public class StoreController {
 		}
 		
 		@ResponseBody
-		@RequestMapping(value = "/store_information_review.do" , method = RequestMethod.GET)
+		@RequestMapping(value = "/store_information_review.do" , method = RequestMethod.GET,  produces = "application/text; charset=UTF-8")
 		public String store_infor_review(String rpage, String storeIdx) {
 			int startCount = 1;
 			int endCount = Integer.parseInt(rpage)*5;
@@ -159,6 +159,7 @@ public class StoreController {
 				obj.addProperty("reviewScore", vo.getReviewScore());
 				obj.addProperty("reviewIdx",vo.getReviewIdx());
 				jlist.add(obj);
+
 			}
 			jdata.add("jlist", jlist);
 
@@ -181,7 +182,7 @@ public class StoreController {
 			return String.valueOf(result);
 		}
 		@ResponseBody
-		@RequestMapping(value = "/store_information_myreview.do" , method = RequestMethod.GET)
+		@RequestMapping(value = "/store_information_myreview.do" , method = RequestMethod.GET,  produces = "application/text; charset=UTF-8")
 		public String store_infor_myreview(String mpage,String memberId,String storeIdx) {
 			int endCount = Integer.parseInt(mpage)*5;
 			ArrayList<ReviewVO> mrlist = reviewService.selectMyListResult(memberId, endCount,storeIdx);
