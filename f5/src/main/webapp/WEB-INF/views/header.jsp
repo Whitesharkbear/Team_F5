@@ -8,15 +8,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Blog Home - Start Bootstrap Template</title>
+   
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/f5/resources/favicon.ico" />
         <script src="/f5/resources/js/scripts.js"></script>
-
-        <!-- Core theme CSS (includes Bootstrap)-->
-
-<meta charset="UTF-8">
-<link href="/f5/resources/css/styles.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->       
+		<meta charset="UTF-8">
+		<link href="/f5/resources/css/styles.css" rel="stylesheet" />
+		
+<!-- Start WOWSlider.com HEAD section -->
+<link rel="stylesheet" type="text/css" href="/f5/resources/engine1/style.css" />
+<script type="text/javascript" src="/f5/resources/engine1/jquery.js"></script>
+<!-- End WOWSlider.com HEAD section -->
 
 <title>Insert title here</title>
 </head>
@@ -93,10 +99,26 @@
         </nav>
         <!-- Page header with logo and tagline-->
         <header class="py-5 bg-light border-bottom mb-4">
+<!-- Start WOWSlider.com BODY section -->
+<div id="wowslider-container1">
+<div class="ws_images">
+	<ul>
+		<li><img src="/f5/resources/data1/images/1.png" alt="" title="" id="wows1_0"/></li>
+		<li><img src="/f5/resources/data1/images/2.png" alt="" title="" id="wows1_1"/></li>
+		<li><img src="/f5/resources/data1/images/3.png" alt="" title="" id="wows1_2"/></li>
+		<li><img src="/f5/resources/data1/images/4.png" alt="" title="" id="wows1_3"/></li>
+		<li><a href="http://wowslider.net"><img src="/f5/resources/data1/images/5.png" alt="css slideshow" title="" id="wows1_4"/></a></li>
+
+	</ul>
+</div>
+</div>	
+<script type="text/javascript" src="/f5/resources/engine1/wowslider.js"></script>
+<script type="text/javascript" src="/f5/resources/engine1/script.js"></script>
+<!-- End WOWSlider.com BODY section -->
             <div class="container">
                 <div class="text-center my-5">
-                    <h1 class="fw-bolder">친근하고 맛있는 검색!</h1>
-                    <div>
+					<div class = "py-51_box">
+                    	<h1 class="fw-bolder">친근하고 맛있는 검색!</h1>
                     	<img class="fw-img" src="/f5/resources/images/mainlogo2.png"><br>
                     	<input class="fw-search" type="text" placeholder="원하시는 가게 또는 음식을 입력해주세요.">
                    		<span><input class="fw-bt"type="button" value="검색"></span>

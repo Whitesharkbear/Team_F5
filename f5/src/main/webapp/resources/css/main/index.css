@@ -13,12 +13,18 @@
 .main_login_button{
 	float: right;
 	width : 35%;
-	height : 60px;
+	height : 75px;
 	background-color: brown;
 	margin-left : 10px;
 	color : white;
 	border-radius: 10px;
 	border:none;
+	font-weight: bold;
+}
+.main_join_button1{
+	width: 100%;
+	font-size: 13px;
+	text-align: center;
 }
 .logout-button{
 	background-color: brown;
@@ -52,11 +58,12 @@
 }
 
 .easy_login{
-	width: 80%;
+	width: 100%;
 	border: none;
 	background-color: orange;
 	color: #fff;
 	border-radius: 5px;
+	font-weight: bold;
 }
 
 td, th{
@@ -69,10 +76,42 @@ table{
 	border-collapse: collapse;
 	width:100%;
 }
+
 .card-img-top{
-	height:400px;
+
+	height:300px;
 	background-size: cover;
+	border-radius: 30px;
+    border-color: white;
 }
+.text-top{
+	position: absolute;
+	color: white;
+	font-size:50px;
+    padding: 5px 10px;
+    top: 20%;
+    left: 35%;
+    border-radius: 30px;
+    background-color: #d56f00b3;
+}
+.text-down{
+	position: absolute;
+	color: white;
+	font-size:20px;
+    padding: 5px 10px;
+    top: 60%;
+    left: 23%;
+    border-radius: 30px;
+    background-color: #d56f00b3;
+}
+.card-header1{
+	background-color: antiquewhite;
+	padding: 1%;
+    text-align: center;
+    color: brown;
+    font-weight: bolder;
+}
+
 
 thead,
 tbody,

@@ -628,7 +628,15 @@ progress {
   color: #6c757d;
 }
 
-.container,
+.container{
+	position: relative;
+	width: 100%;
+ 	padding-right: var(--bs-gutter-x, 0.75rem);
+  	padding-left: var(--bs-gutter-x, 0.75rem);
+  	margin-right: auto;
+  	margin-left: auto;	
+
+}
 .container-fluid,
 .container-xxl,
 .container-xl,
@@ -7538,8 +7546,13 @@ textarea.form-control-lg {
 }
 
 .py-5 {
-  padding-top: 3rem !important;
-  padding-bottom: 3rem !important;
+  padding: 0.01%;
+}
+
+.py-51_box{
+	position:relative;
+	width: 100%;
+    height: 100%;
 }
 
 .pt-0 {
@@ -7692,6 +7705,7 @@ textarea.form-control-lg {
 
 .fw-bolder {
   font-weight: bolder !important;
+  color: brown;
 }
 
 .lh-1 {
@@ -7885,6 +7899,7 @@ textarea.form-control-lg {
 .bg-light {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-light-rgb), var(--bs-bg-opacity)) !important;
+  color: #F5D0A9;
 }
 
 .bg-dark {
@@ -7895,6 +7910,7 @@ textarea.form-control-lg {
 .bg-black {
   --bs-bg-opacity: 1;
   background-color: rgba(var(--bs-black-rgb), var(--bs-bg-opacity)) !important;
+
 }
 
 .bg-white {
