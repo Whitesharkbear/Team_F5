@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.web.f5.service.BoardServiceImpl;
 import com.web.f5.service.ReplyServiceImpl;
 import com.web.f5.vo.BoardVO;
@@ -26,6 +29,38 @@ public class BoardController {
 	
 	@Autowired
 	private ReplyServiceImpl replyService;
+	
+	// 게시글 분류
+	@ResponseBody
+	@RequestMapping(value="/board_change.do", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
+	public String board_select(String boardCategory) {
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		System.out.println(boardCategory);
+		
+		list = boardService.getSelectList(boardCategory);
+		
+		for(BoardVO bvo : list) {
+			JsonObject obj = new JsonObject();
+			obj.addProperty("rno", bvo.getRno());
+			obj.addProperty("boardIdx", bvo.getBoardIdx());
+			obj.addProperty("memberId", bvo.getMemberId());
+			obj.addProperty("boardHits", bvo.getBoardHits());
+			obj.addProperty("boardTitle", bvo.getBoardTitle());
+			obj.addProperty("boardContent", bvo.getBoardContent());
+			obj.addProperty("boardDate", bvo.getBoardDate());
+			obj.addProperty("boardUpdateDate", bvo.getBoardUpdateDate());
+			obj.addProperty("boardCategory", bvo.getBoardCategory());
+			
+			jlist.add(obj);
+		}
+		jdata.add("jlist", jlist);
+		System.out.println(gson.toJson(jdata));
+		return gson.toJson(jdata);
+	}
 	
 	// 게시판 삭제 처리
 	@RequestMapping(value = "/board_delete.do", method=RequestMethod.POST)
@@ -170,7 +205,9 @@ public class BoardController {
 
 		return "/board/board_write";
 	}
-
+	
+	// 게시판리스트 
+	
 	// 게시판리스트 출력
 	@RequestMapping(value = "/board_list.do", method = RequestMethod.GET)
 	public ModelAndView board_list() {

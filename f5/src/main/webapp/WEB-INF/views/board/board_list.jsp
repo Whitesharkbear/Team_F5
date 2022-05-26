@@ -9,6 +9,48 @@
 
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
 <link href="/f5/resources/css/board/board.css" rel="stylesheet" />
+<script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
+<script>
+	
+	$(document).ready(function() {
+		
+		
+		$("select[name=selectBox]").change(function() {
+			var selectValue = $(this).val();
+			
+			$.ajax({
+				url: "board_change.do",
+				type: "POST",
+				data: {
+					"boardCategory" : selectValue
+				},
+				success: function(result){
+					var jdata = JSON.parse(result);
+					var table = "";
+					$(".tr-sec").remove();
+					
+					for(var i in jdata.jlist) {
+						table += "<tr class='tr-sec'>";
+						table += "<td class='board-table-col1'>"+jdata.jlist[i].rno+"</td>";
+						table += "<td class='board-table-col2'><a href='board_content.do?boardIdx="+jdata.jlist[i].boardIdx+"'>"+jdata.jlist[i].boardTitle+"</a></td>";
+						table += "<td class='board-table-col3'>"+jdata.jlist[i].memberId+"</td>";
+						table += "<td class='board-table-col4'>"+jdata.jlist[i].boardHits+"</td>";
+						table += "<td class='board-table-col5'>"+jdata.jlist[i].boardDate+"</td>";
+						table += "</tr>";
+					}
+					
+					$(".tr-sec1").after(table);
+				},
+				error: function(result) {
+					alert("실패"+result);
+				}
+			});
+			
+		});
+	});
+
+</script>
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -31,10 +73,11 @@
             	<div class="board_container">
             	<label class="board-caption">Foodly의 대나무 숲</label>
             	<div class="table-top-container">
-	            	<select>
-						<option>일반</option>
-						<option>홍보</option>
-						<option>공지</option>
+	            	<select name="selectBox">
+						<option value="0">일반</option>
+						<option value="1">홍보</option>
+						<option value="2">공지</option>
+						<option value="3">전체</option>
 					</select> <a href="board_write.do">
 						<button class="cusbtn btn-board-write" type="button">글쓰기</button>
 					</a>
@@ -50,7 +93,7 @@
             			
             			<c:forEach var="vo" items="${list}">
             			<tr class="tr-sec">
-            				<td class="board-table-col1"><span class="asd">${vo.rno}</span></td>
+            				<td class="board-table-col1">${vo.rno}</td>
             				<td class="board-table-col2"><a href="board_content.do?boardIdx=${vo.boardIdx}">${vo.boardTitle}</a></td>
             				<td class="board-table-col3">${vo.memberId}</td>
             				<td class="board-table-col4">${vo.boardHits}</td>
@@ -71,7 +114,7 @@
             				</td>
             			</tr>
             			<tr>
-            				<td colspan=5><<1 2 3 4 5>></td>
+            				<td colspan=5><div id="ampaginationsm"></div></td>
             			<tr>
             		</table>
             	</div>
