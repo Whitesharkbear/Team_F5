@@ -46,11 +46,17 @@ section {
     height: 400px;
     float: left;
     margin-right: 5%;
+	border-radius: 25px;
+
 }
 
 .site_info {
 	float: right;
     width: 55%;
+}
+#hea{
+	font-weight: bold;
+	color: brown;
 }
 
 }
@@ -74,6 +80,7 @@ section {
     height: 370px;
     float: left;
     margin-right: 5%;
+	border-radius: 25px;
 }
 
 .site_info {
@@ -81,7 +88,10 @@ section {
     width: 55%;
     font-size: 0.85em;
 }
-	
+#hea{
+	font-weight: bold;
+	color: brown;
+}	
 }
 /*-----------------------------------------------------------------------
 
@@ -100,6 +110,7 @@ section {
     width: 100%;
     height: 300px;
     margin-right: 5%;
+	border-radius: 25px;
 }
 
 .site_info {
@@ -112,7 +123,7 @@ section {
 
 .head-nav-container {
    position: relative;
-   background-color: rgb(255,210,0);
+   background-color: rgb(255,187,0);
    height: 80px; 
    text-align: center;
    vertical-align: middle;
@@ -121,7 +132,7 @@ section {
 
 .head-nav-title {
    position: relative;
-   color: orange;
+   color: brown;
    font-size: 15pt;
    font-weight: bold;
    top: 5px;
@@ -169,8 +180,9 @@ section {
 
 
 .nav-col-ul li:hover {
-   background: rgb(255,187,0);
+   background: brown;
    transition: 0.3s;
+    border-radius: 10px;
    
 }
 
@@ -178,6 +190,10 @@ section {
    vertical-align: middle;
    text-decoration: none;
    color: white;
+}
+#hea{
+	font-weight: bold;
+	color: brown;
 }
 
 
@@ -216,6 +232,10 @@ section {
       height: 25px;
       
    }
+   #hea{
+	font-weight: bold;
+	color: brown;
+}
 }
 
 @media screen and (min-width: 250px) and (max-width:425px) {
@@ -239,5 +259,9 @@ section {
       height: 25px;
       
    }
+   #hea{
+	font-weight: bold;
+	color: brown;
+}
    
 }
