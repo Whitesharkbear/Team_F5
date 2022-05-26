@@ -13,4 +13,5 @@ public interface AdminNoticeService extends ObjService{
 	int getUpdateResult(Object obj);
 	int getDeleteResult(String id);
 	List<AdminNoticeVO> getLimitList();
+	List<Object> getSearchListResult(int startCount, int endCount, String search, String search_type);
 }

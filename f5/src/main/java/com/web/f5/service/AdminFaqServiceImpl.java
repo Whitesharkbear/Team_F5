@@ -56,4 +56,10 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 		
 		return adminFaqDAO.insert(vo);
 	}
+
+	@Override
+	public int getSearchCount(String search_type, String search) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

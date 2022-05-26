@@ -31,10 +31,16 @@
 			member
 		where
 			<choose>
-				<when test="result != ''">
-					memberId = '%'||#{search}||'%'
-				or
-					memberName = '%'||#{search}||'%'
+				<when test='search_type == "n"'>
+					memberName like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "i"'>
+					memberId like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "ni"'>
+					memberName like '%'||#{search}||'%'
+					or
+					memberId like '%'||#{search}||'%'
 				</when>
 				<otherwise>
 				</otherwise>
@@ -52,26 +58,32 @@
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">
-		select rno, memberId, memberName, memberBirth, memberDate
+		select rno, memberId, memberName, memberBirth, memberAuthority, memberDate
 		from
-			(select rownum rno, memberId, memberName, memberBirth, to_char(memberDate,'yy-mm-dd') memberDate
+			(select rownum rno, memberId, memberName, memberBirth, memberAuthority, to_char(memberDate,'yy-mm-dd') memberDate
 		from
-			(select memberId, memberName, memberBirth, memberDate from member order by memberDate desc))
+			(select memberId, memberName, memberBirth, memberAuthority, memberDate from member order by memberDate desc))
 		where
 			rno between #{start} and #{end}
 	</select>
 	
 	<select id="searchList" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">
-		select rno, memberId, memberName, memberBirth, memberDate
+		select rno, memberId, memberName, memberBirth, memberAuthority, memberDate
 		from
-			(select rownum rno, memberId, memberName, memberBirth, to_char(memberDate,'yy-mm-dd') memberDate
+			(select rownum rno, memberId, memberName, memberBirth, memberAuthority, to_char(memberDate,'yy-mm-dd') memberDate
 		from
-			(select memberId, memberName, memberBirth, memberDate from member order by memberDate desc))
+			(select memberId, memberName, memberBirth, memberAuthority, memberDate from member order by memberDate desc))
 		where
 			(rno between #{start} and #{end})
 			and
 			<choose>
-				<when test="memberName != ''">
+				<when test='search_type == "n"'>
+					memberName like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "i"'>
+					memberId like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "ni"'>
 					memberName like '%'||#{search}||'%'
 					or
 					memberId like '%'||#{search}||'%'
@@ -83,8 +95,8 @@
 	
 	<select id="memberContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminMemberVO">
 		select
-			memberId, memberName, memberBirth, memberTel, memberEmail,
-			memberAddress, memberPassHint, memberPassHintAnswer,
+			memberId, memberName, memberBirth, memberTel, memberEmail, memberGender,
+			memberAddress, memberAuthority, memberPassHint, memberPassHintAnswer,
 			postcode, address, detailAddress, extraAddress
 		from
 			member
@@ -155,5 +167,13 @@
 		where
 			memberId = #{memberId}
 	</delete>
+	
+	<update id="chkMberUpdate" parameterType="java.lang.String">
+		update member
+		set
+			memberAuthority = #{memberAuthority}
+		where
+			memberId = #{memberId}
+	</update>
 	
 </mapper>

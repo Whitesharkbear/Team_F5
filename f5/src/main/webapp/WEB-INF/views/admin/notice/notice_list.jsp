@@ -10,20 +10,21 @@
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
 <script type="text/javascript">
-function search() {
-	
-	var search = $("#searchbar").val();
-	
-	if ( search == "" ) {
-		
-		alert("검색어를 입력해주세요.");
-		$("#searchbar").focus();
-	} else {
-		
-		alert("검색하신 "+ search +" 결과입니다.");
-	}
-}
 $(document).ready(function(){
+	
+		var boardIdx = "${ vo.boardIdx }";
+	$(".search_btn").click(function(){
+		
+		var search = $("#searchbar").val();
+		var search_type = $(".search_type").val();
+		
+		if ( $("#searchbar").val() == "" ) {
+			
+			alert("검색어를 입력해주세요.");
+		} else {
+			location.href="http://localhost:9000/f5/admin/notice_search_list.do?search="+search+"&search_type="+search_type;
+		}
+	});
 	
 	var pager = jQuery('#ampaginationsm').pagination({
 		
@@ -31,6 +32,8 @@ $(document).ready(function(){
 	    totals: '${ dbCount }',	// total pages	
 	    page: '${ reqPage }',		// initial page		
 	    pageSize: '${ pageSize }',	// max number items per page
+	    search_type : '${search_type}',
+	    search : '${search}',
 	
 	    // custom labels		
 	    lastText: '&raquo;&raquo;', 		
@@ -75,7 +78,7 @@ $(document).ready(function(){
 							<th>번호</th><th>게시자</th><th>제목</th><th>날짜</th><th>조회수</th>
 						</tr>
 						<c:forEach var="vo" items="${ list }">
-							<tr>
+							<tr class="boardList">
 								<td>${ vo.rno }</td>
 								<td>${ vo.memberId }</td>
 								<td><a href="notice_content.do?idx=${ vo.boardIdx }&rno=${ vo.rno }">${ vo.boardTitle }</a></td>
@@ -85,10 +88,16 @@ $(document).ready(function(){
 						</c:forEach>
 					</table>
 					<div class="search">
+						<select class="search_type">
+								<option value="t" <c:if test="${ search_type eq 't' }">selected</c:if>>제목</option>
+								<option value="c" <c:if test="${ search_type eq 'c' }">selected</c:if>>내용</option>
+								<option value="w" <c:if test="${ search_type eq 'w' }">selected</c:if>>작성자</option>
+								<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
+						</select>
 						<div class="search_text">
 							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
-							<button type="button" class="search_btn" onclick="search()">검색</button>
+							<button type="button" class="search_btn">검색</button>
 						</div>
 					</div>
 					<div class="paging">

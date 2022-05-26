@@ -31,9 +31,10 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		return adminMemberDAO.execTotalCount();
 	}
 	
-	public int getSearchCount(String search) {
+	@Override
+	public int getSearchCount(String search_type, String search) {
 		
-		return adminMemberDAO.searchCount(search);
+		return adminMemberDAO.searchCount(search_type, search);
 	}
 	
 	@Override
@@ -75,8 +76,14 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	}
 
 	@Override
-	public List<Object> getSearchListResult(int startCount, int endCount, String search) {
+	public List<Object> getSearchListResult(int startCount, int endCount, String search, String search_type) {
 		
-		return adminMemberDAO.select(startCount, endCount, search);
+		return adminMemberDAO.select(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public int chkMberUpdate(String id, String auth) {
+		
+		return adminMemberDAO.chkMberUpdate(id, auth);
 	}
 }

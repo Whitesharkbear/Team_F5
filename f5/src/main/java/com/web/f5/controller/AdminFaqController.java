@@ -30,11 +30,11 @@ public class AdminFaqController {
 		
 		Map<String, String> param = pageService.getPageResult(rpage, "faq", adminFaqService);
 			
-			int startCount = Integer.parseInt( param.get("start") );
-			int endCount = Integer.parseInt( param.get("end") );
-			
-			List<Object> olist = adminFaqService.getListResult(startCount, endCount);
-			ArrayList<AdminFaqVO> list = new ArrayList<AdminFaqVO>();
+		int startCount = Integer.parseInt( param.get("start") );
+		int endCount = Integer.parseInt( param.get("end") );
+		
+		List<Object> olist = adminFaqService.getListResult(startCount, endCount);
+		ArrayList<AdminFaqVO> list = new ArrayList<AdminFaqVO>();
 		
 		for ( Object obj : olist ) {
 			
@@ -65,7 +65,7 @@ public class AdminFaqController {
 	public ModelAndView faq_write( AdminFaqVO vo ) {
 		
 		ModelAndView mv = new ModelAndView();
-		
+		vo.setFaqContent(vo.getFaqContent().replaceAll("\r\n", "<br>"));
 		int result = adminFaqService.getInsertResult(vo);
 		
 		if ( result == 1 ) {
@@ -84,7 +84,7 @@ public class AdminFaqController {
 		
 		ModelAndView mv = new ModelAndView();
 		AdminFaqVO vo = (AdminFaqVO) adminFaqService.getContent(idx);
-		
+		vo.setFaqContent(vo.getFaqContent().replaceAll("<br>", "\r\n"));
 		mv.addObject("vo", vo);
 		mv.addObject("rno", rno);
 		
@@ -97,7 +97,7 @@ public class AdminFaqController {
 	public ModelAndView faq_update(AdminFaqVO vo) {
 		
 		ModelAndView mv = new ModelAndView();
-		
+		vo.setFaqContent(vo.getFaqContent().replaceAll("\r\n", "<br>"));
 		int result = adminFaqService.getUpdateResult(vo);
 		
 		if ( result == 1 ) {

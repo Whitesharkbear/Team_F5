@@ -57,4 +57,10 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		
 		return adminBoardDAO.select();
 	}
+
+	@Override
+	public int getSearchCount(String search_type, String search) {
+		
+		return adminBoardDAO.searchCount(search_type, search);
+	}
 }

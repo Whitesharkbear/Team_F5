@@ -28,7 +28,7 @@ public class AdminBoardController {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		Map<String, String> param = pageService.getPageResult(rpage, "board", adminBoardService);
+		Map<String, String> param = pageService.getPageResult(rpage, "admin_Board", adminBoardService);
 		
 		int startCount = Integer.parseInt(param.get("start"));
 		int endCount = Integer.parseInt(param.get("end"));

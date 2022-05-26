@@ -81,11 +81,11 @@
 							<td><label>휴대전화</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" id="tel" name="memberTel" readonly="readonly"
+							<td><input type="text" id="tel" name="memberTel"
 							value="${ vo.memberTel }"></td>
 						</tr>
 						<tr>
-							<td><label>본인확인 이메일(선택)</label></td>
+							<td><label>본인확인 이메일</label></td>
 						</tr>
 						<tr>
 							<td><input type="text" id="email" name="memberEmail"

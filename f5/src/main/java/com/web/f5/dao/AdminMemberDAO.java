@@ -32,10 +32,10 @@ public class AdminMemberDAO implements AdminObjDAO {
 		return sqlSession.selectOne(namespace + ".count");
 	}
 	
-	public int searchCount(String search) {
-		
+	public int searchCount(String search_type, String search) {
 		Map param = new HashMap<String, String>();
 		param.put("search", search);
+		param.put("search_type", search_type);
 		
 		return sqlSession.selectOne(namespace + ".searchCount", param);
 	}
@@ -83,13 +83,23 @@ public class AdminMemberDAO implements AdminObjDAO {
 		return sqlSession.selectOne(namespace + ".mberTodayCnt");
 	}
 
-	public List<Object> select(int startCount, int endCount, String search) {
+	public List<Object> select(int startCount, int endCount, String search, String search_type) {
 		
 		Map param = new HashMap<String, String>();
 		param.put("start", startCount);
 		param.put("end", endCount);
 		param.put("search", search);
+		param.put("search_type", search_type);
 		
 		return sqlSession.selectList(namespace + ".searchList", param);
+	}
+	
+	public int chkMberUpdate(String id, String auth) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("memberId", id);
+		param.put("memberAuthority", auth);
+		
+		return sqlSession.update(namespace + ".chkMberUpdate", param);
 	}
 }

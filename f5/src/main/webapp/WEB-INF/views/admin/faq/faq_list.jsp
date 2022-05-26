@@ -12,6 +12,9 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	
+	var comment = $(".faqContent").val();
+	comment = comment.replace(/(?:\r\n|\r|\n)/g, '<br>');
+	
 	var pager = jQuery('#ampaginationsm').pagination({
 		
 	    maxSize: 7,	    		// max page size
@@ -63,7 +66,7 @@ $(document).ready(function(){
 						<c:forEach var="vo" items="${ list }">
 							<details>
 							<summary>${ vo.faqTitle }</summary>
-							<p><span>${ vo.faqContent }</span></p>
+							<p><span class="faqContent">${ vo.faqContent }</span></p>
 							<div class="faq_btn">
 								<a href="faq_update.do?idx=${ vo.faqIdx }&rno=${ vo.rno }"><button type="button" class="update">수정</button></a>
 								<a href="faq_delete.do?idx=${ vo.faqIdx }&rno=${ vo.rno }"><button type="button" class="delete">삭제</button></a>

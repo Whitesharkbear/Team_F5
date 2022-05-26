@@ -3,39 +3,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | 문의상세</title>
-<link href="/f5/resources/css/admin/question/question_content.css" rel="stylesheet" />
+<title>관리자 | 문의작성</title>
+<link href="/f5/resources/css/admin/question/question_write.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript">
-function list() {
-	location.href="question_list.do";
-}
-</script>
+<script type="text/javascript" src="/f5/resources/js/admin/question/question.js"></script>
 </head>
 <body>
 	<jsp:include page="../header.jsp" />
 	<div class="container">
 		<div class="row">
 			<div id="content">
-				<h4>문의관리 | 상세페이지</h4>
-				<table class="question_table">
+				<h4>문의관리 | 문의작성</h4>
+				<form action="question_write.do" name="questionWrite" method="post">
+				<table id="question_table">
 					<tr>
 						<td><label>제목</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="question_title" value="${ vo.questionTitle }" readonly="readonly"></td>
-					</tr>
-					<tr>
-						<td><label>보낸사람</label></td>
-					</tr>
-					<tr>
-						<td><input type="text" id="sender" value="${ vo.memberId }"></td>
+						<td><input type="text" id="question_title" name="questionTitle"></td>
 					</tr>
 					<tr>
 						<td><label>내용</label></td>
 					</tr>
 					<tr>
-						<td><textarea rows="10" id="question_content">${ vo.questionContent }</textarea></td>
+						<td><textarea rows="10" id="question_content" name="questionContent"></textarea></td>
 					</tr>
 					<tr>
 						<td><label>파일첨부</label></td>
@@ -45,9 +36,10 @@ function list() {
 					</tr>
 				</table>
 				<div class="question_btn">
-					<a href="question_receive.do?idx=${ vo.questionIdx }&rno=${ rno }"><button class="question_receiver">답장하기</button></a>
+					<button type="submit" class="question_receive">보내기</button>
 					<button class="question_list" onclick="list()">목록</button>
 				</div>
+				</form>
 			</div>
 		</div>
 	</div>

@@ -9,6 +9,31 @@
 		select count(*) from board where boardCategory = '공지'
 	</select>
 	
+	<select id="searchCount" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from
+			board
+		where
+			<choose>
+				<when test='search_type == "t"'>
+					boardTitle like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "c"'>
+					boardContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "tc"'>
+					boardTitle like '%'||#{search}||'%'
+					or
+					boardContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "w"'>
+					memberId like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+	</select>
+	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
 		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
 		from
@@ -17,6 +42,35 @@
 			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
 		where
 			(rno between #{start} and #{end}) and (boardCategory = '공지')
+	</select>
+	
+	<select id="searchList" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
+		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
+		from
+			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+		from
+			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
+		where
+			(rno between #{start} and #{end}) and (boardCategory = '공지')
+			and
+			<choose>
+				<when test='search_type == "t"'>
+					boardTitle like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "c"'>
+					boardContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "tc"'>
+					boardTitle like '%'||#{search}||'%'
+					or
+					boardContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "w"'>
+					memberId like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
 	</select>
 	
 	<select id="limitList" resultType="com.web.f5.vo.AdminNoticeVO">

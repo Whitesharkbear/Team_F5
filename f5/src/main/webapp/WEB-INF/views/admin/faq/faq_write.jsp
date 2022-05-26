@@ -9,6 +9,8 @@
 <script type="text/javascript">
 function register(){
 	
+	var comment = $(".faq_answer").val();
+	console.log(comment);
 	if ( $(".faq_title").val() == "" ) {
 		
 		alert("제목을 입력해주세요.");
@@ -20,7 +22,7 @@ function register(){
 	} else {
 		
 		if ( confirm("등록하시겠습니까?") ) {
-			
+			comment = comment.replace(/(?:\r\n|\r|\n)/g, '<br>');
 			faqWrite.submit();
 		} else {
 			

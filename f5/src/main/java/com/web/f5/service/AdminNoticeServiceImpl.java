@@ -17,7 +17,12 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 		
 		return adminNoticeDAO.execTotalCount();
 	}
-
+	
+	@Override
+	public int getSearchCount(String search_type, String search) {
+		
+		return adminNoticeDAO.searchCount(search_type, search);
+	}
 	@Override
 	public List<Object> getListResult(int startCount, int endCount) {
 		
@@ -56,5 +61,11 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	public List<AdminNoticeVO> getLimitList() {
 		
 		return adminNoticeDAO.select();
+	}
+
+	@Override
+	public List<Object> getSearchListResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminNoticeDAO.select(startCount, endCount, search, search_type);
 	}
 }

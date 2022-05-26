@@ -44,7 +44,7 @@ public class AdminFaqDAO implements AdminObjDAO {
 	public int insert(Object obj) {
 		
 		AdminFaqVO vo = (AdminFaqVO) obj;
-		
+		System.out.println("dao : " + vo.getFaqContent());
 		return sqlSession.insert(namespace + ".faqInsert", vo);
 	}
 

@@ -80,9 +80,7 @@
                         <li class="nav-item" class = "nav-litem"><a class="nav-link" aria-current="page" href="#">고객센터</a><div></div>
                     		<ul class ="nav-inner">
                     			<li><a href="http://localhost:9000/f5/faq_list.do">FAQ</a></li>
-                    			<li><a href="#">문의하기</a></li>
-                    			<li> </li>
-                    			<li> </li>
+                    			<li><a href="http://localhost:9000/f5/question_list.do">문의하기</a></li>
                     		</ul>
                     	</li>
 <!--                     	<li class="nav-item" class = "nav-litem"><a class="nav-link" href="#!">회원관리</a><div></div> -->

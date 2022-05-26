@@ -32,6 +32,14 @@ public class AdminBoardDAO implements AdminObjDAO {
 		return sqlSession.selectOne(namespace + ".count");
 	}
 
+	public int searchCount(String search_type, String search) {
+		Map param = new HashMap<String, String>();
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectOne(namespace + ".searchCount", param);
+	}
+	
 	@Override
 	public int insert(Object obj) {
 		
@@ -56,7 +64,7 @@ public class AdminBoardDAO implements AdminObjDAO {
 
 	@Override
 	public int delete(String idx) {
-		
+		System.out.println(idx);
 		return sqlSession.delete(namespace + ".boardDelete", idx);
 	}
 

@@ -25,13 +25,32 @@ public class AdminNoticeDAO implements AdminObjDAO {
 		
 		return sqlSession.selectList(namespace + ".list", param);
 	}
-
+	
+	public List<Object> select(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectList(namespace + ".searchList", param);
+	}
+	
 	@Override
 	public int execTotalCount() {
 		
 		return sqlSession.selectOne(namespace + ".count");
 	}
-
+	
+	public int searchCount(String search_type, String search) {
+		Map param = new HashMap<String, String>();
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectOne(namespace + ".searchCount", param);
+	}
+	
 	@Override
 	public int insert(Object obj) {
 		

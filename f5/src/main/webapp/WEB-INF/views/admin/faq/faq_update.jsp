@@ -23,7 +23,7 @@ function update(){
 		
 // 		submit();
 		if ( confirm("수정하시겠습니까?") ) {
-			
+			faqAnswer = faqAnswer.replace(/(?:\r\n|\r|\n)/g, '<br>');
 			faqUpdate.submit();
 		} else {
 			

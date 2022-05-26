@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
 import com.web.f5.service.AdminNoticeService;
 import com.web.f5.service.PageServiceImpl;
@@ -27,12 +29,12 @@ public class AdminNoticeController {
 	public ModelAndView admin_notice_list(String rpage) {
 		
 		ModelAndView mv = new ModelAndView();
-		
-		Map<String, String> param = pageService.getPageResult(rpage, "notice", adminNoticeService);
-		
-		int startCount = Integer.parseInt(param.get("start"));
-		int endCount = Integer.parseInt(param.get("end"));
-		
+			
+		Map<String, String> param = pageService.getPageResult(rpage, "admin_Notice", adminNoticeService);
+			
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			
 		List<Object> olist = adminNoticeService.getListResult(startCount, endCount);
 		ArrayList<AdminNoticeVO> list = new ArrayList<AdminNoticeVO>();
 		
@@ -51,12 +53,44 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
+	@RequestMapping ( value =  "/admin/notice_search_list.do", method = RequestMethod.GET )
+//	public String notice_search_list(String search, String search_type, String rpage) {
+	public ModelAndView notice_search_list(String search, String search_type, String rpage) {
+		
+		ModelAndView mv = new ModelAndView();
+//		String msg = "";
+		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "admin_Notice", adminNoticeService);
+		
+		int startCount = Integer.parseInt(param.get("start"));
+		int endCount = Integer.parseInt(param.get("end"));
+		
+		List<Object> olist = adminNoticeService.getSearchListResult(startCount, endCount, search, search_type);
+		ArrayList<AdminNoticeVO> list = new ArrayList<AdminNoticeVO>();
+		
+		for ( Object obj : olist ) {
+			
+			list.add( (AdminNoticeVO) obj );
+		}
+//		msg = "success";
+		mv.addObject("list", list);
+		mv.addObject("search_type", search_type);
+		mv.addObject("search", search);
+		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
+		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
+		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
+		
+		mv.setViewName("admin/notice/notice_list");
+		
+		return mv;
+//		return msg;
+	}
+	
 	@RequestMapping ( value = "/admin/notice_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_notice_content(String idx, String rno) {
 		
 		ModelAndView mv = new ModelAndView();
 		AdminNoticeVO vo = (AdminNoticeVO) adminNoticeService.getContent(idx);
-		
+		vo.setBoardContent(vo.getBoardContent().replace("<br>", "\r\n"));
 		mv.addObject("vo", vo);
 		mv.addObject("rno", rno);
 		
@@ -75,7 +109,7 @@ public class AdminNoticeController {
 	public ModelAndView admin_notice_write(AdminNoticeVO vo) {
 		
 		ModelAndView mv = new ModelAndView();
-		
+		vo.setBoardContent(vo.getBoardContent().replace("\r\n", "<br>"));
 		int result = adminNoticeService.getInsertResult(vo);
 		
 		if ( result == 1 ) {
@@ -94,7 +128,7 @@ public class AdminNoticeController {
 		
 		ModelAndView mv = new ModelAndView();
 		AdminNoticeVO vo = (AdminNoticeVO) adminNoticeService.getContent(idx);
-		
+		vo.setBoardContent(vo.getBoardContent().replace("<br>", "\r\n"));
 		mv.addObject("vo", vo);
 		mv.addObject("rno", rno);
 		
@@ -107,7 +141,7 @@ public class AdminNoticeController {
 	public ModelAndView admin_notice_update(AdminNoticeVO vo) {
 		
 		ModelAndView mv = new ModelAndView();
-		
+		vo.setBoardContent(vo.getBoardContent().replace("\r\n", "<br>"));
 		int result = adminNoticeService.getUpdateResult(vo);
 		
 		if ( result == 1 ) {

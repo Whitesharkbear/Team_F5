@@ -1,6 +1,7 @@
 package com.web.f5.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.web.f5.vo.AdminMemberVO;
 
@@ -15,5 +16,6 @@ public interface AdminMemberService extends ObjService {
 	List<AdminMemberVO> getLimitList();
 	int getmberTotalCnt();
 	int getmberTodayCnt();
-	List<Object> getSearchListResult(int startCount, int endCount, String search);
+	List<Object> getSearchListResult(int startCount, int endCount, String search, String search_type);
+	int chkMberUpdate(String id, String auth);
 }

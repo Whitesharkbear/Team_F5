@@ -14,31 +14,23 @@
 function search() {
 	
 	var search = $("#searchbar").val();
+	var search_type = $(".search_type").val();
 	
 	if ( search == "" ) {
-		
+		console.log("${vo.memberId}");
 		alert("검색할 사용자를 입력해주세요.");
 		$("#searchbar").focus();
 	} else {
 		
-		location.href="http://localhost:9000/f5/admin/member_search_list.do?search="+search;
+		location.href="http://localhost:9000/f5/admin/member_list.do?search="+search + "&search_type=" + search_type;
+// 		location.href="http://localhost:9000/f5/admin/member_search_list.do?search="+search + "&search_type=" + search_type;
 	}
 }
 
 $(document).ready(function(){
 	
-// 	$(".black_list").click(function(){
-		
-// 		if ( $(this).val() == "0" ) {
-			
-// 			$(this).css('background-color', 'orange').text("석방");
-// 			$(this).val(1);
-// 		} else {
-			
-// 			$(this).css('background-color', 'brown').text("추가");
-// 			$(this).val(0);
-// 		}
-// 	});
+	var search = $("#searchbar").val();
+	var search_type = $(".search_type").val();
 	
 	var pager = jQuery('#ampaginationsm').pagination({
 		
@@ -46,6 +38,9 @@ $(document).ready(function(){
 	    totals: '${ dbCount }',	// total pages	
 	    page: '${ reqPage }',		// initial page		
 	    pageSize: '${ pageSize }',	// max number items per page
+	    
+	    search : '${search}',
+	    search_type : '${search_type}',
 	
 	    // custom labels		
 	    lastText: '&raquo;&raquo;', 		
@@ -55,12 +50,44 @@ $(document).ready(function(){
 			     
 	    btnSize:'sm'	// 'sm'  or 'lg'		
 	});
+	if ( search == "" || search_type == "" ) {
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/f5/admin/member_list.do?rpage="+e.page);         
+	    });
+	} else {
+		
+		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
+	           $(location).attr('href', "http://localhost:9000/f5/admin/member_list.do?rpage="+e.page + "&search_type=" + search_type + "&search=" + search);         
+// 	           $(location).attr('href', "http://localhost:9000/f5/admin/member_search_list.do?rpage="+e.page + "&search_type=" + search_type + "&search=" + search);         
+	    });
+	}
 	
-	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/f5/admin/member_list.do?rpage="+e.page);         
-    });
+	
+	$(".memberAuthority").change(function(){
+		
+		var memberAuthority = $(this).val();
+		var memberId = $(this).attr("id");
+		
+		$.ajax({
+			url : "chkMberAuthUpdate.do?id=" + memberId + "&auth=" + memberAuthority,
+			success : function(msg) {
+				
+				if ( msg == "success" ) {
+					
+					alert("수정이 완료되었습니다.");
+				} else {
+					
+					alert("에러");
+				}
+			}
+		});
+	});
 });
+
+
 </script>
 </head>
 <body>
@@ -72,23 +99,22 @@ $(document).ready(function(){
 					<div class="register">
 						<a href="member_insert.do"><button type="button" class="register_btn">일반회원 추가</button></a>
 					</div>
-					<table id="member_table">
+						<table id="member_table">
 							<colgroup>
 								<!-- 번호 -->
-								<col width="10%">
 								<!-- 이름 -->
 								<col width="15%">
 								<!-- 아이디 -->
-								<col width="15%">
-								<!-- 생년월일 -->
 								<col width="20%">
+								<!-- 생년월일 -->
+								<col width="25%">
 								<!-- 회원권한 -->
 								<col width="20%">
 								<!-- 탈퇴 -->
 								<col width="15%">
 							</colgroup>
 							<tr>
-								<th>번호</th><th>이름</th><th>아이디</th><th>생년월일</th><th>회원권한</th><th>블랙리스트</th>
+								<th>번호</th><th>이름</th><th>아이디</th><th>생년월일</th><th>회원권한</th>
 							</tr>
 								<c:forEach var="vo" items="${ list }">
 								<tr>
@@ -97,17 +123,24 @@ $(document).ready(function(){
 									<td><a href="member_content.do?id=${ vo.memberId }&rno=${ vo.rno}">${ vo.memberId }</a></td>
 									<td>${ vo.memberBirth }</td>
 									<td>
-									<label>일반회원</label>
-									</td>
-									<td>
-										<button value="0" class="black_list">추가</button>
+										<select name="memberAuthority" class="memberAuthority" id="${ vo.memberId }">
+											<option value="0" <c:if test="${ vo.memberAuthority eq '0' }">selected</c:if>>일반회원</option>
+											<option value="1" <c:if test="${ vo.memberAuthority eq '1' }">selected</c:if>>CEO</option>
+											<option value="2" <c:if test="${ vo.memberAuthority eq '2' }">selected</c:if>>블랙리스트</option>
+											<option value="3" <c:if test="${ vo.memberAuthority eq '3' }">selected</c:if>>관리자</option>
+										</select>
 									</td>
 								</tr>
 								</c:forEach>
-					</table>
+						</table>
 					<div class="search">
 						<div class="search_text">
-							<input type="text" id="searchbar" 
+							<select class="search_type">
+								<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>이름</option>
+								<option value="i" <c:if test="${ search_type eq 'i' }">selected</c:if>>아이디</option>
+								<option value="ni" <c:if test="${ search_type eq 'ni' }">selected</c:if>>이름/아이디</option>
+							</select>
+							<input type="text" id="searchbar" value="${ search }"
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
 							<button type="button" class="search_btn" onclick="search()">검색</button>
 						</div>

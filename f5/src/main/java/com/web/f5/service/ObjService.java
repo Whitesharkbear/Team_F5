@@ -10,4 +10,5 @@ public interface ObjService {
 	int getUpdateResult(Object obj);
 	int getDeleteResult(String id);
 	int getInsertResult(Object obj);
+	int getSearchCount(String search_type, String search);
 }

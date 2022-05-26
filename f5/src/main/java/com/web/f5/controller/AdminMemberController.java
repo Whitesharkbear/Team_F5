@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.web.f5.service.AdminMemberService;
@@ -24,16 +25,35 @@ public class AdminMemberController {
 	private PageServiceImpl pageService;
 
 	@RequestMapping ( value = "/admin/member_list.do", method = RequestMethod.GET )
-	public ModelAndView admin_member_list(String rpage) {
+	public ModelAndView admin_member_list(String rpage, String search, String search_type
+			) {
 		
 		ModelAndView mv = new ModelAndView();
-		
-		Map<String, String> param = pageService.getPageResult(rpage, "member", adminMemberService);
-		
-		int startCount = Integer.parseInt( param.get("start") );
-		int endCount = Integer.parseInt( param.get("end") );
-		
-		List<Object> olist = adminMemberService.getListResult(startCount, endCount);
+		Map<String, String> param = null;
+		List<Object> olist = null;
+		if ( search == null && search_type == null ) {
+			
+			param = pageService.getPageResult(rpage, "admin_Member", adminMemberService);
+			
+			int startCount = Integer.parseInt( param.get("start") );
+			int endCount = Integer.parseInt( param.get("end") );
+			
+			olist = adminMemberService.getListResult(startCount, endCount);
+		} else {
+			
+			param = pageService.getSearchResult(search_type, search, rpage,  "admin_Member", adminMemberService);
+			
+			int startCount = Integer.parseInt( param.get("start") );
+			int endCount = Integer.parseInt( param.get("end") );
+
+			olist = adminMemberService.getSearchListResult(startCount, endCount, search, search_type);
+		}
+//		Map<String, String> param = pageService.getPageResult(rpage, "member", adminMemberService);
+//		
+//		int startCount = Integer.parseInt( param.get("start") );
+//		int endCount = Integer.parseInt( param.get("end") );
+//		
+//		List<Object> olist = adminMemberService.getListResult(startCount, endCount);
 		ArrayList<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
 		
 		for ( Object obj : olist ) {
@@ -42,6 +62,8 @@ public class AdminMemberController {
 		}
 		
 		mv.addObject("list", list);
+		mv.addObject("search_type", search_type);
+		mv.addObject("search", search);
 		mv.addObject("dbCount", Integer.parseInt( param.get("dbCount") ));
 		mv.addObject("pageSize", Integer.parseInt( param.get("pageSize") ));
 		mv.addObject("reqPage", Integer.parseInt( param.get("reqPage") ));
@@ -51,33 +73,35 @@ public class AdminMemberController {
 		return mv;
 	}
 	
-	@RequestMapping ( value = "/admin/member_search_list.do", method = RequestMethod.GET )
-	public ModelAndView admin_member_search_list(String rpage, String search) {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		Map<String, String> param = pageService.getSearchResult(search, rpage,  "member", adminMemberService);
-		
-		int startCount = Integer.parseInt( param.get("start") );
-		int endCount = Integer.parseInt( param.get("end") );
-
-		List<Object> olist = adminMemberService.getSearchListResult(startCount, endCount, search);
-		ArrayList<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
-		
-		for ( Object obj : olist ) {
-			
-			list.add( (AdminMemberVO) obj );
-		}
-		
-		mv.addObject("list", list);
-		mv.addObject("dbCount", Integer.parseInt( param.get("dbCount") ));
-		mv.addObject("pageSize", Integer.parseInt( param.get("pageSize") ));
-		mv.addObject("reqPage", Integer.parseInt( param.get("reqPage") ));
-		
-		mv.setViewName("admin/member/member_list");
-		
-		return mv;
-	}
+//	@RequestMapping ( value = "/admin/member_search_list.do", method = RequestMethod.GET )
+//	public ModelAndView admin_member_search_list(String rpage, String search, String search_type) {
+//		
+//		ModelAndView mv = new ModelAndView();
+//		
+//		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage,  "member", adminMemberService);
+//		
+//		int startCount = Integer.parseInt( param.get("start") );
+//		int endCount = Integer.parseInt( param.get("end") );
+//
+//		List<Object> olist = adminMemberService.getSearchListResult(startCount, endCount, search, search_type);
+//		ArrayList<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
+//		
+//		for ( Object obj : olist ) {
+//			
+//			list.add( (AdminMemberVO) obj );
+//		}
+//		
+//		mv.addObject("list", list);
+//		mv.addObject("search_type", search_type);
+//		mv.addObject("search", search);
+//		mv.addObject("dbCount", Integer.parseInt( param.get("dbCount") ));
+//		mv.addObject("pageSize", Integer.parseInt( param.get("pageSize") ));
+//		mv.addObject("reqPage", Integer.parseInt( param.get("reqPage") ));
+//		
+//		mv.setViewName("admin/member/member_list");
+//		
+//		return mv;
+//	}
 	
 	@RequestMapping ( value = "/admin/member_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_member_content(String id, String rno) {
@@ -164,6 +188,24 @@ public class AdminMemberController {
 		}
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping ( value = "/admin/chkMberAuthUpdate.do", method = RequestMethod.GET )
+	public String chk_mber_auth_update(String id, String auth) {
+		
+		String msg = "";
+		int result = adminMemberService.chkMberUpdate(id, auth);
+		System.out.println(result);
+		if ( result == 1 ) {
+			
+			msg = "success";
+		} else {
+			
+			msg = "fail";
+		}
+		
+		return msg;
 	}
 	
 	@RequestMapping ( value = "/admin/ceo_member_list.do", method = RequestMethod.GET )
