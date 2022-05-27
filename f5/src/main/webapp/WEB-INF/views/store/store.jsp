@@ -91,13 +91,14 @@
                     <div class="card mb-4">
                         <div class="card-header">Search</div>
                         <div class="card-body">
+						
 						<!-- 지도 css -->          
                   
                <style>
                  
                  .customoverlay {position:relative;bottom:37px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;float:left;}
                  .customoverlay:nth-of-type(n) {border:0; box-shadow:0px 1px 2px #888;}
-                 .customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #af50d9;background: #af50d9 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
+                 .customoverlay a {display:block;text-decoration:none;color:#000;text-align:center;border-radius:6px;font-size:14px;font-weight:bold;overflow:hidden;background: #ffc107;background: #ffc107 url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/arrow_white.png) no-repeat right 14px center;}
                  .customoverlay .title {display:block;text-align:center;background:#fff;margin-right:35px;padding:5px 5px;font-size:14px;font-weight:bold;}
                  .customoverlay:after {content:'';position:absolute;margin-left:-12px;left:50%;bottom:-12px;width:22px;height:12px;background:url('https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}                 
                  
@@ -116,8 +117,8 @@
 
                  var map = new kakao.maps.Map(mapContainer, mapOption);
 
-                 var imageSrc = 'http://localimg.daum-img.net/localimages/07/2009/map/icon/blog_icon01_on.png', // 마커이미지의 주소입니다    
-                 imageSize = new kakao.maps.Size(40, 40), // 마커이미지의 크기입니다
+                 var imageSrc = '/f5/resources/images/mapicon.png', // 마커이미지의 주소입니다    
+                 imageSize = new kakao.maps.Size(30, 40), // 마커이미지의 크기입니다
                  imageOption = {offset: new kakao.maps.Point(20, 25)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
 
                  // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
@@ -156,6 +157,7 @@
                     </div>
                 
                 <!-- 지도 끝 -->    	
+                   
                     <!-- Categories widget-->
                     <div class="card mb-4">
                         <div class="card-header">Categories</div>
