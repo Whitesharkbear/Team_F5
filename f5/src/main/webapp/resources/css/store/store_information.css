@@ -351,8 +351,13 @@ th{
 		margin: 20px;
 		color
 	}
+	.store-review{
+		background-color:antiquewhite;
+		width: 60%;
+	}
 	.store-review-content{
 		margin-left: 20px;
+		
 	}
 
 	td{

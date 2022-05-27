@@ -187,29 +187,30 @@
 								</div>
 							</div>
 						</div>
+						<br><hr>
 					</form>
 					<!-- 모달끝  -->
 				</div>
 				<br><hr><br>
 				<h2 class ="font-com" id="delivery">주문</h2>
-				<h4>집에서 즐기세요</h4>
+				<h4>Order Product</h4>
 				<div class="delivery">
 					<div class="goods">
 						<a><img class="store-intro-img"
-							src="/f5/resources/images/sample5.jpg"></a>
-						<div>볶음밥</div>
+							src="/f5/resources/images/디저트3.jpeg"></a>
+						<div>도넛</div>
+						<div>100원</div>
+					</div>
+					<div class="goods">
+						<a><img class="store-intro-img"
+							src="/f5/resources/images/디저트1.jpeg"></a>
+						<div>팬케이크</div>
 						<div>10원</div>
 					</div>
 					<div class="goods">
 						<a><img class="store-intro-img"
-							src="/f5/resources/images/sample5.jpg"></a>
-						<div>볶음밥</div>
-						<div>10원</div>
-					</div>
-					<div class="goods">
-						<a><img class="store-intro-img"
-							src="/f5/resources/images/sample5.jpg"></a>
-						<div>볶음밥</div>
+							src="/f5/resources/images/디저트4.jpeg"></a>
+						<div>뻥튀기</div>
 						<div>10원</div>
 					</div>
 				</div>
