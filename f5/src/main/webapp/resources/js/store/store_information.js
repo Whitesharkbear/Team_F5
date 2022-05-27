@@ -1,5 +1,5 @@
  $(document).ready(function() {
-	img_slide()
+	//img_slide();
     calendarInit();
     show_review_page(1,storeIdx);
     get_average_score(storeIdx);
@@ -210,32 +210,10 @@ function reservation_count_check(rDate,storeIdx,rTime){
 			}
 	});
 }
-function img_slide(){
-   		var k=0;
-		var start_x;
-		var end_x;
-		var move_x;
-   		var store_intro_img_list =[];
-   		var move_width = -(k*310);
-		img_bar();
-   		
-   		
-   		function img_bar(){
-		for(var i=1; i<6; i++){
-			store_intro_img_list.push({"img":"/f5/resources/images/sample"+i+".jpg"});
-		}
-		var img_slider = "";
-		img_slider +="<ul class ='store-intro-img-ul'>";
+/****************
+	이미지슬라이드
+*************/
 
-		for(var i=1; i<Object.keys(store_intro_img_list).length+1; i++){
-			img_slider+="<li><a class = 'img-cover'><img class = 'store-intro-img' src = '/f5/resources/images/sample"+i+".jpg'></a></li>";
-		}
-		
-		img_slider += "</ul>";
-		$('#img-div').empty();
-		$('#img-div').append(img_slider);
-
-	}
 
 	$(document).on('click','.button_next',function(){
 		if(k!=Object.keys(store_intro_img_list).length-3){
@@ -251,14 +229,7 @@ function img_slide(){
 		}
 	});
 	
-	if(matchMedia("screen and (max-width: 768px)").matches){
-	var imgdiv = document.getElementById('img-div');
-	imgdiv.addEventListener('touchstart',touch_start);
-	imgdiv.addEventListener('touchend',touch_end);
-	imgdiv.addEventListener('touchmove',touch_move);
-	function touch_start(event){
-		start_x = (event.touches[0].pageX)+move_width;
-	};
+	
 
 	function touch_end(event) {
 	  end_x = event.changedTouches[0].pageX;
@@ -290,13 +261,13 @@ function img_slide(){
 			}
 		}
 	};
-	}
+	/* } */
 	window.onresize = function(event){
 		k=0;
 		$('#img-div').css({'transform':'translate(0px,0px)'});
 	};
 	
-};
+
 
 function show_review_page(rpage,storeIdx){
 		if(rpage == 1){

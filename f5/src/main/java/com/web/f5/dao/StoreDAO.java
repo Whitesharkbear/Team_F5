@@ -21,8 +21,9 @@ public class StoreDAO {
 	public int insert(StoreVO vo) {
 		return sqlSession.insert(namespace+".insert",vo);
 	}
-	public StoreVO select(String idx) {
-		return sqlSession.selectOne(namespace+".select",idx);
+	public StoreVO select(String storeIdx) {
+		return sqlSession.selectOne(namespace+".select",storeIdx);
+		
 	}
 	
 	public ArrayList<StoreVO> select(int startCount,int endCount) {
@@ -38,5 +39,12 @@ public class StoreDAO {
 	}
 	public StoreVO getMaxCount(String storeIdx) {
 		return sqlSession.selectOne(namespace+".getMaxCount",storeIdx);
+	}
+	
+	public int insertFile(StoreVO vo) {
+		return sqlSession.insert(namespace+".insertFile",vo);
+	}
+	public String getStoreIdx() {
+		return sqlSession.selectOne(namespace+".selectStoreIdx");
 	}
 }

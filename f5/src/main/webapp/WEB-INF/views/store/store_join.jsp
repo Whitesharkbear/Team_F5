@@ -13,14 +13,41 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#btnJoin').on('click',function(){
+			var filenumber = $('#file-number').val();
+			if(filenumber != 6){
+				for(var i=parseInt(filenumber); i<6; i++){
+					var str = "<input type='file' name = 'sFiles' value='' class = 'file-upload'>";
+					$('.file-selector-list').append(str);
+				}
+			}
 			store_join_form.submit();
 		});
-		$('#file-upload').on('change',function(){
-		        var filename = $(this)[0].files[0].name;
-		    $('#file-name-holder').val(filename);
+		drawFileSelector(1);
+		$(document).on('change','.file-upload',function(){
+			var fileName = $(this)[0].files[0].name;
+			$(this).siblings('.file-name-holder').val(fileName);
+			if(fileName != ""){
+				var filenumber = $('#file-number').val()
+				drawFileSelector(filenumber);
+			}
 		});
-		
 	});
+	function drawFileSelector(filenumber){
+		var filename = $('#file-name-holder-'+(String)(filenumber-1)).val();
+		if(filenumber != 1 && (filename == "" || filenumber == 6)){
+			
+		}else{
+			var str = "";
+			str =str +'<div class="file-add">';
+			str =str +'<input class="file-name-holder" id="file-name-holder-'+filenumber+'" disabled="disabled">';
+			str =str +'<label for="file-upload-'+filenumber+'" class="file-label" id=file-label-"'+filenumber+'">+</label>';
+			str =str +'<input type="file" class="file-upload" id="file-upload-'+filenumber+'" name = "sFiles"></div>';
+			if(filenumber != 6){
+				$('#file-number').val(parseInt(filenumber)+1);
+				$('.file-selector-list').append(str);
+			}
+		}
+	}
 </script>
 <style type="text/css">
 	.store-table tr th {
@@ -31,15 +58,19 @@
 	.store-join-price td{
 		width : 30%;
 	}
-	#file-upload{
+	.file-upload{
 		display: none;
 	}
-	#file-name-holder{
-		width : 50%;
+	.file-name-holder{
+		-webkit-appearance: none;
+  		-moz-appearance: none;
+  		appearance: none;
+  		
 	}
-	#file-label{
+	.file-label{
 		margin-left:10px;
 	}
+	
 </style>
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
@@ -68,7 +99,7 @@
         </colgroup>
         	<tr>
         		<td><img src="resources/images/user.png"></td>
-        		<td rowspan="2"><h1>Username님, 환영합니다!</h1></td>
+        		<td rowspan="2"><h1>${sessionScope.memberId } 님 환영합니다~</h1></td>
         	</tr>
         	<tr>
         		<td style="text-align: center">
@@ -80,7 +111,7 @@
         
         <div id="table-wrap">
             <!-- content-->
-             <form name = "store_join_form" action="store_join.do" method="post">
+             <form name = "store_join_form" action="store_join.do" method="post" enctype="multipart/form-data">
             <table class="store-table">
             <colgroup>
             	<col width="30%">
@@ -163,16 +194,15 @@
             	<tr><th colspan="5">파일첨부</th></tr>
             	<tr>
             		<td colspan="5">
-            			<div class="file-add">
-            				<input id="file-name-holder">
-							<label for="file-upload" id="file-label">파일첨부</label>
-							<input type="file" id="file-upload">
+            		<input type="hidden" id="file-number" value="1">
+            			<div class="file-selector-list">
             			</div>
+            			<div>파일업로드는 최대 5개까지 가능합니다.</div>
             		</td>
             	</tr>
             
             </table>
-			</form>
+			
 
 	       <!-- JOIN BTN-->
 	       <div class="btn_area">
@@ -180,7 +210,7 @@
 	               <span>변경하기</span>
 	           </button>
 	       </div>
-
+		</form>
                 
 
             

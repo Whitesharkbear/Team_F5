@@ -11,13 +11,49 @@
 <link href="/f5/resources/css/store/store_information.css"
 	rel="stylesheet" />
 <script type = "text/javascript" src="/f5/resources/js/jquery-3.6.0.min.js"></script>
-<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<%-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> --%>
 <script type = "text/javascript" src="/f5/resources/js/store/store_information.js"></script>
 
 
 <script type="text/javascript">
 	var sessionmemberId = '${sessionScope.memberId}'
 	var storeIdx = '${vo.storeIdx}'
+	var store_intro_img_list = ['${vo.suFile1}','${vo.suFile2}','${vo.suFile3}','${vo.suFile4}','${vo.suFile5}'];
+   	var k=0;
+	var start_x;
+	var end_x;
+	var move_x;
+   	var move_width = -(k*310);
+	$(document).ready(function(){
+		
+/* 		img_bar(); */
+   		
+   		/* function img_bar(){ */
+	/*	for(var i=1; i<6; i++){
+			store_intro_img_list.push({"img":"/f5/resources/images/sample"+i+".jpg"});
+		}*/
+		var img_slider = "";
+		img_slider +="<ul class ='store-intro-img-ul'>";
+		for(var i=0; i<Object.keys(store_intro_img_list).length; i++){
+			img_slider+="<li><a class = 'img-cover'><img class = 'store-intro-img' src='http://localhost:9000/f5/resources/upload/"+store_intro_img_list[i]+"'></a></li>";
+		}
+		img_slider += "</ul>";
+ 		$('#img-div').empty(); 
+		$('#img-div').append(img_slider);
+		
+/* } */
+  if(matchMedia("screen and (max-width: 768px)").matches){
+		var imgdiv = document.getElementById('img-div');
+		imgdiv.addEventListener('touchstart',touch_start);
+		imgdiv.addEventListener('touchend',touch_end);
+		imgdiv.addEventListener('touchmove',touch_move);
+		function touch_start(event){
+			start_x = (event.touches[0].pageX)+move_width;
+		};
+ 	 }	
+	});//documnet ready
+	
+
 </script>
 <style type="text/css">
 	.more-review{
@@ -51,7 +87,8 @@
 				<div class="store-intro-img-box">
 					<img class="button_before" src="/f5/resources/images/before_button.png">
 					<div id="img-div-cover">
-						<div id="img-div"></div>
+						<div id="img-div">
+						</div>
 					</div>
 					<img class="button_next" src="/f5/resources/images/next_button.png">
 				</div>
@@ -193,7 +230,6 @@
 				</nav>
 		</div>
 	</div>
-
 
 	<jsp:include page="../footer.jsp"></jsp:include>
 </body>

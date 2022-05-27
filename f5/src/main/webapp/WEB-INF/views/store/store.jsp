@@ -8,7 +8,6 @@
 <title>Insert title here</title>
 <link href="/f5/resources/css/store/store.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
 <link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">
 <script>
 	$(document).ready(function(){
@@ -194,6 +193,7 @@
             </div>
         </div>
 	<jsp:include page="../footer.jsp"></jsp:include>
+	<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
 </body>
 </html>
 

@@ -4,6 +4,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.swing.plaf.synth.SynthOptionPaneUI;
 
@@ -84,6 +85,8 @@ public class StoreController {
 		public ModelAndView store_infor(String storeIdx,String rpage,HttpSession session) {
 			StoreVO vo = new StoreVO();
 			ModelAndView mv = new ModelAndView();
+			
+			
 //			int startCount = 1;
 //			int endCount=0;
 //			if(rpage!= null) {
@@ -104,13 +107,22 @@ public class StoreController {
 		
 		
 		@RequestMapping(value = "/store_join.do", method = RequestMethod.POST)
-		public ModelAndView Store_join(StoreVO vo) {
+		public ModelAndView store_join(StoreVO vo,HttpServletRequest request) {
+//			System.out.println(vo.getStoreCategory());
 			ModelAndView mv = new ModelAndView();
-			int result = storeService.insertResult(vo);
 			
-			if(result == 1) {
+			int result = storeService.insertResult(vo);
+			if(result ==1) {
+				String storeIdx = storeService.getStoreIdx();
+				vo.setStoreIdx(storeIdx);
+			}
+			int fileResult = storeService.insertFileResult(vo);
+			
+			if (fileResult == 1 && result ==1) {
+				storeService.fileSave(vo, request);
 				mv.setViewName("redirect:/store.do");
-			}else {
+			}
+			else {
 				//에러페이지;
 			}
 			return mv;
