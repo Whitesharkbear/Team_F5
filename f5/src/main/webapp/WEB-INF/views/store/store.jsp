@@ -48,7 +48,7 @@
                             <c:choose>
                             <c:when test="${vo.rno % 4 == 1 || vo.rno % 4 == 3}">
 	                            <div class="store-card mb-4">
-	                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample1.jpg" alt="..." /></a>
+	                                <a href="#!"><img class="card-img-top" src="/f5/resources/upload/${vo.suFile1 }" alt="..." /></a>
 	                                <div class="card-body">
 	                                    <h2 class="card-title h4">${vo.storeName }</h2>
 	                                    <p class="card-text">${vo.storePlace }</p>
@@ -65,7 +65,7 @@
                             <c:choose>
                             <c:when test="${vo.rno % 4 == 2 || vo.rno % 4 == 0}">
                             <div class="store-card mb-4">
-                                <a href="#!"><img class="card-img-top" src="/f5/resources/images/sample3.jpg" alt="..." /></a>
+                                <a href="#!"><img class="card-img-top" src="/f5/resources/upload/${vo.suFile1 }" alt="..." /></a>
                                 <div class="card-body">
                                     <h2 class="card-title h4">${vo.storeName }</h2>
                                     <p class="card-text">${vo.storePlace }</p>

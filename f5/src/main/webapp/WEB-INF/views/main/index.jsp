@@ -10,6 +10,7 @@
     	$(document).ready(function(){
     		$('#main_login_button').on('click',function(){
     			member_login_form.submit();
+    			
     		});
     	});
 </script>
@@ -81,9 +82,11 @@
 					<c:when test="${sessionScope.memberId == null}">
 						<div class="card mb-4 login_sec">
 							<div class="card-body">
+							<form name="member_login_form" action="login.do" method="post">
 								<button class="main_login_button">로 그 인</button>
-								<input class="input_id" type="text" placeholder="Username">
-								<input class="input_id" type="password" placeholder="****">
+								<input class="input_id" type="text" placeholder="Username" name="memberId" id="input_id">
+								<input class="input_id" type="password" placeholder="****" name="memberPass" id="input_pass">
+							</form>
 
 
 
@@ -113,7 +116,7 @@
 								<a href="mypage.do"><button type="button" class="mypage-button">마이페이지</button></a>
 								<a href="mypage_rez.do"><button type="button" class="reservation-button">예약확인</button></a>
 								<a href=""><button type="button" class="reservation-button">장바구니</button></a>
-								<a href="index.do"><button type="button" class="logout-button">로그아웃</button></a>
+								<a href="http://localhost:9000/f5/logout.do"><button type="button" class="logout-button">로그아웃</button></a>
 							</div>
 						</div>
 					</c:otherwise>

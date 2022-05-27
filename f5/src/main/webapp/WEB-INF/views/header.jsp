@@ -54,10 +54,10 @@
 								</ul>
 							</c:when>
 							<c:otherwise>
-								<a class="nav-link" href="#">회원정보</a>
+								<a class="nav-link" href="#">MemberInfo</a>
 								<ul class="nav-inner">
-									<li><a href="http://localhost:9000/f5/login.do">로그아웃</a></li>
-									<li><a href="http://localhost:9000/f5/join.do">마이페이지</a></li>
+									<li><a href="http://localhost:9000/f5/logout.do">로그아웃</a></li>
+									<li><a href="http://localhost:9000/f5/mypage.do">마이페이지</a></li>
 								</ul>
 							</c:otherwise>
 						</c:choose></li>

@@ -33,14 +33,20 @@ MemberService memberService;
 			session.setAttribute("memberId", vo.getMemberId());
 			session.setAttribute("memberName", mvo.getMemberName());
 			mv.addObject("mvo",mvo);
-			mv.setViewName("main/index");
-			System.out.println("로그인성공");
+			mv.setViewName("redirect:/index.do");
 			return mv;
 		}else {
-			System.out.println("로그인실패");
-			mv.setViewName("member/login/login");
+			mv.addObject("loginResult",result);
+			mv.setViewName("redirect:/index.do");
 			return mv;
 		}
 	}
-
+	@RequestMapping(value="/logout.do", method = RequestMethod.GET)
+	public ModelAndView logout(HttpSession session) {
+		ModelAndView mv = new ModelAndView();
+		session.removeAttribute("memberId");
+		session.removeAttribute("memberName");
+		mv.setViewName("redirect:/index.do");
+		return  mv;
+	}
 }

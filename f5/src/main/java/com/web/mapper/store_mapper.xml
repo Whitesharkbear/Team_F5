@@ -22,13 +22,16 @@
 	</select>
 	<select id="selectlist" parameterType="map" resultType="com.web.f5.vo.StoreVO">
 		select 
-			rno, storeIdx,storeName,storePlace,storeContent,storeTel,storeEvent,storeBenefit,storeCategory,storeMaxCount,storeParking,
-			storeWebSite,storePrice
+			rno, storeidx,sfile1,sfile2,sfile3,sfile4,sfile5,sufile1,sufile2,sufile3,sufile4,sufile5,
+        		storename,storeplace,storecontent,storetel,storeevent,storebenefit,storecategory,
+        		storemaxcount,storeparking,storewebsite,storeprice,storedate
 		 from
 		(select 		
-			rownum rno, storeIdx,storeName,storePlace,storeContent,storeTel,storeEvent,storeBenefit,storeCategory,storeMaxCount,storeParking,
-			storeWebSite,storePrice from store)
-		   where rno between #{Start} and #{End}
+			rownum rno, s1.storeidx,sfile1,sfile2,sfile3,sfile4,sfile5,sufile1,sufile2,sufile3,sufile4,sufile5,
+        	storename,storeplace,storecontent,storetel,storeevent,storebenefit,storecategory,
+        	storemaxcount,storeparking,storewebsite,storeprice,storedate from store s1, storefile s2
+			where s1.storeidx = s2.storeidx(+))
+		where rno between #{Start} and #{End}
 	</select>
 	<select id="totalCount" resultType="int">
 		select count(*) from store
