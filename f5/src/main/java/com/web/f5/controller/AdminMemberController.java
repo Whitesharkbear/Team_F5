@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.web.f5.service.AdminMemberService;
 import com.web.f5.service.PageServiceImpl;
 import com.web.f5.vo.AdminMemberVO;
@@ -24,7 +27,7 @@ public class AdminMemberController {
 	@Autowired
 	private PageServiceImpl pageService;
 
-	@RequestMapping ( value = "/admin/member_list.do", method = RequestMethod.GET )
+	@RequestMapping ( value = "/admin/member_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
 	public ModelAndView admin_member_list(String rpage, String search, String search_type
 			) {
 		
@@ -48,12 +51,6 @@ public class AdminMemberController {
 
 			olist = adminMemberService.getSearchListResult(startCount, endCount, search, search_type);
 		}
-//		Map<String, String> param = pageService.getPageResult(rpage, "member", adminMemberService);
-//		
-//		int startCount = Integer.parseInt( param.get("start") );
-//		int endCount = Integer.parseInt( param.get("end") );
-//		
-//		List<Object> olist = adminMemberService.getListResult(startCount, endCount);
 		ArrayList<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
 		
 		for ( Object obj : olist ) {
@@ -73,35 +70,38 @@ public class AdminMemberController {
 		return mv;
 	}
 	
-//	@RequestMapping ( value = "/admin/member_search_list.do", method = RequestMethod.GET )
-//	public ModelAndView admin_member_search_list(String rpage, String search, String search_type) {
-//		
-//		ModelAndView mv = new ModelAndView();
-//		
-//		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage,  "member", adminMemberService);
-//		
-//		int startCount = Integer.parseInt( param.get("start") );
-//		int endCount = Integer.parseInt( param.get("end") );
-//
-//		List<Object> olist = adminMemberService.getSearchListResult(startCount, endCount, search, search_type);
-//		ArrayList<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
-//		
-//		for ( Object obj : olist ) {
-//			
-//			list.add( (AdminMemberVO) obj );
-//		}
-//		
-//		mv.addObject("list", list);
-//		mv.addObject("search_type", search_type);
-//		mv.addObject("search", search);
-//		mv.addObject("dbCount", Integer.parseInt( param.get("dbCount") ));
-//		mv.addObject("pageSize", Integer.parseInt( param.get("pageSize") ));
-//		mv.addObject("reqPage", Integer.parseInt( param.get("reqPage") ));
-//		
-//		mv.setViewName("admin/member/member_list");
-//		
-//		return mv;
-//	}
+	@ResponseBody
+	@RequestMapping ( value = "admin/member_search_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
+	public String admin_member_search_list(String rpage, String search, String search_type) {
+		
+		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "admin_member_search", adminMemberService);
+		
+		int startCount = Integer.parseInt( param.get("start") );
+		int endCount = Integer.parseInt( param.get("end") );
+		
+		ArrayList<AdminMemberVO> list = adminMemberService.getSearchJSONResult(startCount, endCount, search, search_type);
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		for ( AdminMemberVO vo : list ) {
+			
+			JsonObject obj = new JsonObject();
+			
+			obj.addProperty("rno", vo.getRno());
+			obj.addProperty("memberId", vo.getMemberId());
+			obj.addProperty("memberName", vo.getMemberName());
+			obj.addProperty("memberBirth", vo.getMemberBirth());
+			obj.addProperty("memberAuthority", vo.getMemberAuthority());
+			
+			jlist.add(obj);
+		}
+		
+		jdata.add("jlist", jlist);
+		
+		return gson.toJson(jdata);
+	}
 	
 	@RequestMapping ( value = "/admin/member_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_member_content(String id, String rno) {

@@ -86,6 +86,11 @@ $(document).ready(function(){
 					</table>
 					<div class="search">
 						<div class="search_text">
+							<select class="search_type">
+								<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>이름</option>
+								<option value="i" <c:if test="${ search_type eq 'i' }">selected</c:if>>아이디</option>
+								<option value="ni" <c:if test="${ search_type eq 'ni' }">selected</c:if>>이름/아이디</option>
+							</select>
 							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
 							<button type="button" class="search_btn" onclick="search()">검색</button>

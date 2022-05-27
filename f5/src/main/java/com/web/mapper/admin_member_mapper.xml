@@ -93,6 +93,35 @@
 			</choose>
 	</select>
 	
+	<select id="JSONlist" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">
+		select rno, memberId, memberName, memberBirth, memberAuthority, memberDate
+		from
+			(select rownum rno, memberId, memberName, memberBirth, memberAuthority, to_char(memberDate,'yy-mm-dd') memberDate
+		from
+			(select memberId, memberName, memberBirth, memberAuthority, memberDate from member order by memberDate desc)
+			<choose>
+				<when test='search_type == "n"'>
+					where memberName like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "i"'>
+					where memberId like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "ni"'>
+					where 
+					(
+						memberName like '%'||#{search}||'%'
+					or
+						memberId like '%'||#{search}||'%'
+					)
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			)
+		where
+			(rno between #{start} and #{end})
+	</select>
+	
 	<select id="memberContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminMemberVO">
 		select
 			memberId, memberName, memberBirth, memberTel, memberEmail, memberGender,
@@ -172,6 +201,22 @@
 		update member
 		set
 			memberAuthority = #{memberAuthority}
+		where
+			memberId = #{memberId}
+	</update>
+	
+	<update id="getBlackInsert" parameterType="java.lang.String">
+		update member
+		set
+			memberAuthority = '2'
+		where
+			memberId = #{memberId}
+	</update>
+	
+	<update id="getBlackOut" parameterType="java.lang.String">
+		update member
+		set
+			memberAuthority = '0'
 		where
 			memberId = #{memberId}
 	</update>

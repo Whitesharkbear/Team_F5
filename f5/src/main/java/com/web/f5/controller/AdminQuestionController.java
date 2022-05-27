@@ -29,17 +29,30 @@ public class AdminQuestionController {
 	@Autowired
 	private PageServiceImpl pageService;
 	
-	@RequestMapping ( value = "admin/question_list.do", method = RequestMethod.GET )
+	@RequestMapping ( value = "admin/question_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8"  )
 	public ModelAndView admin_question_list(String rpage, String search, String search_type, String proceed) {
 		
 		ModelAndView mv = new ModelAndView();
+		Map<String, String> param = null;	
+		List<Object> olist = null;
+		
+		if ( search == null ) {
 			
-		Map<String, String> param = pageService.getPageResult(rpage, "admin_Question", adminQuestionService);
+			param = pageService.getPageResult(rpage, "admin_Question", adminQuestionService);
+				
+			int startCount = Integer.parseInt( param.get("start") ); 
+			int endCount = Integer.parseInt( param.get("end") );
+				
+			olist = adminQuestionService.getListResult(startCount, endCount);
+		} else {
+			
+			param = pageService.getQuestionSearch(search, search_type, proceed, rpage, "questionSearch", adminQuestionService);
 			
 			int startCount = Integer.parseInt( param.get("start") ); 
 			int endCount = Integer.parseInt( param.get("end") );
 			
-		List<Object> olist = adminQuestionService.getListResult(startCount, endCount);
+			olist = adminQuestionService.getQuestionSearchList(startCount, endCount, search, search_type, proceed);
+		}
 		
 		ArrayList<AdminQuestionVO> list = new ArrayList<AdminQuestionVO>();
 		
@@ -62,10 +75,10 @@ public class AdminQuestionController {
 	}
 	
 	@ResponseBody
-	@RequestMapping ( value = "admin/question_search_list.do", method = RequestMethod.GET )
-	public String admin_question_search_list(String rpage, String search, String search_type) {
+	@RequestMapping ( value = "admin/question_search_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8"  )
+	public String admin_question_search_list(String rpage, String search, String search_type, String proceed) {
 		
-		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "admin_Question_search", adminQuestionService);
+		Map<String, String> param = pageService.getQuestionSearch(search, search_type, proceed, rpage, "question_search", adminQuestionService);
 		
 		int startCount = Integer.parseInt( param.get("start") );
 		int endCount = Integer.parseInt( param.get("end") );
@@ -97,15 +110,15 @@ public class AdminQuestionController {
 	}
 	
 	@ResponseBody
-	@RequestMapping ( value = "admin/question_search_proceed.do", method = RequestMethod.GET )
-	public String admin_question_search_proceed(String proceed, String rpage) {
+	@RequestMapping ( value = "admin/question_search_proceed.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
+	public String question_search_proceed(String rpage, String search, String search_type, String proceed) {
 		
-		Map<String, String> param = pageService.getProceedResult(rpage, proceed, "question_proceed_search", adminQuestionService);
+		Map<String, String> param = pageService.getQuestionSearch(search, search_type, proceed, rpage, "question_search", adminQuestionService);
 		
 		int startCount = Integer.parseInt( param.get("start") );
 		int endCount = Integer.parseInt( param.get("end") );
 		
-		ArrayList<AdminQuestionVO> list = adminQuestionService.getQuestionProceed(startCount, endCount, proceed);
+		ArrayList<AdminQuestionVO> list = adminQuestionService.getProceedSearchJSONResult(startCount, endCount, search, search_type, proceed);
 		
 		JsonObject jdata = new JsonObject();
 		JsonArray jlist = new JsonArray();
@@ -130,7 +143,6 @@ public class AdminQuestionController {
 		
 		return gson.toJson(jdata);
 	}
-	
 	@RequestMapping ( value = "admin/question_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_question_content(String idx, String rno) {
 		

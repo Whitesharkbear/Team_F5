@@ -5,35 +5,18 @@
     
 <mapper namespace="mapper.adminquestion">
 	
-	<select id="limitList" resultType="com.web.f5.vo.AdminQuestionVO">
+	<select id="getLimitList" resultType="com.web.f5.vo.AdminQuestionVO">
 		select rno, questionIdx, memberId, questionProceed, questionDate, questionTitle, questionContent
 		from
 			(select rownum rno, questionIdx, memberId, questionProceed, to_char(questionDate, 'yyyy-mm-dd')questionDate, questionTitle, questionContent
 		from
 			(select questionIdx, memberId, questionProceed, questionDate, questionTitle, questionContent from question order by questionDate desc))
 		where
-			rno &gt; 4
+			rno &lt; 4
 	</select>
 	
 	<select id="count" resultType="int">
 		select count(*) from question
-	</select>
-	
-	<select id="searchProceed" resultType="int" parameterType="java.lang.String">
-		select count(*)
-		from
-			question
-		<choose>
-			<when test='proceed == "0"'>
-				where questionProceed = '0'
-			</when>
-			<when test='proceed == "1"'>
-				where questionProceed = '1'
-			</when>
-			<when test='proceed == "2"'>
-				where questionProceed = '2'
-			</when>
-		</choose>
 	</select>
 	
 	<select id="searchCount" resultType="int" parameterType="java.lang.String">
@@ -76,6 +59,132 @@
 			</choose>
 	</select>
 	
+	<select id="getQuestionSearchCount" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from
+			question
+		<choose>
+			<when test='search == null and proceed == "0"'>
+				where
+					questionProceed = '0'
+			</when>
+			<when test='search == null and proceed == "1"'>
+				where
+					questionProceed = '1'
+			</when>
+			<when test='search == null and proceed == "2"'>
+				where
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+				and
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+				and
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+				and
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+				and
+					questionProceed = '2'
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</select>
+	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminQuestionVO">
 		select rno, questionIdx, memberId, questionProceed, questionDate, questionTitle, questionContent
 		from
@@ -116,6 +225,138 @@
 				<otherwise>
 				</otherwise>
 			</choose>
+			)
+		where
+			rno between #{start} and #{end}
+			
+	</select>
+	
+	<select id="getQuestionSearchList" parameterType="map" resultType="com.web.f5.vo.AdminQuestionVO">
+		select rno, questionIdx, memberId, questionProceed, questionDate, questionTitle, questionContent
+		from
+			(select rownum rno, questionIdx, memberId, questionProceed, to_char(questionDate, 'yyyy-mm-dd')questionDate, questionTitle, questionContent
+		from
+			(select questionIdx, memberId, questionProceed, questionDate, questionTitle, questionContent from question order by questionDate desc)
+			<choose>
+			<when test='search == null and proceed == "0"'>
+				where
+					questionProceed = '0'
+			</when>
+			<when test='search == null and proceed == "1"'>
+				where
+					questionProceed = '1'
+			</when>
+			<when test='search == null and proceed == "2"'>
+				where
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+			</when>
+			<when test='search != null and proceed == "3" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "0" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+				and
+					questionProceed = '0'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "1" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+				and
+					questionProceed = '1'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "t"'>
+				where
+					questionTitle like '%'||#{search}||'%'
+				and
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "c"'>
+				where
+					questionCount like '%'||#{search}||'%'
+				and
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "tc"'>
+				where
+					(
+						questionTitle like '%'||#{search}||'%'
+					or
+						questionContent like '%'||#{search}||'%'
+					)
+				and
+					questionProceed = '2'
+			</when>
+			<when test='search != null and proceed == "2" and search_type == "n"'>
+				where
+					memberId like '%'||#{search}||'%'
+				and
+					questionProceed = '2'
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 			)
 		where
 			rno between #{start} and #{end}

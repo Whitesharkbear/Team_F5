@@ -22,8 +22,7 @@ function search() {
 		$("#searchbar").focus();
 	} else {
 		
-		location.href="http://localhost:9000/f5/admin/member_list.do?search="+search + "&search_type=" + search_type;
-// 		location.href="http://localhost:9000/f5/admin/member_search_list.do?search="+search + "&search_type=" + search_type;
+		location.href="/f5/admin/member_list.do?search="+search + "&search_type=" + search_type;
 	}
 }
 
@@ -50,21 +49,114 @@ $(document).ready(function(){
 			     
 	    btnSize:'sm'	// 'sm'  or 'lg'		
 	});
-	if ( search == "" || search_type == "" ) {
 		
 		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/f5/admin/member_list.do?rpage="+e.page);         
+			    var search = $("#searchbar").val();
+				var search_type = $(".search_type").val();
+			if ( search == "" ) {
+			   $(".member_list").remove();
+			   
+			   $.ajax({
+				  url : "member_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				  success : function(result) {
+					  
+					  const data = JSON.parse(result);
+					  
+					  for ( var i in data.jlist ) {
+						  
+						  var str = "<tr class='member_list'>";
+						  str += "<td>"+data.jlist[i].rno+"</td>";
+						  str += "<td>"+data.jlist[i].memberName+"</td>";
+						  str += "<td><a href='member_content.do?id="+data.jlist[i].memberId+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].memberId+"</a></td>";
+						  str += "<td>"+data.jlist[i].memberBirth+"</td>";
+						  str += "<td>";
+						  str += "<select name='memberAuthority' class='memberAuthority' id='"+data.jlist[i].memberId+"'>"
+						  if ( data.jlist[i].memberAuthority == "0" ) {
+							  
+						  str += "<option value='0' selected>일반회원</option>";
+						  str += "<option value='1'>CEO</option>";
+						  str += "<option value='2'>블랙리스트</option>";
+						  str += "<option value='3'>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "1" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1' selected>CEO</option>";
+							  str += "<option value='2'>블랙리스트</option>";
+							  str += "<option value='3'>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "2" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1'>CEO</option>";
+							  str += "<option value='2' selected>블랙리스트</option>";
+							  str += "<option value='3'>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "3" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1'>CEO</option>";
+							  str += "<option value='2'>블랙리스트</option>";
+							  str += "<option value='3' selected>관리자</option>";
+						  }
+						  str += "</select>";
+						  str += "</td>";
+						  str += "</tr>";
+						  $("#member_table").append(str);
+					  }
+				  }
+			   });
+			} else {
+				
+			   $(".member_list").remove();
+			   
+			   $.ajax({
+				  url : "member_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				  success : function(result) {
+					  
+					  const data = JSON.parse(result);
+					  
+					  for ( var i in data.jlist ) {
+						  
+						  var str = "<tr class='member_list'>";
+						  str += "<td>"+data.jlist[i].rno+"</td>";
+						  str += "<td>"+data.jlist[i].memberName+"</td>";
+						  str += "<td><a href='member_content.do?id="+data.jlist[i].memberId+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].memberId+"</a></td>";
+						  str += "<td>"+data.jlist[i].memberBirth+"</td>";
+						  str += "<td>";
+						  str += "<select name='memberAuthority' class='memberAuthority' id='"+data.jlist[i].memberId+"'>"
+						  if ( data.jlist[i].memberAuthority == "0" ) {
+							  
+						  str += "<option value='0' selected>일반회원</option>";
+						  str += "<option value='1'>CEO</option>";
+						  str += "<option value='2'>블랙리스트</option>";
+						  str += "<option value='3'>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "1" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1' selected>CEO</option>";
+							  str += "<option value='2'>블랙리스트</option>";
+							  str += "<option value='3'>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "2" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1'>CEO</option>";
+							  str += "<option value='2' selected>블랙리스트</option>";
+							  str += "<option value='3'>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "3" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1'>CEO</option>";
+							  str += "<option value='2'>블랙리스트</option>";
+							  str += "<option value='3' selected>관리자</option>";
+						  }
+						  str += "</select>";
+						  str += "</td>";
+						  str += "</tr>";
+						  $("#member_table").append(str);
+					  }
+				  }
+			   });
+			}
 	    });
-	} else {
-		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/f5/admin/member_list.do?rpage="+e.page + "&search_type=" + search_type + "&search=" + search);         
-// 	           $(location).attr('href', "http://localhost:9000/f5/admin/member_search_list.do?rpage="+e.page + "&search_type=" + search_type + "&search=" + search);         
-	    });
-	}
-	
 	
 	$(".memberAuthority").change(function(){
 		
@@ -117,7 +209,7 @@ $(document).ready(function(){
 								<th>번호</th><th>이름</th><th>아이디</th><th>생년월일</th><th>회원권한</th>
 							</tr>
 								<c:forEach var="vo" items="${ list }">
-								<tr>
+								<tr class="member_list">
 									<td>${ vo.rno }</td>
 									<td>${ vo.memberName }</td>
 									<td><a href="member_content.do?id=${ vo.memberId }&rno=${ vo.rno}">${ vo.memberId }</a></td>

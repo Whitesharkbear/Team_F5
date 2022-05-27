@@ -88,13 +88,13 @@ $(document).ready(function(){
 						</c:forEach>
 					</table>
 					<div class="search">
+						<div class="search_text">
 						<select class="search_type">
 								<option value="t" <c:if test="${ search_type eq 't' }">selected</c:if>>제목</option>
 								<option value="c" <c:if test="${ search_type eq 'c' }">selected</c:if>>내용</option>
 								<option value="w" <c:if test="${ search_type eq 'w' }">selected</c:if>>작성자</option>
 								<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
 						</select>
-						<div class="search_text">
 							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
 							<button type="button" class="search_btn">검색</button>

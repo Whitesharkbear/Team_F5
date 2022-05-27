@@ -1,5 +1,6 @@
 package com.web.f5.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -18,4 +19,7 @@ public interface AdminMemberService extends ObjService {
 	int getmberTodayCnt();
 	List<Object> getSearchListResult(int startCount, int endCount, String search, String search_type);
 	int chkMberUpdate(String id, String auth);
+	int getBlackInsert(String id);
+	int getBlackOut(String id);
+	ArrayList<AdminMemberVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type);
 }

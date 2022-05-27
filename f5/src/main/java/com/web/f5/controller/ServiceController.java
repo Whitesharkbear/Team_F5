@@ -114,7 +114,7 @@ public class ServiceController {
 		
 		int startCount = Integer.parseInt( param.get("start") );
 		int endCount = Integer.parseInt( param.get("end") );
-		System.out.println(param);
+		
 		ArrayList<AdminQuestionVO> list = adminQuestionService.getSearchJSONResult(startCount, endCount, search, search_type);
 		
 		JsonObject jdata = new JsonObject();

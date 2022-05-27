@@ -1,5 +1,6 @@
 package com.web.f5.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,5 +86,23 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 	public int chkMberUpdate(String id, String auth) {
 		
 		return adminMemberDAO.chkMberUpdate(id, auth);
+	}
+
+	@Override
+	public int getBlackInsert(String id) {
+		
+		return adminMemberDAO.getBlackInsert(id);
+	}
+
+	@Override
+	public int getBlackOut(String id) {
+		
+		return adminMemberDAO.getBlackOut(id);
+	}
+
+	@Override
+	public ArrayList<AdminMemberVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminMemberDAO.getSearchJSONResult(startCount, endCount, search, search_type);
 	}
 }

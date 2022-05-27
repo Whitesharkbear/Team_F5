@@ -13,77 +13,15 @@
 function search() {
 	
 	var search = $("#searchbar").val(); 
+	var search_type = $("#search_type").val();
+	var proceed = $("#question_search").val();
 	
 	if ( search == "" ) {
 		
 		alert("검색어를 입력해주세요.");
 	} else {
 		
-		var search_type = $("#search_type").val();
-		var search = $("#searchbar").val();
-		var proceed = $("#question_search").val();
-		$(".question_list").remove();
-		
-		$.ajax({
-			url : "question_search_list.do?search=" + search + "&search_type=" + search_type,
-			success : function(result) {
-				
-				const data = JSON.parse(result);
-				
-				for ( var i in data.jlist ) {
-					
-					var str = "<tr class='question_list'>";
-					str += "<td>"+data.jlist[i].rno+"</td>";
-					str += "<td><a href='member_content.do?id="+data.jlist[i].memberId+"'>"+data.jlist[i].memberId+"</a></td>";
-					str += "<td><a href='question_content.do?idx="+data.jlist[i].questionIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].questionTitle+"</a></td>";
-					str += "<td>"+data.jlist[i].questionDate+"</td>";
-					str += "<td>";
-					str += "<select id='questionProceed'>";
-					
-					if ( data.jlist[i].questionProceed == '0' ) {
-						
-						str += "<option value='3'>전체보기</option>";
-						str += "<option value='0' selected>대기중</option>";
-						str += "<option value='1'>답변중</option>";
-						str += "<option value='2'>답변완료</option>";
-					} else if ( data.jlist[i].questionProceed == '1' ) {
-						
-						str += "<option value='3'>전체보기</option>";
-						str += "<option value='0'>대기중</option>";
-						str += "<option value='1' selected>답변중</option>";
-						str += "<option value='2'>답변완료</option>";
-					} else if ( data.jlist[i].questionProceed == '2' ) {
-						
-						str += "<option value='3'>전체보기</option>";
-						str += "<option value='0'>대기중</option>";
-						str += "<option value='1'>답변중</option>";
-						str += "<option value='2' selected>답변완료</option>";
-					} else {
-						
-						str += "<option value='3' selected>전체보기</option>";
-						str += "<option value='0'>대기중</option>";
-						str += "<option value='1'>답변중</option>";
-						str += "<option value='2'>답변완료</option>";
-					}
-					
-					str += "</select>";
-					str += "</td>";
-					str += "</tr>";
-					$("#question_table").append(str);
-				}
-			}
-		});
-	}
-}
-
-function modify() {
-	
-	if ( confirm("선택하신 문의 답변여부를 수정하시겠습니까?") ) {
-		
-		alert("수정되었습니다.");
-	} else {
-		
-		return;
+		location.href="/f5/admin/question_list.do?search="+search+"&search_type="+search_type+"&proceed="+proceed;
 	}
 }
 
@@ -91,6 +29,7 @@ $(document).ready(function(){
 
 	var search = $("#searchbar").val();
 	var search_type = $("#search_type").val();
+	var proceed = $("#question_search").val();
 	
 	var pager = jQuery('#ampaginationsm').pagination({
 		
@@ -115,65 +54,122 @@ $(document).ready(function(){
 	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
 		
 		jQuery('.showlabelsm').text('The selected page no: '+e.page);
-		$(location).attr('href', "http://localhost:9000/f5/admin/question_list.do?rpage="+e.page);
+		
+		if ( search != "" && search_type != "" && proceed != "" ) {
+			$(".question_list").remove();
+			$.ajax({
+				url : "question_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type+"proceed="+proceed,
+				success : function(result){
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<tr class='question_list'>";
+						str += "<td>"+data.jlist[i].rno+"</td>";
+						str += "<td><a href='member_content.do?id="+data.jlist[i].memberId+"'>"+data.jlist[i].memberId+"</a></td>";
+						str += "<td><a href='question_content.do?idx='"+data.jlist[i].questionIdx+"&rno="+data.jlist[i].rno+">"+data.jlist[i].questionTitle+"</a></td>";
+						str += "<td>"+data.jlist[i].questionDate+"</td>";
+						str += "<td>";
+						str += "<select id='questionProceed'>";
+						
+						if ( data.jlist[i].questionProceed == '0' ) {
+							
+							str += "<option value='3'>전체보기</option>";
+							str += "<option value='0' selected>대기중</option>";
+							str += "<option value='1'>답변중</option>";
+							str += "<option value='2'>답변완료</option>";
+						} else if ( data.jlist[i].questionProceed == '1' ) {
+							
+							str += "<option value='3'>전체보기</option>";
+							str += "<option value='0'>대기중</option>";
+							str += "<option value='1' selected>답변중</option>";
+							str += "<option value='2'>답변완료</option>";
+						} else if ( data.jlist[i].questionProceed == '2' ) {
+							
+							str += "<option value='3'>전체보기</option>";
+							str += "<option value='0'>대기중</option>";
+							str += "<option value='1'>답변중</option>";
+							str += "<option value='2' selected>답변완료</option>";
+						} else {
+							
+							str += "<option value='3' selected>전체보기</option>";
+							str += "<option value='0'>대기중</option>";
+							str += "<option value='1'>답변중</option>";
+							str += "<option value='2'>답변완료</option>";
+						}
+						
+						str += "</select>";
+						str += "</td>";
+						str += "</tr>";
+						$("#question_table").append(str);
+					}
+				}
+			});
+		} else if ( search == "" && search_type != "" && proceed != "" ){
+			
+			$(".question_list").remove();
+			$.ajax({
+				url : "question_search_proceed.do?rpage="+e.page+"&search="+search+"&search_type="+search_type+"proceed="+proceed,
+				success : function(result){
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<tr class='question_list'>";
+						str += "<td>"+data.jlist[i].rno+"</td>";
+						str += "<td><a href='member_content.do?id="+data.jlist[i].memberId+"'>"+data.jlist[i].memberId+"</a></td>";
+						str += "<td><a href='question_content.do?idx='"+data.jlist[i].questionIdx+"&rno="+data.jlist[i].rno+">"+data.jlist[i].questionTitle+"</a></td>";
+						str += "<td>"+data.jlist[i].questionDate+"</td>";
+						str += "<td>";
+						str += "<select id='questionProceed'>";
+						
+						if ( data.jlist[i].questionProceed == '0' ) {
+							
+							str += "<option value='3'>전체보기</option>";
+							str += "<option value='0' selected>대기중</option>";
+							str += "<option value='1'>답변중</option>";
+							str += "<option value='2'>답변완료</option>";
+						} else if ( data.jlist[i].questionProceed == '1' ) {
+							
+							str += "<option value='3'>전체보기</option>";
+							str += "<option value='0'>대기중</option>";
+							str += "<option value='1' selected>답변중</option>";
+							str += "<option value='2'>답변완료</option>";
+						} else if ( data.jlist[i].questionProceed == '2' ) {
+							
+							str += "<option value='3'>전체보기</option>";
+							str += "<option value='0'>대기중</option>";
+							str += "<option value='1'>답변중</option>";
+							str += "<option value='2' selected>답변완료</option>";
+						} else {
+							
+							str += "<option value='3' selected>전체보기</option>";
+							str += "<option value='0'>대기중</option>";
+							str += "<option value='1'>답변중</option>";
+							str += "<option value='2'>답변완료</option>";
+						}
+						
+						str += "</select>";
+						str += "</td>";
+						str += "</tr>";
+						$("#question_table").append(str);
+					}
+				}
+			});
+		}
 	});
 	
 	
 	$("#question_search").change(function(){
 		
-		var proceed = $(this).val();
+		var proceed = $("#question_search").val();
 		var search = $("#searchbar").val();
-		var search_type = $("#search_type").val();
-		$(".question_list").remove();
-		
-		$.ajax({
-			url : "question_search_proceed.do?proceed=" + proceed,
-			success : function(result){
-				const data = JSON.parse(result);
-				
-				for ( var i in data.jlist ) {
-					
-					var str = "<tr class='question_list'>";
-					str += "<td>"+data.jlist[i].rno+"</td>";
-					str += "<td><a href='member_content.do?id="+data.jlist[i].memberId+"'>"+data.jlist[i].memberId+"</a></td>";
-					str += "<td><a href='question_content.do?idx='"+data.jlist[i].questionIdx+"&rno="+data.jlist[i].rno+">"+data.jlist[i].questionTitle+"</a></td>";
-					str += "<td>"+data.jlist[i].questionDate+"</td>";
-					str += "<td>";
-					str += "<select id='questionProceed'>";
-					
-					if ( data.jlist[i].questionProceed == '0' ) {
-						
-						str += "<option value='3'>전체보기</option>";
-						str += "<option value='0' selected>대기중</option>";
-						str += "<option value='1'>답변중</option>";
-						str += "<option value='2'>답변완료</option>";
-					} else if ( data.jlist[i].questionProceed == '1' ) {
-						
-						str += "<option value='3'>전체보기</option>";
-						str += "<option value='0'>대기중</option>";
-						str += "<option value='1' selected>답변중</option>";
-						str += "<option value='2'>답변완료</option>";
-					} else if ( data.jlist[i].questionProceed == '2' ) {
-						
-						str += "<option value='3'>전체보기</option>";
-						str += "<option value='0'>대기중</option>";
-						str += "<option value='1'>답변중</option>";
-						str += "<option value='2' selected>답변완료</option>";
-					} else {
-						
-						str += "<option value='3' selected>전체보기</option>";
-						str += "<option value='0'>대기중</option>";
-						str += "<option value='1'>답변중</option>";
-						str += "<option value='2'>답변완료</option>";
-					}
-					
-					str += "</select>";
-					str += "</td>";
-					str += "</tr>";
-					$("#question_table").append(str);
-				}
-			}
-		});
+		var search_type = $("#search_type").val();		
+		location.href="/f5/admin/question_list.do?search="+search+"&search_type="+search_type+"&proceed="+proceed;
+		if ( proceed == "3" ) {
+			$("#searchbar").val("");
+			location.href="/f5/admin/question_list.do?search=&search_type="+search_type+"&proceed="+proceed;
+		}
 	}); // change()
 });
 
@@ -189,9 +185,9 @@ $(document).ready(function(){
 					<div class="question_btn">
 						<select id="question_search">
 							<option value="3" selected>전체보기</option>
-							<option value="0" <c:if test="${ vo.questionProceed eq '0' }">selected</c:if> >대기중</option>
-							<option value="1" <c:if test="${ vo.questionProceed eq '1' }">selected</c:if> >답변중</option>
-							<option value="2" <c:if test="${ vo.questionProceed eq '2' }">selected</c:if> >답변완료</option>
+							<option value="0" <c:if test="${ proceed eq '0' }">selected</c:if> >대기중</option>
+							<option value="1" <c:if test="${ proceed eq '1' }">selected</c:if> >답변중</option>
+							<option value="2" <c:if test="${ proceed eq '2' }">selected</c:if> >답변완료</option>
 						</select>
 					</div>
 					<table id="question_table">
@@ -234,9 +230,18 @@ $(document).ready(function(){
 								<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
 								<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>작성자</option>
 							</select>
-							<input type="text" id="searchbar" value="${ search }"
-							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
-							<button type="button" class="search_btn" onclick="search()">검색</button>
+							<c:choose>
+								<c:when test="${ proceed eq '3' }">
+								<input type="text" id="searchbar"
+								placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
+								<button type="button" class="search_btn" onclick="search()">검색</button>
+								</c:when>
+								<c:otherwise>
+								<input type="text" id="searchbar" value="${ search }"
+								placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
+								<button type="button" class="search_btn" onclick="search()">검색</button>
+								</c:otherwise>
+							</c:choose>
 						</div>
 					</div>
 					<div class="paging">

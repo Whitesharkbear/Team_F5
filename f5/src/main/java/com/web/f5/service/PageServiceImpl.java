@@ -136,7 +136,7 @@ public class PageServiceImpl {
 		return param;
 	}
 
-	public Map<String, String> getProceedResult(String rpage, String proceed, String serviceName, ObjService service) {
+	public Map<String, String> getQuestionSearch(String search, String search_type, String proceed, String rpage, String ServiceName, Object service) {
 		
 		Map<String, String> param = new HashMap<String, String>();
 		
@@ -147,10 +147,10 @@ public class PageServiceImpl {
 		int pageCount = 1;
 		int dbCount = 0;
 		
-		if ( serviceName.equals("question_proceed_search") ) {
+		if ( ServiceName.equals("questionSearch") ) {
 			
 			adminQuestionService = (AdminQuestionServiceImpl) service;
-			dbCount = adminQuestionService.getProceedCount(proceed);
+			dbCount = adminQuestionService.getQuestionSearchCount(search_type, search, proceed);
 		}
 		
 		if ( dbCount % pageSize == 0 ) {

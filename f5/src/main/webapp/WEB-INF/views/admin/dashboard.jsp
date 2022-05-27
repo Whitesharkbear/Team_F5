@@ -9,15 +9,37 @@
 $(document).ready(function(){
 	
 	$(".black_list").click(function(){
-		
+		var memberId = $(this).attr("id");
 		if ( $(this).val() == "0" ) {
-			
-			$(this).css("background-color", "orange").text("석방");
-			$(this).val(1);
+			$.ajax({
+				url : "member_black_insert.do?id="+memberId,
+				success : function(msg) {
+					
+					if ( msg == "success" ) {
+						$("#"+memberId).css("background-color", "orange").text("석방");
+						$("#"+memberId).val(1);
+					} else {
+						
+						alert("fail");
+					}
+				}
+			});
 		} else {
 			
-			$(this).css("background-color", "brown").text("추가");
-			$(this).val(0);
+			$.ajax({
+				url : "member_black_out.do?id=" + memberId,
+				success : function(msg) {
+					
+					if ( msg == "success" ) {
+						
+						$("#"+memberId).css("background-color", "brown").text("추가");
+						$("#"+memberId).val(0);
+					} else {
+						
+						alert("fail");
+					}
+				}
+			});
 		}
 	});
 	
@@ -143,8 +165,24 @@ $(document).ready(function(){
 										<td>${ vo.memberName }</td>
 										<td>${ vo.memberId }</td>
 										<td>${ vo.memberBirth }</td>
-										<td>${ vo.memberAuthority }</td>
-										<td>${ vo.memberAgree}</td>
+										<td>
+											<c:if test="${ vo.memberAuthority eq '0' }">일반회원</c:if>
+											<c:if test="${ vo.memberAuthority eq '1' }">CEO</c:if>
+											<c:if test="${ vo.memberAuthority eq '2' }">블랙회원</c:if>
+											<c:if test="${ vo.memberAuthority eq '3' }">관리자</c:if>
+										</td>
+										<td>
+										<c:choose>
+											<c:when test="${ vo.memberAuthority eq '2' }">
+												<button type="button" id="${ vo.memberId }" class="black_list" value="0"
+												style="background-color : brown">추가</button>
+											</c:when>
+											<c:otherwise>
+												<button type="button" id="${ vo.memberId }" class="black_list" value="1"
+												style="background-color : orange">석방</button>
+											</c:otherwise>
+										</c:choose>
+										</td>
 									</tr>
 								</c:forEach>
 							</table>
@@ -173,13 +211,17 @@ $(document).ready(function(){
 							<tr>
 								<th>번호</th><th>문의자 id</th><th>문의제목</th><th>문의내용</th><th>답변여부</th>
 							</tr>
-							<c:forEach var="vo" items="${ result.boardList }">
+							<c:forEach var="vo" items="${ result.questionList }">
 								<tr>
 									<td>${ vo.rno }</td>
 									<td>${ vo.memberId }</td>
-									<td>${ vo.boardTitle }</td>
-									<td>${ vo.boardContent }</td>
-									<td>${ vo.boardSort }</td>
+									<td>${ vo.questionTitle }</td>
+									<td>${ vo.questionContent }</td>
+									<td>
+										<c:if test="${ vo.questionProceed eq '0' }">대기중</c:if>
+										<c:if test="${ vo.questionProceed eq '1' }">답변중</c:if>
+										<c:if test="${ vo.questionProceed eq '2' }">답변완료</c:if>
+									</td>
 								</tr>
 							</c:forEach>
 						</table>

@@ -32,10 +32,6 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 		return adminQuestionDAO.getCountResult(search_type, search);
 	}
 
-	public int getProceedCount(String proceed) {
-		
-		return adminQuestionDAO.getProceedCount(proceed);
-	}	
 	@Override
 	public Object getContent(String idx) {
 		
@@ -86,5 +82,28 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	public ArrayList<AdminQuestionVO> getQuestionProceed(int startCount, int endCount, String proceed) {
 		
 		return adminQuestionDAO.getSearchJSONProceed(startCount, endCount, proceed);
+	}
+
+	@Override
+	public List<AdminQuestionVO> getLimitList() {
+		
+		return adminQuestionDAO.getLimitList();
+	}
+
+	public int getQuestionSearchCount(String search_type, String search, String proceed) {
+		
+		return adminQuestionDAO.getQuestionSearchCount(search_type, search, proceed);
+	}
+
+	@Override
+	public List<Object> getQuestionSearchList(int startCount, int endCount, String search, String search_type, String proceed) {
+		
+		return adminQuestionDAO.getQuestionSearchList(startCount, endCount, search, search_type, proceed);
+	}
+
+	@Override
+	public ArrayList<AdminQuestionVO> getProceedSearchJSONResult(int startCount, int endCount, String search, String search_type, String proceed) {
+		
+		return adminQuestionDAO.getProceedSearchList(startCount, endCount, search, search_type, proceed);
 	}
 }

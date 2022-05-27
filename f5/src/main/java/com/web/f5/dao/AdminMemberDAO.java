@@ -1,5 +1,6 @@
 package com.web.f5.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -101,5 +102,29 @@ public class AdminMemberDAO implements AdminObjDAO {
 		param.put("memberAuthority", auth);
 		
 		return sqlSession.update(namespace + ".chkMberUpdate", param);
+	}
+
+	public int getBlackInsert(String id) {
+		
+		return sqlSession.update(namespace + ".getBlackInsert", id);
+	}
+
+	public int getBlackOut(String id) {
+		
+		return sqlSession.update(namespace + ".getBlackOut", id);
+	}
+
+	public ArrayList<AdminMemberVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		List<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
+		list = sqlSession.selectList(namespace + ".JSONlist", param);
+		
+		return (ArrayList<AdminMemberVO>) list;
 	}
 }

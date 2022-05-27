@@ -27,14 +27,6 @@ public class AdminQuestionDAO implements AdminObjDAO {
 		return sqlSession.selectList(namespace + ".list", param);
 	}
 	
-	public int getProceedCount(String proceed) {
-		
-		Map param = new HashMap<String, String>();
-		param.put("proceed", proceed);
-		
-		return sqlSession.selectOne(namespace + ".searchProceed", param);
-	}
-	
 	public int getCountResult(String search_type, String search) {
 		
 		Map param = new HashMap<String, String>();
@@ -116,6 +108,48 @@ public class AdminQuestionDAO implements AdminObjDAO {
 		
 		List<AdminQuestionVO> list = new ArrayList<AdminQuestionVO>();
 		list = sqlSession.selectList(namespace + ".JSONproceed", param);
+		
+		return (ArrayList<AdminQuestionVO>) list;
+	}
+
+	public List<AdminQuestionVO> getLimitList() {
+		
+		return sqlSession.selectList(namespace + ".getLimitList");
+	}
+
+	public int getQuestionSearchCount(String search_type, String search, String proceed) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("search_type", search_type);
+		param.put("search", search);
+		param.put("proceed", proceed);
+		
+		return sqlSession.selectOne(namespace + ".getQuestionSearchCount", param);
+	}
+
+	public List<Object> getQuestionSearchList(int startCount, int endCount, String search, String search_type, String proceed) {
+
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		param.put("proceed", proceed);
+		
+		return sqlSession.selectList(namespace + ".getQuestionSearchList", param);
+	}
+
+	public ArrayList<AdminQuestionVO> getProceedSearchList(int startCount, int endCount, String search, String search_type, String proceed) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		param.put("proceed", proceed);
+		
+		List<AdminQuestionVO> list = new ArrayList<AdminQuestionVO>();
+		list = sqlSession.selectList(namespace + ".getQuestionSearchList", param);
 		
 		return (ArrayList<AdminQuestionVO>) list;
 	}
