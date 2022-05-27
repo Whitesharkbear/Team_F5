@@ -118,7 +118,7 @@
 		var bdecoVal;
 		
 		$(".recommend_btn").click(function() {
-			var boardIdx = ($(this).attr("id")).substr(-4);
+			var boardIdx = ($(this).attr("id").substr(5,));
 			var reco = ($(this).val());
 			var brecoVal = parseInt($("#board_reco_"+boardIdx).text());
 			var bdecoVal = parseInt($("#board_deco_"+boardIdx).text());
@@ -157,7 +157,7 @@
 		});
 		
 		$(".derecommend_btn").click(function() {
-			var boardIdx = ($(this).attr("id")).substr(-4);
+			var boardIdx = ($(this).attr("id")).substr(5,);
 			var reco = ($(this).val());
 			
 			var brecoVal = parseInt($("#board_reco_"+boardIdx).text());
@@ -204,7 +204,7 @@
 		var decoVal;
 		
 		$(".re_recommend_btn").click(function() {
-			var replyIdx = ($(this).attr("id")).substr(-6);
+			var replyIdx = ($(this).attr("id")).substr(8,);
 			var reco = ($(this).val());
 			var recoVal = parseInt($("#reply_reco_"+replyIdx).text());
 			var decoVal = parseInt($("#reply_deco_"+replyIdx).text());
@@ -247,7 +247,7 @@
 		});
 		
 		$(".re_derecommend_btn").click(function() {
-			var replyIdx = ($(this).attr("id")).substr(-6);
+			var replyIdx = ($(this).attr("id")).substr(8,);
 			var reco = ($(this).val());
 			
 			var recoVal = parseInt($("#reply_reco_"+replyIdx).text());
