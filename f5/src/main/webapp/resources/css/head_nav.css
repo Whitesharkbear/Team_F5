@@ -4,8 +4,8 @@
 
 .head-nav-container {
 	position: relative;
-	background-color: orange;
-	
+	background-color: #ffbb00;
+	height: 80px;
 	text-align: center;
 	vertical-align: middle;
 	margin-bottom: 50px;
@@ -17,6 +17,7 @@
 	font-size: 15pt;
 	font-weight: bold;
 	top: 5px;
+	margin: 8px;
 }
 
 .head-nav-inner {
@@ -63,7 +64,7 @@
 .nav-col-ul li:hover {
 	background-color: brown;
 	transition: 0.3s;
-	
+	border-radius: 10px;
 }
 
 .nav-col-ul li a {

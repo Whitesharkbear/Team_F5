@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 <link href="/f5/resources/css/store/store.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">

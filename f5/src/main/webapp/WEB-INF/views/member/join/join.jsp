@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>강남 Foodly 회원가입</title>
+<title>Gangnam Foodly</title>
 <link href="/f5/resources/css/member/join/join.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 

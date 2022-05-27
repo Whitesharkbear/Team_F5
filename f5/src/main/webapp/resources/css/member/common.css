@@ -2,7 +2,7 @@
 
 .head-nav-container {
 	position: relative;
-	background-color: rgb(255, 210, 0);
+	background-color: rgb(255,187,0);
 	height: 80px;
 	text-align: center;
 	vertical-align: middle;
@@ -11,7 +11,7 @@
 
 .head-nav-title {
 	position: relative;
-	color: orange;
+	color: brown;
 	font-size: 15pt;
 	font-weight: bold;
 	top: 5px;
@@ -55,8 +55,9 @@
 }
 
 .nav-col-ul li:hover {
-	background: rgb(255, 187, 0);
+	background: brown;
 	transition: 0.3s;
+	border-radius: 10px;
 }
 
 .nav-col-ul li a {

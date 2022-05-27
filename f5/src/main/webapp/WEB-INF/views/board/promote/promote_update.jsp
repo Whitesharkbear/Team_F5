@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 
 <link href="/f5/resources/css/board/board.css" rel="stylesheet" />
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
@@ -119,13 +119,6 @@
 									</td>
 								</tr>
 								<tr>
-									<td>img</td>
-									<td>img</td>
-									<td>img</td>
-									<td>img</td>
-									<td>img</td>
-								</tr>
-								<tr>
 									<th colspan="5"><label class="label">미리보기</label></th>
 								</tr>
 								<tr>
@@ -138,7 +131,7 @@
 											<div class="promote-top">
 												<div class="centered">
 													<img class="promote-img"
-														src="/f5/resources/images/person.png">
+														src="/f5/resources/images/상점.jpeg">
 												</div>
 												<p class="pre-title"></p>
 											</div>

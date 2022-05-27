@@ -44,7 +44,7 @@
 									<div class="promote-top">
 										<div class="centered">
 											<img class="promote-img"
-												src="/f5/resources/images/person.png">
+												src="/f5/resources/images/상점.jpeg">
 										</div>
 										<p>${vo.boardTitle }</p>
 									</div>
@@ -60,13 +60,28 @@
 						</c:forEach>
 					</ul>
 				</div>
-				
-				<div style="text-align: center"><<1 2 3 4 5>></div>
+				<br>
+				<!-- Pagination-->
+			<nav aria-label="Pagination">
+				<hr class="my-0" />
+				<ul class="pagination justify-content-center my-4">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">Newer</a></li>
+					<li class="page-item active" aria-current="page"><a
+						class="page-link" href="#!">1</a></li>
+					<li class="page-item"><a class="page-link" href="#!">2</a></li>
+					<li class="page-item"><a class="page-link" href="#!">3</a></li>
+					<li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+					<li class="page-item"><a class="page-link" href="#!">15</a></li>
+					<li class="page-item"><a class="page-link" href="#!">Older</a></li>
+				</ul>
+			</nav>
+				<br>
 			</div>
             </div>
         </div>
         <!-- Footer-->
-	<jsp:include page="../../footer.jsp"></jsp:include>
+	<jsp:include page="../../footer.jsp"></jsp:include><br>
         <!-- Bootstrap core JS-->
 <!--          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
         <!-- Core theme JS-->

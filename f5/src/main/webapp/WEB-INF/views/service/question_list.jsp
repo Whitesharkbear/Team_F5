@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Foodly | 문의리스트</title>
+<title>Gangnam Foodly| 문의리스트</title>
 <link href="/f5/resources/css/admin/question/question_list.css" rel="stylesheet" />
 
 </head>

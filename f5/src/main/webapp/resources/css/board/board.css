@@ -37,6 +37,7 @@
 	font-size: 3em;
 	color: orange;
 	font-weight: bold;
+	margin: 10px;
 }
 
 .cusbtn {
@@ -46,9 +47,24 @@
 	color: white;
 	border: 0;
 }
+.cusbtn1 {
+	background-color: brown;
+	font-weight: bold;
+	border-radius: 3px;
+	color: white;
+	border: 0;
+	font-size: 18px;
+	width: 8%;
+	
+
+}
 
 .cusbtn:hover {
 	background-color: brown;
+	transition: 0.3s;
+}
+.cusbtn1:hover {
+	background-color: orange;
 	transition: 0.3s;
 }
 
@@ -100,6 +116,7 @@
 
 .search {
 	border-radius: 3px;
+	width: 25%;
 }
 
 
@@ -108,11 +125,12 @@
 /* board_write */
 .board-write-container {
 	position: relative;
-	width: 100%;
+	width: 70%;
 	background-color: orange;
 	text-align: center;
 	border-radius: 5px;
 	padding: 20px 0;
+	margin: auto;
 	
 }
 

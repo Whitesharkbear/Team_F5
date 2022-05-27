@@ -25,11 +25,14 @@ table {
     height: 100%;
     width: 80%;
     margin: 0 auto;
+    background-color: orange;
+    border-radius: 10px;
+    
 }
 
 #content h4 {
     width: 65% !important;
-    margin: 5% 10%;
+    margin: 3% 10%;
 }
 
 #content .board_table {
@@ -40,9 +43,28 @@ table {
 #content > .board_table label {
 	float: left;
 }
-
+#text1{
+	font-weight: border;
+	color: white;
+	font-size: 40px;
+}
+#text2{
+	font-weight: border;
+	color: white;
+}
+#file{
+	background-color: antiquewhite;
+    width: 100%;
+    border-radius: 5px;
+}
 .board_table  #board_title {
 	width: 100%;
+}
+.board-caption {
+	font-size: 3em;
+	color: orange;
+	font-weight: bold;
+	margin: 10px;
 }
 
 .board_table  #board_content {
@@ -66,13 +88,17 @@ table {
 	border-radius: 5%;
 	background-color: brown;
 	color: #fff;
+	padding: 6px;
+	font-size: 16px;
 }
 
 .board_btn > .board_list {
 	border: none;
 	border-radius: 5%;
-	background-color: orange;
+	background-color: chocolate;
 	color: #fff;
+	padding: 6px;
+	font-size: 16px;
 }
 
 }

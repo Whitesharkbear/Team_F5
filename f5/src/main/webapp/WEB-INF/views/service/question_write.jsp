@@ -3,7 +3,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | 문의작성</title>
+<title>Gangnam Foodly | 문의작성</title>
 <link href="/f5/resources/css/admin/question/question_write.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/f5/resources/js/admin/question/question.js"></script>

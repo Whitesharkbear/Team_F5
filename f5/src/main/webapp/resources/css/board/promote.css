@@ -5,14 +5,45 @@
 
 
 .cusbtn {
+	background-color: brown;
+	font-weight: bold;
+	border-radius: 3px;
+	color: white;
+	border: 0;
+	width: 10%;
+}
+
+
+.cusbtn:hover {
+	background-color: orange;
+	transition: 0.3s;
+}
+.cusbtn2 {
+	background-color: chocolate;
+	font-weight: bold;
+	border-radius: 3px;
+	color: white;
+	border: 0;
+	width: 10%;
+	margin: 20px;
+}
+
+
+.cusbtn2:hover {
+	background-color: orange;
+	transition: 0.3s;
+}
+.cusbtn3 {
 	background-color: orange;
 	font-weight: bold;
 	border-radius: 3px;
 	color: white;
 	border: 0;
+	width: 10%;
 }
 
-.cusbtn:hover {
+
+.cusbtn3:hover {
 	background-color: brown;
 	transition: 0.3s;
 }
@@ -21,7 +52,10 @@
 	width: 100px;
 	height: 35px;
 }
-
+#cusbtn4 {
+	background-color: aliceblue;
+    width: 100%;
+}
 
 
 
@@ -102,8 +136,8 @@
 
 .promote-list {
 	border-radius: 5px;
-	border: 2px solid black;
-	background-color: white;
+	border: 2px solid white;
+	background-color: antiquewhite;
 	margin-bottom: 20px;
 }
 
@@ -111,9 +145,16 @@
 	width: 70%;
 	display: none;
 }
-
+.pre-show {
+	background-color: pink;
+	width: 75%;
+    border-radius: 30px;
+}
 .pre-reshow {
 	display: none;
+	background-color: yellowgreen;
+	width: 40%;
+    border-radius: 30px;
 }
 
 

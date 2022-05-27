@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>foodly | 자주찾는질문</title>
+<title>Gangnam Foodly | 자주찾는질문</title>
 <link href="/f5/resources/css/admin/faq/faq_list.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">

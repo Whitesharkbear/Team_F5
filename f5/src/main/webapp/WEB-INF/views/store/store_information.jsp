@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 <link href="/f5/resources/css/store/store_information.css"
 	rel="stylesheet" />
 <script type = "text/javascript" src="/f5/resources/js/jquery-3.6.0.min.js"></script>

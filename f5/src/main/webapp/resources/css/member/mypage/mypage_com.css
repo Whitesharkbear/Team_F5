@@ -5,7 +5,7 @@
  								
  ------------------------------------------------------------------------*/
 @media ( min-width : 767.9999px) {
-	h2{
+	h2 {
 		color: brown;
 	}
 	.com_container {
@@ -67,7 +67,27 @@
 		font-size: 35%;
 		background-color: orange;
 	}
-
+	#reset_btn {
+		height: 20%;
+		background: antiquewhite;
+		border-radius: 20px;
+		font-weight: bold;
+		color: brown;
+	}
+	#table_title {
+		background-color: orange;
+		color: white;
+	}
+	.my-search {
+		width: 40%;
+		font-size: 15px;
+	}
+	.my-bt {
+		background-color: brown;
+		width: 10%;
+		border-radius: 10px;
+		color: white;
+	}
 }
 /*-----------------------------------------------------------------------
 

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 
 <link href="/f5/resources/css/board/board_update.css" rel="stylesheet" />
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />

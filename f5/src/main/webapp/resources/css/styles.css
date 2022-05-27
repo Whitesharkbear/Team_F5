@@ -4626,8 +4626,14 @@ textarea.form-control-lg {
 }
 .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
+  background: antiquewhite;
+  
 }
-
+#hellotext{
+	color: brown;
+	font-weight: bolder;
+    float: right;
+}
 .card-footer {
   padding: 0.5rem 1rem;
   background-color: rgba(0, 0, 0, 0.03);
@@ -4663,12 +4669,14 @@ textarea.form-control-lg {
 .card-img-top,
 .card-img-bottom {
   width: 100%;
+  border-color: wh
 }
 
 .card-img,
 .card-img-top {
   border-top-left-radius: calc(0.25rem - 1px);
   border-top-right-radius: calc(0.25rem - 1px);
+  padding: 14px;
 }
 
 .card-img,
@@ -4858,7 +4866,7 @@ textarea.form-control-lg {
 .page-link {
   position: relative;
   display: block;
-  color: #0d6efd;
+  color: brown;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -4889,11 +4897,11 @@ textarea.form-control-lg {
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: orange;
+  border-color: orange;
 }
 .page-item.disabled .page-link {
-  color: #6c757d;
+  color: brown;
   pointer-events: none;
   background-color: #fff;
   border-color: #dee2e6;
@@ -7427,7 +7435,11 @@ textarea.form-control-lg {
 }
 
 .mb-4 {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.1rem;
+}
+.mb-41 {
+  margin-bottom: 0.1rem;
+  border-color: white;
 }
 
 .mb-5 {

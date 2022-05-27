@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 <link href="/f5/resources/css/info/info.css" rel="stylesheet">
 <head>
 <body>
@@ -65,7 +65,7 @@
 		</div>
 	</div>
 	<!-- Footer-->
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include><br>
 </head>
 </body>
 </html>

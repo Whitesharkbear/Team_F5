@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>강남 Foodly 로그인</title>
+<title>Gangnam Foodly</title>
 <!--  meta tags -->
 <meta name="description" content="">
 <meta name="author" content="">
@@ -128,19 +128,17 @@ const naverLogin = new naver.LoginWithNaverId(
   }
  
 </script>
-</div>
-<div class="kakaoButton">
-<ul>
-	<li onclick="kakaoLogin();">
-      <a href="javascript:void(0)">
-          <img class="kakaoButton" src="/f5/resources/images/kakao_login.png">
-      </a>
-	</li>
-	
-</ul>
-<!-- 카카오 스크립트 -->
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-<script>
+		</div>
+		<div class="kakaoButton">
+			<ul>
+				<li onclick="kakaoLogin();"><a href="javascript:void(0)"> <img
+						class="kakaoButton" src="/f5/resources/images/kakao_login.png">
+				</a></li>
+
+			</ul>
+			<!-- 카카오 스크립트 -->
+			<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+			<script>
 Kakao.init('196685263f4cd00c83c3569bec45c7a3'); //발급받은 키 중 javascript키를 사용해준다.
 console.log(Kakao.isInitialized()); // sdk초기화여부판단
 //카카오로그인
@@ -165,8 +163,8 @@ function kakaoLogin() {
 
 
 </script>
- 		</div>
-		
+		</div>
+
 
 	</div>
 

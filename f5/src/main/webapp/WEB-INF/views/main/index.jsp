@@ -5,7 +5,14 @@
 
 <html lang="en">
 <link href="/f5/resources/css/main/index.css" rel="stylesheet" />
-
+<script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    	$(document).ready(function(){
+    		$('#main_login_button').on('click',function(){
+    			member_login_form.submit();
+    		});
+    	});
+</script>
 
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
@@ -16,32 +23,32 @@
 
 			<div class="col-lg-8">
 
-				<div class="card mb-4">
-					<a href="#!"> <span class="text-top">이달의 맛집</span>
+				<div class="card mb-41">
+					<a href="store.do"> <span class="text-top">이달의 맛집</span>
 						<p class="text-down">"아빠 어디가? 추천 맛집! 푸들리가 추천드립니다."</p> <img
 						class="card-img-top" src="/f5/resources/images/고기.jpeg" alt="..." />
 					</a>
 				</div>
-				<div class="card mb-4">
-					<a href="#!"> <span class="text-top">평점 맛집</span>
+				<div class="card mb-41">
+					<a href="store.do"> <span class="text-top">평점 맛집</span>
 						<p class="text-down">"너도 가봤어? 야나두! 여러분이 추천드립니다."</p> <img
 						class="card-img-top" src="/f5/resources/images/스시.jpeg" alt="..." />
 					</a>
 				</div>
-				<div class="card mb-4">
-					<a href="#!"> <span class="text-top">인증샷 맛집</span>
+				<div class="card mb-41">
+					<a href="store.do"> <span class="text-top">인증샷 맛집</span>
 						<p class="text-down">"자기야! 카페도 가고 인증샷 찍으러 가자! GoGo!"</p> <img
 						class="card-img-top" src="/f5/resources/images/빵.jpeg" alt="..." />
 					</a>
 				</div>
-				<div class="card mb-4">
-					<a href="#!"> <span class="text-top">점심 맛집</span>
+				<div class="card mb-41">
+					<a href="store.do"> <span class="text-top">점심 맛집</span>
 						<p class="text-down">"오늘은 뭘 먹지? 란 고민 말고! 얼른 가서 즐겨보자!"</p> <img
 						class="card-img-top" src="/f5/resources/images/짬뽕.jpeg" alt="..." />
 					</a>
 				</div>
-				<div class="card mb-4">
-					<a href="#!"> <span class="text-top">회식 맛집</span>
+				<div class="card mb-41">
+					<a href="store.do"> <span class="text-top">회식 맛집</span>
 						<p class="text-down">"부장님, 오늘은 여기 가시죠! 직장인이 추천드립니다."</p> <img
 						class="card-img-top" src="/f5/resources/images/전.jpeg" alt="..." />
 					</a>
@@ -100,13 +107,13 @@
 					</c:when>
 					<c:otherwise>
 						<div class="card mb-4">
-							<div class="card-header">${sessionScope.memberName }님
-								환영합니다~</div>
+							<div class="card-header">${sessionScope.memberName }님, 환영합니다. <span id="hellotext">맛있는 하루되세요!</span>
+								</div>
 							<div class="card-body">
-								<button type="button" class="mypage-button">마이페이지</button>
-								<button type="button" class="reservation-button">예약확인</button>
-								<button type="button" class="reservation-button">장바구니</button>
-								<button type="button" class="logout-button">로그아웃</button>
+								<a href="mypage.do"><button type="button" class="mypage-button">마이페이지</button></a>
+								<a href="mypage_rez.do"><button type="button" class="reservation-button">예약확인</button></a>
+								<a href=""><button type="button" class="reservation-button">장바구니</button></a>
+								<a href="index.do"><button type="button" class="logout-button">로그아웃</button></a>
 							</div>
 						</div>
 					</c:otherwise>
@@ -117,9 +124,9 @@
 					<div class="card-body">
 						<div class="main_notice">
 							<ul class="new_notice">
-								<li><a>공지1</a></li>
-								<li><a>공지2</a></li>
-								<li><a>공지3</a></li>
+								<li><a>[22년 5월] 업데이트 안내</a></li>
+								<li><a>[22년 4월 23일] 긴급 서버 점검 안내</a></li>
+								<li><a>[22년 4월] 업데이트 안내</a></li>
 							</ul>
 						</div>
 					</div>
@@ -130,9 +137,9 @@
 					<div class="card-body">
 						<div class="main_news">
 							<ul class="new_news">
-								<li><a>뉴스1</a></li>
-								<li><a>뉴스2</a></li>
-								<li><a>뉴스3</a></li>
+								<li><a>[한겨레] 코로나19 이후, 사장님들은??</a></li>
+								<li><a>[YTN] 돼지고기 인상.. 10년만에 ..</a></li>
+								<li><a>[한국신문] 세계는 지금! 우리 김치 ..</a></li>
 							</ul>
 						</div>
 					</div>
@@ -143,16 +150,16 @@
 						<div class="row">
 							<div class="col-sm-6">
 								<ul class="list-unstyled mb-0">
-									<li><a href="#!">#중국집</a></li>
-									<li><a href="#!">#일식집</a></li>
-									<li><a href="#!">#치킨집</a></li>
+									<li><a href="#!">#단체 회식</a></li>
+									<li><a href="#!">#인스타 감성</a></li>
+									<li><a href="#!">#치맥 한잔?</a></li>
 								</ul>
 							</div>
 							<div class="col-sm-6">
 								<ul class="list-unstyled mb-0">
-									<li><a href="#!">#분식집</a></li>
-									<li><a href="#!">#돈까스집</a></li>
-									<li><a href="#!">#한식집</a></li>
+									<li><a href="#!">#점심 맛집</a></li>
+									<li><a href="#!">#데이트</a></li>
+									<li><a href="#!">#유투브 도전</a></li>
 								</ul>
 							</div>
 						</div>
@@ -163,9 +170,9 @@
 					<div class="card-body">
 						<div class="main_board">
 							<ul class="new_board">
-								<li><a>게시글1</a></li>
-								<li><a>게시글2</a></li>
-								<li><a>게시글3</a></li>
+								<li><a>[추천] 강남 쉑쉑버거, 맛있네요!</a></li>
+								<li><a>[알림] 음식이 너무 짜졌네요..</a></li>
+								<li><a>[추천] 여름 냉면! 여기 좋아요!</a></li>
 							</ul>
 						</div>
 					</div>
@@ -178,6 +185,6 @@
 	<!-- container -->
 
 	<!-- Footer-->
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include><br>
 </body>
 </html>

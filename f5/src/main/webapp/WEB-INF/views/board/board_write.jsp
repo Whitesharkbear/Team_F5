@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 
 <link href="/f5/resources/css/board/board_write.css" rel="stylesheet" />
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
@@ -57,24 +57,25 @@ $(document).ready(function() {
 	</div>
 	<div class="container">
 		<div class="row">
+		<label class="board-caption">Foodly의 대나무 숲</label>
 			<div id="content">
-				<h4>게시글 등록</h4>
+				<h4 id = "text1">게시글 등록</h4>
 				<form action="board_write.do" method="post" name="boardWrite">
 				<table class="board_table">
 					<tr>
-						<td><label>제목</label></td>
+						<td><label id = "text2">제 목</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="board_title" name="boardTitle"></td>
+						<td><input type="text" id="board_title" name="boardTitle" placeholder="제목을 입력해주세요."></td>
 					</tr>
 					<tr>
-						<td><label>내용</label></td>
+						<td><label id = "text2">내 용</label></td>
 					</tr>
 					<tr>
-						<td><textarea rows="10" id="board_content" name="boardContent"></textarea></td>
+						<td><textarea rows="10" id="board_content" name="boardContent" placeholder="내용을 입력해주세요."></textarea></td>
 					</tr>
 					<tr>
-						<td><label>파일첨부</label></td>
+						<td><label id = "text2">파일첨부</label></td>
 					</tr>
 					<tr>
 						<td><input type="file" id="file"></td>
@@ -82,15 +83,16 @@ $(document).ready(function() {
 				</table>
 				<div class="board_btn">
 					<button type="button" class="board_write" >작성완료</button>
-					<button type="button" class="board_list">목록</button>
+					<button type="button" class="board_list">되돌아가기</button>
 				</div>
 				</form>
 			</div>
 		</div>
 	</div>
+	<br>
         
         <!-- Footer-->
-	<jsp:include page="../footer.jsp"></jsp:include>
+	<jsp:include page="../footer.jsp"></jsp:include><br>
         <!-- Bootstrap core JS-->
 <!--          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
         <!-- Core theme JS-->

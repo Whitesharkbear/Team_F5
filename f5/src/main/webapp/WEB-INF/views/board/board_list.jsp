@@ -109,19 +109,35 @@
             						<option>내용</option>
             						<option>제목+내용</option>
             					</select>
-            					<input type="search" class="search">
-            					<button class="cusbtn">검색</button>
+            					<input type="search" class="search" placeholder="제목/내용을 입력해주세요">
+            					<button class="cusbtn1"> 검 색 </button>
             				</td>
             			</tr>
             			<tr>
             				<td colspan=5><div id="ampaginationsm"></div></td>
             			<tr>
             		</table>
+            		<!-- Pagination-->
+			<nav aria-label="Pagination">
+				<hr class="my-0" />
+				<ul class="pagination justify-content-center my-4">
+					<li class="page-item disabled"><a class="page-link" href="#"
+						tabindex="-1" aria-disabled="true">Newer</a></li>
+					<li class="page-item active" aria-current="page"><a
+						class="page-link" href="#!">1</a></li>
+					<li class="page-item"><a class="page-link" href="#!">2</a></li>
+					<li class="page-item"><a class="page-link" href="#!">3</a></li>
+					<li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+					<li class="page-item"><a class="page-link" href="#!">15</a></li>
+					<li class="page-item"><a class="page-link" href="#!">Older</a></li>
+				</ul>
+			</nav>
             	</div>
             </div>
         </div>
         <!-- Footer-->
 	<jsp:include page="../footer.jsp"></jsp:include>
+	<Br>
         <!-- Bootstrap core JS-->
 <!--          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
         <!-- Core theme JS-->

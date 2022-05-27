@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gangnam Foodly</title>
 
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
 <link href="/f5/resources/css/board/board.css" rel="stylesheet" />
@@ -111,22 +111,15 @@
 								</tr>
 								<tr>
 									<td colspan="5">
-										<input type="file">
+										<input id="cusbtn4" type="file">
 									</td>
-								</tr>
-								<tr>
-									<td>img</td>
-									<td>img</td>
-									<td>img</td>
-									<td>img</td>
-									<td>img</td>
 								</tr>
 								<tr>
 									<th colspan="5"><label class="label">미리보기</label></th>
 								</tr>
 								<tr>
-									<td><button class="pre-show" type="button">Click</button></td>
-									<td colspan="2"><button class="pre-reshow" type="button">새로고침</button></td>
+									<td><button class="pre-show" type="button">View</button></td>
+									<td colspan="2"><button class="pre-reshow" type="button">Refresh</button></td>
 								</tr>
 								<tr>
 									<td colspan="5" style="text-align: center">
@@ -134,7 +127,7 @@
 											<div class="promote-top">
 												<div class="centered">
 													<img class="promote-img"
-														src="/f5/resources/images/person.png">
+														src="/f5/resources/images/상점.jpeg">
 												</div>
 												<p class="pre-title"></p>
 											</div>
@@ -151,10 +144,10 @@
 				</form>					
 				<div class="board-write-btn-container">
 					<div class="board-write-btn-container-wrap">
-						<button type="button" id="promote_insert_btn" class="cusbtn">등록</button>
-						<button class="cusbtn" type="reset">취소</button>
+						<button type="button" id="promote_insert_btn" class="cusbtn">등록하기</button>
+						<button class="cusbtn2" type="reset">취소하기</button>
 						<a href="promote_list.do">
-							<button class="cusbtn" type="button">돌아가기</button>
+							<button class="cusbtn3" type="button">돌아가기</button>
 						</a>
 					</div>
 				</div>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Foodly | 사이트맵</title>
+<title>Gangnam Foodly</title>
 <link href="/f5/resources/css/info/sitemap.css" rel="stylesheet">
 </head>
 <body>
@@ -95,6 +95,6 @@
 			</div>
 		</div>
 	</div>
-	<jsp:include page="../footer.jsp" />
+	<jsp:include page="../footer.jsp" /><br>
 </body>
 </html>

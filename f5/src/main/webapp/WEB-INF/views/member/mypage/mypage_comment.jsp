@@ -46,7 +46,7 @@
 			<br>
 
 			<table>
-				<tr>
+				<tr id="table_title">
 					<th>매장명</th>
 					<th>내용</th>
 					<th>평점</th>
@@ -58,7 +58,7 @@
 					<td>StoreContent</td>
 					<td>StoreScore</td>
 					<td>WriteDay</td>
-					<td><button onclick="showPopup(false)">변경하기</button></td>
+					<td><button id="reset_btn" onclick="showPopup(false)">변경하기</button></td>
 				</tr>
 
 			</table>
