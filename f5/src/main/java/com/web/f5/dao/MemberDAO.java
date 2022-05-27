@@ -4,11 +4,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.web.f5.vo.AdminMemberVO;
 import com.web.f5.vo.MemberVO;
+import com.web.f5.vo.StoreVO;
 
 public class MemberDAO {
 
@@ -34,5 +37,10 @@ public class MemberDAO {
 	public MemberVO select(String memberId) {
 		return sqlSession.selectOne(namespace + ".select", memberId);
 	}
-
+	public int insertCeo(StoreVO vo, HttpSession session) {
+		Map param = new HashMap<String, String>();
+		param.put("memberId", session.getAttribute("memberId"));
+		param.put("storeIdx", vo.getStoreIdx());
+		return sqlSession.insert(namespace+".insertCeo",param);
+	}
 }

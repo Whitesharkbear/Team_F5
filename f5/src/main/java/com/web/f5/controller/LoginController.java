@@ -36,7 +36,6 @@ MemberService memberService;
 			mv.setViewName("redirect:/index.do");
 			return mv;
 		}else {
-			mv.addObject("loginResult",result);
 			mv.setViewName("redirect:/index.do");
 			return mv;
 		}

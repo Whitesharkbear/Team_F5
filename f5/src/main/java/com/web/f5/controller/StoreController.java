@@ -39,6 +39,8 @@ public class StoreController {
 	StoreService storeService;
 	@Autowired
 	ReservationService reservationService;
+	@Autowired
+	MemberService memberService;
 		
 
 		@RequestMapping(value = "/store_join.do", method = RequestMethod.GET)
@@ -107,7 +109,7 @@ public class StoreController {
 		
 		
 		@RequestMapping(value = "/store_join.do", method = RequestMethod.POST)
-		public ModelAndView store_join(StoreVO vo,HttpServletRequest request) {
+		public ModelAndView store_join(StoreVO vo,HttpServletRequest request, HttpSession session) {
 //			System.out.println(vo.getStoreCategory());
 			ModelAndView mv = new ModelAndView();
 			
@@ -117,7 +119,7 @@ public class StoreController {
 				vo.setStoreIdx(storeIdx);
 			}
 			int fileResult = storeService.insertFileResult(vo);
-			
+			int ceoResult = memberService.insertCeoResult(vo,session);
 			if (fileResult == 1 && result ==1) {
 				storeService.fileSave(vo, request);
 				mv.setViewName("redirect:/store.do");

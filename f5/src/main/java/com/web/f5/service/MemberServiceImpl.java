@@ -1,9 +1,12 @@
 package com.web.f5.service;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.web.f5.dao.MemberDAO;
 import com.web.f5.vo.MemberVO;
+import com.web.f5.vo.StoreVO;
 
 public class MemberServiceImpl implements MemberService {
 
@@ -32,5 +35,9 @@ public class MemberServiceImpl implements MemberService {
 		// TODO Auto-generated method stub
 		return (MemberVO) memberDao.select(memberId);
 	}
-	
+	@Override
+	public int insertCeoResult(StoreVO vo, HttpSession session) {
+		// TODO Auto-generated method stub
+		return memberDao.insertCeo(vo,session);
+	}
 }

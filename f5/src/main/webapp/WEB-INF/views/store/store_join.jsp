@@ -12,6 +12,17 @@
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
+		var memberId = '${sessionScope.memberId}';
+		if(memberId == ""){
+			var confirmResult = confirm("로그인이 필요한 페이지입니다. 로그인페이지로 이동하시겠습니까?");
+			if(confirmResult){
+				 $(location).attr('href', "http://localhost:9000/f5/login.do");
+			}else{
+				alert("접근할 수 없습니다.")
+				$(location).attr('href', "http://localhost:9000/f5/index.do");
+			}
+		} 
+		
 		$('#btnJoin').on('click',function(){
 			var filenumber = $('#file-number').val();
 			if(filenumber != 6){

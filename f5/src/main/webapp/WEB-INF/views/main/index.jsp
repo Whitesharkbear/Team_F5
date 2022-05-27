@@ -8,9 +8,14 @@
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript">
     	$(document).ready(function(){
-    		$('#main_login_button').on('click',function(){
-    			member_login_form.submit();
-    			
+    		$('.main_login_button').on('click',function(){
+    			if($('#input_id').val() == ""){
+    				alert("아이디를 입력해주세요");
+    			}else if($('#input_pass').val() == ""){
+    				alert("비밀번호를 입력해주세요");
+    			}else{
+    				member_login_form.submit();
+    			}
     		});
     	});
 </script>
@@ -83,7 +88,7 @@
 						<div class="card mb-4 login_sec">
 							<div class="card-body">
 							<form name="member_login_form" action="login.do" method="post">
-								<button class="main_login_button">로 그 인</button>
+								<button class="main_login_button" type="button">로 그 인</button>
 								<input class="input_id" type="text" placeholder="Username" name="memberId" id="input_id">
 								<input class="input_id" type="password" placeholder="****" name="memberPass" id="input_pass">
 							</form>

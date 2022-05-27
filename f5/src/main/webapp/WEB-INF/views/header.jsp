@@ -50,7 +50,6 @@
 								<ul class="nav-inner">
 									<li><a href="http://localhost:9000/f5/login.do">로그인</a></li>
 									<li><a href="http://localhost:9000/f5/join.do">회원가입</a></li>
-									<li><a href="http://localhost:9000/f5/mypage.do">마이페이지</a></li>
 								</ul>
 							</c:when>
 							<c:otherwise>

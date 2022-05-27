@@ -27,7 +27,13 @@
 <script type="text/javascript">
     	$(document).ready(function(){
     		$('#btnLogin').on('click',function(){
-    			member_login_form.submit();
+    			if($('#InputUserEmail1').val() == ""){
+    				alert("아이디를 입력해주세요");
+    			}else if($('#InputPassword').val() == ""){
+    				alert("비밀번호를 입력해주세요");
+    			}else{
+    				member_login_form.submit();
+    			}
     		});
     	});
 </script>

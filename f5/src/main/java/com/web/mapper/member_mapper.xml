@@ -57,4 +57,7 @@
 	<select id="id_check" parameterType="java.lang.String" resultType="int">
   		select count(*) from member where memberId=#{memberId} 
 	</select>
+	<insert id="insertCeo" parameterType="map">
+		insert into Ceo values(#{memberId} , #{storeIdx})
+	</insert>
 </mapper>
