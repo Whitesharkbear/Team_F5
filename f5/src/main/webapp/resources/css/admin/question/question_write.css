@@ -17,6 +17,11 @@ th{
 #question_content {
 	resize: none;
 }
+.questionWrite{
+	background-color: orange;
+	color: white;
+	border-radius: 10px;
+}
 
 /*-----------------------------------------------------------------------
 
@@ -78,8 +83,11 @@ th{
 .question_btn > .question_list {
 	border: none;
 	border-radius: 5%;
-	background-color: orange;
+	background-color: chocolate;
 	color: #fff;
+}
+.filte_set{
+	float: left;
 }
 
 }

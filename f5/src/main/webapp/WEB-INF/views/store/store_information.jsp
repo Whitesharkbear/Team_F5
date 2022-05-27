@@ -69,10 +69,10 @@
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
 	<div class="head-nav-container">
-		<label class="head-nav-title">Free Board</label>
+		<label class="head-nav-title">Store Inroduce</label>
 		<div class="head-nav-inner">
 			<ul class="nav-col-ul">
-				<li><a href="#">소개</a></li>
+				<li><a href="">소개</a></li>
 				<li><a href="#location">위치</a></li>
 				<li><a href="#review">리뷰</a></li>
 				<li><a href="#reservation">예약</a></li>
@@ -93,7 +93,7 @@
 					<img class="button_next" src="/f5/resources/images/next_button.png">
 				</div>
 				<h2 id = "average-score"></h2>
-				<h2 id="intro">#핫플레이스 #중국 #친절</h2>
+				<h2 id="intro">#대박 #서비스 #Instagram</h2>
 				<div class="store-intro-box">
 					<div class="store-intro-maintext-box">
 						<div class="store-intro-text-box">
@@ -118,8 +118,8 @@
 						<a><img class="store-intro-img" src="#"></a>
 					</div>
 				</div>
-				<h2 id="review">리뷰</h2>
-				<h4>나도한마디</h4>
+				<h2 class ="font-com" id="review">리뷰</h2>
+				<h4>Comment</h4>
 				<div class="store-review">
 				<input type="hidden" id = "review-page" value = "1">
 				<input type="hidden" id = "myreview-page" value = "1">
@@ -145,11 +145,10 @@
 						<button id = "review_submit" class="review-button" type="button">리뷰작성</button>
 					</div>
 					</form> 
-				</div>
+				</div><hr><br>
 				<div class="reservation" id="reservation">
-					<h2>예약</h2>
-					<h4>나는 편하게!</h4>
-					<h3>가게 스케줄링~</h3>
+					<h2 class ="font-com">예약</h2>
+					<h5>Store Schedule</h5>
 					<div class="sec_cal">
 						<div class="cal_nav">
 							<a href="javascript:;" class="nav-btn go-prev"><<</a>
@@ -191,7 +190,8 @@
 					</form>
 					<!-- 모달끝  -->
 				</div>
-				<h2 id="delivery">주문</h2>
+				<br><hr><br>
+				<h2 class ="font-com" id="delivery">주문</h2>
 				<h4>집에서 즐기세요</h4>
 				<div class="delivery">
 					<div class="goods">

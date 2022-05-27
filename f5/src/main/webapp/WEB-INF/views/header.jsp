@@ -81,7 +81,7 @@
 					<div></div>
 						<ul class="nav-inner">
 							<li><a href="http://localhost:9000/f5/store.do">매장검색</a></li>
-							<li><a href="#">예약조회</a></li>
+							<li><a href="store_join.do">매장등록</a></li>
 							<li><a href="#">예약확인</a></li>
 							<li><a href="#">배달접수</a></li>
 						</ul></li>

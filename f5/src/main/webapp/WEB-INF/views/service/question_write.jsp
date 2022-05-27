@@ -14,7 +14,7 @@
 		<div class="row">
 			<div id="content">
 				<h4>문의관리 | 문의작성</h4>
-				<form action="question_write.do" name="questionWrite" method="post">
+				<form action="question_write.do" name="questionWrite" method="post" class="questionWrite">
 				<table id="question_table">
 					<tr>
 						<td><label>제목</label></td>
@@ -32,7 +32,7 @@
 						<td><label>파일첨부</label></td>
 					</tr>
 					<tr>
-						<td><input type="file" id="file"></td>
+						<td class="filte_set"><input type="file" id="file"></td>
 					</tr>
 				</table>
 				<div class="question_btn">

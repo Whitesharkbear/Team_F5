@@ -75,14 +75,14 @@
 <body>
 <jsp:include page="../header.jsp"></jsp:include>
 	<div class="head-nav-container">
-		<label class="head-nav-title">Mypage</label>
+		<label class="head-nav-title">Store Registor</label>
 		<div class="head-nav-inner">
 			<ul class="nav-col-ul">
-				<li><a href="#">매장관리</a></li>
-				<li><a href="#">공지사항</a></li>
-				<li><a href="#">1:1문의</a></li>
-				<li><a href="#">환경설정</a></li>
-				<li><a href="#"></a></li>
+				<li><a href="store.do">매장검색</a></li>
+				<li><a href="store_join.do">매장등록</a></li>
+				<li><a href="#">-</a></li>
+				<li><a href="#">-</a></li>
+
 			</ul>
 		</div>
 	</div>
