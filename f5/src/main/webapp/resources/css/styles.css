@@ -75,6 +75,12 @@
     scroll-behavior: smooth;
   }
 }
+ @font-face {
+    font-family: 'HSYuji-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 
 body {
   margin: 0;
@@ -87,6 +93,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  font-family: 'HSYuji-Regular';
 }
 
 hr {
@@ -11376,6 +11383,7 @@ textarea.form-control-lg {
 	width : 250px;
 	height : 50px;
 	object-fit:cover;
+	margin-left: -540px;
 }
 .nav-link{
 	color : white;

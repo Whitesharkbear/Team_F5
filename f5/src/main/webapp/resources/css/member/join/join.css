@@ -1,6 +1,14 @@
 @charset "UTF-8";
+ @font-face {
+    font-family: 'HSYuji-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 html{
 	background-color: #FFB85A;
+	  font-family: 'HSYuji-Regular';
 }
 table {
 	width: 100%;

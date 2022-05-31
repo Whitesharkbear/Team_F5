@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,19 +32,20 @@
 <body>
 	<!-- Responsive navbar-->
 	<nav class="navbar navbar-expand-lg navbar-dark bg-orange">
-		<div class="container">
-			<div class="header-img-box">
-				<a class="navbar-brand" href="index.do"><img
-					class="header-image" src="/f5/resources/images/mainlogo.png"></a>
-			</div>
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+			data-bs-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false"
+			aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<div class="container">
 				<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+					<div class="header-img-box">
+						<a class="navbar-brand" href="index.do"><img
+							class="header-image" src="/f5/resources/images/mainlogo.png"></a>
+					</div>
 					<li class="nav-item mber_bar"><c:choose>
 							<c:when test="${sessionScope.memberId ==null}">
 								<a class="nav-link" href="#">Member</a>
@@ -68,7 +70,7 @@
 							<li></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#!">Board</a>
-					<div></div>
+						<div></div>
 						<ul class="nav-inner">
 							<li><a href="board_list.do">자유게시판</a></li>
 							<li><a href="promote_list.do">홍보게시판</a></li>
@@ -77,7 +79,7 @@
 							<li></li>
 						</ul></li>
 					<li class="nav-item"><a class="nav-link" href="#!">Store</a>
-					<div></div>
+						<div></div>
 						<ul class="nav-inner">
 							<li><a href="http://localhost:9000/f5/store.do">매장검색</a></li>
 							<li><a href="store_join.do">매장등록</a></li>
@@ -86,7 +88,7 @@
 						</ul></li>
 					<li class="nav-item" class="nav-litem"><a class="nav-link"
 						aria-current="page" href="#">Center</a>
-					<div></div>
+						<div></div>
 						<ul class="nav-inner">
 							<li><a href="http://localhost:9000/f5/faq_list.do">FAQ</a></li>
 							<li><a href="http://localhost:9000/f5/question_list.do">문의하기</a></li>

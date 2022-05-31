@@ -148,9 +148,9 @@
 				<div class="board-write-btn-container">
 					<div class="board-write-btn-container-wrap">
 						<button type="button" id="promote_update_btn" class="cusbtn">수정완료</button>
-						<button type="button" id="promote_delete_btn" class="cusbtn">삭제하기</button>
+						<button type="button" id="promote_delete_btn" class="cusbtn2">삭제하기</button>
 						<a href="promote_list.do">
-							<button class="cusbtn" type="button">돌아가기</button>
+							<button class="cusbtn3" type="button">돌아가기</button>
 						</a>
 					</div>
 				</div>
