@@ -27,8 +27,8 @@ function list() {
 			<div id="content">
 				<h4>문의관리 | 문의답변</h4>
 				<form action="question_receive.do" method="post">
-				<input type="text" name="memberEmail" value="${ vo.memberEmail }">
-				<input type="text" name="questionIdx" value="${ vo.questionIdx }">
+				<input type="hidden" name="memberEmail" value="${ vo.memberEmail }">
+				<input type="hidden" name="questionIdx" value="${ vo.questionIdx }">
 				<table id="question_table">
 					<tr>
 						<td><label>제목</label></td>

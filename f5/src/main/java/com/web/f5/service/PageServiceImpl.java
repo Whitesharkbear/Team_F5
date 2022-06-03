@@ -22,6 +22,9 @@ public class PageServiceImpl {
 	@Autowired
 	private AdminQuestionServiceImpl adminQuestionService;
 	
+	@Autowired
+	private AdminStoreServiceImpl adminStoreService;
+	
 	public Map<String, String> getPageResult(String rpage, String serviceName, ObjService service) {
 		
 		Map<String, String> param = new HashMap<String, String>();
@@ -45,6 +48,10 @@ public class PageServiceImpl {
 			
 			adminBoardService = (AdminBoardServiceImpl) service;
 			dbCount = adminBoardService.getListCount();
+		} else if ( serviceName.equals("admin_faq") ) {
+			
+			adminFaqService = (AdminFaqServiceImpl) service;
+			dbCount = adminFaqService.getListCount();
 		} else if ( serviceName.equals("faq") ) {
 			
 			adminFaqService = (AdminFaqServiceImpl) service;
@@ -53,6 +60,14 @@ public class PageServiceImpl {
 			
 			adminQuestionService = (AdminQuestionServiceImpl) service;
 			dbCount = adminQuestionService.getListCount();
+		} else if ( serviceName.equals("admin_store") ) {
+			
+			adminStoreService = (AdminStoreServiceImpl) service;
+			dbCount = adminStoreService.getListCount();
+		} else if ( serviceName.equals("black_list") ) {
+			
+			adminMemberService = (AdminMemberServiceImpl) service;
+			dbCount = adminMemberService.getBlackCount();
 		}
 		
 		if ( dbCount % pageSize == 0 ) {
@@ -106,6 +121,22 @@ public class PageServiceImpl {
 			
 			adminQuestionService = (AdminQuestionServiceImpl) service;
 			dbCount = adminQuestionService.getSearchCount(search_type, search);
+		} else if ( serviceName.equals("admin_board_search") ) {
+			
+			adminBoardService = (AdminBoardServiceImpl) service;
+			dbCount = adminBoardService.getSearchCount(search_type, search);
+		} else if ( serviceName.equals("notice_search") ) {
+			
+			adminNoticeService = (AdminNoticeServiceImpl) service;
+			dbCount = adminNoticeService.getSearchCount(search_type, search);
+		} else if ( serviceName.equals("faq_search") ) {
+			
+			adminFaqService = (AdminFaqServiceImpl) service;
+			dbCount = adminFaqService.getSearchCount(search_type, search);
+		} else if ( serviceName.equals("black_search_list") ) {
+			
+			adminMemberService = (AdminMemberServiceImpl) service;
+			dbCount = adminMemberService.getBlackSearchCount(search_type, search);
 		}
 		
 		if ( dbCount % pageSize == 0 ) {

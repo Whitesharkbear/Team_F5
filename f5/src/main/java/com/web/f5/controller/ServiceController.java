@@ -37,16 +37,29 @@ public class ServiceController {
 	private PageServiceImpl pageService;
 	
 	@RequestMapping( value = "faq_list.do", method = RequestMethod.GET )
-	public ModelAndView faq_list(String rpage) {
+	public ModelAndView faq_list(String rpage, String search, String search_type) {
 		
 		ModelAndView mv = new ModelAndView();
+		Map<String, String> param = null;
+		List<Object> olist = null;
 		
-		Map<String, String> param = pageService.getPageResult(rpage, "faq", adminFaqService);
-		
-		int startCount = Integer.parseInt( param.get("start") );
-		int endCount = Integer.parseInt( param.get("end") );
-		
-		List<Object> olist = adminFaqService.getListResult(startCount, endCount);
+		if ( search == null ) {
+			
+			param = pageService.getPageResult(rpage, "faq", adminFaqService);
+			
+			int startCount = Integer.parseInt( param.get("start") );
+			int endCount = Integer.parseInt( param.get("end") );
+			
+			olist = adminFaqService.getListResult(startCount, endCount);
+		} else {
+			
+			param = pageService.getSearchResult(search_type, search, rpage, "faq_search", adminFaqService);
+			
+			int startCount = Integer.parseInt( param.get("start") );
+			int endCount = Integer.parseInt( param.get("end") );
+			
+			olist = adminFaqService.getsearchListResult(startCount, endCount, search, search_type);
+		}
 		ArrayList<AdminFaqVO> list = new ArrayList<AdminFaqVO>();
 	
 		for ( Object obj : olist ) {
@@ -57,6 +70,8 @@ public class ServiceController {
 		mv.setViewName("service/faq_list");
 	
 		mv.addObject("list", list);
+		mv.addObject("search_type", search_type);
+		mv.addObject("search", search);
 		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
 		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
 		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
@@ -64,16 +79,49 @@ public class ServiceController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping ( value = "/faq_search_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
+	public String faq_search_list(String rpage, String search, String search_type) {
+		
+		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "faq_search", adminFaqService);
+		
+		int startCount = Integer.parseInt( param.get("start") );
+		int endCount = Integer.parseInt( param.get("end") );
+		
+		ArrayList<AdminFaqVO> list = adminFaqService.getSearchJSONResult(startCount, endCount, search, search_type);
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		for ( AdminFaqVO vo : list ) {
+			
+			JsonObject obj = new JsonObject();
+			
+			obj.addProperty("rno", vo.getRno());
+			obj.addProperty("faqIdx", vo.getFaqIdx());
+			obj.addProperty("faqTitle", vo.getFaqTitle());
+			obj.addProperty("faqContent", vo.getFaqContent());
+			obj.addProperty("faqDate", vo.getFaqDate());
+			
+			jlist.add(obj);
+		}
+		
+		jdata.add("jlist", jlist);
+		
+		return gson.toJson(jdata);
+	}
+	
 	@RequestMapping ( value = "/question_list.do", method = RequestMethod.GET )
 	public ModelAndView question_list(String rpage, String search, String search_type) {
-		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
 		List<Object> olist = null;
-		if ( search == "" ) {
+
+		if ( search == null ) {
 			
 		param = pageService.getPageResult(rpage, "admin_Question", adminQuestionService);
-		
+
 		int startCount = Integer.parseInt( param.get("start") );
 		int endCount = Integer.parseInt( param.get("end") );
 		
@@ -82,6 +130,7 @@ public class ServiceController {
 		} else {
 			
 			param = pageService.getSearchResult(search_type, search, rpage, "question_search", adminQuestionService);
+			
 			int startCount = Integer.parseInt( param.get("start") );
 			int endCount = Integer.parseInt( param.get("end") );
 			

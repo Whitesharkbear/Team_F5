@@ -4,36 +4,40 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 | 공지사항 관리</title>
-<link href="/f5/resources/css/admin/notice/notice_list.css" rel="stylesheet" />
+<title>관리자 | 매장리스트</title>
+<link href="/f5/resources/css/admin/store/store_list.css" rel="stylesheet" />
 <link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
+
 <script type="text/javascript">
+function search() {
+	
+	var search = $("#searchbar").val();
+	var search_type = $("#search_type").val();
+	if ( search == "" ) {
+		
+		alert("검색어를 입력해주세요.");
+		$("#searchbar").focus();
+	} else {
+		
+		location.href="/f5/admin/store_list.do?search="+search+"&search_type="+search_type;
+	}
+}
+
 $(document).ready(function(){
-	
-	$(".search_btn").click(function(){
-		
-		var search = $("#searchbar").val();
-		var search_type = $("#search_type").val();
-		
-		if ( $("#searchbar").val() == "" ) {
-			
-			alert("검색어를 입력해주세요.");
-		} else {
-			location.href="/f5/admin/notice_list.do?search="+search+"&search_type="+search_type;
-		}
-	});
-	
+	var search = $("#searchbar").val();
+	var search_type = $("#search_type").val();
 	var pager = jQuery('#ampaginationsm').pagination({
 		
 	    maxSize: 7,	    		// max page size
 	    totals: '${ dbCount }',	// total pages	
 	    page: '${ reqPage }',		// initial page		
 	    pageSize: '${ pageSize }',	// max number items per page
-	    search_type : '${search_type}',
-	    search : '${search}',
 	
+	    search : '${search}',
+	    search_type : '${search_type}',
+	    
 	    // custom labels		
 	    lastText: '&raquo;&raquo;', 		
 	    firstText: '&laquo;&laquo;',		
@@ -47,50 +51,47 @@ $(document).ready(function(){
 		jQuery('.showlabelsm').text('The selected page no: '+e.page);
 		var search = $("#searchbar").val();
 		var search_type = $("#search_type").val();
-		
 		if ( search != "" ) {
 			
-			$(".board_list").remove();
+			$(".store_list").remove();
 			$.ajax({
-				
-				url : "notice_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				url : "store_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
 				success : function(result) {
 					
 					const data = JSON.parse(result);
 					
 					for ( var i in data.jlist ) {
 						
-						var str = "<tr class='board_list'>";
+						var str = "<tr class='store_list'>";
 						str += "<td>"+data.jlist[i].rno+"</td>";
 						str += "<td>"+data.jlist[i].memberId+"</td>";
-						str += "<td><a href='board_content.do?idx="+data.jlist[i].boardIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].boardTitle+"</a></td>";
-						str += "<td>"+data.jlist[i].boardDate+"</td>";
-						str += "<td>"+data.jlist[i].boardHits+"</td>";
+						str += "<td><a href='store_content.do?idx="+data.jlist[i].storeIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].storeTitle+"</a></td>";
+						str += "<td>"+data.jlist[i].storeDate+"</td>";
+						str += "<td>"+data.jlist[i].storeHits+"</td>";
 						str += "</tr>";
-						$("#notice_table").append(str);
+						$("#store_table").append(str);
 					}
 				}
 			});
 		} else {
 			
-			$(".board_list").remove();
+			$(".store_list").remove();
 			$.ajax({
-				
-				url : "notice_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				url : "store_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
 				success : function(result) {
 					
 					const data = JSON.parse(result);
 					
 					for ( var i in data.jlist ) {
 						
-						var str = "<tr class='board_list'>";
+						var str = "<tr class='store_list'>";
 						str += "<td>"+data.jlist[i].rno+"</td>";
 						str += "<td>"+data.jlist[i].memberId+"</td>";
-						str += "<td><a href='notice_content.do?idx="+data.jlist[i].boardIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].boardTitle+"</a></td>";
-						str += "<td>"+data.jlist[i].boardDate+"</td>";
-						str += "<td>"+data.jlist[i].boardHits+"</td>";
+						str += "<td><a href='store_content.do?idx="+data.jlist[i].storeIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].storeTitle+"</a></td>";
+						str += "<td>"+data.jlist[i].storeDate+"</td>";
+						str += "<td>"+data.jlist[i].storeHits+"</td>";
 						str += "</tr>";
-						$("#notice_table").append(str);
+						$("#store_table").append(str);
 					}
 				}
 			});
@@ -105,12 +106,11 @@ $(document).ready(function(){
 		<div class="row">
 			<section>
 				<div id="content">
-					<h4>관리자 | 공지사항 관리</h4>
-					<div class="notice_btn">
-						<a href="notice_write.do"><button>등록</button></a>
+					<h4>관리자 | 매장리스트</h4>
+					<div class="store_btn">
 					</div>
-					<table id="notice_table">
-					<colgroup>
+					<table id="store_table">
+						<colgroup>
 							<!-- 번호 -->
 							<col width="10%">
 							<!-- 게시자 id -->
@@ -119,33 +119,33 @@ $(document).ready(function(){
 							<col width="25%">
 							<!-- 게시 날짜 -->
 							<col width="35%">
-							<!-- 조회수 -->
+							<!-- 평점 -->
 							<col width="15%">
 						</colgroup>
 						<tr>
-							<th>번호</th><th>게시자</th><th>제목</th><th>날짜</th><th>조회수</th>
+							<th>번호</th><th>CEO</th><th>매장이름</th><th>위치</th><th>종류</th>
 						</tr>
 						<c:forEach var="vo" items="${ list }">
-							<tr class="board_list">
+							<tr class="store_list">
 								<td>${ vo.rno }</td>
-								<td>${ vo.memberId }</td>
-								<td><a href="notice_content.do?idx=${ vo.boardIdx }&rno=${ vo.rno }">${ vo.boardTitle }</a></td>
-								<td>${ vo.boardDate }</td>
-								<td>${ vo.boardHits }</td>
+								<td><a href="member_content.do?id=${ vo.memberId }">${ vo.memberId }</a></td>
+								<td><a href="store_information.do?idx=${ vo.storeIdx }&rno=${ vo.rno }">${ vo.storeName }</a></td>
+								<td>${ vo.storePlace }</td>
+								<td>${ vo.storeCategory }</td>
 							</tr>
 						</c:forEach>
 					</table>
 					<div class="search">
 						<div class="search_text">
-						<select id="search_type">
+							<select id="search_type">
 								<option value="t" <c:if test="${ search_type eq 't' }">selected</c:if>>제목</option>
 								<option value="c" <c:if test="${ search_type eq 'c' }">selected</c:if>>내용</option>
 								<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
-								<option value="w" <c:if test="${ search_type eq 'w' }">selected</c:if>>작성자</option>
-						</select>
-							<input type="text" id="searchbar" value="${ search }"
+								<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>작성자</option>
+							</select>
+							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
-							<button type="button" class="search_btn">검색</button>
+							<button type="button" class="search_btn" onclick="search()">검색</button>
 						</div>
 					</div>
 					<div class="paging">

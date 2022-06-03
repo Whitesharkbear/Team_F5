@@ -14,18 +14,20 @@
 function search() {
 	
 	var search = $("#searchbar").val();
-	
+	var search_type = $("#search_type").val();
 	if ( search == "" ) {
 		
 		alert("검색어를 입력해주세요.");
 		$("#searchbar").focus();
 	} else {
 		
-		alert("검색하신 "+ search +" 결과입니다.");
+		location.href="/f5/admin/board_list.do?search="+search+"&search_type="+search_type;
 	}
 }
+
 $(document).ready(function(){
-	
+	var search = $("#searchbar").val();
+	var search_type = $("#search_type").val();
 	var pager = jQuery('#ampaginationsm').pagination({
 		
 	    maxSize: 7,	    		// max page size
@@ -33,6 +35,9 @@ $(document).ready(function(){
 	    page: '${ reqPage }',		// initial page		
 	    pageSize: '${ pageSize }',	// max number items per page
 	
+	    search : '${search}',
+	    search_type : '${search_type}',
+	    
 	    // custom labels		
 	    lastText: '&raquo;&raquo;', 		
 	    firstText: '&laquo;&laquo;',		
@@ -43,9 +48,55 @@ $(document).ready(function(){
 	});
 	
 	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-		   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-           $(location).attr('href', "http://localhost:9000/f5/admin/board_list.do?rpage="+e.page);         
-    });
+		jQuery('.showlabelsm').text('The selected page no: '+e.page);
+		var search = $("#searchbar").val();
+		var search_type = $("#search_type").val();
+		if ( search != "" ) {
+			
+			$(".board_list").remove();
+			$.ajax({
+				url : "board_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<tr class='board_list'>";
+						str += "<td>"+data.jlist[i].rno+"</td>";
+						str += "<td>"+data.jlist[i].memberId+"</td>";
+						str += "<td><a href='board_content.do?idx="+data.jlist[i].boardIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].boardTitle+"</a></td>";
+						str += "<td>"+data.jlist[i].boardDate+"</td>";
+						str += "<td>"+data.jlist[i].boardHits+"</td>";
+						str += "</tr>";
+						$("#board_table").append(str);
+					}
+				}
+			});
+		} else {
+			
+			$(".board_list").remove();
+			$.ajax({
+				url : "board_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<tr class='board_list'>";
+						str += "<td>"+data.jlist[i].rno+"</td>";
+						str += "<td>"+data.jlist[i].memberId+"</td>";
+						str += "<td><a href='board_content.do?idx="+data.jlist[i].boardIdx+"&rno="+data.jlist[i].rno+"'>"+data.jlist[i].boardTitle+"</a></td>";
+						str += "<td>"+data.jlist[i].boardDate+"</td>";
+						str += "<td>"+data.jlist[i].boardHits+"</td>";
+						str += "</tr>";
+						$("#board_table").append(str);
+					}
+				}
+			});
+		}
+	});
 });
 </script>
 </head>
@@ -75,7 +126,7 @@ $(document).ready(function(){
 							<th>번호</th><th>게시자</th><th>제목</th><th>날짜</th><th>조회수</th>
 						</tr>
 						<c:forEach var="vo" items="${ list }">
-							<tr>
+							<tr class="board_list">
 								<td>${ vo.rno }</td>
 								<td>${ vo.memberId }</td>
 								<td><a href="board_content.do?idx=${ vo.boardIdx }&rno=${ vo.rno }">${ vo.boardTitle }</a></td>
@@ -86,10 +137,11 @@ $(document).ready(function(){
 					</table>
 					<div class="search">
 						<div class="search_text">
-							<select class="search_type">
-								<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>이름</option>
-								<option value="i" <c:if test="${ search_type eq 'i' }">selected</c:if>>아이디</option>
-								<option value="ni" <c:if test="${ search_type eq 'ni' }">selected</c:if>>이름/아이디</option>
+							<select id="search_type">
+								<option value="t" <c:if test="${ search_type eq 't' }">selected</c:if>>제목</option>
+								<option value="c" <c:if test="${ search_type eq 'c' }">selected</c:if>>내용</option>
+								<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
+								<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>작성자</option>
 							</select>
 							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">

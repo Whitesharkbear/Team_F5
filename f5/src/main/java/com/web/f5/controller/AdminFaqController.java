@@ -8,8 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.web.f5.service.AdminFaqService;
 import com.web.f5.service.PageServiceImpl;
 import com.web.f5.vo.AdminFaqVO;
@@ -24,16 +28,29 @@ public class AdminFaqController {
 	private PageServiceImpl pageService;
 	
 	@RequestMapping ( value = "admin/faq_list.do", method = RequestMethod.GET )
-	public ModelAndView faq_list(String rpage) {
+	public ModelAndView faq_list(String rpage, String search, String search_type) {
 		
 		ModelAndView mv = new ModelAndView();
+		Map<String, String> param = null;
+		List<Object> olist = null;
 		
-		Map<String, String> param = pageService.getPageResult(rpage, "faq", adminFaqService);
+		if ( search == null ) {
 			
-		int startCount = Integer.parseInt( param.get("start") );
-		int endCount = Integer.parseInt( param.get("end") );
-		
-		List<Object> olist = adminFaqService.getListResult(startCount, endCount);
+			param = pageService.getPageResult(rpage, "admin_faq", adminFaqService);
+				
+			int startCount = Integer.parseInt( param.get("start") );
+			int endCount = Integer.parseInt( param.get("end") );
+			
+			olist = adminFaqService.getListResult(startCount, endCount);
+		} else {
+			
+			param = pageService.getSearchResult(search_type, search, rpage, "faq_search", adminFaqService);
+			
+			int startCount = Integer.parseInt( param.get("start") );
+			int endCount = Integer.parseInt( param.get("end") );
+			
+			olist = adminFaqService.getsearchListResult(startCount, endCount, search, search_type);
+		}
 		ArrayList<AdminFaqVO> list = new ArrayList<AdminFaqVO>();
 		
 		for ( Object obj : olist ) {
@@ -44,6 +61,8 @@ public class AdminFaqController {
 		mv.setViewName("admin/faq/faq_list");
 
 		mv.addObject("list", list);
+		mv.addObject("search", search);
+		mv.addObject("search_type", search_type);
 		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
 		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
 		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
@@ -51,6 +70,38 @@ public class AdminFaqController {
 		return mv;
 	}
 	
+	@ResponseBody
+	@RequestMapping ( value = "admin/faq_search_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
+	public String admin_faq_search_list(String rpage, String search, String search_type) {
+		
+		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "faq_search", adminFaqService);
+		
+		int startCount = Integer.parseInt( param.get("start") );
+		int endCount = Integer.parseInt( param.get("end") );
+		
+		ArrayList<AdminFaqVO> list = adminFaqService.getSearchJSONResult(startCount, endCount, search, search_type);
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		for ( AdminFaqVO vo : list ) {
+			
+			JsonObject obj = new JsonObject();
+			
+			obj.addProperty("rno", vo.getRno());
+			obj.addProperty("faqIdx", vo.getFaqIdx());
+			obj.addProperty("faqTitle", vo.getFaqTitle());
+			obj.addProperty("faqContent", vo.getFaqContent());
+			obj.addProperty("faqDate", vo.getFaqDate());
+			
+			jlist.add(obj);
+		}
+		
+		jdata.add("jlist", jlist);
+		
+		return gson.toJson(jdata);
+	}
 	@RequestMapping ( value = "admin/faq_write.do", method = RequestMethod.GET )
 	public ModelAndView faq_write() {
 		

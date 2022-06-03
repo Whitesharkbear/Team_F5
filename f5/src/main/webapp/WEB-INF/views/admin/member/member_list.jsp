@@ -96,6 +96,13 @@ $(document).ready(function(){
 							  str += "<option value='1'>CEO</option>";
 							  str += "<option value='2'>블랙리스트</option>";
 							  str += "<option value='3' selected>관리자</option>";
+						  } else if ( data.jlist[i].memberAuthority == "4" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1'>CEO</option>";
+							  str += "<option value='2'>블랙리스트</option>";
+							  str += "<option value='3'>관리자</option>";
+							  str += "<option value='4' selected>CEO신청</option>";
 						  }
 						  str += "</select>";
 						  str += "</td>";
@@ -129,24 +136,35 @@ $(document).ready(function(){
 						  str += "<option value='1'>CEO</option>";
 						  str += "<option value='2'>블랙리스트</option>";
 						  str += "<option value='3'>관리자</option>";
+						  str += "<option value='4'>CEO신청</option>";
 						  } else if ( data.jlist[i].memberAuthority == "1" ) {
 							  
 							  str += "<option value='0'>일반회원</option>";
 							  str += "<option value='1' selected>CEO</option>";
 							  str += "<option value='2'>블랙리스트</option>";
 							  str += "<option value='3'>관리자</option>";
+							  str += "<option value='4'>CEO신청</option>";
 						  } else if ( data.jlist[i].memberAuthority == "2" ) {
 							  
 							  str += "<option value='0'>일반회원</option>";
 							  str += "<option value='1'>CEO</option>";
 							  str += "<option value='2' selected>블랙리스트</option>";
 							  str += "<option value='3'>관리자</option>";
+							  str += "<option value='4'>CEO신청</option>";
 						  } else if ( data.jlist[i].memberAuthority == "3" ) {
 							  
 							  str += "<option value='0'>일반회원</option>";
 							  str += "<option value='1'>CEO</option>";
 							  str += "<option value='2'>블랙리스트</option>";
 							  str += "<option value='3' selected>관리자</option>";
+							  str += "<option value='4'>CEO신청</option>";
+						  } else if ( data.jlist[i].memberAuthority == "4" ) {
+							  
+							  str += "<option value='0'>일반회원</option>";
+							  str += "<option value='1'>CEO</option>";
+							  str += "<option value='2'>블랙리스트</option>";
+							  str += "<option value='3'>관리자</option>";
+							  str += "<option value='4' selected>CEO신청</option>";
 						  }
 						  str += "</select>";
 						  str += "</td>";
@@ -158,8 +176,8 @@ $(document).ready(function(){
 			}
 	    });
 	
-	$(".memberAuthority").change(function(){
-		
+	$(document).on('change', ".memberAuthority", function(){
+		console.log("sadfasdfsadfasd");
 		var memberAuthority = $(this).val();
 		var memberId = $(this).attr("id");
 		
@@ -220,6 +238,7 @@ $(document).ready(function(){
 											<option value="1" <c:if test="${ vo.memberAuthority eq '1' }">selected</c:if>>CEO</option>
 											<option value="2" <c:if test="${ vo.memberAuthority eq '2' }">selected</c:if>>블랙리스트</option>
 											<option value="3" <c:if test="${ vo.memberAuthority eq '3' }">selected</c:if>>관리자</option>
+											<option value="4" <c:if test="${ vo.memberAuthority eq '4' }">selected</c:if>>CEO신청</option>
 										</select>
 									</td>
 								</tr>

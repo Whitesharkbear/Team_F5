@@ -1,5 +1,6 @@
 package com.web.f5.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,5 +68,11 @@ public class AdminNoticeServiceImpl implements AdminNoticeService {
 	public List<Object> getSearchListResult(int startCount, int endCount, String search, String search_type) {
 		
 		return adminNoticeDAO.select(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public ArrayList<AdminNoticeVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminNoticeDAO.getSearchJSONResult(startCount, endCount, search, search_type);
 	}
 }

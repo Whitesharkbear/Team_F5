@@ -1,5 +1,6 @@
 package com.web.f5.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,25 +32,9 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 	}
 
 	@Override
-	public int getUpdateResult(Object obj) {
-		
-		AdminBoardVO vo = (AdminBoardVO) obj;
-		
-		return adminBoardDAO.update(vo);
-	}
-
-	@Override
 	public int getDeleteResult(String id) {
 		
 		return adminBoardDAO.delete(id);
-	}
-
-	@Override
-	public int getInsertResult(Object obj) {
-		
-		AdminBoardVO vo = (AdminBoardVO) obj;
-		
-		return adminBoardDAO.insert(vo);
 	}
 
 	@Override
@@ -63,4 +48,22 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 		
 		return adminBoardDAO.searchCount(search_type, search);
 	}
+
+	@Override
+	public ArrayList<AdminBoardVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminBoardDAO.getSearchJSONResult(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public List<Object> getSearchList(int startCount, int endCount, String search, String search_type) {
+		
+		return adminBoardDAO.getSearchList(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public int getInsertResult(Object obj) {return 0;}
+
+	@Override
+	public int getUpdateResult(Object obj) {return 0;}
 }

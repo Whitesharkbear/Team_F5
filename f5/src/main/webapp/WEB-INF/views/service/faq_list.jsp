@@ -11,30 +11,14 @@
 function search() {
 	
 	var search = $("#searchbar").val();
+	var search_type = $("#search_type").val();
 	
 	if ( search == "" ) {
 		
 		alert("검색어를 입력해주세요");
 	} else {
 		
-		alert("검색하신 " + search + " 결과입니다.");
-	}
-}
-
-function update() {
-	
-	location.href="faq_update.do";
-}
-
-function del() {
-	
-	if ( confirm("삭제하시겠습니까?") ) {
-		
-		alert("삭제되었습니다.");
-		location.href="faq_list.do";
-	} else {
-		
-		return;
+		location.href="/f5/faq_list.do?search="+search+"&search_type="+search_type;
 	}
 }
 </script>
@@ -47,7 +31,7 @@ function del() {
 				<h4>foodly | FAQ관리</h4>
 					<div id="faqList">
 					<c:forEach var="vo" items="${ list }">
-						<details>
+						<details class="faq_list">
 							<summary>${ vo.faqTitle }</summary>
 							<p><span>${ vo.faqContent }</span></p>
 						</details>
@@ -55,17 +39,91 @@ function del() {
 					</div>
 					<div class="search">
 						<div class="search_text">
+							<select id="search_type">
+								<option value="t" <c:if test="${ search_type eq 't' }">selected</c:if>>제목</option>
+								<option value="c" <c:if test="${ search_type eq 'c' }">selected</c:if>>내용</option>
+								<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
+							</select>
 							<input type="text" id="searchbar" 
 							placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
 							<button type="button" class="search_btn" onclick="search()">검색</button>
 						</div>
 					</div>
 					<div class="paging">
-						<div><< 1  2  3  4  5 >></div>
+						<div id="ampaginationsm"></div>
 					</div>
 				</div>
 			</div>
 		</div>
 	<jsp:include page="../footer.jsp" />
 </body>
+<link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">
+<script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	
+	var search = $("#searchbar").val();
+	var search_type = $("#search_type").val();
+	
+	var pager = jQuery('#ampaginationsm').pagination({
+		
+	    maxSize: 7,	    		// max page size
+	    totals: '${ dbCount }',	// total pages	
+	    page: '${ reqPage }',		// initial page		
+	    pageSize: '${ pageSize }',	// max number items per page
+	
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: '&laquo;',		
+	    nextText: '&raquo;',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
+	});
+	
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+		jQuery('.showlabelsm').text('The selected page no: '+e.page);
+		var search = $("#searchbar").val();
+		var search_type = $("#search_type").val();
+		if ( search == "" ) {
+			
+			$(".faq_list").remove();
+			$.ajax({
+				url : "faq_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<details class='faq_list'>";
+						str += "<summary>"+data.jlist[i].faqTitle+"</summary>";
+						str += "<p><span class='faqContent'>"+data.jlist[i].faqContent+"</span></p>";
+						$("#faqList").append(str);
+					}
+				}
+			});
+		} else {
+			
+			$(".faq_list").remove();
+			$.ajax({
+				url : "faq_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<details class='faq_list'>";
+						str += "<summary>"+data.jlist[i].faqTitle+"</summary>";
+						str += "<p><span class='faqContent'>"+data.jlist[i].faqContent+"</span></p>";
+						$("#faqList").append(str);
+					}
+				}
+			});
+		}
+	});
+});
+</script>
 </html>

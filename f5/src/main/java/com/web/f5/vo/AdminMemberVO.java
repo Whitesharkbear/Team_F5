@@ -16,6 +16,9 @@ public class AdminMemberVO {
 	String memberPassHint;
 	String memberPassHintAnswer;
 	String memberPassRand;
+	String storeName;
+	String storeIdx;
+	String storePlace;
 	int rno;
 	
 	String postcode;
@@ -24,6 +27,24 @@ public class AdminMemberVO {
 	String extraAddress;
 	
 	
+	public String getStoreName() {
+		return storeName;
+	}
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+	public String getStoreIdx() {
+		return storeIdx;
+	}
+	public void setStoreIdx(String storeIdx) {
+		this.storeIdx = storeIdx;
+	}
+	public String getStorePlace() {
+		return storePlace;
+	}
+	public void setStorePlace(String storePlace) {
+		this.storePlace = storePlace;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

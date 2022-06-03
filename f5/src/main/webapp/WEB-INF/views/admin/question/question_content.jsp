@@ -37,15 +37,10 @@ function list() {
 					<tr>
 						<td><textarea rows="10" id="question_content">${ vo.questionContent }</textarea></td>
 					</tr>
-					<tr>
-						<td><label>파일첨부</label></td>
-					</tr>
-					<tr>
-						<td><input type="file" id="file"></td>
-					</tr>
 				</table>
 				<div class="question_btn">
-					<a href="question_receive.do?idx=${ vo.questionIdx }&rno=${ rno }"><button class="question_receiver">답장하기</button></a>
+					<a href="question_receive.do?idx=${ vo.questionIdx }&rno=${ rno }"><button type="button" class="question_receiver">답장하기</button></a>
+					<a href="question_delete.do?idx=${ vo.questionIdx }&rno=${ rno }"><button class="question_delete" type="button">삭제하기</button></a>
 					<button class="question_list" onclick="list()">목록</button>
 				</div>
 			</div>

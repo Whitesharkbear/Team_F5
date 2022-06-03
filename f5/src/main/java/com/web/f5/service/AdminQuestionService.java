@@ -23,4 +23,8 @@ public interface AdminQuestionService extends ObjService {
 	public List<Object> getQuestionSearchList(int startCount, int endCount, String search, String search_type, String proceed);
 
 	public ArrayList<AdminQuestionVO> getProceedSearchJSONResult(int startCount, int endCount, String search, String search_type, String proceed);
+
+	public int getTotalCnt();
+
+	public int getTodayCnt();
 }

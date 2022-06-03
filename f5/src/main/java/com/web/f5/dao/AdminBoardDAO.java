@@ -1,5 +1,6 @@
 package com.web.f5.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -41,30 +42,14 @@ public class AdminBoardDAO implements AdminObjDAO {
 	}
 	
 	@Override
-	public int insert(Object obj) {
-		
-		AdminBoardVO vo = (AdminBoardVO) obj;
-		
-		return sqlSession.insert(namespace + ".boardInsert", vo);
-	}
-
-	@Override
 	public Object select(String idx) {
 		
 		return sqlSession.selectOne(namespace + ".boardContent", idx);
 	}
 
 	@Override
-	public int update(Object obj) {
-		
-		AdminBoardVO vo = (AdminBoardVO) obj;
-		
-		return sqlSession.update(namespace + ".boardUpdate", vo);
-	}
-
-	@Override
 	public int delete(String idx) {
-		System.out.println(idx);
+		
 		return sqlSession.delete(namespace + ".boardDelete", idx);
 	}
 
@@ -72,4 +57,35 @@ public class AdminBoardDAO implements AdminObjDAO {
 		
 		return sqlSession.selectList(namespace + ".limitList");
 	}
+
+	public ArrayList<AdminBoardVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		List<AdminBoardVO> list = new ArrayList<AdminBoardVO>();
+		list = sqlSession.selectList(namespace + ".getSearchJSONResult", param);
+		
+		return (ArrayList<AdminBoardVO>) list;
+	}
+
+	public List<Object> getSearchList(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search_type", search_type);
+		param.put("search", search);
+		
+		return sqlSession.selectList(namespace + ".getSearchList", param);
+	}
+
+	@Override
+	public int insert(Object obj) {return 0;}
+
+	@Override
+	public int update(Object obj) {return 0;}
 }

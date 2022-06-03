@@ -1,5 +1,6 @@
 package com.web.f5.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,20 @@ public class AdminNoticeDAO implements AdminObjDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	private String namespace = "mapper.adminnotice";
+	
+	@Override
+	public int execTotalCount() {
+		
+		return sqlSession.selectOne(namespace + ".count");
+	}
+	
+	public int searchCount(String search_type, String search) {
+		Map param = new HashMap<String, String>();
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectOne(namespace + ".searchCount", param);
+	}
 	
 	@Override
 	public List<Object> select(int startCount, int endCount) {
@@ -36,19 +51,24 @@ public class AdminNoticeDAO implements AdminObjDAO {
 		
 		return sqlSession.selectList(namespace + ".searchList", param);
 	}
-	
-	@Override
-	public int execTotalCount() {
+
+	public List<AdminNoticeVO> select() {
 		
-		return sqlSession.selectOne(namespace + ".count");
+		return sqlSession.selectList(namespace + ".limitList");
 	}
-	
-	public int searchCount(String search_type, String search) {
+
+	public ArrayList<AdminNoticeVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
 		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
 		param.put("search", search);
 		param.put("search_type", search_type);
 		
-		return sqlSession.selectOne(namespace + ".searchCount", param);
+		List<AdminNoticeVO> list = new ArrayList<AdminNoticeVO>();
+		list = sqlSession.selectList(namespace + ".getSearchJSONResult", param);
+		
+		return (ArrayList<AdminNoticeVO>) list;
 	}
 	
 	@Override
@@ -77,10 +97,5 @@ public class AdminNoticeDAO implements AdminObjDAO {
 	public int delete(String idx) {
 		
 		return sqlSession.delete(namespace + ".noticeDelete", idx);
-	}
-
-	public List<AdminNoticeVO> select() {
-		
-		return sqlSession.selectList(namespace + ".limitList");
 	}
 }

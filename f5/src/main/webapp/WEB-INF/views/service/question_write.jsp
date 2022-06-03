@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Gangnam Foodly | 문의작성</title>
-<link href="/f5/resources/css/admin/question/question_write.css" rel="stylesheet" />
+<link href="/f5/resources/css/service/question_write.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/f5/resources/js/admin/question/question.js"></script>
 </head>
@@ -27,12 +27,6 @@
 					</tr>
 					<tr>
 						<td><textarea rows="10" id="question_content" name="questionContent"></textarea></td>
-					</tr>
-					<tr>
-						<td><label>파일첨부</label></td>
-					</tr>
-					<tr>
-						<td class="filte_set"><input type="file" id="file"></td>
 					</tr>
 				</table>
 				<div class="question_btn">

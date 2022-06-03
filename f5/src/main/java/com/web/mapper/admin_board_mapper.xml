@@ -19,14 +19,130 @@
 		select count(*) from board where boardCategory = '일반'
 	</select>
 	
+	<select id="searchCount" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from board
+			<choose>
+				<when test='search_type == "t"'>
+					where
+						boardTitle like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "c"'>
+					where
+						boardContent like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "tc"'>
+					where
+						(
+							boardTitle like '%'||#{search}||'%'
+						or
+							boardContent like '%'||#{search}||'%'
+						)
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "n"'>
+					where
+						memberId like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<otherwise>
+					where boardCategory = '일반'
+				</otherwise>
+			</choose>
+	</select>
+	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminBoardVO">
-		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
 		from
-			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc)
+			where
+			boardCategory = '일반')
 		where
-			(rno between #{start} and #{end}) and (boardCategory = '일반')
+			rno between #{start} and #{end}
+	</select>
+	
+	<select id="getSearchList" parameterType="map" resultType="com.web.f5.vo.AdminBoardVO">
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
+		from
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+		from
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc)
+			<choose>
+				<when test='search_type == "t"'>
+					where
+						boardTitle like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "c"'>
+					where
+						boardContent like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "tc"'>
+					where
+						(
+							boardTitle like '%'||#{search}||'%'
+						or
+							boardContent like '%'||#{search}||'%'
+						)
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "n"'>
+					where
+						memberId like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<otherwise>
+					where boardCategory = '일반'
+				</otherwise>
+			</choose>
+			)
+		where
+			rno between #{start} and #{end}
+	</select>
+	
+	<select id="getSearchJSONResult" parameterType="map" resultType="com.web.f5.vo.AdminBoardVO">
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
+		from
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+		from
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc)
+			<choose>
+				<when test='search_type == "t"'>
+					where
+						boardTitle like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "c"'>
+					where
+						boardContent like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "tc"'>
+					where
+						(
+							boardTitle like '%'||#{search}||'%'
+						or
+							boardContent like '%'||#{search}||'%'
+						)
+					and boardCategory = '일반'
+				</when>
+				<when test='search_type == "n"'>
+					where
+						memberId like '%'||#{search}||'%'
+					and boardCategory = '일반'
+				</when>
+				<otherwise>
+				where boardCategory = '일반'
+				</otherwise>
+			</choose>
+			)
+		where
+			rno between #{start} and #{end}
 	</select>
 	
 	<select id="boardContent" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminBoardVO">
@@ -36,42 +152,6 @@
 		where
 			boardIdx = #{boardIdx}
 	</select>
-	
-	<insert id="boardInsert" parameterType="com.web.f5.vo.AdminBoardVO">
-		insert into board
-		(
-			boardIdx,
-			memberId,
-			boardHits,
-			boardTitle,
-			boardContent,
-			boardDate,
-			boardUpdateDate,
-			boardCategory
-		)
-		values
-		(
-			'b_'||sequ_board.nextval,
-			#{memberId},
-			0,
-			#{boardTitle},
-			#{boardContent},
-			sysdate,
-			null,
-			'일반'
-		)
-	</insert>
-	
-	<update id="boardUpdate" parameterType="com.web.f5.vo.AdminBoardVO">
-		update board
-		set
-			boardTitle = #{boardTitle},
-			boardContent = #{boardContent},
-			boardUpdateDate = sysdate,
-			boardCategory = '일반'
-		where
-			boardIdx = #{boardIdx}
-	</update>
 	
 	<delete id="boardDelete" parameterType="java.lang.String">
 		delete

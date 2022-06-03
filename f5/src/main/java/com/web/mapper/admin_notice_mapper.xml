@@ -13,72 +13,158 @@
 		select count(*)
 		from
 			board
-		where
 			<choose>
 				<when test='search_type == "t"'>
-					boardTitle like '%'||#{search}||'%'
+					where
+						boardTitle like '%'||#{search}||'%'
+					and
+						boardCategory = '공지'
 				</when>
 				<when test='search_type == "c"'>
-					boardContent like '%'||#{search}||'%'
+					where
+						boardContent like '%'||#{search}||'%'
+					and
+						boardCategory = '공지'
 				</when>
 				<when test='search_type == "tc"'>
-					boardTitle like '%'||#{search}||'%'
+					where
+					(
+						boardTitle like '%'||#{search}||'%'
 					or
-					boardContent like '%'||#{search}||'%'
+						boardContent like '%'||#{search}||'%'
+					)
+					and
+						boardCategory = '공지'
 				</when>
-				<when test='search_type == "w"'>
-					memberId like '%'||#{search}||'%'
+				<when test='search_type == "n"'>
+					where
+						memberId like '%'||#{search}||'%'
+					and
+						boardCategory = '공지'
 				</when>
 				<otherwise>
+					where boardCategory = '공지'
 				</otherwise>
 			</choose>
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
-		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
 		from
-			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc)
 		where
-			(rno between #{start} and #{end}) and (boardCategory = '공지')
+			<choose>
+				<when test='search_type == "t"'>
+					(boardTitle like '%'||#{search}||'%')
+					and boardCategory = '공지'
+				</when>
+				<when test='search_type == "c"'>
+					(boardContent like '%'||#{search}||'%')
+					and boardCategory = '공지'
+				</when>
+				<when test='search_type == "tc"'>
+					(
+						boardTitle like '%'||#{search}||'%'
+					or
+						boardContent like '%'||#{search}||'%'
+					)
+					and boardCategory = '공지'
+				</when>
+				<when test='search_type == "n"'>
+					(memberId like '%'||#{search}||'%')
+					and boardCategory = '공지'
+				</when>
+				<otherwise>
+					boardCategory = '공지'
+				</otherwise>
+			</choose>
+			)
+		where
+			rno between #{start} and #{end}
 	</select>
 	
 	<select id="searchList" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
-		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
 		from
-			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc))
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc)
 		where
-			(rno between #{start} and #{end}) and (boardCategory = '공지')
-			and
 			<choose>
 				<when test='search_type == "t"'>
 					boardTitle like '%'||#{search}||'%'
+					and boardCategory = '공지'
 				</when>
 				<when test='search_type == "c"'>
 					boardContent like '%'||#{search}||'%'
+					and boardCategory = '공지'
 				</when>
 				<when test='search_type == "tc"'>
-					boardTitle like '%'||#{search}||'%'
+					(
+						boardTitle like '%'||#{search}||'%'
 					or
-					boardContent like '%'||#{search}||'%'
+						boardContent like '%'||#{search}||'%'
+					)
+					and boardCategory = '공지'
 				</when>
-				<when test='search_type == "w"'>
+				<when test='search_type == "n"'>
 					memberId like '%'||#{search}||'%'
+					and boardCategory = '공지'
 				</when>
 				<otherwise>
+					boardCategory = '공지'
 				</otherwise>
 			</choose>
+			)
+		where
+			(rno between #{start} and #{end})
+	</select>
+	
+	<select id="getSearchJSONResult" parameterType="map" resultType="com.web.f5.vo.AdminNoticeVO">
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
+		from
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+		from
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc)
+		where
+			<choose>
+				<when test='search_type == "t"'>
+					boardTitle like '%'||#{search}||'%'
+					and boardCategory = '공지'
+				</when>
+				<when test='search_type == "c"'>
+					boardContent like '%'||#{search}||'%'
+					and boardCategory = '공지'
+				</when>
+				<when test='search_type == "tc"'>
+					(
+						boardTitle like '%'||#{search}||'%'
+					or
+						boardContent like '%'||#{search}||'%'
+					)
+					and boardCategory = '공지'
+				</when>
+				<when test='search_type == "n"'>
+					memberId like '%'||#{search}||'%'
+					and boardCategory = '공지'
+				</when>
+				<otherwise>
+					boardCategory = '공지'
+				</otherwise>
+			</choose>
+			)
+		where
+			(rno between #{start} and #{end})
 	</select>
 	
 	<select id="limitList" resultType="com.web.f5.vo.AdminNoticeVO">
-		select rno, boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory
+		select rno, boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory
 		from
-			(select rownum rno, boardIdx, memberId, boardTitle, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
+			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, boardHits, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardHits, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '공지')
+			(select boardIdx, memberId, boardTitle, boardContent, boardHits, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '공지')
 		where
 			 rno &lt; 4
 	</select>

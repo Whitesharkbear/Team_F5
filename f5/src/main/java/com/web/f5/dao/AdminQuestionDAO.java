@@ -16,15 +16,21 @@ public class AdminQuestionDAO implements AdminObjDAO {
 	private SqlSessionTemplate sqlSession;
 	
 	String namespace = "mapper.adminquestion";
+
+	public int getTotalCnt() {
+		
+		return sqlSession.selectOne(namespace + ".getTotalCnt");
+	}
+
+	public int getTodayCnt() {
+		
+		return sqlSession.selectOne(namespace + ".getTodayCnt");
+	}
 	
 	@Override
-	public List<Object> select(int startCount, int endCount) {
-		
-		Map param = new HashMap<String, String>();
-		param.put("start", startCount);
-		param.put("end", endCount);
-		
-		return sqlSession.selectList(namespace + ".list", param);
+	public int execTotalCount() {
+
+		return sqlSession.selectOne(namespace + ".count");
 	}
 	
 	public int getCountResult(String search_type, String search) {
@@ -35,43 +41,25 @@ public class AdminQuestionDAO implements AdminObjDAO {
 		
 		return sqlSession.selectOne(namespace + ".searchCount", param);
 	}
-	@Override
-	public int execTotalCount() {
 
-		return sqlSession.selectOne(namespace + ".count");
+	public int getQuestionSearchCount(String search_type, String search, String proceed) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("search_type", search_type);
+		param.put("search", search);
+		param.put("proceed", proceed);
+		
+		return sqlSession.selectOne(namespace + ".getQuestionSearchCount", param);
 	}
 	
 	@Override
-	public int insert(Object obj) {
+	public List<Object> select(int startCount, int endCount) {
 		
-		AdminQuestionVO vo = (AdminQuestionVO) obj;
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
 		
-		return sqlSession.insert(namespace + ".insert", vo);
-	}
-
-	@Override
-	public Object select(String id) {
-		
-		return sqlSession.selectOne(namespace + ".questionContent", id);
-	}
-
-	public int update(String idx) {
-		
-		return sqlSession.update(namespace + ".questionReceiveBefore", idx);
-	}
-	
-	@Override
-	public int update(Object obj) {
-		
-		AdminQuestionVO vo = (AdminQuestionVO) obj;
-		
-		return sqlSession.update(namespace + ".questionReceiveAfter", vo);
-	}
-
-	@Override
-	public int delete(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sqlSession.selectList(namespace + ".list", param);
 	}
 
 	public List<Object> select(int startCount, int endCount, String search, String search_type) {
@@ -117,16 +105,6 @@ public class AdminQuestionDAO implements AdminObjDAO {
 		return sqlSession.selectList(namespace + ".getLimitList");
 	}
 
-	public int getQuestionSearchCount(String search_type, String search, String proceed) {
-		
-		Map param = new HashMap<String, String>();
-		param.put("search_type", search_type);
-		param.put("search", search);
-		param.put("proceed", proceed);
-		
-		return sqlSession.selectOne(namespace + ".getQuestionSearchCount", param);
-	}
-
 	public List<Object> getQuestionSearchList(int startCount, int endCount, String search, String search_type, String proceed) {
 
 		Map param = new HashMap<String, String>();
@@ -152,5 +130,38 @@ public class AdminQuestionDAO implements AdminObjDAO {
 		list = sqlSession.selectList(namespace + ".getQuestionSearchList", param);
 		
 		return (ArrayList<AdminQuestionVO>) list;
+	}
+	
+	@Override
+	public int insert(Object obj) {
+		
+		AdminQuestionVO vo = (AdminQuestionVO) obj;
+		
+		return sqlSession.insert(namespace + ".insert", vo);
+	}
+
+	@Override
+	public Object select(String id) {
+		
+		return sqlSession.selectOne(namespace + ".questionContent", id);
+	}
+
+	public int update(String idx) {
+		
+		return sqlSession.update(namespace + ".questionReceiveBefore", idx);
+	}
+	
+	@Override
+	public int update(Object obj) {
+		
+		AdminQuestionVO vo = (AdminQuestionVO) obj;
+		
+		return sqlSession.update(namespace + ".questionReceiveAfter", vo);
+	}
+
+	@Override
+	public int delete(String id) {
+		
+		return sqlSession.delete(namespace + ".questionDelete", id);
 	}
 }

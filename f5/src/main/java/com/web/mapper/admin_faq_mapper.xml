@@ -7,13 +7,27 @@
 	
 	<select id="count" resultType="int">
 		select count(*) from faq
-		<choose>
-			<when test="search != null">
-				where faqTitle = #{search}
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
+	</select>
+	
+	<select id="searchCount" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from faq
+		where
+			<choose>
+				<when test='search_type == "t"'>
+					faqTitle like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "c"'>
+					faqContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "tc"'>
+					faqTitle like '%'||#{search}||'%'
+				or
+					faqContent like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
 	</select>
 	
 	<select id="list" parameterType="map" resultType="com.web.f5.vo.AdminFaqVO">
@@ -22,6 +36,60 @@
 			(select rownum rno, faqIdx, faqTitle, faqContent, to_char(faqDate, 'yy-mm-dd') faqDate
 		from
 			(select faqIdx, faqTitle, faqContent, faqDate from faq order by faqDate desc))
+		where
+			rno between #{start} and #{end}
+	</select>
+	
+	<select id="getSearchListResult" parameterType="map" resultType="com.web.f5.vo.AdminFaqVO">
+		select rno, faqIdx, faqTitle, faqContent, faqDate
+		from
+			(select rownum rno, faqIdx, faqTitle, faqContent, to_char(faqDate, 'yy-mm-dd') faqDate
+		from
+			(select faqIdx, faqTitle, faqContent, faqDate from faq order by faqDate desc)
+		where
+			<choose>
+				<when test='search_type == "t"'>
+					faqTitle like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "c"'>
+					faqContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "tc"'>
+					faqTitle like '%'||#{search}||'%'
+				or
+					faqContent like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			)
+		where
+			rno between #{start} and #{end}
+	</select>
+	
+	<select id="getSearchJSONResult" parameterType="map" resultType="com.web.f5.vo.AdminFaqVO">
+		select rno, faqIdx, faqTitle, faqContent, faqDate
+		from
+			(select rownum rno, faqIdx, faqTitle, faqContent, to_char(faqDate, 'yy-mm-dd') faqDate
+		from
+			(select faqIdx, faqTitle, faqContent, faqDate from faq order by faqDate desc)
+		where
+			<choose>
+				<when test='search_type == "t"'>
+					faqTitle like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "c"'>
+					faqContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "tc"'>
+					faqTitle like '%'||#{search}||'%'
+				or
+					faqContent like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			)
 		where
 			rno between #{start} and #{end}
 	</select>

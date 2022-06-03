@@ -21,6 +21,14 @@
 html > body {
 	overflow-y:scroll; 
 }
+.header-image {
+    width: 250px;
+    height: 50px;
+    object-fit: cover;
+    margin-left : 0px !important;
+    position: absolute !important;
+    top : 0px !important;
+}
 </style>
 </head>
 <body>
@@ -32,25 +40,27 @@ html > body {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                        	<a class="nav-link" href="#">회원관리</a>
+                        	<a class="nav-link" href="#">Member</a>
                         	<ul class ="nav-inner">
                         		<li><a href="member_list.do">일반회원</a></li>
                         		<li><a href="ceo_member_list.do">CEO회원</a></li>
+                        		<li><a href="black_member_list.do">블랙리스트</a></li>
                         	</ul>
                         </li>
                         <li class="nav-item">
-                        	<a class="nav-link" href="#">게시판</a>
+                        	<a class="nav-link" href="#">Board</a>
                         	<ul class ="nav-inner">
 	                        	<li><a href="board_list.do">자유게시판</a></li>
 	                        	<li><a href="notice_list.do">공지사항</a></li>
                         	</ul>
                         </li>
                         <li class="nav-item">
-                        	<a class="nav-link" href="#!">예약</a>
+                        	<a class="nav-link" href="#!">Store</a>
    							<ul class ="nav-inner">
+   								<li><a href="store_list.do">매장</a></li>
    							</ul>
    						</li>
-                        <li class="nav-item" class = "nav-litem"><a class="nav-link" aria-current="page" href="#">고객센터</a><div></div>
+                        <li class="nav-item" class = "nav-litem"><a class="nav-link" aria-current="page" href="#">Center</a><div></div>
                     		<ul class ="nav-inner">
                     			<li><a href="faq_list.do">FAQ</a></li>
                     			<li><a href="question_list.do">문의하기</a></li>

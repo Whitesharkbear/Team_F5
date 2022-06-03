@@ -143,6 +143,7 @@ public class AdminQuestionController {
 		
 		return gson.toJson(jdata);
 	}
+	
 	@RequestMapping ( value = "admin/question_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_question_content(String idx, String rno) {
 		
@@ -158,35 +159,24 @@ public class AdminQuestionController {
 		return mv;
 	}
 	
-	@RequestMapping ( value = "admin/question_write.do", method = RequestMethod.GET )
-	public ModelAndView admin_question_write() {
+	@RequestMapping ( value = "admin/question_delete.do", method = RequestMethod.GET )
+	public ModelAndView admin_question_delete(String idx, String rno) {
 		
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("admin/question/question_write");
-		
-		return mv;
-	}
-	
-	@RequestMapping ( value = "admin/question_write.do", method = RequestMethod.POST )
-	public ModelAndView admin_question_write(AdminQuestionVO vo) {
-		
-		ModelAndView mv = new ModelAndView();
-		
-		vo.setQuestionContent(vo.getQuestionContent().replace("\r\n", "<br>"));
-		int result = adminQuestionService.getInsertResult(vo);
+		int result = adminQuestionService.getDeleteResult(idx);
 		
 		if ( result == 1 ) {
 			
 			mv.setViewName("redirect:/admin/question_list.do");
 		} else {
 			
-			// errorPage;
+			// errorPage
 		}
 		
 		return mv;
 	}
-
+	
 	@RequestMapping ( value = "admin/question_receive.do", method = RequestMethod.GET )
 	public ModelAndView admin_question_receive(String idx, String rno) {
 		

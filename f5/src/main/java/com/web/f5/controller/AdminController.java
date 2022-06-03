@@ -24,9 +24,6 @@ import com.web.f5.vo.AdminQuestionVO;
 public class AdminController {
 
 	@Autowired
-	private AdminBoardService adminBoardService;
-	
-	@Autowired
 	private AdminMemberService adminMemberService;
 	
 	@Autowired
@@ -37,6 +34,10 @@ public class AdminController {
 		
 		String todayCnt = "0";
 		String totalCnt = "0";
+		String questionTotalCnt = "0";
+		String questionTodayCnt = "0";
+		String CEOTotalCnt = "0";
+		String CEORequestCnt = "0";
 		
 		// 난수 처리
 		Random rnd =new Random();
@@ -62,11 +63,22 @@ public class AdminController {
 		
 		int mberTotalCnt = adminMemberService.getmberTotalCnt();
 		int mberTodayCnt = adminMemberService.getmberTodayCnt();
+		int questionTotal = adminQuestionService.getTotalCnt();
+		int questionToday = adminQuestionService.getTodayCnt();
+		int CEOTotal = adminMemberService.getCEOTotal();
+		int CEORequest = adminMemberService.getCEORequest();
 		
 		totalCnt = formatter.format(mberTotalCnt);
 		todayCnt = formatter.format(mberTodayCnt);
+		questionTotalCnt = formatter.format(questionTotal);
+		questionTodayCnt = formatter.format(questionToday);
+		CEOTotalCnt = formatter.format(CEOTotal);
+		CEORequestCnt = formatter.format(CEORequest);
 		
-		
+		result.put("CEOTotalCnt", CEOTotalCnt);
+		result.put("CEORequestCnt", CEORequestCnt);
+		result.put("questionTotalCnt", questionTotalCnt);
+		result.put("questionTodayCnt", questionTodayCnt);
 		result.put("totalCnt", totalCnt);
 		result.put("todayCnt", todayCnt);
 		result.put("memberList", memberList);

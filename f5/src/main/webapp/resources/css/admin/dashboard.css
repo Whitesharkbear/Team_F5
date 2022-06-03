@@ -112,6 +112,13 @@ section {
 	color: #fff;
 }
 
+.member_btn .black_member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: yellow;
+	color: #000;
+}
+
 #content3 {
 	margin: 0 auto;
 	width: 80%;
@@ -198,6 +205,13 @@ section {
 	border-radius: 5%;
 	background-color: orange;
 	color: #fff;
+}
+
+.member_btn .black_member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: yellow;
+	color: #000;
 }
 
 #content3 {
@@ -288,6 +302,13 @@ section {
 	border-radius: 5%;
 	background-color: orange;
 	color: #fff;
+}
+
+.member_btn .black_member_more_btn {
+	border: none;
+	border-radius: 5%;
+	background-color: yellow;
+	color: #000;
 }
 
 #content3 {

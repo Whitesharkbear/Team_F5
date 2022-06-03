@@ -105,4 +105,56 @@ public class AdminMemberServiceImpl implements AdminMemberService {
 		
 		return adminMemberDAO.getSearchJSONResult(startCount, endCount, search, search_type);
 	}
+
+	@Override
+	public List<Object> getCeoListResult(int startCount, int endCount) {
+		
+		return adminMemberDAO.getCeoListResult(startCount, endCount);
+	}
+
+	@Override
+	public List<Object> getCeoSearchResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminMemberDAO.getCeoSearchResult(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public int getCEOTotal() {
+		
+		return adminMemberDAO.getCEOTotal();
+	}
+
+	@Override
+	public int getCEORequest() {
+		
+		return adminMemberDAO.getCEORequest();
+	}
+
+	@Override
+	public List<Object> getBlackListResult(int startCount, int endCount) {
+		
+		return adminMemberDAO.getBlackListResult(startCount, endCount);
+	}
+
+	public int getBlackCount() {
+		
+		return adminMemberDAO.getBlackCount();
+	}
+
+	public int getBlackSearchCount(String search_type, String search) {
+		
+		return adminMemberDAO.getBlackSearchCount(search_type, search);
+	}
+
+	@Override
+	public List<Object> getBlackMberSearch(int startCount, int endCount, String search, String search_type) {
+		
+		return adminMemberDAO.getBlackMberSearch(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public ArrayList<AdminMemberVO> getBlackSearchList(int startCount, int endCount, String search, String search_type) {
+		
+		return adminMemberDAO.getBlackSearchList(startCount, endCount, search, search_type);
+	}
 }

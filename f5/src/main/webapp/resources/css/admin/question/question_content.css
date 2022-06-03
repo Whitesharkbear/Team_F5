@@ -58,7 +58,7 @@ table {
 
 .question_btn button {
 	margin: 0 5%;
-	width: 30%;
+	width: 20%;
 }
 
 .question_btn .question_receiver {
@@ -117,11 +117,12 @@ table {
 .question_btn {
 	text-align: center;
 	margin: 5% 0;
+	font-size: xx-small;
 }
 
 .question_btn button {
 	margin: 0 5%;
-	width: 30%;
+	width: 20%;
 }
 
 .question_btn .question_receiver {
@@ -179,11 +180,12 @@ table {
 .question_btn {
 	text-align: center;
 	margin: 5% 0;
+	font-size: xx-small;
 }
 
 .question_btn button {
 	margin: 0 5%;
-	width: 35%;
+	width: 20%;
 }
 
 .question_btn .question_receiver {

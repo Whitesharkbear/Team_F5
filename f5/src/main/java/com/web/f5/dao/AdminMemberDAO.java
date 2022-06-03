@@ -17,14 +17,24 @@ public class AdminMemberDAO implements AdminObjDAO {
 	
 	private String namespace = "mapper.adminmember";
 	
-	@Override
-	public List<Object> select( int startCount, int endCount ) {
+	public int mberTotalCnt() {
 		
-		Map param = new HashMap<String, String>();
-		param.put("start", startCount);
-		param.put("end", endCount);
+		return sqlSession.selectOne(namespace + ".mberTotalCnt");
+	}
+	
+	public int mberTodayCnt() {
 		
-		return sqlSession.selectList(namespace + ".list", param);
+		return sqlSession.selectOne(namespace + ".mberTodayCnt");
+	}
+
+	public int getCEOTotal() {
+		
+		return sqlSession.selectOne(namespace + ".CEOTotal");
+	}
+
+	public int getCEORequest() {
+		
+		return sqlSession.selectOne(namespace + ".CEORequest");
 	}
 	
 	@Override
@@ -39,6 +49,114 @@ public class AdminMemberDAO implements AdminObjDAO {
 		param.put("search_type", search_type);
 		
 		return sqlSession.selectOne(namespace + ".searchCount", param);
+	}
+	
+	public int getBlackCount() {
+		
+		return sqlSession.selectOne(namespace + ".getBlackCount");
+	}
+
+	public int getBlackSearchCount(String search_type, String search) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("search_type", search_type);
+		param.put("search", search);
+		
+		return sqlSession.selectOne(namespace + ".getBlackSearchCount", param);
+	}
+	
+	@Override
+	public List<Object> select( int startCount, int endCount ) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		
+		return sqlSession.selectList(namespace + ".list", param);
+	}
+
+	public List<AdminMemberVO> select() {
+		
+		return sqlSession.selectList(namespace + ".limitList");
+	}
+
+	public List<Object> select(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectList(namespace + ".searchList", param);
+	}
+
+	public ArrayList<AdminMemberVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		List<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
+		list = sqlSession.selectList(namespace + ".JSONlist", param);
+		
+		return (ArrayList<AdminMemberVO>) list;
+	}
+
+	public List<Object> getCeoListResult(int startCount, int endCount) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		
+		return sqlSession.selectList(namespace + ".ceoList", param);
+	}
+
+	public List<Object> getCeoSearchResult(int startCount, int endCount, String search, String search_type) {
+
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search_type", search_type);
+		param.put("search", search);
+		
+		return sqlSession.selectList(namespace + ".getCeoSearchResult", param);
+	}
+
+	public List<Object> getBlackListResult(int startCount, int endCount) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		
+		return sqlSession.selectList(namespace + ".getBlackListResult", param);
+	}
+
+	public List<Object> getBlackMberSearch(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectList(namespace + ".getBlackMberSearch", param);
+	}
+
+	public ArrayList<AdminMemberVO> getBlackSearchList(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		List<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
+		list = sqlSession.selectList(namespace + ".getBlackSearchList", param);
+		
+		return (ArrayList<AdminMemberVO>) list;
 	}
 	
 	@Override
@@ -69,32 +187,6 @@ public class AdminMemberDAO implements AdminObjDAO {
 		return sqlSession.delete(namespace + ".memberDelete", id);
 	}
 	
-	public List<AdminMemberVO> select() {
-		
-		return sqlSession.selectList(namespace + ".limitList");
-	}
-	
-	public int mberTotalCnt() {
-		
-		return sqlSession.selectOne(namespace + ".mberTotalCnt");
-	}
-	
-	public int mberTodayCnt() {
-		
-		return sqlSession.selectOne(namespace + ".mberTodayCnt");
-	}
-
-	public List<Object> select(int startCount, int endCount, String search, String search_type) {
-		
-		Map param = new HashMap<String, String>();
-		param.put("start", startCount);
-		param.put("end", endCount);
-		param.put("search", search);
-		param.put("search_type", search_type);
-		
-		return sqlSession.selectList(namespace + ".searchList", param);
-	}
-	
 	public int chkMberUpdate(String id, String auth) {
 		
 		Map param = new HashMap<String, String>();
@@ -112,19 +204,5 @@ public class AdminMemberDAO implements AdminObjDAO {
 	public int getBlackOut(String id) {
 		
 		return sqlSession.update(namespace + ".getBlackOut", id);
-	}
-
-	public ArrayList<AdminMemberVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
-		
-		Map param = new HashMap<String, String>();
-		param.put("start", startCount);
-		param.put("end", endCount);
-		param.put("search", search);
-		param.put("search_type", search_type);
-		
-		List<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
-		list = sqlSession.selectList(namespace + ".JSONlist", param);
-		
-		return (ArrayList<AdminMemberVO>) list;
 	}
 }

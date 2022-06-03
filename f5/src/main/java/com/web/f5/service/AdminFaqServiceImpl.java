@@ -1,5 +1,6 @@
 package com.web.f5.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +60,19 @@ public class AdminFaqServiceImpl implements AdminFaqService {
 
 	@Override
 	public int getSearchCount(String search_type, String search) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return adminFaqDAO.getSearchCount(search_type, search);
+	}
+
+	@Override
+	public List<Object> getsearchListResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminFaqDAO.getSearchListResult(startCount, endCount, search, search_type);
+	}
+
+	@Override
+	public ArrayList<AdminFaqVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminFaqDAO.getSearchJSONResult(startCount, endCount, search, search_type);
 	}
 }

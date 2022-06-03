@@ -51,7 +51,7 @@ table {
 	height: 100%;
 }
 
-#content > .faq_btn {
+#content form > .faq_btn {
 	text-align: center;
 	margin: 5% 0;
 }
@@ -110,7 +110,7 @@ table {
 	height: 100%;
 }
 
-#content > .faq_btn {
+#content form > .faq_btn {
 	text-align: center;
 	margin: 5% 0;
 }
@@ -168,7 +168,7 @@ table {
 	height: 100%;
 }
 
-#content > .faq_btn {
+#content form > .faq_btn {
 	text-align: center;
 	margin: 5% 0;
 }

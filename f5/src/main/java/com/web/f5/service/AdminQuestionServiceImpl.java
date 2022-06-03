@@ -27,8 +27,7 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 
 	@Override
 	public int getSearchCount(String search_type, String search) {
-		System.out.println("serImpl search"+search);
-		System.out.println("serImpl search_type"+search_type);
+		
 		return adminQuestionDAO.getCountResult(search_type, search);
 	}
 
@@ -48,8 +47,8 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 
 	@Override
 	public int getDeleteResult(String id) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return adminQuestionDAO.delete(id);
 	}
 
 	@Override
@@ -105,5 +104,17 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	public ArrayList<AdminQuestionVO> getProceedSearchJSONResult(int startCount, int endCount, String search, String search_type, String proceed) {
 		
 		return adminQuestionDAO.getProceedSearchList(startCount, endCount, search, search_type, proceed);
+	}
+
+	@Override
+	public int getTotalCnt() {
+		
+		return adminQuestionDAO.getTotalCnt();
+	}
+
+	@Override
+	public int getTodayCnt() {
+		
+		return adminQuestionDAO.getTodayCnt();
 	}
 }

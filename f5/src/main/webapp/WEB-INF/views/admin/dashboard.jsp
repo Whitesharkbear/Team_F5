@@ -48,7 +48,7 @@ $(document).ready(function(){
 		$(this).text("더 보기");
 	}, function(){
 		
-		$(this).text("일반");
+		$(this).text("전체");
 	});
 	
 	$(".ceo_member_more_btn").hover(function(){
@@ -57,6 +57,14 @@ $(document).ready(function(){
 	}, function(){
 		
 		$(this).text("CEO");
+	});
+	
+	$(".black_member_more_btn").hover(function(){
+		
+		$(this).text("더 보기");
+	}, function(){
+		
+		$(this).text("블랙리스트");
 	});
 });
 </script>
@@ -102,14 +110,14 @@ $(document).ready(function(){
 							</li>
 							<li class="statistics_list">
 								<div class="statistics">
-									<h5>asdf</h5>
+									<h5>문의 통계</h5>
 									<div id="users">
 										<ul>
 											<li>
-												<label>today : 0</label>
+												<label>today : ${ result.questionTodayCnt }</label>
 											</li>
 											<li>
-												<label>total : 0</label>
+												<label>total : ${ result.questionTotalCnt }</label>
 											</li>
 										</ul>
 									</div>
@@ -117,14 +125,14 @@ $(document).ready(function(){
 							</li>
 							<li class="statistics_list">
 								<div class="statistics">
-									<h5>asdf</h5>
+									<h5>CEO</h5>
 									<div id="users">
 										<ul>
 											<li>
-												<label>today : 0</label>
+												<label>CEO요청 : ${ result.CEORequestCnt }</label>
 											</li>
 											<li>
-												<label>total : 0</label>
+												<label>총 CEO 수 : ${ result.CEOTotalCnt }</label>
 											</li>
 										</ul>
 									</div>
@@ -137,8 +145,9 @@ $(document).ready(function(){
 					<div id="content2">
 						<h3>회원관리</h3>
 						<div class="member_btn">
-							<a href="member_list.do"><button type="button" class="member_more_btn">일반</button></a>
+							<a href="member_list.do"><button type="button" class="member_more_btn">전체</button></a>
 							<a href="ceo_member_list.do"><button type="button" class="ceo_member_more_btn">CEO</button></a>
+							<a href="black_member_list.do"><button type="button" class="black_member_more_btn">블랙리스트</button></a>
 						</div>
 						<div>
 							<table id="member_table">
@@ -170,16 +179,17 @@ $(document).ready(function(){
 											<c:if test="${ vo.memberAuthority eq '1' }">CEO</c:if>
 											<c:if test="${ vo.memberAuthority eq '2' }">블랙회원</c:if>
 											<c:if test="${ vo.memberAuthority eq '3' }">관리자</c:if>
+											<c:if test="${ vo.memberAuthority eq '4' }">CEO신청</c:if>
 										</td>
 										<td>
 										<c:choose>
 											<c:when test="${ vo.memberAuthority eq '2' }">
-												<button type="button" id="${ vo.memberId }" class="black_list" value="0"
-												style="background-color : brown">추가</button>
-											</c:when>
-											<c:otherwise>
 												<button type="button" id="${ vo.memberId }" class="black_list" value="1"
 												style="background-color : orange">석방</button>
+											</c:when>
+											<c:otherwise>
+												<button type="button" id="${ vo.memberId }" class="black_list" value="0"
+												style="background-color : brown">추가</button>
 											</c:otherwise>
 										</c:choose>
 										</td>

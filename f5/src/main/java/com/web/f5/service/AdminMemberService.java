@@ -22,4 +22,11 @@ public interface AdminMemberService extends ObjService {
 	int getBlackInsert(String id);
 	int getBlackOut(String id);
 	ArrayList<AdminMemberVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type);
+	List<Object> getCeoListResult(int startCount, int endCount);
+	List<Object> getCeoSearchResult(int startCount, int endCount, String search, String search_type);
+	int getCEOTotal();
+	int getCEORequest();
+	List<Object> getBlackListResult(int startCount, int endCount);
+	List<Object> getBlackMberSearch(int startCount, int endCount, String search, String search_type);
+	ArrayList<AdminMemberVO> getBlackSearchList(int startCount, int endCount, String search, String search_type);
 }

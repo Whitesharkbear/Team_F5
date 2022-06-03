@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.json.MappingJacksonJsonView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.web.f5.service.AdminNoticeService;
 import com.web.f5.service.PageServiceImpl;
 import com.web.f5.vo.AdminNoticeVO;
@@ -26,16 +29,29 @@ public class AdminNoticeController {
 	private PageServiceImpl pageService;
 	
 	@RequestMapping ( value = "/admin/notice_list.do", method = RequestMethod.GET )
-	public ModelAndView admin_notice_list(String rpage) {
+	public ModelAndView admin_notice_list(String rpage, String search, String search_type) {
 		
 		ModelAndView mv = new ModelAndView();
+		Map<String, String> param = null;
+		List<Object> olist = null;
+		
+		if ( search == null ) {
 			
-		Map<String, String> param = pageService.getPageResult(rpage, "admin_Notice", adminNoticeService);
+			param = pageService.getPageResult(rpage, "admin_Notice", adminNoticeService);
+				
+				int startCount = Integer.parseInt(param.get("start"));
+				int endCount = Integer.parseInt(param.get("end"));
+				
+			olist = adminNoticeService.getListResult(startCount, endCount);
+		} else {
+			
+			param = pageService.getSearchResult(search_type, search, rpage, "notice_search", adminNoticeService);
 			
 			int startCount = Integer.parseInt(param.get("start"));
 			int endCount = Integer.parseInt(param.get("end"));
 			
-		List<Object> olist = adminNoticeService.getListResult(startCount, endCount);
+			olist = adminNoticeService.getSearchListResult(startCount, endCount, search, search_type);
+		}
 		ArrayList<AdminNoticeVO> list = new ArrayList<AdminNoticeVO>();
 		
 		for ( Object obj : olist ) {
@@ -44,6 +60,8 @@ public class AdminNoticeController {
 		}
 		
 		mv.addObject("list", list);
+		mv.addObject("search", search);
+		mv.addObject("search_type", search_type);
 		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
 		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
 		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
@@ -53,36 +71,39 @@ public class AdminNoticeController {
 		return mv;
 	}
 	
-	@RequestMapping ( value =  "/admin/notice_search_list.do", method = RequestMethod.GET )
-//	public String notice_search_list(String search, String search_type, String rpage) {
-	public ModelAndView notice_search_list(String search, String search_type, String rpage) {
+	@ResponseBody
+	@RequestMapping ( value =  "/admin/notice_search_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
+	public String notice_search_list(String search, String search_type, String rpage) {
 		
-		ModelAndView mv = new ModelAndView();
-//		String msg = "";
-		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "admin_Notice", adminNoticeService);
+		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "notice_search", adminNoticeService);
 		
-		int startCount = Integer.parseInt(param.get("start"));
-		int endCount = Integer.parseInt(param.get("end"));
+		int startCount = Integer.parseInt( param.get("start") );
+		int endCount = Integer.parseInt( param.get("end") );
 		
-		List<Object> olist = adminNoticeService.getSearchListResult(startCount, endCount, search, search_type);
-		ArrayList<AdminNoticeVO> list = new ArrayList<AdminNoticeVO>();
+		ArrayList<AdminNoticeVO> list = adminNoticeService.getSearchJSONResult(startCount, endCount, search, search_type);
 		
-		for ( Object obj : olist ) {
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		for ( AdminNoticeVO vo : list ) {
 			
-			list.add( (AdminNoticeVO) obj );
+			JsonObject obj = new JsonObject();
+			
+			obj.addProperty("rno", vo.getRno());
+			obj.addProperty("boardIdx", vo.getBoardIdx());
+			obj.addProperty("memberId", vo.getMemberId());
+			obj.addProperty("boardHits", vo.getBoardHits());
+			obj.addProperty("boardTitle", vo.getBoardTitle());
+			obj.addProperty("boardContent", vo.getBoardContent());
+			obj.addProperty("boardDate", vo.getBoardDate());
+			
+			jlist.add(obj);
 		}
-//		msg = "success";
-		mv.addObject("list", list);
-		mv.addObject("search_type", search_type);
-		mv.addObject("search", search);
-		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
-		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
-		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
 		
-		mv.setViewName("admin/notice/notice_list");
+		jdata.add("jlist", jlist);
 		
-		return mv;
-//		return msg;
+		return gson.toJson(jdata);
 	}
 	
 	@RequestMapping ( value = "/admin/notice_content.do", method = RequestMethod.GET )
