@@ -5,6 +5,7 @@
 <head>
 <link href="/f5/resources/css/admin/dashboard.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/chart.js@3.8.0/dist/chart.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
 	
@@ -66,7 +67,134 @@ $(document).ready(function(){
 		
 		$(this).text("블랙리스트");
 	});
+	
+	member_graph();
+	question_graph();
+	ceo_graph();
 });
+
+function member_graph(){
+	
+	var today = [];
+	var total = [];
+	
+	$.ajax({
+		url : "member_chart.do",
+		success : function(result){
+			
+			const data = JSON.parse(result);
+			
+			for ( var i in data.jlist ) {
+				
+				total.push(data.jlist[i].totalCnt);
+				today.push(data.jlist[i].todayCnt);
+			}
+			new Chart(document.getElementById("memberChart"), {
+				type : 'doughnut',
+				data : {
+					labels : ['오늘 가입 회원', '총 회원'],
+					datasets : [{
+						label : "first dataset",
+						data : [today, total],
+						borderColor : ['orange','oldlace'],
+						backgroundColor : ['orange','oldlace'],
+						fill : true
+					}],
+				},
+				options : {
+					title : {
+						display : true,
+						text : "사용자 통계"
+					}
+				}
+			});
+		}, error : function(){
+			alert("실패");
+		}
+	});
+}
+function question_graph(){
+	
+	var waiting = [];
+	var answering = [];
+	var answerComplete = [];
+	
+	$.ajax({
+		url : "question_chart.do",
+		success : function(result){
+			
+			const data = JSON.parse(result);
+			
+			for ( var i in data.jlist ) {
+				waiting.push(data.jlist[i].waiting);
+				answering.push(data.jlist[i].answering);
+				answerComplete.push(data.jlist[i].answerComplete);
+			}
+			new Chart(document.getElementById("questionChart"), {
+				type : 'doughnut',
+				data : {
+					labels : ['답변완료', '답변중', '대기중'],
+					datasets : [{
+						label : "first dataset",
+						data : [answerComplete, answering, waiting],
+						borderColor : ['brown', 'orange','oldlace'],
+						backgroundColor : ['brown', 'orange','oldlace'],
+						fill : true
+					}],
+				},
+				options : {
+					title : {
+						display : true,
+						text : "문의 통계"
+					}
+				}
+			});
+		}, error : function(){
+			alert("실패");
+		}
+	});
+}
+
+function ceo_graph(){
+	
+	var today = [];
+	var total = [];
+	
+	$.ajax({
+		url : "CEOreq_chart.do",
+		success : function(result){
+			
+			const data = JSON.parse(result);
+			
+			for ( var i in data.jlist ) {
+				
+				total.push(data.jlist[i].totalCnt);
+				today.push(data.jlist[i].reqCnt);
+			}
+			new Chart(document.getElementById("CEOreqChart"), {
+				type : 'doughnut',
+				data : {
+					labels : ['등록된 CEO', '오늘 신청 CEO'],
+					datasets : [{
+						label : "first dataset",
+						data : [total, today],
+						borderColor : ['orange','oldlace'],
+						backgroundColor : ['orange','oldlace'],
+						fill : true
+					}],
+				},
+				options : {
+					title : {
+						display : true,
+						text : "CEO 통계"
+					}
+				}
+			});
+		}, error : function(){
+			alert("실패");
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -96,45 +224,24 @@ $(document).ready(function(){
 							<li class="statistics_list">
 								<div class="statistics">
 									<h5>사용자 통계</h5>
-									<div id="users">
-										<ul>
-											<li>
-												<label>today : ${ result.todayCnt }</label>
-											</li>
-											<li>
-												<label>total : ${ result.totalCnt }</label>
-											</li>
-										</ul>
+									<div style="width: 100%">
+										<canvas id="memberChart"></canvas>
 									</div>
 								</div>
 							</li>
 							<li class="statistics_list">
 								<div class="statistics">
 									<h5>문의 통계</h5>
-									<div id="users">
-										<ul>
-											<li>
-												<label>today : ${ result.questionTodayCnt }</label>
-											</li>
-											<li>
-												<label>total : ${ result.questionTotalCnt }</label>
-											</li>
-										</ul>
+									<div style="width: 100%">
+										<canvas id="questionChart"></canvas>
 									</div>
 								</div>
 							</li>
 							<li class="statistics_list">
 								<div class="statistics">
 									<h5>CEO</h5>
-									<div id="users">
-										<ul>
-											<li>
-												<label>CEO요청 : ${ result.CEORequestCnt }</label>
-											</li>
-											<li>
-												<label>총 CEO 수 : ${ result.CEOTotalCnt }</label>
-											</li>
-										</ul>
+									<div style="width: 100%">
+										<canvas id="CEOreqChart"></canvas>
 									</div>
 								</div>
 							</li>

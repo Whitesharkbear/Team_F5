@@ -17,16 +17,6 @@ public class AdminQuestionDAO implements AdminObjDAO {
 	
 	String namespace = "mapper.adminquestion";
 
-	public int getTotalCnt() {
-		
-		return sqlSession.selectOne(namespace + ".getTotalCnt");
-	}
-
-	public int getTodayCnt() {
-		
-		return sqlSession.selectOne(namespace + ".getTodayCnt");
-	}
-	
 	@Override
 	public int execTotalCount() {
 
@@ -163,5 +153,20 @@ public class AdminQuestionDAO implements AdminObjDAO {
 	public int delete(String id) {
 		
 		return sqlSession.delete(namespace + ".questionDelete", id);
+	}
+
+	public int getWaitingCnt() {
+		
+		return sqlSession.selectOne(namespace + ".getWaitingCnt");
+	}
+
+	public int getAnsweringCnt() {
+		
+		return sqlSession.selectOne(namespace + ".getAnsweringCnt");
+	}
+
+	public int getAnswerCompleteCnt() {
+		
+		return sqlSession.selectOne(namespace + ".getAnswerCompleteCnt");
 	}
 }

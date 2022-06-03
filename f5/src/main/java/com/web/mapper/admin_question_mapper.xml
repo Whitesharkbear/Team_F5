@@ -5,20 +5,22 @@
     
 <mapper namespace="mapper.adminquestion">
 	
-	<select id="getTotalCnt" resultType="int">
-		select
-			count(*)
-		from
-			question
+	<select id="getWaitingCnt" resultType="int">
+		select count(*)
+		from question
+		where questionProceed = '0'
 	</select>
 	
-	<select id="getTodayCnt" resultType="int">
-		select
-			count(*)
-		from
-			question
-		where
-			substr(questionDate, 0, 10) &gt;= substr(sysdate, 0, 10)
+	<select id="getAnsweringCnt" resultType="int">
+		select count(*)
+		from question
+		where questionProceed = '1'
+	</select>
+	
+	<select id="getAnswerCompleteCnt" resultType="int">
+		select count(*)
+		from question
+		where questionProceed = '2'
 	</select>
 	
 	<select id="getLimitList" resultType="com.web.f5.vo.AdminQuestionVO">

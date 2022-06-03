@@ -107,14 +107,20 @@ public class AdminQuestionServiceImpl implements AdminQuestionService {
 	}
 
 	@Override
-	public int getTotalCnt() {
+	public int getWaitingCnt() {
 		
-		return adminQuestionDAO.getTotalCnt();
+		return adminQuestionDAO.getWaitingCnt();
 	}
 
 	@Override
-	public int getTodayCnt() {
+	public int getAnsweringCnt() {
 		
-		return adminQuestionDAO.getTodayCnt();
+		return adminQuestionDAO.getAnsweringCnt();
+	}
+
+	@Override
+	public int getAnswerCompleteCnt() {
+		
+		return adminQuestionDAO.getAnswerCompleteCnt();
 	}
 }

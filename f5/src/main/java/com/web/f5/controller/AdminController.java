@@ -8,11 +8,15 @@ import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import com.web.f5.service.AdminBoardService;
 import com.web.f5.service.AdminMemberService;
 import com.web.f5.service.AdminQuestionService;
@@ -59,28 +63,30 @@ public class AdminController {
 		
 		List<AdminMemberVO> memberList = adminMemberService.getLimitList();
 		List<AdminQuestionVO> questionList = adminQuestionService.getLimitList();
-		DecimalFormat formatter = new DecimalFormat("###,###,###");
 		
-		int mberTotalCnt = adminMemberService.getmberTotalCnt();
-		int mberTodayCnt = adminMemberService.getmberTodayCnt();
-		int questionTotal = adminQuestionService.getTotalCnt();
-		int questionToday = adminQuestionService.getTodayCnt();
-		int CEOTotal = adminMemberService.getCEOTotal();
-		int CEORequest = adminMemberService.getCEORequest();
+//		DecimalFormat formatter = new DecimalFormat("###,###,###");
+//		
+//		int mberTotalCnt = adminMemberService.getmberTotalCnt();
+//		int mberTodayCnt = adminMemberService.getmberTodayCnt();
+//		int questionTotal = adminQuestionService.getTotalCnt();
+//		int questionToday = adminQuestionService.getTodayCnt();
+//		int CEOTotal = adminMemberService.getCEOTotal();
+//		int CEORequest = adminMemberService.getCEORequest();
+//		
+//		totalCnt = formatter.format(mberTotalCnt);
+//		todayCnt = formatter.format(mberTodayCnt);
+//		questionTotalCnt = formatter.format(questionTotal);
+//		questionTodayCnt = formatter.format(questionToday);
+//		CEOTotalCnt = formatter.format(CEOTotal);
+//		CEORequestCnt = formatter.format(CEORequest);
+//		
+//		result.put("CEOTotalCnt", CEOTotalCnt);
+//		result.put("CEORequestCnt", CEORequestCnt);
+//		result.put("questionTotalCnt", questionTotalCnt);
+//		result.put("questionTodayCnt", questionTodayCnt);
+//		result.put("totalCnt", totalCnt);
+//		result.put("todayCnt", todayCnt);
 		
-		totalCnt = formatter.format(mberTotalCnt);
-		todayCnt = formatter.format(mberTodayCnt);
-		questionTotalCnt = formatter.format(questionTotal);
-		questionTodayCnt = formatter.format(questionToday);
-		CEOTotalCnt = formatter.format(CEOTotal);
-		CEORequestCnt = formatter.format(CEORequest);
-		
-		result.put("CEOTotalCnt", CEOTotalCnt);
-		result.put("CEORequestCnt", CEORequestCnt);
-		result.put("questionTotalCnt", questionTotalCnt);
-		result.put("questionTodayCnt", questionTodayCnt);
-		result.put("totalCnt", totalCnt);
-		result.put("todayCnt", todayCnt);
 		result.put("memberList", memberList);
 		result.put("questionList", questionList);
 		
@@ -123,5 +129,68 @@ public class AdminController {
 		}
 		
 		return msg;
+	}
+	
+	@ResponseBody
+	@RequestMapping ( value = "admin/member_chart.do", method = RequestMethod.GET )
+	public String member_chart() {
+		
+		int totalCnt = adminMemberService.getmberTotalCnt();
+		int todayCnt = adminMemberService.getmberTodayCnt();
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		JsonObject obj1 = new JsonObject();
+		obj1.addProperty("totalCnt", totalCnt);
+		obj1.addProperty("todayCnt", todayCnt);
+		jlist.add(obj1);
+		
+		jdata.add("jlist", jlist);
+		return gson.toJson(jdata);
+	}
+	
+	@ResponseBody
+	@RequestMapping ( value = "admin/question_chart.do", method = RequestMethod.GET )
+	public String question_chart() {
+		
+		
+		int waiting = adminQuestionService.getWaitingCnt();
+		int answering = adminQuestionService.getAnsweringCnt();
+		int answerComplete = adminQuestionService.getAnswerCompleteCnt();
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		JsonObject obj1 = new JsonObject();
+		obj1.addProperty("waiting", waiting);
+		obj1.addProperty("answering", answering);
+		obj1.addProperty("answerComplete", answerComplete);
+		jlist.add(obj1);
+		
+		jdata.add("jlist", jlist);
+		return gson.toJson(jdata);
+	}
+	
+	@ResponseBody
+	@RequestMapping ( value = "admin/CEOreq_chart.do", method = RequestMethod.GET )
+	public String ceo_req_chart() {
+		
+		int totalCnt = adminMemberService.getCEOTotal();
+		int reqCnt = adminMemberService.getCEORequest();
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		JsonObject obj1 = new JsonObject();
+		obj1.addProperty("totalCnt", totalCnt);
+		obj1.addProperty("reqCnt", reqCnt);
+		jlist.add(obj1);
+		
+		jdata.add("jlist", jlist);
+		return gson.toJson(jdata);
 	}
 }
