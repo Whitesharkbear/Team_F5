@@ -93,7 +93,7 @@
 
 
 
-.promote-top {
+.promote-top-inner {
 	border-bottom: 1px solid black;
 	position: relative;
 	overflow: hidden;
@@ -157,8 +157,49 @@
     border-radius: 5px;
 }
 
+.pre-content {
+	word-break: break-all;
+}
+
+.filebox .upload-name {
+    display: inline-block;
+    height: 30px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+.filebox label {
+	width: 15%;
+    display: inline-block;
+    text-align: center;
+    padding: 3px 5px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 30px;
+    margin-left: 5px;
+}
+.filebox input[type="file"] {
+    position: absolute;
+    width: 0;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 0;
+}
 
 @media (max-width:992px) {
+	
+	.filebox .upload-name {
+		width: 70%;
+	}
+	.filebox label {
+		width: 20%;
+	}
+	
 	.table {
 	 font-size: 0.7%;
 	}
@@ -180,6 +221,14 @@
 }
 
 @media screen and (min-width: 425px) and (max-width:768px) {
+	
+	.filebox .upload-name {
+		width: 70%;
+	}
+	
+	.filebox label {
+		width: 25%;
+	}
 	
 	.board-caption {
 	font-size: 2em;

@@ -13,6 +13,8 @@
 <script>
 	
 	$(document).ready(function(){
+		
+		// 수정하기
 		$("#promote_update_btn").click(function(){
 			if( $("#promoteTitle").val() == "" ) {
 				alert("홍보 제목을 입력해주세요.");
@@ -22,19 +24,24 @@
 				alert("홍보 상세내용을 입력해주세요.");
 				$("#promoteContent").focus();
 				return;
-			}
+			} 
+			
+			
 			promote_update_form.submit();
 			
-		});
+		});// 수정하기
 		
+		
+		// 삭제하기
 		$("#promote_delete_btn").click(function(){
 			var delete_result = confirm("정말로 삭제하시겠습니까?");
 			if(delete_result) {
 				location.href = "promote_delete.do?boardIdx=${vo.boardIdx}";
 			}
-		});
+		}); // 삭제하기
 		
-
+		
+		// 미리보기
 		$(".pre-show").click(function(){
 			var title = $("#promoteTitle").val();
 			var content = $("#promoteContent").val();
@@ -48,14 +55,53 @@
 				$(".promote-show").css("display","none");
 				$(".pre-reshow").css("display","none");
 			} 
-		});
+		}); // 미리보기
 		
+		
+		// 새로고침
 		$(".pre-reshow").click(function() {
 			var title = $("#promoteTitle").val();
 			var content = $("#promoteContent").val();
 			$(".pre-title").text(title);
 			$(".pre-content").text(content);
-		});
+		}); // 새로고침
+		
+		
+		// 파일 추가
+		$("#file").on('change',function(event){
+		  	
+			$(".upload-name").val("");
+			
+			var files = $("input[name='files']")[0].files;
+			var file = event.target.files[0];
+			
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".promote-img").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(file);
+			
+			if(files.length > 5) {
+				alert("파일은 5개이하 등록할 수 있습니다.");
+				return;
+			} else {
+				if( files.length != 5 ) {
+					var inputFile = "";
+					for(var i = 0; i<5-files.length; i++) {
+						inputFile += "<input type='file' name='files'>";
+						
+					}
+					$(".filebox").append(inputFile);
+					
+				}
+				for(var i = 0; i<files.length; i++) {
+					
+					$("#file"+i).val(files[i].name);
+					
+				}			
+			}
+			
+		}); // 파일 추가
 	});
 
 </script>
@@ -81,8 +127,14 @@
 
 			<div class="board_container">
 				<label class="board-caption">Foodly의 자랑거리</label>
-				<form name="promote_update_form" action="promote_update.do" method="post">
-				<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
+				<form name="promote_update_form" action="promote_update.do" method="post" enctype="multipart/form-data">
+					<input type="hidden" name="memberId" value="${sessionScope.memberId }">
+					<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
+					<input class="updateFile" type="hidden" name="bsFile1" value="${vo.bsFile1 }">
+				    <input class="updateFile" type="hidden" name="bsFile2" value="${vo.bsFile2 }">
+				    <input class="updateFile" type="hidden" name="bsFile3" value="${vo.bsFile3 }">
+				    <input class="updateFile" type="hidden" name="bsFile4" value="${vo.bsFile4 }">
+				    <input class="updateFile" type="hidden" name="bsFile5" value="${vo.bsFile5 }">
 					<div class="board-write-container">
 						<div class="board-write-container-wrap">
 							<table class="write-table">
@@ -115,7 +167,16 @@
 								</tr>
 								<tr>
 									<td colspan="5">
-										<input type="file">
+										<div class="filebox">
+										    <input id="file0" class="upload-name" type="text" placeholder="첨부파일" value="${vo.bFile1 }">
+										    <label for="file">파일찾기</label> 
+										    <input type="file" id="file" name="files" multiple="multiple">
+										    <input id="file1" class="upload-name" type="text" placeholder="첨부파일" value="${vo.bFile2 }">						    
+										    <input id="file2" class="upload-name" type="text" placeholder="첨부파일" value="${vo.bFile3 }">						    
+										    <input id="file3" class="upload-name" type="text" placeholder="첨부파일" value="${vo.bFile4 }">						    
+										    <input id="file4" class="upload-name" type="text" placeholder="첨부파일" value="${vo.bFile5 }">						    
+										</div>
+										<div>파일업로드는 최대 5개까지 가능합니다.</div>
 									</td>
 								</tr>
 								<tr>
@@ -128,10 +189,9 @@
 								<tr>
 									<td colspan="5" style="text-align: center">
 										<div class="promote-list promote-show">
-											<div class="promote-top">
+											<div class="promote-top-inner">
 												<div class="centered">
-													<img class="promote-img"
-														src="/f5/resources/images/상점.jpeg">
+													<img class="promote-img" src="/f5/resources/upload/${vo.bsFile1 }">
 												</div>
 												<p class="pre-title"></p>
 											</div>

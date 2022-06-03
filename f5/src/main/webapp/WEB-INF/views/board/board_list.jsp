@@ -10,46 +10,30 @@
 <link href="/f5/resources/css/head_nav.css" rel="stylesheet" />
 <link href="/f5/resources/css/board/board.css" rel="stylesheet" />
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
-<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
-<script>
+<script type="text/javascript">
 	
-	$(document).ready(function() {
+	$(document).ready(function(){
 		
+		var memberId = "${sessionScope.memberId}";
 		
-		$("select[name=selectBox]").change(function() {
-			var selectValue = $(this).val();
+		$(".btn-board-write").click(function(){
 			
-			$.ajax({
-				url: "board_change.do",
-				type: "POST",
-				data: {
-					"boardCategory" : selectValue
-				},
-				success: function(result){
-					var jdata = JSON.parse(result);
-					var table = "";
-					$(".tr-sec").remove();
-					
-					for(var i in jdata.jlist) {
-						table += "<tr class='tr-sec'>";
-						table += "<td class='board-table-col1'>"+jdata.jlist[i].rno+"</td>";
-						table += "<td class='board-table-col2'><a href='board_content.do?boardIdx="+jdata.jlist[i].boardIdx+"'>"+jdata.jlist[i].boardTitle+"</a></td>";
-						table += "<td class='board-table-col3'>"+jdata.jlist[i].memberId+"</td>";
-						table += "<td class='board-table-col4'>"+jdata.jlist[i].boardHits+"</td>";
-						table += "<td class='board-table-col5'>"+jdata.jlist[i].boardDate+"</td>";
-						table += "</tr>";
-					}
-					
-					$(".tr-sec1").after(table);
-				},
-				error: function(result) {
-					alert("실패"+result);
+			if( memberId == "" ) {
+				var result = confirm("로그인 후 이용가능합니다. 로그인 하시겠습니까?");
+				if(result) {
+					location.href = "login.do";
+				} else {				
+					return;
 				}
-			});
+			} else {
+				location.href = "board_write.do";
+			}
 			
 		});
+		
 	});
-
+	
+	
 </script>
 </head>
 <body>
@@ -74,13 +58,14 @@
             	<label class="board-caption">Foodly의 대나무 숲</label>
             	<div class="table-top-container">
 	            	<select name="selectBox">
-						<option value="0">일반</option>
-						<option value="1">홍보</option>
-						<option value="2">공지</option>
-						<option value="3">전체</option>
-					</select> <a href="board_write.do">
-						<button class="cusbtn btn-board-write" type="button">글쓰기</button>
-					</a>
+						<option value="3" <c:if test="${boardCategory eq '3' }">selected</c:if>>전체</option>
+						<option value="0" <c:if test="${boardCategory eq '0' }">selected</c:if>>일반</option>
+						<option value="1" <c:if test="${boardCategory eq '1' }">selected</c:if>>홍보</option>
+						<option value="2" <c:if test="${boardCategory eq '2' }">selected</c:if>>공지</option>
+					</select> 
+					
+					<button class="cusbtn btn-board-write" type="button">글쓰기</button>
+
 				</div>
 				<table class="table list-table">
             			<tr class="tr-sec1">
@@ -94,7 +79,10 @@
             			<c:forEach var="vo" items="${list}">
             			<tr class="tr-sec">
             				<td class="board-table-col1">${vo.rno}</td>
-            				<td class="board-table-col2"><a href="board_content.do?boardIdx=${vo.boardIdx}">${vo.boardTitle}</a></td>
+            				<td class="board-table-col2"><a href="board_content.do?boardIdx=${vo.boardIdx}">
+            				<c:if test="${vo.boardCategory eq '일반' }">[일반] ${vo.boardTitle}</c:if>
+            				<c:if test="${vo.boardCategory eq '홍보' }">[홍보] ${vo.boardTitle}</c:if>
+            				<c:if test="${vo.boardCategory eq '공지' }">[공지] ${vo.boardTitle}</c:if></a></td>            				
             				<td class="board-table-col3">${vo.memberId}</td>
             				<td class="board-table-col4">${vo.boardHits}</td>
             				<td class="board-table-col5">${vo.boardDate}</td>
@@ -103,44 +91,194 @@
             			
             			<tr>
             				<td colspan=5>
-            					<select>
-            						<option>작성자</option>
-            						<option>제목</option>
-            						<option>내용</option>
-            						<option>제목+내용</option>
-            					</select>
-            					<input type="search" class="search" placeholder="제목/내용을 입력해주세요">
-            					<button class="cusbtn1"> 검 색 </button>
+            					<select name="search_type" id="search_type">
+									<option value="t" <c:if test="${ search_type eq 't' }">selected</c:if>>제목</option>
+									<option value="c" <c:if test="${ search_type eq 'c' }">selected</c:if>>내용</option>
+									<option value="tc" <c:if test="${ search_type eq 'tc' }">selected</c:if>>제목/내용</option>
+									<option value="n" <c:if test="${ search_type eq 'n' }">selected</c:if>>작성자</option>
+								</select>
+            					<c:choose>
+									<c:when test="${ boardCategory eq '3' }">
+									<input type="text" id="searchbar"
+									placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
+									<button type="button" class="search_btn cusbtn1" onclick="search()">검색</button>
+									</c:when>
+									<c:otherwise>
+									<input type="text" id="searchbar" value="${ search }"
+									placeholder="  검색어를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  검색어를 입력해주세요.'">
+									<button type="button" class="search_btn cusbtn1" onclick="search()">검색</button>
+									</c:otherwise>
+								</c:choose>
             				</td>
             			</tr>
             			<tr>
             				<td colspan=5><div id="ampaginationsm"></div></td>
             			<tr>
             		</table>
-            		<!-- Pagination-->
-			<nav aria-label="Pagination">
-				<hr class="my-0" />
-				<ul class="pagination justify-content-center my-4">
-					<li class="page-item disabled"><a class="page-link" href="#"
-						tabindex="-1" aria-disabled="true">Newer</a></li>
-					<li class="page-item active" aria-current="page"><a
-						class="page-link" href="#!">1</a></li>
-					<li class="page-item"><a class="page-link" href="#!">2</a></li>
-					<li class="page-item"><a class="page-link" href="#!">3</a></li>
-					<li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-					<li class="page-item"><a class="page-link" href="#!">15</a></li>
-					<li class="page-item"><a class="page-link" href="#!">Older</a></li>
-				</ul>
-			</nav>
             	</div>
             </div>
         </div>
+        
         <!-- Footer-->
 	<jsp:include page="../footer.jsp"></jsp:include>
-	<Br>
         <!-- Bootstrap core JS-->
 <!--          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script> -->
         <!-- Core theme JS-->
-
 </body>
+<link href="/f5/resources/css/am-pagination.css" rel="stylesheet" />
+<script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
+<script>
+function search() {
+	
+	var search = $("#searchbar").val(); 
+	var search_type = $("#search_type").val();
+	var boardCategory = $("select[name=selectBox]").val();
+	
+	if ( search == "" ) {
+		
+		alert("검색어를 입력해주세요.");
+	} else {
+		
+		location.href="/f5/board_list.do?search="+search+"&search_type="+search_type+"&boardCategory="+boardCategory;
+	}
+}
+$(document).ready(function() {
+		
+	
+		var pager = $('#ampaginationsm').pagination({
+
+			maxSize : 5, // max page size
+			totals : '${ dbCount }', // total pages	
+			page : '${ reqPage }', // initial page		
+			pageSize : '${ pageSize }', // max number items per page
+			
+			search : '${search}',
+			search_type : '${search_type}',
+			boardCategory : '${boardCategory}',
+			
+			// custom labels		
+			lastText : '&raquo;&raquo;',
+			firstText : '&laquo;&laquo;',
+			prevText : '&laquo;',
+			nextText : '&raquo;',
+
+			btnSize : 'sm' // 'sm'  or 'lg'		
+		});
+
+		jQuery('#ampaginationsm').on('am.pagination.change', function(e) {
+			
+			var boardCategory = $("select[name=selectBox]").val();
+			var search = "${search}";
+			var search_type = "${search_type}";
+			
+			jQuery('.showlabelsm').text('The selected page no: ' + e.page);
+			
+			var uurl;
+			
+			if( search == "" ) {
+				uurl = "board_rlist.do?rpage="+ e.page+"&boardCategory="+boardCategory;
+			} else {
+				uurl = "board_rlist.do?rpage="+ e.page+"&boardCategory="+boardCategory+"&search="+search+"&search_type="+search_type;
+			}
+			$.ajax({
+				url : uurl,
+				//location.href="/f5/board_list.do?rpage="+ e.page+"&boardCategory="+boardCategory;
+				success : function(result) {
+					var jdata = JSON.parse(result);
+					var table = "";
+					$(".tr-sec").remove();
+					
+					for(var i in jdata.jlist) {
+						table += "<tr class='tr-sec'>";
+						table += "<td class='board-table-col1'>"+jdata.jlist[i].rno+"</td>";
+						table += "<td class='board-table-col2'><a href='board_content.do?boardIdx="+jdata.jlist[i].boardIdx+"'>";
+						if(jdata.jlist[i].boardCategory == '일반') {
+							table += "[일반] " + jdata.jlist[i].boardTitle;
+						} else if( jdata.jlist[i].boardCategory == '홍보' ) {
+							table += "[홍보] " + jdata.jlist[i].boardTitle;
+						} else {
+							table += "[공지] " + jdata.jlist[i].boardTitle;
+						}
+						
+						table += "</a></td>";
+						table += "<td class='board-table-col3'>"+jdata.jlist[i].memberId+"</td>";
+						table += "<td class='board-table-col4'>"+jdata.jlist[i].boardHits+"</td>";
+						table += "<td class='board-table-col5'>"+jdata.jlist[i].boardDate+"</td>";
+						table += "</tr>";
+					}
+					
+					$(".tr-sec1").after(table);
+					
+				}
+				
+			});
+
+		});
+		
+		
+		// select 박스 선택
+		$("select[name=selectBox]").change(function() {
+			var boardCategory = $(this).val();			
+			var search = "${search}";
+			var search_type = "${search_type}";
+			
+			$.ajax({
+				url: "board_change.do",
+				type: "POST",
+				data: {
+					"boardCategory" : boardCategory,
+					"search" : search,
+					"search_type" : search_type
+				},
+				success: function(result){
+					var jdata = JSON.parse(result);
+					
+					
+					var pager = $('#ampaginationsm').pagination({
+
+						maxSize : 5, // max page size
+						totals : jdata.plist[0].dbCount, // total pages	
+						page : jdata.plist[0].reqPage, // initial page		
+						pageSize : jdata.plist[0].pageSize, // max number items per page
+						
+						
+						boardCategory : '${boardCategory}',
+						
+						// custom labels		
+						lastText : '&raquo;&raquo;',
+						firstText : '&laquo;&laquo;',
+						prevText : '&laquo;',
+						nextText : '&raquo;',
+
+						btnSize : 'sm' // 'sm'  or 'lg'		
+					});
+					
+					var table = "";
+					$(".tr-sec").remove();
+					
+					for(var i in jdata.jlist) {
+						table += "<tr class='tr-sec'>";
+						table += "<td class='board-table-col1'>"+jdata.jlist[i].rno+"</td>";
+						table += "<td class='board-table-col2'><a href='board_content.do?boardIdx="+jdata.jlist[i].boardIdx+"'>"+jdata.jlist[i].boardTitle+"</a></td>";
+						table += "<td class='board-table-col3'>"+jdata.jlist[i].memberId+"</td>";
+						table += "<td class='board-table-col4'>"+jdata.jlist[i].boardHits+"</td>";
+						table += "<td class='board-table-col5'>"+jdata.jlist[i].boardDate+"</td>";
+						table += "</tr>";
+					}
+					
+					$(".tr-sec1").after(table);
+					
+					
+				},
+				error: function(result) {
+					alert("실패"+result);
+				}
+			});
+			
+		});
+			
+		
+	});
+	
+</script>
 </html>

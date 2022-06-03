@@ -11,7 +11,7 @@ public interface BoardService {
 	int getDeleteResult(String boardIdx);
 	int getContentUpdate(BoardVO vo);
 	BoardVO getContentList(String boardIdx);
-	List<BoardVO> getSelectList(String boardCategoty);
+	List<BoardVO> getSelectList(String boardCategoty, int startCount, int endCount);
 	int getInsertResult(BoardVO vo);
 	int getRecoInsertResult(RecommendVO vo);
 	int getRecoCheckResult(String boardIdx, String memberId);
@@ -19,4 +19,9 @@ public interface BoardService {
 	int getRecoDeleteResult(RecommendVO vo);
 	int getRecoCountResult(String boardRecommendCheck, String boardIdx);
 	RecommendVO getRecoSelect(String boardIdx, String memberId);
+	int getListCount(String boardCategory);
+	int getBoardSearchCount(String search, String search_type, String boardCategory);
+	List<BoardVO> getSearchSelectList(String boardCategory, int startCount, int endCount, String search, String search_type);
+	int getCeoCheck(String memberId);
+	int getFileUpdateResult(BoardVO vo);
 }

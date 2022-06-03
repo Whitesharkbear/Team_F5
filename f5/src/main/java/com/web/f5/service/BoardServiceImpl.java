@@ -21,8 +21,14 @@ public class BoardServiceImpl implements BoardService {
 
 
 	@Override
-	public List<BoardVO> getSelectList(String boardCategory) {
-		return boardDao.select(boardCategory);
+	public List<BoardVO> getSelectList(String boardCategory, int startCount, int endCount) {
+		return boardDao.select(boardCategory, startCount, endCount);
+	}
+	
+	@Override
+	public List<BoardVO> getSearchSelectList(String boardCategory, int startCount, int endCount, String search,
+			String search_type) {
+		return boardDao.searchList(boardCategory, startCount, endCount, search, search_type);
 	}
 
 
@@ -85,6 +91,32 @@ public class BoardServiceImpl implements BoardService {
 	public RecommendVO getRecoSelect(String boardIdx, String memberId) {
 		return boardDao.recoSelect(boardIdx, memberId);
 	}
+
+
+	@Override
+	public int getListCount(String boardCategory) {
+		return boardDao.execTotalCount(boardCategory);
+	}
+
+
+	public int getBoardSearchCount(String search, String search_type, String boardCategory) {
+		return boardDao.getCountResult(search, search_type, boardCategory);
+	}
+
+
+	@Override
+	public int getCeoCheck(String memberId) {
+		return boardDao.getCeoResult(memberId);
+	}
+
+
+	@Override
+	public int getFileUpdateResult(BoardVO vo) {
+		return boardDao.getFileUpdteResult(vo);
+	}
+
+
+	
 
 
 	

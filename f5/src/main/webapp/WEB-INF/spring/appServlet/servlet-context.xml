@@ -53,6 +53,8 @@
 	<beans:bean id="reservationService" class="com.web.f5.service.ReservationServiceImpl"></beans:bean>
 	<beans:bean id="boardService" class="com.web.f5.service.BoardServiceImpl"></beans:bean>
 	<beans:bean id="replyService" class="com.web.f5.service.ReplyServiceImpl"></beans:bean>
+	<beans:bean id="boarpageService" class="com.web.f5.service.BoardPageServiceImpl"></beans:bean>
+	<beans:bean id="fileService" class="com.web.f5.service.FileServiceImpl"></beans:bean>
 
 	<context:component-scan base-package="com.web.f5" />
 	

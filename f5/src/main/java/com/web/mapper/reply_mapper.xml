@@ -72,7 +72,7 @@
 	<!-- 댓글입력 -->
 	<insert id="insert" parameterType="com.web.f5.vo.ReplyVO">
 		insert into reply 
-			values('re_'||sequ_reply.nextval, #{boardIdx}, 'test', 
+			values('re_'||sequ_reply.nextval, #{boardIdx}, #{memberId}, 
 					#{replyContent}, sysdate, #{replyUpdateDate, jdbcType=VARCHAR})
 	</insert>
 	

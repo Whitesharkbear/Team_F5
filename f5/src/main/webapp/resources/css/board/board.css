@@ -206,10 +206,11 @@
 .board-content {
 	border-bottom: 1px solid rgba(0,0,0,0.1);
 	text-align: center;
+	padding: 40px 0;
 }
 
 .board-content > p {
-	margin: 20px auto;
+	margin: 0 auto 20px;
 }
 
 

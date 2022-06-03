@@ -15,6 +15,7 @@
 	
 	$(document).ready(function(){
 		
+		// 홍보 추가
 		$("#promote_insert_btn").click(function(){
 			if( $("#promote_title").val() == "" ) {
 				alert("홍보 제목을 입력해주세요.");
@@ -27,29 +28,73 @@
 			}
 			promote_write_form.submit();
 			
-		});
+		}); // 홍보 추가
 		
+		
+		// 미리보기
 		$(".pre-show").click(function(){
 			var title = $("#promote_title").val();
 			var content = $("#promote_content").val();
+			
 			
 			if( $(".promote-show").css("display") == "none" ) {				
 				$(".pre-reshow").css("display","block");
 				$(".promote-show").css("display","inline-block");
 				$(".pre-title").text(title);
 				$(".pre-content").text(content);
+				
 			} else if( $(".promote-show").css("display") == "inline-block" ) {
 				$(".promote-show").css("display","none");
 				$(".pre-reshow").css("display","none");
 			} 
-		});
+		});// 미리보기
 		
+		
+		// 미리보기 업데이트
 		$(".pre-reshow").click(function() {
 			var title = $("#promote_title").val();
 			var content = $("#promote_content").val();
 			$(".pre-title").text(title);
 			$(".pre-content").text(content);
-		});
+		});// 미리보기 업데이트
+		
+		
+		
+		// 파일 추가
+		$("#file").on('change',function(event){
+		  	
+			$(".upload-name").val("");
+			
+			var files = $("input[name='files']")[0].files;
+			var file = event.target.files[0];
+			
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(".promote-img").attr("src", e.target.result);
+			}
+			reader.readAsDataURL(file);
+			
+			if(files.length > 5 || files.lengt < 1) {
+				alert("파일은 1개이상 5개이하 등록할 수 있습니다.");
+				return;
+			} else {
+				if( files.length != 5 ) {
+					var inputFile = "";
+					for(var i = 0; i<5-files.length; i++) {
+						inputFile += "<input type='file' name='files'>";
+						
+					}
+					$(".filebox").append(inputFile);
+					
+				}
+				for(var i = 0; i<files.length; i++) {
+					
+					$("#file"+i).val(files[i].name);
+					
+				}			
+			}
+			
+		}); // 파일 추가
 		
 	});
 
@@ -78,7 +123,8 @@
 
 			<div class="board_container">
 				<label class="board-caption">Foodly의 자랑거리</label>
-				<form name="promote_write_form" action="promote_write.do" method="post">
+				<form name="promote_write_form" action="promote_write.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="memberId" value="${sessionScope.memberId }">
 					<div class="board-write-container">
 						<div class="board-write-container-wrap">
 							<table class="write-table">
@@ -111,7 +157,16 @@
 								</tr>
 								<tr>
 									<td colspan="5">
-										<input id="cusbtn4" type="file">
+										<div class="filebox">
+										    <input id="file0" class="upload-name" type="text" placeholder="첨부파일">
+										    <label for="file">파일찾기</label> 
+										    <input type="file" id="file" name="files" multiple="multiple">
+										    <input id="file1" class="upload-name" type="text" placeholder="첨부파일">						    
+										    <input id="file2" class="upload-name" type="text" placeholder="첨부파일">						    
+										    <input id="file3" class="upload-name" type="text" placeholder="첨부파일">						    
+										    <input id="file4" class="upload-name" type="text" placeholder="첨부파일">						    
+										</div>
+										<div>파일업로드는 최대 5개까지 가능합니다.</div>
 									</td>
 								</tr>
 								<tr>
@@ -124,10 +179,9 @@
 								<tr>
 									<td colspan="5" style="text-align: center">
 										<div class="promote-list promote-show">
-											<div class="promote-top">
+											<div class="promote-top-inner">
 												<div class="centered">
-													<img class="promote-img"
-														src="/f5/resources/images/상점.jpeg">
+													<img class="promote-img">
 												</div>
 												<p class="pre-title"></p>
 											</div>

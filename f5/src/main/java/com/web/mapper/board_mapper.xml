@@ -8,6 +8,184 @@
 
 <mapper namespace="mapper.board">
 	
+	
+	<!-- 파일 수정 -->
+	<update id="update_file" parameterType="com.web.f5.vo.BoardVO">
+		update boardFile set bFile1=#{bFile1}, bFile2=#{bFile2}, bFile3=#{bFile3}, bFile4=#{bFile4}, bFile5=#{bFile5},    
+							bsFile1=#{bsFile1}, bsFile2=#{bsFile2}, bsFile3=#{bsFile3}, bsFile4=#{bsFile4}, bsFile5=#{bsFile5}
+							where boardIdx = #{boardIdx}
+	</update>
+	
+	
+	<!-- ceo체크 -->
+	<select id="ceo_check" parameterType="java.lang.String" resultType="int">
+		select count(*) from ceo where memberId = #{memberId}
+	</select>
+	
+	<!-- 파일체크 -->
+	<select id="file_check" parameterType="java.lang.String" resultType="int">
+		select count(*) from boardFile where boardIdx = #{boardIdx}
+	</select>
+	
+	<!-- 파일추가 -->
+	<insert id="insert_file" parameterType="com.web.f5.vo.BoardVO">
+		insert into boardFile		
+			values(#{boardIdx},					
+			<foreach collection="bFiles" item="bFile" separator="," index="i">
+				<if test="i &lt; 5"> 
+	           		#{bFile}
+	           	</if>
+	           </foreach>
+	           ,
+	           <foreach collection="bsFiles" item="bsFile"  separator="," close=")" index="i">
+	           <if test="i &lt; 5"> 
+	           	#{bsFile}
+	           	</if>
+           </foreach>
+	</insert>
+	
+	<!-- boardIdx 가져오기 -->
+	<select id="select_boardIdx" resultType="java.lang.String">
+		select boardIdx from 
+			(select boardIdx from board order by boardDate desc)
+			where rownum = 1
+		
+	</select>
+	
+	
+	<!-- 검색결과 -->
+	<select id="search_list" parameterType="map" resultType="com.web.f5.vo.BoardVO">
+		select rno, boardIdx, memberId, boardHits, boardTitle, 
+				boardContent, boardDate, boardUpdateDate, boardCategory, bFile1, bsFile1
+			from (select rownum rno, boardIdx, memberId, boardHits, boardTitle, boardContent, bFile1, bsFile1, 
+					to_char(boardDate,'yyyy/mm/dd') boardDate, to_char(boardUpdateDate,'yyyy/mm/dd') boardUpdateDate, boardCategory
+				from (select b.boardIdx, memberId, boardHits, boardTitle, 
+						boardContent, boardDate, boardUpdateDate, boardCategory, bFile1, bsFile1
+							 from board b left join boardFile bf on b.boardIdx=bf.boardIdx order by boardDate desc
+					 )
+			<choose>
+				<when test='search_type == "t" and search != null'>
+					where
+						boardTitle like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "c" and search != null'>
+					where
+						boardContent like '%'||#{search}||'%'
+				</when>
+				<when test='search_type == "tc" and search != null'>
+					where
+						(
+							boardTitle like '%'||#{search}||'%'
+						or
+							boardContent like '%'||#{search}||'%'
+						)
+				</when>
+				<when test='search_type == "n" and search != null'>
+					where
+						memberId like '%'||#{search}||'%'
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+			and
+			<choose>
+					<when test='boardCategory == "0"'>
+						boardCategory = '일반'
+					</when>
+					<when test='boardCategory == "1"'>
+						boardCategory = '홍보'
+					</when>
+					<when test='boardCategory == "2"'>
+						boardCategory = '공지'
+					</when>
+					<when test='boardCategory == "3"'>
+						(
+						boardCategory = '일반' or
+						boardCategory = '홍보' or
+						boardCategory = '공지'
+						)
+					</when>
+				</choose>
+			
+			)
+		where
+			rno between #{start} and #{end}
+			
+	</select>
+	
+	<!-- 검색 카운트 -->
+	<select id="searchCount" resultType="int" parameterType="map">
+		select count(*)
+			from
+				board
+				<choose>
+					<when test='search_type == "t"'>
+						where
+							(boardTitle like '%'||#{search}||'%')
+					</when>
+					<when test='search_type == "c"'>
+						where 
+							(boardContent like '%'||#{search}||'%')
+					</when>
+					<when test='search_type == "tc"'>
+						where 
+							(boardTitle like '%'||#{search}||'%'
+						or
+							boardContent like '%'||#{search}||'%')							
+					</when>
+					<when test='search_type == "n"'>
+						where 
+							(memberId like '%'||#{search}||'%')
+					</when>
+					<otherwise>
+					</otherwise>
+				</choose>
+				and 
+				<choose>
+					<when test='boardCategory == "0"'>
+						boardCategory = '일반'
+					</when>
+					<when test='boardCategory == "1"'>
+						boardCategory = '홍보'
+					</when>
+					<when test='boardCategory == "2"'>
+						boardCategory = '공지'
+					</when>
+					<when test='boardCategory == "3"'>
+						(
+						boardCategory = '일반' or
+						boardCategory = '홍보' or
+						boardCategory = '공지'
+						)
+					</when>
+				</choose>
+		</select>
+	
+	<!-- 게시판 count -->
+	<select id="count" parameterType="map" resultType="int">
+		select count(*) from board
+			where
+				<choose>
+					<when test='boardCategory == "0"'>
+						boardCategory = '일반'
+					</when>
+					<when test='boardCategory == "1"'>
+						boardCategory = '홍보'
+					</when>
+					<when test='boardCategory == "2"'>
+						boardCategory = '공지'
+					</when>
+					<when test='boardCategory == "3"'>
+						(
+						boardCategory = '일반' or
+						boardCategory = '홍보' or
+						boardCategory = '공지'
+						)
+					</when>
+				</choose>
+	</select>
+	
+	<!-- 추천선택 -->
 	<select id="reco_select" parameterType="map" resultType="com.web.f5.vo.RecommendVO">
 		select br.boardIdx, br.memberId, br.boardRecommendCheck
 			from board b join boardRecommend br on b.boardIdx=br.boardIdx
@@ -63,20 +241,23 @@
 	
 	<!-- 게시판 상세 -->
 	<select id="content" parameterType="java.lang.String" resultType="com.web.f5.vo.BoardVO">
-		select boardidx, memberid, boardhits, boardtitle, boardcontent, boarddate, boardcategory 
-		from board where boardidx = #{boardIdx}
+		select bf.bFile1, bf.bFile2, bf.bFile3, bf.bFile4, bf.bFile5, bf.bsFile1, bf.bsFile2, bf.bsFile3, bf.bsFile4, bf.bsFile5,
+		 b.boardIdx, b.memberId, b.boardHits, b.boardTitle, b.boardContent, b.boardDate, b.boardCategory 
+		from board b left join boardFile bf on b.boardIdx=bf.boardIdx where b.boardIdx = #{boardIdx}
 	</select>
 	
 	
 	<!-- 게시판 리스트 -->
 	<select id="list" resultType="com.web.f5.vo.BoardVO" parameterType="map">
-		select rno, boardIdx, memberId, boardHits, boardTitle, 
-				boardContent, boardDate, boardUpdateDate, boardCategory
+		select rno, boardIdx, memberId, boardHits, boardTitle, boardContent, 
+				boardDate, boardUpdateDate, boardCategory, bFile1, bsFile1
 			from (select rownum rno, boardIdx, memberId, boardHits, boardTitle, boardContent, 
-					to_char(boardDate,'yyyy/mm/dd') boardDate, to_char(boardUpdateDate,'yyyy/mm/dd') boardUpdateDate, boardCategory
-				from (select boardIdx, memberId, boardHits, boardTitle, 
-						boardContent, boardDate, boardUpdateDate, boardCategory
-							 from board order by boardDate desc
+					to_char(boardDate,'yyyy/mm/dd') boardDate, to_char(boardUpdateDate,'yyyy/mm/dd') boardUpdateDate, 
+					boardCategory, bFile1, bsFile1
+				from (select b.boardIdx, memberId, boardHits, boardTitle, 
+						boardContent, boardDate, boardUpdateDate, boardCategory, bf.bFile1, bf.bsFile1
+							 from board b left join boardFile bf on b.boardIdx=bf.boardIdx
+							 	order by boardDate desc
 					 )
 					<choose>
 						<when test='boardCategory == "0"'>
@@ -93,29 +274,17 @@
 								  boardCategory = '홍보' or
 								  boardCategory = '공지'
 						</when>
-						<when test='boardCategory == "m"'>
-							where boardCategory = '공지' 
-						</when>
-						<when test='boardCategory == "t"'>
-							where boardCategory = '공지'
-						</when>
-						<when test='boardCategory == "c"'>
-							where boardCategory = '공지'
-						</when>
-						<when test='boardCategory == "tc"'>
-							where boardCategory = '공지'
-						</when>
+						
 					</choose>
-					
-					
-				)
+				)	
+				where rno between #{start} and #{end}
 	</select>
 	
 	<!-- 게시판 쓰기 -->
 	<insert id="insert" parameterType="com.web.f5.vo.BoardVO">
 		insert into board 
 			values('b_'||sequ_board.nextval,
-					'test1',
+					#{memberId},
 					0,
 					#{boardTitle},
 					#{boardContent},

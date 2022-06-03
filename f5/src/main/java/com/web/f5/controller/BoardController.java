@@ -2,7 +2,9 @@ package com.web.f5.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +17,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.web.f5.service.BoardPageServiceImpl;
 import com.web.f5.service.BoardServiceImpl;
+import com.web.f5.service.FileServiceImpl;
 import com.web.f5.service.ReplyServiceImpl;
 import com.web.f5.vo.BoardVO;
 import com.web.f5.vo.RecommendVO;
@@ -30,18 +34,43 @@ public class BoardController {
 	@Autowired
 	private ReplyServiceImpl replyService;
 	
+	@Autowired
+	private BoardPageServiceImpl boardpageService;
+	
+	@Autowired
+	private FileServiceImpl fileService;
+	
 	// 게시글 분류
 	@ResponseBody
 	@RequestMapping(value="/board_change.do", method=RequestMethod.POST, produces = "application/text; charset=UTF-8")
-	public String board_select(String boardCategory) {
+	public String board_select(String boardCategory, String rpage, String search, String search_type) {
+		//ModelAndView mv = new ModelAndView();
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		
+		Map<String, String> param = null;
+
+		
+		if(search == "") {
+
+			param = boardpageService.getPageResult(rpage, boardCategory);
+			
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			list = boardService.getSelectList(boardCategory, startCount, endCount);			
+		} else {
+			param = boardpageService.getBoardSearch(rpage, boardCategory, search, search_type);
+			
+			
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			list = boardService.getSearchSelectList(boardCategory, startCount, endCount, search, search_type);
+			System.out.println("null이 아닌 경우의 list = " + list);
+		}
 		JsonObject jdata = new JsonObject();
 		JsonArray jlist = new JsonArray();
+		JsonArray plist = new JsonArray();
 		Gson gson = new Gson();
-		System.out.println(boardCategory);
 		
-		list = boardService.getSelectList(boardCategory);
 		
 		for(BoardVO bvo : list) {
 			JsonObject obj = new JsonObject();
@@ -57,9 +86,23 @@ public class BoardController {
 			
 			jlist.add(obj);
 		}
+		
+		JsonObject pobj = new JsonObject();
+		
+		pobj.addProperty("dbCount", Integer.parseInt(param.get("dbCount")));
+		pobj.addProperty("pageSize", Integer.parseInt(param.get("pageSize")));
+		pobj.addProperty("reqPage", Integer.parseInt(param.get("reqPage")));
+		plist.add(pobj);
+		
 		jdata.add("jlist", jlist);
+		jdata.add("plist", plist);
+		
 		System.out.println(gson.toJson(jdata));
 		return gson.toJson(jdata);
+		
+		
+		
+		
 	}
 	
 	// 게시판 삭제 처리
@@ -74,10 +117,39 @@ public class BoardController {
 	
 	// 게시판 수정처리
 	@RequestMapping(value="/board_update.do", method=RequestMethod.POST) 
-	public ModelAndView board_update(BoardVO vo) {
+	public ModelAndView board_update(BoardVO vo, HttpServletRequest request) throws Exception {
 	ModelAndView mv = new ModelAndView();
 	
-	boardService.getContentUpdate(vo);
+	List<String> oldFile = new ArrayList<String>();
+	oldFile.add(vo.getBsFile1());
+	oldFile.add(vo.getBsFile2());
+	oldFile.add(vo.getBsFile3());
+	oldFile.add(vo.getBsFile4());
+	oldFile.add(vo.getBsFile5());
+
+	vo = fileService.mutiFileCheck(vo);
+	
+	int result = boardService.getContentUpdate(vo);
+	
+	if( result == 1 ) {
+		int check = fileService.multiFileSave(vo, request, oldFile);
+
+		if( check == 1 ) {
+			vo.setbFile1(vo.getbFiles().get(0));
+			vo.setbFile2(vo.getbFiles().get(1));
+			vo.setbFile3(vo.getbFiles().get(2));
+			vo.setbFile4(vo.getbFiles().get(3));
+			vo.setbFile5(vo.getbFiles().get(4));
+			vo.setBsFile1(vo.getBsFiles().get(0));
+			vo.setBsFile2(vo.getBsFiles().get(1));
+			vo.setBsFile3(vo.getBsFiles().get(2));
+			vo.setBsFile4(vo.getBsFiles().get(3));
+			vo.setBsFile5(vo.getBsFiles().get(4));
+			
+			boardService.getFileUpdateResult(vo);				
+		}
+	}
+	
 
 	mv.setViewName("redirect:/board_content.do?boardIdx="+vo.getBoardIdx());
 	
@@ -92,14 +164,13 @@ public class BoardController {
 		int result = boardService.getRecoCheckResult(vo.getBoardIdx(), vo.getMemberId());
 		if(result == 0) {
 			boardService.getRecoInsertResult(vo);
-			System.out.println(result);
+
 		} else {
-			System.out.println("update");
-			System.out.println(vo.getBoardRecommendCheck());
+
 			if(vo.getBoardRecommendCheck().equals("0") || vo.getBoardRecommendCheck().equals("1")) {
-				System.out.println(vo.getBoardRecommendCheck());
+
 				boardService.getRecoUpdateResult(vo);
-				System.out.println("처리완료");
+				
 			} else if(vo.getBoardRecommendCheck().equals("2")) {
 				boardService.getRecoDeleteResult(vo);
 			}
@@ -120,10 +191,18 @@ public class BoardController {
 
 	// 게시판 상세
 	@RequestMapping(value = "/board_content.do", method = RequestMethod.GET)
-	public ModelAndView boardContent(String boardIdx) {
+	public ModelAndView boardContent(String boardIdx, HttpSession session) {
 		ModelAndView mv = new ModelAndView();
 		boardService.getUpdateHits(boardIdx);
 		
+		String memberId = null;
+		
+		if( (String)session.getAttribute("memberId") != null ) {
+			memberId = (String)session.getAttribute("memberId");			
+		} else {
+			memberId = "Guest";
+		}
+		System.out.println(memberId);
 		List<ReplyVO> rlist = new ArrayList<ReplyVO>();
 		List<String> ridx = new ArrayList<String>();
 		
@@ -138,22 +217,11 @@ public class BoardController {
 					int decount = replyService.getRecoCountResult("1", r);
 					lvo.setRecoCount(recount);
 					lvo.setDerecoCount(decount);
-					System.out.println(lvo.getRecoCount());
-					System.out.println(lvo.getDerecoCount());
 					
 					ReplyVO vo = lvo;
-					int result = replyService.getRecoCheckResult(vo);
-					System.out.println("recoCheckResult = "+result);
+					//int result = replyService.getRecoCheckResult(vo);
 					
-					vo.setReplyRecommendCheck(replyService.getSelectReCheck(r, vo.getmemberId()));
-					
-					System.out.println("멤버 아이디 = "+vo.getmemberId());
-					System.out.println("보드 인덱스 = "+vo.getboardIdx());
-					System.out.println("댓글 인덱스 = "+vo.getreplyIdx());
-					System.out.println("추천체크 = "+vo.getReplyRecommendCheck());
-					System.out.println("추천수 = "+vo.getRecoCount());
-					System.out.println("비추천수 = "+vo.getDerecoCount());
-					System.out.println();
+					vo.setReplyRecommendCheck(replyService.getSelectReCheck(r, memberId));
 						
 				}
 			
@@ -164,11 +232,9 @@ public class BoardController {
 		
 		RecommendVO brvo = null;
 		
-		if(boardService.getRecoCheckResult(boardIdx, "test") !=0 ) {
-			brvo = boardService.getRecoSelect(boardIdx, "test");
-			System.out.println(brvo.getBoardIdx());
-			System.out.println(brvo.getMemberId());
-			System.out.println(brvo.getBoardRecommendCheck());
+		if(boardService.getRecoCheckResult(boardIdx, memberId) !=0 ) {
+			brvo = boardService.getRecoSelect(boardIdx, memberId);
+
 			mv.addObject("brvo", brvo);
 		}
 		
@@ -178,6 +244,7 @@ public class BoardController {
 		
 		mv.addObject("vo", vo);
 		mv.addObject("rlist", rlist);
+		mv.addObject("memberId", memberId);
 		mv.addObject("reco",reco);
 		mv.addObject("deco",deco);
 		mv.addObject("brvo", brvo);
@@ -188,11 +255,14 @@ public class BoardController {
 
 	// 게시판 쓰기처리
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.POST)
-	public ModelAndView board_write(BoardVO vo) {
+	public ModelAndView board_write(BoardVO vo, HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		
+		vo = fileService.mutiFileCheck(vo);
 		vo.setBoardCategory("일반");
-		boardService.getInsertResult(vo);
+		int result = boardService.getInsertResult(vo);
+		if( result == 1 ) {
+			fileService.multiFileSave(vo, request);
+		}
 		
 		mv.setViewName("redirect:/board_list.do");
 
@@ -206,17 +276,94 @@ public class BoardController {
 		return "/board/board_write";
 	}
 	
-	// 게시판리스트 
+	
+	
+	
+	
+	
+	// 게시판리스트
+	@ResponseBody
+	@RequestMapping(value = "/board_rlist.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8")
+	public String board_rlist(String rpage, String boardCategory, String search, String search_type) {
+		
+		List<BoardVO> list = new ArrayList<BoardVO>();
+		Map<String, String> param = null;
+			
+		if(search == null) {
+			param = boardpageService.getPageResult(rpage, boardCategory);
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			list = boardService.getSelectList(boardCategory, startCount, endCount);			
+		} else {
+
+			param = boardpageService.getBoardSearch(rpage, boardCategory, search, search_type);
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			list = boardService.getSearchSelectList(boardCategory, startCount, endCount, search, search_type);
+
+		}
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		
+		for(BoardVO bvo : list) {
+			JsonObject obj = new JsonObject();
+			obj.addProperty("rno", bvo.getRno());
+			obj.addProperty("boardIdx", bvo.getBoardIdx());
+			obj.addProperty("memberId", bvo.getMemberId());
+			obj.addProperty("boardHits", bvo.getBoardHits());
+			obj.addProperty("boardTitle", bvo.getBoardTitle());
+			obj.addProperty("boardContent", bvo.getBoardContent());
+			obj.addProperty("boardDate", bvo.getBoardDate());
+			obj.addProperty("boardUpdateDate", bvo.getBoardUpdateDate());
+			obj.addProperty("boardCategory", bvo.getBoardCategory());
+			
+			jlist.add(obj);
+		}
+		jdata.add("jlist", jlist);
+		System.out.println(gson.toJson(jdata));
+		return gson.toJson(jdata);
+		
+	}
+	
 	
 	// 게시판리스트 출력
 	@RequestMapping(value = "/board_list.do", method = RequestMethod.GET)
-	public ModelAndView board_list() {
+	public ModelAndView board_list(String rpage, String boardCategory, String search, String search_type) {
 		ModelAndView mv = new ModelAndView();
+
+		if(boardCategory == null) {
+			boardCategory = "3";
+		}
+		
+		Map<String, String> param = null;
 		List<BoardVO> list = new ArrayList<BoardVO>();
-		String boardCategory = "3";
-		list = boardService.getSelectList(boardCategory);
+
+		if(search == null) {
+
+			param = boardpageService.getPageResult(rpage, boardCategory);
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			list = boardService.getSelectList(boardCategory, startCount, endCount);			
+		} else {
+
+			param = boardpageService.getBoardSearch(rpage, boardCategory, search, search_type);
+			int startCount = Integer.parseInt(param.get("start"));
+			int endCount = Integer.parseInt(param.get("end"));
+			list = boardService.getSearchSelectList(boardCategory, startCount, endCount, search, search_type);
+
+		}
 		
 		mv.addObject("list", list);
+		mv.addObject("search", search);
+		mv.addObject("search_type", search_type);
+		mv.addObject("boardCategory", boardCategory);
+		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
+		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
+		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
+		
 		mv.setViewName("/board/board_list");
 
 		return mv;
