@@ -10,7 +10,12 @@
 		from
 			(select rownum rno, boardIdx, memberId, boardTitle, boardContent, to_char(boardDate,'yyyy-mm-dd') boardDate, boardCategory
 		from
-			(select boardIdx, memberId, boardTitle, boardContent, boardDate, boardCategory from board order by boardDate desc) where boardCategory = '일반')
+			(select boardIdx, memberId, boardTitle, boardContent, boardDate, boardCategory from board order by boardDate desc)
+			where
+				boardCategory = '일반'
+			or
+				boardCategory = '홍보'
+			)
 		where
 			rno &lt; 4
 	</select>
@@ -161,4 +166,32 @@
 			boardIdx = #{boardIdx}
 	</delete>
 	
+	<insert id="getInsertPageview" parameterType="java.lang.String">
+		insert into pageview
+		(
+			pageviewIdx,
+			pageviewHits,
+			pageviewDate,
+			pageviewName
+		)
+		values
+		(
+			'pv_'||sequ_pageview.nextval,
+			0,
+			sysdate,
+			#{pageviewName}
+		)
+	</insert>
+	
+	<select id="getTotalPV" resultType="int">
+		select count(*)
+		from pageview
+	</select>
+	
+	<select id="getTodayPV" resultType="int">
+		select count(*)
+		from pageview
+		where
+		substr(pageviewDate, 0,10) &gt;= substr(sysdate, 0,10)
+	</select>
 </mapper>

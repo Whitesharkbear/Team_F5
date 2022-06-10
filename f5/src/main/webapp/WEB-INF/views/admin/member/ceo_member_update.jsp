@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,7 @@
 			<div class="row">
 				<div id="content">
 					<h4>관리자 | CEO회원 수정</h4>
+					<form action="ceo_member_update.do" method="post">
 					<table id="member_update_table">
 						<tr>
 							<td><label>아이디</label></td>
@@ -108,9 +109,10 @@
 						</tr>
 					</table>
 					<div class="table_btn">
-						<a href="ceo_member_update.do?id=${ vo.memberId }"><button type="button" class="update">수정</button></a>
+						<a href="ceo_member_update.do?id=${ vo.memberId }"><button type="submit" class="update">수정</button></a>
 						<a href="ceo_member_list.do"><button type="button" class="list">목록</button></a>
 					</div>
+					</form>
 				</div>
 			</div>
 		</div>

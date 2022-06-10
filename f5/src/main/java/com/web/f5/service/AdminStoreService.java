@@ -23,4 +23,6 @@ public interface AdminStoreService extends ObjService{
 	int getReviewDelete(String idx, String ridx);
 
 	int getStoreDelete(String idx);
+
+	ArrayList<AdminStoreVO> getsearchJSONResult(int startCount, int endCount, String search, String search_type);
 }

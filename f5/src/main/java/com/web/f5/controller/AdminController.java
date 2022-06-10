@@ -33,6 +33,9 @@ public class AdminController {
 	@Autowired
 	private AdminQuestionService adminQuestionService;
 	
+	@Autowired
+	private AdminBoardService adminBoardService;
+	
 	@RequestMapping ( value = "admin/admin.do", method = RequestMethod.GET )
 	public ModelAndView admin(String rpage) {
 		
@@ -64,28 +67,6 @@ public class AdminController {
 		List<AdminMemberVO> memberList = adminMemberService.getLimitList();
 		List<AdminQuestionVO> questionList = adminQuestionService.getLimitList();
 		
-//		DecimalFormat formatter = new DecimalFormat("###,###,###");
-//		
-//		int mberTotalCnt = adminMemberService.getmberTotalCnt();
-//		int mberTodayCnt = adminMemberService.getmberTodayCnt();
-//		int questionTotal = adminQuestionService.getTotalCnt();
-//		int questionToday = adminQuestionService.getTodayCnt();
-//		int CEOTotal = adminMemberService.getCEOTotal();
-//		int CEORequest = adminMemberService.getCEORequest();
-//		
-//		totalCnt = formatter.format(mberTotalCnt);
-//		todayCnt = formatter.format(mberTodayCnt);
-//		questionTotalCnt = formatter.format(questionTotal);
-//		questionTodayCnt = formatter.format(questionToday);
-//		CEOTotalCnt = formatter.format(CEOTotal);
-//		CEORequestCnt = formatter.format(CEORequest);
-//		
-//		result.put("CEOTotalCnt", CEOTotalCnt);
-//		result.put("CEORequestCnt", CEORequestCnt);
-//		result.put("questionTotalCnt", questionTotalCnt);
-//		result.put("questionTodayCnt", questionTodayCnt);
-//		result.put("totalCnt", totalCnt);
-//		result.put("todayCnt", todayCnt);
 		
 		result.put("memberList", memberList);
 		result.put("questionList", questionList);
@@ -191,6 +172,28 @@ public class AdminController {
 		jlist.add(obj1);
 		
 		jdata.add("jlist", jlist);
+		return gson.toJson(jdata);
+	}
+	
+	@ResponseBody
+	@RequestMapping ( value = "admin/pageview_chart.do", method = RequestMethod.GET )
+	public String pageview_chart() {
+		
+		int totalPV = adminBoardService.getTotalPV();
+		int todayPV = adminBoardService.getTodayPV();
+		
+		JsonObject jdata = new JsonObject();
+		JsonArray jlist = new JsonArray();
+		Gson gson = new Gson();
+		
+		JsonObject obj = new JsonObject();
+		obj.addProperty("totalPV", totalPV);
+		obj.addProperty("todayPV", todayPV);
+		
+		jlist.add(obj);
+		
+		jdata.add("jlist", jlist);
+		
 		return gson.toJson(jdata);
 	}
 }

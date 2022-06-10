@@ -1,5 +1,6 @@
 package com.web.f5.dao;
 
+import java.net.MulticastSocket;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -78,5 +79,31 @@ public class AdminStoreDAO {
 	public int getStoreDelete(String idx) {
 		
 		return sqlSession.delete(namespace + ".getStoreDelete", idx);
+	}
+
+	public int getSearchCount(String search_type, String search) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		return sqlSession.selectOne(namespace + ".getSearchCount", param);
+	}
+
+	public ArrayList<AdminStoreVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		System.out.println("1"+startCount);
+		System.out.println("2"+endCount);
+		System.out.println("3"+search);
+		System.out.println("4"+search_type);
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search", search);
+		param.put("search_type", search_type);
+		
+		List<AdminStoreVO> list = new ArrayList<AdminStoreVO>();
+		list = sqlSession.selectList(namespace + ".getSearchList", param);
+		
+		return (ArrayList<AdminStoreVO>) list;
 	}
 }

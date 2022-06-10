@@ -26,6 +26,7 @@ function search() {
 }
 
 $(document).ready(function(){
+	
 	var search = $("#searchbar").val();
 	var search_type = $("#search_type").val();
 	var pager = jQuery('#ampaginationsm').pagination({

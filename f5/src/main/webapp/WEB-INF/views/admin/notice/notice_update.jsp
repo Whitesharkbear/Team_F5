@@ -48,10 +48,9 @@ function list() {
 			<div id="content">
 				<h4>공지사항 관리 | 공지사항 수정페이지</h4>
 				<form action="notice_update.do" method="post" name="noticeUpdate">
-				<input type="text" value="${ vo.boardIdx }" name="boardIdx">
-				<input type="text" value="${ vo.memberId }" name="memberId">
-				<input type="text" value="${ vo.boardSort }" name="boardSort">
-				<input type="text" value="${ vo.boardCategory }" name="boardCategory">
+				<input type="hidden" value="${ vo.boardIdx }" name="boardIdx">
+				<input type="hidden" value="${ vo.memberId }" name="memberId">
+				<input type="hidden" value="${ vo.boardCategory }" name="boardCategory">
 				<table class="notice_table">
 					<tr>
 						<td><label>제목</label></td>
@@ -64,12 +63,6 @@ function list() {
 					</tr>
 					<tr>
 						<td><textarea rows="10" id="notice_content" name="boardContent">${ vo.boardContent }</textarea></td>
-					</tr>
-					<tr>
-						<td><label>파일첨부</label></td>
-					</tr>
-					<tr>
-						<td><input type="file" id="file"></td>
 					</tr>
 				</table>
 				<div class="notice_btn">

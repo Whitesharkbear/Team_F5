@@ -66,4 +66,22 @@ public class AdminBoardServiceImpl implements AdminBoardService {
 
 	@Override
 	public int getUpdateResult(Object obj) {return 0;}
+
+	@Override
+	public void getInsertPageview(String pageName) {
+		
+		adminBoardDAO.getInsertPageview(pageName);
+	}
+
+	@Override
+	public int getTotalPV() {
+		
+		return adminBoardDAO.getTotalPV();
+	}
+
+	@Override
+	public int getTodayPV() {
+		
+		return adminBoardDAO.getTodayPV();
+	}
 }

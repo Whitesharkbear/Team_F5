@@ -26,7 +26,20 @@
 	href="/f5/resources/engine1/style.css" />
 <script type="text/javascript" src="/f5/resources/engine1/jquery.js"></script>
 <!-- End WOWSlider.com HEAD section -->
-
+<script type="text/javascript">
+$(document).ready(function(){
+	$(document).on('click', '.fw-bt', function(){
+		var search = $(".fw-search").val();
+		if ( search == '' ) {
+			
+			alert("검색어를 입력해주세요.");
+		} else {
+			
+			location.href="store_search.do?search="+search;
+		}
+	});
+});
+</script>
 <title>Insert title here</title>
 </head>
 <body>
@@ -92,15 +105,8 @@
 						<ul class="nav-inner">
 							<li><a href="http://localhost:9000/f5/faq_list.do">FAQ</a></li>
 							<li><a href="http://localhost:9000/f5/question_list.do">문의하기</a></li>
-						</ul></li>
-					<!--                     	<li class="nav-item" class = "nav-litem"><a class="nav-link" href="#!">회원관리</a><div></div> -->
-					<!--                     		<ul class ="nav-inner"> -->
-					<!--                     			<li><a href="http://localhost:9000/f5/login.do">로그인</a></li> -->
-					<!--                     			<li><a href="http://localhost:9000/f5/join.do">회원가입</a></li> -->
-					<!--                     			<li><a href="http://localhost:9000/f5/mypage.do">마이페이지</a></li> -->
-					<!--                     			<li> </li> -->
-					<!--                     		</ul> -->
-					<!--                     	</li> -->
+						</ul>
+					</li>
 				</ul>
 			</div>
 		</div>
@@ -135,9 +141,8 @@
 				<div class="py-51_box">
 					<h1 class="fw-bolder">친근하고 맛있는 검색!</h1>
 					<img class="fw-img" src="/f5/resources/images/mainlogo2.png"><br>
-					<input class="fw-search" type="text"
-						placeholder="원하시는 가게 또는 음식을 입력해주세요."> <span><input
-						class="fw-bt" type="button" value="검색"></span>
+					<input class="fw-search" type="text" placeholder="원하시는 가게 또는 음식을 입력해주세요." value="${ search }">
+					<span><input class="fw-bt" type="button" value="검색"></span>
 				</div>
 			</div>
 		</div>

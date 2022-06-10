@@ -54,12 +54,6 @@ function list() {
 					<tr>
 						<td><textarea rows="10" id="question_answer" name="questionAnswer"></textarea></td>
 					</tr>
-					<tr>
-						<td><label>파일첨부</label></td>
-					</tr>
-					<tr>
-						<td><input type="file" id="file"></td>
-					</tr>
 				</table>
 				<div class="question_btn">
 					<button type="submit" class="question_receive">보내기</button>

@@ -5,6 +5,14 @@ table {
 	border-collapse: collapse;
 }
 
+
+.question_btn .question_delete {
+	border: none;
+	border-radius: 5%;
+	background-color: oldlace;
+	color: orange;
+}
+
 /* thead, */
 /* tbody, */
 /* tfoot, */

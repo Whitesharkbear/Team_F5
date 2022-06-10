@@ -36,48 +36,89 @@
 		select 
 			rno, storeidx,sfile1,sfile2,sfile3,sfile4,sfile5,sufile1,sufile2,sufile3,sufile4,sufile5,
         		storename,storeplace,storecontent,storetel,storeevent,storebenefit,storecategory,
-        		storemaxcount,storeparking,storewebsite,storeprice,storedate
+        		storemaxcount,storeparking,storewebsite,storeprice,storedate, memberId
 		 from
 		(select
 			rownum rno, s1.storeidx,sfile1,sfile2,sfile3,sfile4,sfile5,sufile1,sufile2,sufile3,sufile4,sufile5,
         	storename,storeplace,storecontent,storetel,storeevent,storebenefit,storecategory,
-        	storemaxcount,storeparking,storewebsite,storeprice,storedate from store s1, storefile s2
-			where s1.storeidx = s2.storeidx(+)
+        	storemaxcount,storeparking,storewebsite,storeprice,storedate, s3.memberId from store s1, storefile s2, ceo s3
+			where s1.storeidx = s2.storeidx(+) and s1.storeidx = s3.storeidx
 			<choose>
 				<when test='search_type == "t"'>
+					and
+						storeName like '%'||#{search}||'%'
+						)
 					where
-						storeName like '%'||#{search}||'%'					
+					rno between #{start} and #{end}
 				</when>
 				<when test='search_type == "c"'>
+					and
+						storeContent like '%'||#{search}||'%'
+					)
 					where
-						storeContent like '%'||#{search}||'%'					
+					rno between #{start} and #{end}
 				</when>
 				<when test='search_type == "tc"'>
-					where
+					and
 						(
 							storeName like '%'||#{search}||'%'					
 						or
 							storeContent like '%'||#{search}||'%'					
 						)
+					)
+					where
+					rno between #{start} and #{end}
 				</when>
 				<when test='search_type == "category"'>
-					where
+					and
 						storeCategory like '%'||#{search}||'%'
+					)
+					where
+					rno between #{start} and #{end}
 				</when>
 				<when test='search_type == "p"'>
+					and
+						storePlace like '%'||#{search}||'%'
+					)
 					where
-						storePlace like '%'||#{search}||'%'					
+					rno between #{start} and #{end}
+				</when>
+				<when test="search != null || search != '' and search_type == null || search_type == ''">
+					and
+					(
+						storeName like '%'||#{search}||'%'
+					or
+						storeCategory like '%'||#{search}||'%'
+					)
+					)
+					where
+					rno between #{start} and #{end}
 				</when>
 				<otherwise>
+				)
+					where
+					rno between #{start} and #{end}
 				</otherwise>
 			</choose>
-			)
-		where
-			rno between #{start} and #{end}
 	</select>
 	
 	<select id="count" resultType="int">
 		select count(*) from store
+	</select>
+	
+	<select id="getSearchCount" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from store
+		where
+		<choose>
+			<when test="search != null || search != ''">
+				storeName like '%'||#{search}||'%'
+			or
+				storeCategory like '%'||#{search}||'%'
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</select>
 	
 	<select id="getMaxCount" parameterType="java.lang.String" resultType="com.web.f5.vo.AdminStoreVO">

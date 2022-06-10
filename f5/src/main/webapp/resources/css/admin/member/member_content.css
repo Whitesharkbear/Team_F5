@@ -127,6 +127,13 @@ table {
 	border-radius: 5%;
 }
 
+.table_btn .delete {
+	background-color: oldlace;
+	color: orange;
+	border: none;
+	border-radius: 5%;
+}
+
 .table_btn .list {
 	background-color: orange;
 	color: #fff;
@@ -223,6 +230,13 @@ table {
 	border-radius: 5%;
 }
 
+.table_btn .delete {
+	background-color: oldlace;
+	color: orange;
+	border: none;
+	border-radius: 5%;
+}
+
 .table_btn .list {
 	background-color: orange;
 	color: #fff;
@@ -313,6 +327,13 @@ table {
 .table_btn .update {
 	background-color: brown;
 	color: #fff;
+	border: none;
+	border-radius: 5%;
+}
+
+.table_btn .delete {
+	background-color: oldlace;
+	color: orange;
 	border: none;
 	border-radius: 5%;
 }

@@ -19,6 +19,69 @@ th{
 	text-align: center;
 }
 
+button {
+	border: none;
+}
+
+.notice_btn .notice_delete {
+	border: none;
+	border-radius: 5%;
+	background-color: oldlace;
+	color: orange;
+}
+.board-reply-head {
+	border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.reply-member {
+	padding: 5px 0 5px 5px;
+	font-size: 15pt;
+	font-weight: bold;
+	display: flex;
+	justify-content: space-between;
+}
+
+.reply-member form {
+	display: inline-block;
+}
+
+.reply-member button {
+	font-size: 12pt;
+}
+
+.reply-content-container {
+	margin: 5px 0 10px 0;
+	text-align: center;
+}
+
+.reply-content {
+	width: 80%;
+	height: 80px;
+	resize: none;
+	padding: 5px 2px;
+}
+
+.reply-btn-container {
+	text-align: right;
+	margin-right: 10%;
+	margin-bottom: 10px;
+}
+
+.reply-content-div {
+	margin: 10px 0;
+	padding: 0 5px;
+}
+
+
+
+.reply-etc dl {
+	display: inline-block;
+	margin-right: 10px;
+}
+
+.reply-etc dl > * {
+	display: inline-block;
+	color: rgba(0,0,0,0.5);
+}
 /*-----------------------------------------------------------------------
 
  								PC 
@@ -63,7 +126,7 @@ th{
 
 .notice_btn button {
 	margin: 0 5%;
-	width: 30%;
+	width: 20%;
 }
 
 .notice_btn .notice_update {
@@ -126,7 +189,7 @@ th{
 
 .notice_btn button {
 	margin: 0 5%;
-	width: 35%;
+	width: 20%;
 }
 
 .notice_btn .notice_update {
@@ -166,6 +229,7 @@ th{
 #content  > .notice_table {
 	width: 100%;
 	margin: 0 auto;
+	font-size: 10px;
 }
 
 .notice_table #notice_title {
@@ -184,11 +248,12 @@ th{
 .notice_btn {
 	text-align: center;
 	margin: 5% 0;
+	font-size: 10px;
 }
 
 .notice_btn button {
 	margin: 0 5%;
-	width: 35%;
+	width: 20%;
 }
 
 .notice_btn .notice_update {

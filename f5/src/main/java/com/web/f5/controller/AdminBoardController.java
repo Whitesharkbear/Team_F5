@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +17,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.web.f5.service.AdminBoardService;
+import com.web.f5.service.BoardServiceImpl;
 import com.web.f5.service.PageServiceImpl;
+import com.web.f5.service.ReplyServiceImpl;
 import com.web.f5.vo.AdminBoardVO;
+import com.web.f5.vo.BoardVO;
+import com.web.f5.vo.RecommendVO;
+import com.web.f5.vo.ReplyVO;
 
 @Controller
 public class AdminBoardController {
@@ -25,10 +32,18 @@ public class AdminBoardController {
 	private AdminBoardService adminBoardService;
 	
 	@Autowired
+	private BoardServiceImpl boardService;
+	
+	@Autowired
+	private ReplyServiceImpl replyService;
+	
+	@Autowired
 	private PageServiceImpl pageService;
 	
 	@RequestMapping ( value = "/admin/board_list.do", method = RequestMethod.GET )
 	public ModelAndView admin_board_list(String rpage, String search, String search_type) {
+		
+		adminBoardService.getInsertPageview("board_list");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
@@ -74,7 +89,8 @@ public class AdminBoardController {
 	@ResponseBody
 	@RequestMapping ( value = "admin/board_search_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
 	public String admin_board_search_list(String rpage, String search, String search_type) {
-		
+		System.out.println(search);
+		System.out.println(search_type);
 		Map<String, String> param = pageService.getSearchResult(search_type, search, rpage, "admin_board_search", adminBoardService);
 		
 		int startCount = Integer.parseInt( param.get("start") );
@@ -108,13 +124,66 @@ public class AdminBoardController {
 	}
 	
 	@RequestMapping ( value = "/admin/board_content.do", method = RequestMethod.GET )
-	public ModelAndView admin_board_content(String idx, String rno) {
+	public ModelAndView admin_board_content(String idx, String rno, HttpSession session) {
+		
+		adminBoardService.getInsertPageview("board_content");
 		
 		ModelAndView mv = new ModelAndView();
-		AdminBoardVO vo = (AdminBoardVO) adminBoardService.getContent(idx);
+		
+		String memberId = null;
+		
+		if( (String)session.getAttribute("memberId") != null ) {
+			memberId = (String)session.getAttribute("memberId");			
+		} else {
+			memberId = "Guest";
+		}
+		
+		List<ReplyVO> rlist = new ArrayList<ReplyVO>();
+		List<String> ridx = new ArrayList<String>();
+		
+		rlist = replyService.getSelectList(idx);
+		ridx = replyService.getSelectIdxList(idx);		
+		
+		for(ReplyVO lvo : rlist) {
+			
+			for(String r : ridx) {
+				if(lvo.getreplyIdx().equals(r)) {
+					int recount = replyService.getRecoCountResult("0", r);
+					int decount = replyService.getRecoCountResult("1", r);
+					lvo.setRecoCount(recount);
+					lvo.setDerecoCount(decount);
+					
+					ReplyVO vo = lvo;
+					//int result = replyService.getRecoCheckResult(vo);
+					
+					vo.setReplyRecommendCheck(replyService.getSelectReCheck(r, memberId));
+						
+				}
+			
+			}
+		}
+		
+		BoardVO vo = boardService.getContentList(idx);
+		
+		RecommendVO brvo = null;
+		
+		if(boardService.getRecoCheckResult(idx, memberId) !=0 ) {
+			brvo = boardService.getRecoSelect(idx, memberId);
+
+			mv.addObject("brvo", brvo);
+		}
+		
+		int reco = boardService.getRecoCountResult("0", idx);
+		int deco = boardService.getRecoCountResult("1", idx);
+		
 		
 		mv.addObject("vo", vo);
-		mv.addObject("rno", rno);
+		mv.addObject("rlist", rlist);
+		mv.addObject("memberId", memberId);
+		mv.addObject("reco",reco);
+		mv.addObject("deco",deco);
+		mv.addObject("brvo", brvo);
+		
 		mv.setViewName("admin/board/board_content");
 		
 		return mv;
@@ -136,5 +205,12 @@ public class AdminBoardController {
 		}
 		
 		return mv;
+	}
+	
+	// 댓글삭제
+	@ResponseBody
+	@RequestMapping(value="admin/reply_delete.do", method=RequestMethod.GET)
+	public void board_reply_delete(String replyIdx, String boardIdx) {
+		replyService.getDeleteResult(replyIdx);
 	}
 }

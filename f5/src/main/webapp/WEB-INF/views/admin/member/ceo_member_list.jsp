@@ -10,7 +10,111 @@
 <script src="/f5/resources/js/jquery-3.6.0.min.js"></script>
 <script src="http://localhost:9000/f5/resources/js/am-pagination.js"></script>
 <script type="text/javascript">
+function search() {
+	
+	var search = $("#searchbar").val();
+	var search_type = $(".search_type").val();
+	
+	if ( search == "" ) {
+		console.log("${vo.memberId}");
+		alert("검색할 사용자를 입력해주세요.");
+		$("#searchbar").focus();
+	} else {
+		
+		location.href="/f5/admin/ceo_member_list.do?search="+search + "&search_type=" + search_type;
+	}
+}
+
 $(document).ready(function(){
+	
+	var search = $("#searchbar").val();
+	var search_type = $(".search_type").val();
+	
+	var pager = jQuery('#ampaginationsm').pagination({
+		
+	    maxSize: 7,	    		// max page size
+	    totals: '${ dbCount }',	// total pages	
+	    page: '${ reqPage }',		// initial page		
+	    pageSize: '${ pageSize }',	// max number items per page
+	    
+	    search : '${search}',
+	    search_type : '${search_type}',
+	
+	    // custom labels		
+	    lastText: '&raquo;&raquo;', 		
+	    firstText: '&laquo;&laquo;',		
+	    prevText: '&laquo;',		
+	    nextText: '&raquo;',
+			     
+	    btnSize:'sm'	// 'sm'  or 'lg'		
+	});
+	
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+		jQuery('.showlabelsm').text('The selected page no: '+e.page);
+		
+		if ( search == "" ) {
+			$(".member_list").remove();
+			
+			$.ajax({
+				url : "ceo_member_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<tr class='member_list'>";
+						str += "<td>"+data.jlist[i].rno+"</td>";
+						str += "<td>"+data.jlist[i].memberName+"</td>";
+						str += "<td>"+data.jlist[i].memberId+"</td>";
+						str += "<td>"+data.jlist[i].storeName+"</td>";
+						str += "<td>"+data.jlist[i].storeName+"</td>";
+						if ( data.jlist[i].memberAuthority != '4' ) {
+							
+							str += "<td><button value='0' class='black_list' id='"+data.jlist[i].memberId+"'>추가</button>";
+						} else {
+							
+							str += "<td><button value='1' class='black_list' id='"+data.jlist[i].memberId+"'>석방</button>";
+						}
+						str += "<td><button value='0' class='closing' id='"+data.jlist[i].storeIdx+"'>승인</button></td>";
+						str += "</tr>";
+						$("#member_table").append(str);
+					}
+				}
+			});
+		} else {
+			
+			$(".member_list").remove();
+			
+			$.ajax({
+				url : "ceo_member_search_list.do?rpage="+e.page+"&search="+search+"&search_type="+search_type,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						
+						var str = "<tr class='member_list'>";
+						str += "<td>"+data.jlist[i].rno+"</td>";
+						str += "<td>"+data.jlist[i].memberName+"</td>";
+						str += "<td>"+data.jlist[i].memberId+"</td>";
+						str += "<td>"+data.jlist[i].storeName+"</td>";
+						str += "<td>"+data.jlist[i].storeName+"</td>";
+						if ( data.jlist[i].memberAuthority != '4' ) {
+							
+							str += "<td><button value='0' class='black_list' id='"+data.jlist[i].memberId+"'>추가</button>";
+						} else {
+							
+							str += "<td><button value='1' class='black_list' id='"+data.jlist[i].memberId+"'>석방</button>";
+						}
+						str += "<td><button value='0' class='closing' id='"+data.jlist[i].storeIdx+"'>승인</button></td>";
+						str += "</tr>";
+						$("#member_table").append(str);
+					}
+				}
+			});
+		}
+	});
 	
 	$(document).on('click', ".black_list", function(){
 		var memberId = $(this).attr("id");
@@ -57,7 +161,7 @@ $(document).ready(function(){
 					$(this).remove();
 				} else {
 					
-					console.log("Asdfdsdg");
+					alert("error");
 				}
 			}
 		});
@@ -90,7 +194,7 @@ $(document).ready(function(){
 								<th>번호</th><th>이름</th><th>아이디</th><th>매장이름</th><th>블랙리스트</th><th>폐점신청</th>
 							</tr>
 							<c:forEach var="vo" items="${ list }">
-								<tr>
+								<tr class="member_list">
 									<td>${ vo.rno }</td>
 									<td>${ vo.memberName }</td>
 									<td><a href="ceo_member_content.do?id=${ vo.memberId }&rno=${ vo.rno }">${ vo.memberId }</a></td>
@@ -98,7 +202,7 @@ $(document).ready(function(){
 									<label><a href="store_information.do?idx=${ vo.storeIdx }">${ vo.storeName }</a></label>
 									</td>
 									<td>
-										<button value="0" class="black_list" id="${ vo.memberId }">승인</button>
+										<button value="0" class="black_list" id="${ vo.memberId }">추가</button>
 									</td>
 									<td>
 										<button value="0" class="closing" id="${ vo.storeIdx }">승인</button>

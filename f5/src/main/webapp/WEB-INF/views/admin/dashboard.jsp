@@ -71,6 +71,7 @@ $(document).ready(function(){
 	member_graph();
 	question_graph();
 	ceo_graph();
+	PV_graph();
 });
 
 function member_graph(){
@@ -195,6 +196,47 @@ function ceo_graph(){
 		}
 	});
 }
+
+function PV_graph(){
+	
+	var today = [];
+	var total = [];
+	
+	$.ajax({
+		url : "pageview_chart.do",
+		success : function(result){
+			
+			const data = JSON.parse(result);
+			
+			for ( var i in data.jlist ) {
+				
+				total.push(data.jlist[i].totalPV);
+				today.push(data.jlist[i].todayPV);
+			}
+			new Chart(document.getElementById("pvChart"), {
+				type : 'doughnut',
+				data : {
+					labels : ['전체 PageVIew', '오늘 PageView'],
+					datasets : [{
+						label : "first dataset",
+						data : [total, today],
+						borderColor : ['orange','oldlace'],
+						backgroundColor : ['orange','oldlace'],
+						fill : true
+					}],
+				},
+				options : {
+					title : {
+						display : true,
+						text : "PV 통계"
+					}
+				}
+			});
+		}, error : function(){
+			alert("실패");
+		}
+	});
+}
 </script>
 </head>
 <body>
@@ -209,15 +251,8 @@ function ceo_graph(){
 							<li class="statistics_list">
 								<div class="statistics">
 									<h5>PageView</h5>
-									<div id="pageviews">
-										<ul>
-											<li>
-												<label>today : 0</label>
-											</li>
-											<li>
-												<label>total : 0</label>
-											</li>
-										</ul>
+									<div style="width: 100%">
+										<canvas id="pvChart"></canvas>
 									</div>
 								</div>
 							</li>

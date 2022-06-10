@@ -29,4 +29,6 @@ public interface AdminMemberService extends ObjService {
 	List<Object> getBlackListResult(int startCount, int endCount);
 	List<Object> getBlackMberSearch(int startCount, int endCount, String search, String search_type);
 	ArrayList<AdminMemberVO> getBlackSearchList(int startCount, int endCount, String search, String search_type);
+	int getIdChk(String id);
+	ArrayList<AdminMemberVO> getCeoSearchJSONResult(int startCount, int endCount, String search, String search_type);
 }

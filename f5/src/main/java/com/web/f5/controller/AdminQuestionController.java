@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.web.f5.service.AdminBoardService;
 import com.web.f5.service.AdminQuestionService;
 import com.web.f5.service.PageServiceImpl;
 import com.web.f5.vo.AdminQuestionVO;
@@ -27,10 +28,15 @@ public class AdminQuestionController {
 	private AdminQuestionService adminQuestionService;
 	
 	@Autowired
+	private AdminBoardService adminBoardService;
+	
+	@Autowired
 	private PageServiceImpl pageService;
 	
 	@RequestMapping ( value = "admin/question_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8"  )
 	public ModelAndView admin_question_list(String rpage, String search, String search_type, String proceed) {
+		
+		adminBoardService.getInsertPageview("question_list");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;	
@@ -147,6 +153,8 @@ public class AdminQuestionController {
 	@RequestMapping ( value = "admin/question_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_question_content(String idx, String rno) {
 		
+		adminBoardService.getInsertPageview("question_content");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		AdminQuestionVO vo = (AdminQuestionVO) adminQuestionService.getContent(idx);
@@ -179,6 +187,8 @@ public class AdminQuestionController {
 	
 	@RequestMapping ( value = "admin/question_receive.do", method = RequestMethod.GET )
 	public ModelAndView admin_question_receive(String idx, String rno) {
+		
+		adminBoardService.getInsertPageview("question_receive");
 		
 		ModelAndView mv = new ModelAndView();
 		AdminQuestionVO vo = null;

@@ -66,7 +66,7 @@ public class AdminStoreServiceImpl implements AdminStoreService{
 
 	@Override
 	public int getSearchCount(String search_type, String search) {
-		return 0;
+		return adminStoreDAO.getSearchCount(search_type, search);
 	}
 
 	@Override
@@ -79,5 +79,11 @@ public class AdminStoreServiceImpl implements AdminStoreService{
 	public int getStoreDelete(String idx) {
 		
 		return adminStoreDAO.getStoreDelete(idx);
+	}
+
+	@Override
+	public ArrayList<AdminStoreVO> getsearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		return adminStoreDAO.getSearchJSONResult(startCount, endCount, search, search_type);
 	}
 }

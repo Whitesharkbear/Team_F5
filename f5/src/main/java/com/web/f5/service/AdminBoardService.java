@@ -16,4 +16,7 @@ public interface AdminBoardService extends ObjService {
 	List<AdminBoardVO> getLimitList();
 	ArrayList<AdminBoardVO> getSearchJSONResult(int startCount, int endCount, String search, String search_type);
 	List<Object> getSearchList(int startCount, int endCount, String search, String search_type);
+	void getInsertPageview(String pageName);
+	int getTotalPV();
+	int getTodayPV();
 }

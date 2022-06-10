@@ -205,4 +205,37 @@ public class AdminMemberDAO implements AdminObjDAO {
 		
 		return sqlSession.update(namespace + ".getBlackOut", id);
 	}
+
+	public int getIdChk(String id) {
+		
+		return sqlSession.selectOne(namespace + ".getIdChk", id);
+	}
+
+	public int getCeoSearchCount(String search_type, String search) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("search_type", search_type);
+		param.put("search", search);
+		
+		return sqlSession.selectOne(namespace + ".getCeoSearchCount", param);
+	}
+
+	public ArrayList<AdminMemberVO> getCeoSearchJSONResult(int startCount, int endCount, String search, String search_type) {
+		
+		Map param = new HashMap<String, String>();
+		param.put("start", startCount);
+		param.put("end", endCount);
+		param.put("search_type", search_type);
+		param.put("search", search);
+		
+		List<AdminMemberVO> list = new ArrayList<AdminMemberVO>();
+		list = sqlSession.selectList(namespace + ".getCeoSearchResult", param);
+		
+		return (ArrayList<AdminMemberVO>) list;
+	}
+
+	public int getCeoCount() {
+		
+		return sqlSession.selectOne(namespace + ".getCeoCount");
+	}
 }

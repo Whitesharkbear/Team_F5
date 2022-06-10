@@ -59,24 +59,6 @@
 						class="card-img-top" src="/f5/resources/images/전.jpeg" alt="..." />
 					</a>
 				</div>
-
-
-				<!-- Pagination-->
-
-				<nav aria-label="Pagination">
-					<hr class="my-0" />
-					<ul class="pagination justify-content-center my-4">
-						<li class="page-item disabled"><a class="page-link" href="#"
-							tabindex="-1" aria-disabled="true">Newer</a></li>
-						<li class="page-item active" aria-current="page"><a
-							class="page-link" href="#!">1</a></li>
-						<li class="page-item"><a class="page-link" href="#!">2</a></li>
-						<li class="page-item"><a class="page-link" href="#!">3</a></li>
-						<li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
-						<li class="page-item"><a class="page-link" href="#!">15</a></li>
-						<li class="page-item"><a class="page-link" href="#!">Older</a></li>
-					</ul>
-				</nav>
 			</div>
 
 			<!-- Side widgets-->
@@ -132,9 +114,11 @@
 					<div class="card-body">
 						<div class="main_notice">
 							<ul class="new_notice">
-								<li><a>[22년 5월] 업데이트 안내</a></li>
-								<li><a>[22년 4월 23일] 긴급 서버 점검 안내</a></li>
-								<li><a>[22년 4월] 업데이트 안내</a></li>
+								<c:forEach var="result" items="${ result.noticeList }">
+									<li><a href="board_content.do?boardIdx=${ result.boardIdx }">
+									<c:if test="${result.boardCategory eq '공지'}">[공지]</c:if>
+									${ result.boardTitle }</a></li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -178,9 +162,12 @@
 					<div class="card-body">
 						<div class="main_board">
 							<ul class="new_board">
-								<li><a>[추천] 강남 쉑쉑버거, 맛있네요!</a></li>
-								<li><a>[알림] 음식이 너무 짜졌네요..</a></li>
-								<li><a>[추천] 여름 냉면! 여기 좋아요!</a></li>
+							<c:forEach var="result" items="${ result.boardList }">
+								<li><a href="board_content.do?boardIdx=${ result.boardIdx }">
+								<c:if test="${ result.boardCategory eq '일반' }">[일반]</c:if>
+								<c:if test="${ result.boardCategory eq '홍보' }">[홍보]</c:if>
+								${ result.boardTitle }</a></li>
+							</c:forEach>
 							</ul>
 						</div>
 					</div>
@@ -189,6 +176,22 @@
 			</div>
 		</div>
 		<!-- row -->
+		<!-- Pagination-->
+
+				<nav aria-label="Pagination">
+					<hr class="my-0" />
+					<ul class="pagination justify-content-center my-4">
+						<li class="page-item disabled"><a class="page-link" href="#"
+							tabindex="-1" aria-disabled="true">Newer</a></li>
+						<li class="page-item active" aria-current="page"><a
+							class="page-link" href="#!">1</a></li>
+						<li class="page-item"><a class="page-link" href="#!">2</a></li>
+						<li class="page-item"><a class="page-link" href="#!">3</a></li>
+						<li class="page-item disabled"><a class="page-link" href="#!">...</a></li>
+						<li class="page-item"><a class="page-link" href="#!">15</a></li>
+						<li class="page-item"><a class="page-link" href="#!">Older</a></li>
+					</ul>
+				</nav>
 	</div>
 	<!-- container -->
 

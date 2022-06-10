@@ -91,6 +91,49 @@
 			</choose>
 	</select>
 	
+	<select id="getCeoCount" resultType="int" parameterType="java.lang.String">
+	select count(*)
+	from member a, store b, ceo c
+	where
+	    a.memberId = c.memberId and b.storeIdx = c.storeIdx and a.memberAuthority = '1'
+	</select>
+	
+	<select id="getCeoSearchCount" resultType="int" parameterType="java.lang.String">
+	select count(*)
+	from member a, store b, ceo c
+	where
+	    a.memberId = c.memberId and b.storeIdx = c.storeIdx and a.memberAuthority = '1'
+	<choose>
+          	<when test='search_type == "n"'>
+          		and
+          		(a.memberName like '%'||#{search}||'%')
+          	</when>
+          	<when test='search_type == "i"'>
+          		and
+          		(a.memberId like '%'||#{search}||'%')
+          	</when>
+          	<when test='search_type == "ni"'>
+          		and
+          		(
+          			a.memberName like '%'||#{search}||'%'
+          		or
+          			a.memberId like '%'||#{search}||'%'
+          		)
+          	</when>
+          	<when test='search_type == "s"'>
+          		and
+          		(b.storeName like '%'||#{search}||'%')
+          	</when>
+    </choose>
+	</select>
+	
+	<select id="getIdChk" resultType="int" parameterType="java.lang.String">
+		select count(*)
+		from member
+		where
+		memberId = #{memberId}
+	</select>
+	
 	<select id="limitList" resultType="com.web.f5.vo.AdminMemberVO">
 		select rno, memberId, memberName, memberBirth, memberAuthority, memberAgree, memberDate
 		from
@@ -121,7 +164,7 @@
             (a.memberAuthority = '1') and a.memberId = c.memberId and b.storeIdx = c.storeIdx order by a.memberDate desc
             )
 		where
-			rno between #{start} and #{end}
+			rno between #{start} and #{end} order by rno desc
 	</select>
 	
 	<select id="getBlackListResult" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">
@@ -257,7 +300,7 @@
             </choose>
             and a.memberId = c.memberId and b.storeIdx = c.storeIdx order by a.memberDate desc)
 		where
-			rno between #{start} and #{end}
+			rno between #{start} and #{end} order by rno asc
 	</select>
 	
 	<select id="JSONlist" parameterType="map" resultType="com.web.f5.vo.AdminMemberVO">

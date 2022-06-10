@@ -83,7 +83,7 @@ function execDaumPostcode() {
     }).open();
 }
 
-/* 
+
 //아이디 정규식
 var userId = /^[a-zA-z0-9]{4,12}$/;
 // 비밀번호 정규식
@@ -94,7 +94,7 @@ var userTel = /(^02.{0}|^01.{1}|[0-9]{3})([0-9]+)([0-9]{4})/g;
 var userEmail = /^([0-9a-zA-Z_\.-]+)@([0-9a-zA-Z_-]+)(\.[0-9a-zA-Z_-]+){1,2}$/;
 // 숫자만 정규식
 var userIdNum = /^[0-9]+$/;
- */
+
  
 function join() {
 	
@@ -112,6 +112,10 @@ function check(){
 	if ( $("#id").val() == "" ) {
 		
 		alert("아이디를 입력해주세요");
+		$("#id").focus();
+	} else if ( $("#idChk").val() == "0" ) {
+		
+		alert("아이디 중복확인을 해주세요.");
 		$("#id").focus();
 	} else if ( $("#pw").val() == "" ) {
 		
@@ -151,27 +155,46 @@ function check(){
 	}
 }
 
-// function idChk(){
-	
-// 	if ( $("#id").val() != "" ) {
-		
-// 		// 아이디 중복 확인
-// 		if ( $("#id").val() == "admin" ) {
-			
-// 			alert("중복된 아이디입니다.");
-// 			$("#id").focus();
-// 		} else {
-			
-// 			alert("사용이 가능한 아이디입니다.");
-// 		}
-// 	} else {
-		
-// 		alert("아이디를 입력해주세요.");
-// 		$("#id").focus();
-// 	}
-// }
-
 $(document).ready(function(){
+	
+	$("#email").blur(function(){
+		
+		if ( $("#email").val() != "" ) {
+			
+			if ( userEmail.test( $("#email").val() ) ) {
+				
+				$(".emailChk_text").text("사용하실 수 있는 이메일입니다.");
+				$(".emailChk_text").css("font-size", "9px").css("color", "blue");
+			} else {
+				
+				$(".emailChk_text").text("사용하실 수 없는 이메일입니다. 형식에 맞춰서 입력해주세요");
+				$(".emailChk_text").css("font-size", "9px").css("color", "red");
+			}
+		}
+	});
+	
+	$("#pw").blur(function() {
+		
+		if ( $("#pw").val() == "" ) {
+			
+			$(".pw_text").text("비밀번호를 입력해주세요.");
+			$(".pw_text").css("font-size", "9px").css("color", "red");
+			
+		} else {
+			
+			if ( userPw.test( $("#pw").val() ) ) {
+				
+				$(".pw_text").text("사용가능한 비밀번호입니다.");
+				$(".pw_text").css("font-size", "9px").css("color", "blue");
+				$("#pwChk").focus();
+			} else {
+				
+				$(".pw_text").text("비밀번호 형식에 맞춰서 입력해주세요.");
+				$(".pw_text").css("font-size", "9px").css("color", "red");
+				
+			}
+		}
+	});
 	
 	$("#pwChk").blur(function(){
 		
@@ -187,6 +210,54 @@ $(document).ready(function(){
 			$("#pw").css("border-color", "lightgreen");
 		}
 	});
+	
+	$(document).on('click', "#idChk", function(){
+		var id = $("#id").val();
+		if ( id != "" ) {
+			
+			if ( userIdNum.test( id ) == true ) {
+
+				$(".idChkMsg").text("숫자만 입력은 불가능합니다.");
+				$(".idChkMsg").css("font-size", "9px").css("color", "red");
+				$("#idChk").val("0");
+				$("#id").val("").focus();
+			} else if ( userId.test( id ) == false ) {
+				
+				$(".idChkMsg").text("아이디 형식에 맞춰서 입력해주세요.");
+				$(".idChkMsg").css("font-size", "9px").css("color", "red");
+				$("#idChk").val("0");
+				$("#id").val("").focus();
+			} else if ( userId.test( id ) && userIdNum.test( id ) == false ) {
+				
+				$.ajax({
+					url : "idChk.do?id="+id,
+					success : function(msg) {
+						
+						if ( msg == "succ" ) {
+							
+							$(".idChkMsg").text("사용 가능한 아이디입니다.");
+							$(".idChkMsg").css("font-size", "9px").css("color", "blue");
+							$("#idChk").val("1");
+						} else {
+							
+							$(".idChkMsg").text("중복된 아이디가 존재합니다. 다시 입력해주세요.");
+							$(".idChkMsg").css("font-size", "9px").css("color", "red");
+							$("#idChk").val("0");
+							$("#id").val("").focus();
+						}
+					}
+				});
+				
+			}
+		} else {
+			
+			alert("아이디를 입력해주세요.");
+			$("#idChk").val("0");
+			$("#id").focus();
+		}
+	});
+	
+	
 	
 // 	$("#chk").click(function() {
 		
@@ -239,8 +310,9 @@ $(document).ready(function(){
 						<tr>
 							<td>
 								<input type="text" id="id" name="memberId"
-								placeholder="  아이디를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  아이디를 입력해주세요.'">
-								<button type="button" id="idChk" onclick="idChk()">중복확인</button>
+								placeholder="대소문자 / 대소문자 + 숫자 4~12자리" onfocus="this.placeholder=''" onblur="this.placeholder='대소문자 / 대소문자 + 숫자 4~12자리'">
+								<button type="button" id="idChk" value="0">중복확인</button>
+								<div class="idChkMsg"></div>
 							</td>
 						</tr>
 						<tr>
@@ -249,8 +321,8 @@ $(document).ready(function(){
 						<tr>
 							<td>
 								<input type="password" id="pw" name="memberPass"
-								placeholder="  비밀번호를 입력해주세요." onfocus="this.placeholder=''" onblur="this.placeholder='  비밀번호를 입력해주세요.'">
-								<div class="pwChk_text"></div>
+								placeholder="대소문자 + 숫자 + 특수문자 8~25자리" onfocus="this.placeholder=''" onblur="this.placeholder='대소문자 + 숫자 + 특수문자 8~25자리'">
+								<div class="pw_text"></div>
 							</td>
 						</tr>
 						<tr>
@@ -259,6 +331,7 @@ $(document).ready(function(){
 						<tr>
 							<td>
 								<input type="password" id="pwChk" name="memberPassChk">
+								<div class="pwChk_text"></div>
 							</td>
 						</tr>
 						<tr>
@@ -314,13 +387,18 @@ $(document).ready(function(){
 							<td><label>휴대전화</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" id="tel" name="memberTel"></td>
+							<td><input type="text" id="tel" name="memberTel"
+							placeholder="예) 01012341234 ( - 제외)" onfocus="this.placeholder=''" onblur="this.placeholder='예) 01012341234 ( - 제외)'"></td>
 						</tr>
 						<tr>
 							<td><label>본인확인 이메일</label></td>
 						</tr>
 						<tr>
-							<td><input type="text" id="email" name="memberEmail"></td>
+							<td>
+								<input type="text" id="email" name="memberEmail"
+								placeholder="예) aaa@naver.com" onfocus="this.placeholder=''" onblur="this.placeholder='예) aaa@naver.com'">
+								<div class="emailChk_text"></div>
+							</td>
 						</tr>
 						<tr>
 							<td><label>주소</label></td>

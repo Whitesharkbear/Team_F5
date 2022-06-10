@@ -88,4 +88,19 @@ public class AdminBoardDAO implements AdminObjDAO {
 
 	@Override
 	public int update(Object obj) {return 0;}
+
+	public void getInsertPageview(String pageName) {
+		
+		sqlSession.insert(namespace + ".getInsertPageview", pageName);
+	}
+
+	public int getTotalPV() {
+		
+		return sqlSession.selectOne(namespace + ".getTotalPV");
+	}
+
+	public int getTodayPV() {
+		
+		return sqlSession.selectOne(namespace + ".getTodayPV");
+	}
 }

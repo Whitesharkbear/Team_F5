@@ -38,68 +38,16 @@
 
 	$(document).ready(function() {
 		
-		/* 
-		showReplyList();
+		var memberId = "${vo.memberId}";
+		var sessionId = "${memberId}";
 		
-		function showReplyList(){
-			// 댓글 리스트
-			$.ajax({
-				// 서버주소
-				url:"reply_list.do",
-				data: {"boardIdx":"${vo.boardIdx}"},
-				dataType: 'json',
-				type: 'POST',
-				
-				success: function(result) {
-					alert(result);
-					var htmls = "";
-					if(result.length < 1) {
-						htmls.push("등록된 댓글이 없습니다.");
-					} else {
-						alert(result);
-						$(result).each(function(){
-							htmls += '<div class="reply-member">';
-							htmls += '<a></a>';
-							htmls += '<button id="reply_update_btn">수정</button>';
-							htmls += '<button id="reply_delete_btn">삭제</button>';
-							htmls += '</div>';
-							htmls += '<div class="reply-content-div">hong이 작성한 댓글내용입니다.</div>';
-							htmls += '<div class="reply-etc">';
-	
-							htmls += '<dl>';
-							htmls += 	'<dt>';
-							htmls += '		<button id="reply_recommend_btn">추천</button>';
-							htmls += '	</dt>';
-							htmls += '	<dt id="reply_reco">0</dt>';
-							htmls += '</dl>';
-							htmls += '<dl>';
-							htmls += '	<dt>';
-							htmls += '		<button id="reply_derecommend_btn">비추천</button>';
-							htmls += '	</dt>';
-							htmls += '	<dt id="reply_deco">0</dt>';
-							htmls += '</dl>';
-							htmls += '<dl>';
-							htmls += '	<dt>';
-							htmls += '		<button id="reply-re-btn">답글쓰기</button>';
-							htmls += '	</dt>';
-	
-							htmls += '</dl>';
-	
-							htmls += '<dl>';
-							htmls += '	<dt>2022.04.23</dt>';
-							htmls += '</dl>';
-							htmls += '</div>';
-						});
-					}
-					$("#reply-area").html(htmls);
-				}
-				
-			});
+		// 수정/삭제 링크
+		if( memberId != sessionId ) {
+			$("form[name='delete_form']").remove();
+		} else {
+			$("form[name='delete_form']").css("display","block");
 		}
-	
-		 */
-			
-			
+		
 		// 게시판 삭제
 		$("#content_delete").click(function(){
 			var result = confirm("정말로 삭제하시겠습니까?");
@@ -109,57 +57,244 @@
 			
 		});
 		
-		// 댓글입력
-		$("#reply_insert_btn").click(function() {
-			var reply = $(".reply-content").val();
-
-			if(reply == "") {
-				alert("댓글을 입력해주세요");
-				$(".reply-content").focus();
-			} else {
-				var result = confirm("댓글을 입력하시겠습니까?");
-				if(result) {
-					reply_form.submit();
-				}
-			}
-			
-		});
-		
-		
-		// 댓글 수정 삭제 버튼
-		var reco = 0;
-		var deco = 0;
-		
-		$(".reply_update_btn").click(function() {
-			confirm("정말로 수정하시겠습니까?");
-		});
-		
+		// 댓글 삭제 버튼
 		$(".reply_delete_btn").click(function() {
-			var result = confirm("정말로 삭제하시겠습니까?");
 			
+			var boardIdx = "${vo.boardIdx}";
+			var replyIdx = ($(this).attr("id"));
+			var htmls = "";
+			var reply_delete = confirm("정말로 삭제하시겠습니까?");
+			
+			if(reply_delete) {
+				$.ajax({
+					url : "reply_delete.do?boardIdx="+boardIdx+
+							"&replyIdx="+replyIdx,
+					success : function(data) {
+						$("#reply-area-"+replyIdx).remove();
+					}
+					
+				});
+			} 
 		});
+		
+		// 게시글 추천 비추천 버튼
+		var brecoVal;
+		var bdecoVal;
+		
+		$(".recommend_btn").click(function() {
+			
+			if( sessionId == "Guest" ) {
+				var result = confirm("로그인 후 이용가능합니다. 로그인하시겠습니까?");
+				if( result ) {
+					location.href = "login.do";
+				} else {
+					return;
+				}
+			} else {
+			
+				var boardIdx = ($(this).attr("id").substr(5,));
+				var reco = ($(this).val());
+				var brecoVal = parseInt($("#board_reco_"+boardIdx).text());
+				var bdecoVal = parseInt($("#board_deco_"+boardIdx).text());
+				
+				$.ajax({
+					url : "board_recommend.do",
+					type : "POST",
+					data : {
+						"boardIdx" : boardIdx,
+						"boardRecommendCheck" : reco,
+						"memberId" : "${sessionScope.memberId}"
+					},
+					success : function(data) {
+						if($("#reco_"+boardIdx).val() == '2') {
+							$("#reco_"+boardIdx).css("background-color","white");
+							$("#reco_"+boardIdx).val('0');
+							brecoVal -= 1;
+							$("#board_reco_"+boardIdx).text(brecoVal);
+						} else {
+							brecoVal += 1;
+							if( $("#reco_"+boardIdx).val() == '0' && $("#deco_"+boardIdx).val() =='2' ) {							
+								bdecoVal -= 1;							
+							}
+							$("#reco_"+boardIdx).css("background-color","red");
+							$("#deco_"+boardIdx).css("background-color","white");
+							$("#deco_"+boardIdx).val('1');
+							$("#reco_"+boardIdx).val('2');
+							$("#board_reco_"+boardIdx).text(brecoVal);
+							$("#board_deco_"+boardIdx).text(bdecoVal);
+						}
+					},
+					error : function(data) {
+						
+					}
+				});
+			}
+		});
+		
+		$(".derecommend_btn").click(function() {
+			
+			if ( sessionId == "Guest" ) {
+				var result = confirm("로그인 후 이용가능합니다. 로그인하시겠습니까?");
+				if( result ) {
+					location.href = "login.do";
+				} else {
+					return;
+				}
+			} else {
+			
+				var boardIdx = ($(this).attr("id")).substr(5,);
+				var reco = ($(this).val());
+				
+				var brecoVal = parseInt($("#board_reco_"+boardIdx).text());
+				var bdecoVal = parseInt($("#board_deco_"+boardIdx).text());
+				
+				$.ajax({
+					url : "board_recommend.do",
+					type : "POST",
+					data : {
+						"boardIdx" : boardIdx,
+						"boardRecommendCheck" : reco,
+						"memberId" : "${sessionScope.memberId}"
+					},
+					success : function(data) {
+						if($("#deco_"+boardIdx).val() =='2') {
+							$("#deco_"+boardIdx).css("background-color","white");
+							$("#deco_"+boardIdx).val('1');
+							bdecoVal -= 1;
+							$("#board_deco_"+boardIdx).text(bdecoVal);
+						} else {
+							if( $("#reco_"+boardIdx).val() == '2' && $("#deco_"+boardIdx).val() =='1' ) {
+								brecoVal -= 1;
+							}
+							bdecoVal += 1;
+							$("#deco_"+boardIdx).css("background-color","red");
+							$("#reco_"+boardIdx).css("background-color","white");
+							$("#reco_"+boardIdx).val('0');
+							$("#deco_"+boardIdx).val('2');
+							$("#board_reco_"+boardIdx).text(brecoVal);
+							$("#board_deco_"+boardIdx).text(bdecoVal);
+						}
+					},
+					error : function(data) {
+						
+					}
+				});
+			}
+		});
+		
 		
 		
 		// 댓글 추천 비추천 버튼
-		$(".reply_recommend_btn").click(function() {
-			reco += 1;
-			$(".reply_reco").text(reco);
-		});
 		
-		$(".reply_derecommend_btn").click(function() {
-			deco += 1;
-			$(".reply_deco").text(deco);
-		});
+		var recoVal;
+		var decoVal;
 		
-		$(".reply-re-btn").click(function() {
-			if($(".reply-re-write-area").css("display") == "none") {
-				$(".reply-re-write-area").css("display","block");
+		$(".re_recommend_btn").click(function() {
+			
+			if( sessionId == "Guest" ) {
+				var result = confirm("로그인 후 이용가능합니다. 로그인하시겠습니까?");
+				if( result ) {
+					location.href = "login.do";
+				} else {
+					return;
+				}
 			} else {
-				$(".reply-re-write-area").css("display","none");
+				
+				var replyIdx = ($(this).attr("id")).substr(8,);
+				var reco = ($(this).val());
+				var recoVal = parseInt($("#reply_reco_"+replyIdx).text());
+				var decoVal = parseInt($("#reply_deco_"+replyIdx).text());
+				
+				
+				$.ajax({
+					url : "reply_recommend.do",
+					type : "POST",
+					data : {
+						"replyIdx" : replyIdx,
+						"replyRecommendCheck" : reco,
+						"memberId" : "${sessionScope.memberId}"
+					},
+					success : function(data) {
+						
+						if($("#re_reco_"+replyIdx).val() == '2') {
+							$("#re_reco_"+replyIdx).css("background-color","white");
+							$("#re_reco_"+replyIdx).val('0');
+							recoVal -= 1;
+							$("#reply_reco_"+replyIdx).text(recoVal);
+							
+							
+						} else {
+							recoVal += 1;
+							if( $("#re_reco_"+replyIdx).val() == '0' && $("#de_reco_"+replyIdx).val() =='2' ) {							
+								decoVal -= 1;							
+							}
+							$("#re_reco_"+replyIdx).css("background-color","red");
+							$("#de_reco_"+replyIdx).css("background-color","white");
+							$("#de_reco_"+replyIdx).val('1');
+							$("#re_reco_"+replyIdx).val('2');
+							$("#reply_reco_"+replyIdx).text(recoVal);
+							$("#reply_deco_"+replyIdx).text(decoVal);
+						}
+					},
+					error : function(data) {
+						
+					}
+				});
+			}
+		});
+		
+		$(".re_derecommend_btn").click(function() {
+			
+			if( sessionId == "Guest" ) {
+				var result = confirm("로그인 후 이용가능합니다. 로그인하시겠습니까?");
+				if( result ) {
+					location.href = "login.do";
+				} else {
+					return;
+				}
+			} else {
+				
+				var replyIdx = ($(this).attr("id")).substr(8,);
+				var reco = ($(this).val());
+				
+				var recoVal = parseInt($("#reply_reco_"+replyIdx).text());
+				var decoVal = parseInt($("#reply_deco_"+replyIdx).text());
+			
+				$.ajax({
+					url : "reply_recommend.do",
+					type : "POST",
+					data : {
+						"replyIdx" : replyIdx,
+						"replyRecommendCheck" : reco,
+						"memberId" : "${sessionScope.memberId}"
+					},
+					success : function(data) {
+						if($("#de_reco_"+replyIdx).val() =='2') {
+							$("#de_reco_"+replyIdx).css("background-color","white");
+							$("#de_reco_"+replyIdx).val('1');
+							decoVal -= 1;
+							$("#reply_deco_"+replyIdx).text(decoVal);
+							
+						} else {
+							if( $("#re_reco_"+replyIdx).val() == '2' && $("#de_reco_"+replyIdx).val() =='1' ) {
+								recoVal -= 1;
+							}
+							decoVal += 1;
+							$("#de_reco_"+replyIdx).css("background-color","red");
+							$("#re_reco_"+replyIdx).css("background-color","white");
+							$("#re_reco_"+replyIdx).val('0');
+							$("#de_reco_"+replyIdx).val('2');
+							$("#reply_reco_"+replyIdx).text(recoVal);
+							$("#reply_deco_"+replyIdx).text(decoVal);
+						}
+					},
+					error : function(data) {
+						
+					}
+				});
 			}
 			
 		});
-		
 		
 		
 	});
@@ -169,19 +304,6 @@
 </head>
 <body>
 	<jsp:include page="../header.jsp"></jsp:include>
-	<div class="head-nav-container">
-		<label class="head-nav-title">Free Board</label>
-		<div class="head-nav-inner">
-			<ul class="nav-col-ul">
-				<li><a href="board_list.do">자유게시판</a></li>
-				<li><a href="promote_list.do">홍보</a></li>
-				<li><a href="#"></a></li>
-				<li><a href="#"></a></li>
-				<li><a href="#"></a></li>
-			</ul>
-		</div>
-
-	</div>
 	<!-- Page content-->
 	<div class="container">
 		<div class="row">
@@ -220,17 +342,6 @@
 						<div class="board-content">
 							<p>${vo.boardContent}</p>
 						</div>
-						<div class="reply-write-area">
-						
-							<form name="reply_form" action="reply_write.do" method="post">
-								<input type="hidden" name="boardIdx" value="${vo.boardIdx}">
-								<div class="comment_info">
-									<label>등록</label>
-									<button type="button" class="comment_enter" id="reply_insert_btn">등록</button>
-									<textarea rows="3" id="comment_area" class="reply-content" name="replyContent"></textarea>
-								</div>
-							</form>
-						</div>
 						<div class="board-reply-container">
 							<div class="board-reply-head">
 
@@ -245,58 +356,61 @@
 								</dl>
 							</div>
 							
+							<!-- 댓글리스트 -->
 							<c:forEach var="list" items="${rlist}">
-							<div class="reply-area">
+							<div class="reply-area" id="reply-area-${list.replyIdx }">
 								<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
 									<div class="reply-member">
-										<a>${list.replyIdx }</a>
-										
-										<form name="reply_update_form" action="reply_update.do" method="post">
-											<button class="reply_update_btn">수정</button>
-										</form>
-										<form name="reply_delete_form" action="reply_delete.do" method="post">
-											<input type="hidden" name="replyIdx" value="${list.replyIdx }">
-											<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
-											<button class="reply_delete_btn">삭제</button>
-										</form>
+										<a>${list.memberId }</a>
+										<c:choose>
+											<c:when test="${sessionScope.memberId eq list.memberId }">											
+												<div>
+													<button type="button" class="reply_delete_btn" id="${list.replyIdx }">삭제</button>
+												</div>
+											</c:when>
+											<c:otherwise>
+												<div style="display: none">
+													<button type="button" class="reply_delete_btn" id="${list.replyIdx }">삭제</button>
+												</div>
+											</c:otherwise>
+										</c:choose>
 									</div>
-									<div class="reply-content-div">${list.replyContent }</div>
+									<div class="reply-content-div" id="reply-content-div-${list.replyIdx }">${list.replyContent }</div>
 									<div class="reply-etc">
 
 										<dl>
 											<dt>
-												<button class="reply_recommend_btn" value="0">추천</button>
+											<c:choose>
+												<c:when test="${list.replyRecommendCheck eq '0'}">
+													<button style="background-color: red" class="re_recommend_btn" id="re_reco_${list.replyIdx }" value='2'>추천</button>
+												</c:when>
+												<c:otherwise>
+													<button style="background-color: white" class="re_recommend_btn" id="re_reco_${list.replyIdx }" value='0'>추천</button>
+												</c:otherwise>
+											</c:choose>
 											</dt>
-											<dt class="reply_reco">0</dt>
+											<dt class="reply_reco" id="reply_reco_${list.replyIdx }">${list.recoCount }</dt>
 										</dl>
 										<dl>
 											<dt>
-												<button class="reply_derecommend_btn">비추천</button>
+												<c:choose>
+												<c:when test="${list.replyRecommendCheck eq '1'}">
+													<button style="background-color: red" class="re_derecommend_btn" id="de_reco_${list.replyIdx }" value='2'>비추천</button>
+												</c:when>
+												<c:otherwise>
+													<button style="background-color: white" class="re_derecommend_btn" id="de_reco_${list.replyIdx }" value='1'>비추천</button>
+												</c:otherwise>
+											</c:choose>
 											</dt>
-											<dt class="reply_deco">0</dt>
+											<dt class="reply_deco" id="reply_deco_${list.replyIdx }">${list.derecoCount }</dt>
 										</dl>
 										<dl>
 											<dt>${list.replyDate }</dt>
 										</dl>
 									</div>
-								
-								
-								<div class="reply-re-write-area">
-									<form name="reply_re_write_form" action="reply_re_write.do"
-										method="post">
-										<div>
-											<label class="reply-member">신순호</label>
-										</div>
-										<div class="reply-content-container">
-											<input class="reply-content" type="text"
-												placeholder="댓글을입력해주세요.">
-										</div>
-										<div class="reply-btn-container">
-											<button type="button" class="reply-insert-btn">등록</button>
-											<button type="reset">취소</button>
-										</div>
-									</form>
 								</div>
+								<div>
+								
 							</div>
 							</c:forEach>
 							

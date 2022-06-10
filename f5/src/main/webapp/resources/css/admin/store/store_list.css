@@ -5,7 +5,7 @@ table {
 	border-collapse: collapse;
 	box-shadow: 5px 8px 6px #00000029;
 }
-a {
+#content a {
 	color: #000 !important;
 	text-decoration: none !important;
 }

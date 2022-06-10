@@ -68,6 +68,10 @@ public class PageServiceImpl {
 			
 			adminMemberService = (AdminMemberServiceImpl) service;
 			dbCount = adminMemberService.getBlackCount();
+		} else if ( serviceName.equals("admin_ceo") ) {
+			
+			adminMemberService = (AdminMemberServiceImpl) service;
+			dbCount = adminMemberService.getCeoCount();
 		}
 		
 		if ( dbCount % pageSize == 0 ) {
@@ -137,6 +141,18 @@ public class PageServiceImpl {
 			
 			adminMemberService = (AdminMemberServiceImpl) service;
 			dbCount = adminMemberService.getBlackSearchCount(search_type, search);
+		} else if ( serviceName.equals("store_search") ) {
+			pageSize = 4;
+			adminStoreService = (AdminStoreServiceImpl) service;
+			dbCount = adminStoreService.getSearchCount(search_type, search);
+		} else if ( serviceName.equals("admin_ceo_member_search") ) {
+			
+			adminMemberService = (AdminMemberServiceImpl) service;
+			dbCount = adminMemberService.getCeoSearchCount(search_type, search);
+		} else if ( serviceName.equals("ceo_search") ) {
+			
+			adminMemberService = (AdminMemberServiceImpl) service;
+			dbCount = adminMemberService.getCeoSearchCount(search_type, search);
 		}
 		
 		if ( dbCount % pageSize == 0 ) {

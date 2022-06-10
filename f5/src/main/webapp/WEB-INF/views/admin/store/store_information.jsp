@@ -113,9 +113,6 @@ $(document).ready(function() {
 							</ul>
 						</div>
 					</div>
-					<div class="store-intro-map" id="location">
-						<a><img class="store-intro-img" src="#"></a>
-					</div>
 				</div>
 				<h2 class="font-com" id="review">리뷰</h2>
 				<h4>Comment</h4>

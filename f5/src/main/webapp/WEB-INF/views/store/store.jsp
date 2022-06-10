@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="http://localhost:9000/f5/resources/css/am-pagination.css">
 <script>
 	$(document).ready(function(){
-		
+		var search = "${search}";
 		var pager = jQuery('#ampaginationsm').pagination({
 		
 		    maxSize: 7,	    		// max page size
@@ -28,10 +28,87 @@
 		    btnSize:'sm'	// 'sm'  or 'lg'		
 		});
 		
-		jQuery('#ampaginationsm').on('am.pagination.change',function(e){
-			   jQuery('.showlabelsm').text('The selected page no: '+e.page);
-	           $(location).attr('href', "http://localhost:9000/f5/store.do?rpage="+e.page);         
-	    });
+	jQuery('#ampaginationsm').on('am.pagination.change',function(e){
+		jQuery('.showlabelsm').text('The selected page no: '+e.page);
+		
+		if ( search != "" ) {
+			
+			$(".col-lg-6").remove();
+			$.ajax({
+				url : "store_search_json.do?rpage="+e.page+"&search="+search,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						var str = "<div class='col-lg-6'>";
+						if ( data.jlist[i].rno % 4 == 1 || data.jlist[i].rno % 4 == 3 ) {
+							
+								str += "<div class='store-card mb-4'>";
+									str += "<a href='#!'><img class='card-img-top' src='/f5/resources/upload/"+data.jlist[i].suFile1+"' alt='...' /></a>";
+									str += "<div class='card-body'>";
+										str += "<h2 class='card-title h4'>"+data.jlist[i].storeName+"</h2>";
+										str += "<p class='card-text'>"+data.jlist[i].storePlace+"</p>";
+										str += "<a class='btn btn-primary' href='store_information.do?storeIdx="+data.jlist[i].storeIdx+"'>매장 보러가기 →</a>";
+									str += "</div>";
+								str += "</div>";
+						}
+						if ( data.jlist[i].rno % 4 == 2 || data.jlist[i].rno % 4 == 0 ) {
+							
+								str += "<div class='store-card mb-4'>";
+								str += "<a href='#!'><img class='card-img-top' src='/f5/resources/upload/"+data.jlist[i].suFile1+"' alt='...' /></a>";
+								str += "<div class='card-body'>";
+								str += "<h2 class='card-title h4'>"+data.jlist[i].storeName+"</h2>";
+								str += "<p class='card-text'>"+data.jlist[i].storePlace+"</p>";
+								str += "<a class='btn btn-primary' href='store_information.do?storeIdx="+data.jlist[i].storeIdx+"'>매장 보러가기 →</a>";
+								str += "</div>";
+								str += "</div>";
+						}
+							str += "</div>";
+						$(".store_content").append(str);
+					}
+				}
+			});
+		} else {
+			
+			$(".col-lg-6").remove();
+			$.ajax({
+				url : "store_search_json.do?rpage="+e.page+"&search="+search,
+				success : function(result) {
+					
+					const data = JSON.parse(result);
+					
+					for ( var i in data.jlist ) {
+						var str = "<div class='col-lg-6'>";
+						if ( data.jlist[i].rno % 4 == 1 || data.jlist[i].rno % 4 == 3 ) {
+							
+								str += "<div class='store-card mb-4'>";
+									str += "<a href='#!'><img class='card-img-top' src='/f5/resources/upload/"+data.jlist[i].suFile1+"' alt='...' /></a>";
+									str += "<div class='card-body'>";
+										str += "<h2 class='card-title h4'>"+data.jlist[i].storeName+"</h2>";
+										str += "<p class='card-text'>"+data.jlist[i].storePlace+"</p>";
+										str += "<a class='btn btn-primary' href='store_information.do?storeIdx="+data.jlist[i].storeIdx+"'>매장 보러가기 →</a>";
+									str += "</div>";
+								str += "</div>";
+						}
+						if ( data.jlist[i].rno % 4 == 2 || data.jlist[i].rno % 4 == 0 ) {
+							
+								str += "<div class='store-card mb-4'>";
+								str += "<a href='#!'><img class='card-img-top' src='/f5/resources/upload/"+data.jlist[i].suFile1+"' alt='...' /></a>";
+								str += "<div class='card-body'>";
+								str += "<h2 class='card-title h4'>"+data.jlist[i].storeName+"</h2>";
+								str += "<p class='card-text'>"+data.jlist[i].storePlace+"</p>";
+								str += "<a class='btn btn-primary' href='store_information.do?storeIdx="+data.jlist[i].storeIdx+"'>매장 보러가기 →</a>";
+								str += "</div>";
+								str += "</div>";
+						}
+							str += "</div>";
+						$(".store_content").append(str);
+					}
+				}
+			});
+		}
+	});
 		
  	});
 </script> 
@@ -77,12 +154,6 @@
                             </c:forEach>
                         </div>
                     </div>
-                    <!-- Pagination-->
-	               <table>
-	                <tr>
-						<td colspan="4"><div id="ampaginationsm"></div></td>					
-					</tr>
-					</table>
                 </div>
                 <!-- Side widgets-->
                 <div class="col-lg-4">
@@ -189,6 +260,10 @@
                         
                     </div>
                 </div>
+                 <!-- Pagination-->
+            </div>
+            <div id="paging" style="text-align: center;">
+				<div id="ampaginationsm"></div>
             </div>
         </div>
 	<jsp:include page="../footer.jsp"></jsp:include>
