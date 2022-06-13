@@ -218,7 +218,7 @@
 	       <!-- JOIN BTN-->
 	       <div class="btn_area">
 	           <button type="button" id="btnJoin">
-	               <span>변경하기</span>
+	               <span>등록하기</span>
 	           </button>
 	       </div>
 		</form>
