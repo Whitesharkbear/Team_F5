@@ -98,11 +98,11 @@
 					</div>
 					<p>내용 : <input type="text"></p>
 					<p>평점 : <select id="store_score">
-									<option>★</option>
-									<option>★★</option>
-									<option>★★★</option>
-									<option>★★★★</option>
-									<option>★★★★★</option>
+									<option value=1>★</option>
+									<option value=2>★★</option>
+									<option value=3>★★★</option>
+									<option value=4>★★★★</option>
+									<option value=5>★★★★★</option>
 							</select></p>
 					<button class="popup_btn1" onclick="">수정하기</button>
 					<button class="popup_btn2" onclick="closePopup()">취소하기</button>
