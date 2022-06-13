@@ -46,7 +46,6 @@ public class NewsController {
 				String press = el.select(".press").get(0).text();
 				press = press.substring(press.lastIndexOf("/")+1);
 				String pressURL = el.select("a").get(3).attr("href");
-				System.out.println("pressURL = " + pressURL);
 				String title = el.select("a").attr("title");
 				String content = el.select(".dsc_wrap > a").text();
 				String contentURL = el.select(".dsc_wrap > a").attr("href");

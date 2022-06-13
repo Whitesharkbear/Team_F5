@@ -129,9 +129,11 @@
 					<div class="card-body">
 						<div class="main_news">
 							<ul class="new_news">
-								<li><a>[한겨레] 코로나19 이후, 사장님들은??</a></li>
-								<li><a>[YTN] 돼지고기 인상.. 10년만에 ..</a></li>
-								<li><a>[한국신문] 세계는 지금! 우리 김치 ..</a></li>
+								<c:forEach var="result" items="${ result.newsList }">
+									<li>
+										<a class="content" href="${result.contentURL }">${result.title }</a>
+									</li>
+								</c:forEach>
 							</ul>
 						</div>
 					</div>

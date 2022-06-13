@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +26,7 @@ import com.web.f5.service.PageServiceImpl;
 import com.web.f5.vo.AdminBoardVO;
 import com.web.f5.vo.AdminNoticeVO;
 import com.web.f5.vo.AdminStoreVO;
+import com.web.f5.vo.NewsVO;
 
 @Controller
 public class IndexController {
@@ -39,15 +44,42 @@ public class IndexController {
 	private PageServiceImpl pageService;
 	
 	@RequestMapping(value = "/index.do" , method = RequestMethod.GET)
-	public ModelAndView index() {
+	public ModelAndView index() throws Exception {
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		List<AdminNoticeVO> noticeList = adminNoticeService.getLimitList();
 		List<AdminBoardVO> boardList = adminBoardService.getLimitList();
+		List<NewsVO> newsList = new ArrayList<NewsVO>();
+		
+		int page = 1;
+		
+		String url = "https://search.naver.com/search.naver?where=news&sm=tab_pge&query=음식&sort=0&photo=0&field=0&"
+				+ "pd=0&ds=&mynews=0&office_type=0&office_section_code=0&news_office_checked=&"
+				+ "nso=so:r,p:all,a:all&start=" + page;			
+		Document doc = null;
+		
+		doc = Jsoup.connect(url).get();
+		Elements element = doc.select("div.group_news");
+		
+		int count = 0;
+		for(Element el : element.select(".bx")) {	// 하위 뉴스 기사들을 for문 돌면서 출력
+			count ++;
+			if( count >= 4 ) {
+				break;
+			}
+			NewsVO vo = new NewsVO();
+			String title = el.select("a").attr("title");
+			String contentURL = el.select(".dsc_wrap > a").attr("href");
+			vo.setTitle(title);
+			vo.setContentURL(contentURL);
+			newsList.add(vo);
+			
+		}
 		
 		result.put("noticeList", noticeList);
 		result.put("boardList", boardList);
+		result.put("newsList", newsList);
 		
 		return new ModelAndView("main/index", "result", result);
 	}

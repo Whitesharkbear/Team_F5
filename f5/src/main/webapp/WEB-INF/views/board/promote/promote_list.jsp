@@ -87,7 +87,7 @@
 										</c:when>
 									</c:choose>
 										<a></a>
-										<a style="text-decoration : line-through" href="store_information.do"> 놀러가기 </a>
+										<a href="store.do"> 놀러가기 </a>
 									</div>
 								</div>
 							</li>
@@ -225,7 +225,7 @@ $(document).ready(function() {
 						if ( jdata.jlist[i].memberId == memberId ) {
 						ul += 			"<a href='promote_update.do?boardIdx="+jdata.jlist[i].boardIdx+"'>수정하기</a>";
 						}
-						ul += 			"<a style='text-decoration : line-through' href='store_information.do'> 놀러가기 </a>";
+						ul += 			"<a></a><a href='store.do'> 놀러가기 </a>";
 						ul += 		"</div>";
 						ul += "</div>";
 						ul += "</li>";
