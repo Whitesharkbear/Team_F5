@@ -181,8 +181,8 @@
                              <script>
                  var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
                  mapOption = { 
-                 center: new kakao.maps.LatLng(37.51479595373416, 127.03147339800053), // 지도의 중심좌표
-                 level: 4 // 지도의 확대 레벨
+                 center: new kakao.maps.LatLng(37.49808768696724, 127.02800593024848), // 지도의 중심좌표
+                 level: 5 // 지도의 확대 레벨
             };
 
                  var map = new kakao.maps.Map(mapContainer, mapOption);
@@ -193,7 +193,7 @@
 
                  // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
                  var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption),
-                 markerPosition = new kakao.maps.LatLng(37.51479595373416, 127.03147339800053); // 마커가 표시될 위치입니다
+                 markerPosition = new kakao.maps.LatLng(37.49808768696724, 127.02800593024848); // 마커가 표시될 위치입니다
 
                 // 마커를 생성합니다
                 var marker = new kakao.maps.Marker({
@@ -206,13 +206,13 @@
 
                 // 커스텀 오버레이에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
                 var content = '<div class="customoverlay">' +
-                '  <a href=https://map.naver.com/v5/search/%EC%98%A4%EB%A7%88%EC%9D%B4%EC%96%91%EB%8C%80%EC%B0%BD%20%ED%95%99%EB%8F%99%EC%97%AD%EC%A0%90/place/1735177101?c=14140136.8812845,4511114.5364443,15,0,0,0,dh&isCorrectAnswer=true>' +
-                '    <span class="title">오마이양대창</span>' +
+                '  <a href= https://map.naver.com/v5/search/%EA%B0%95%EB%82%A8%EA%B5%AC%20%EB%A7%9B%EC%A7%91?c=14141000.0748800,4511459.8281494,13,0,0,0,dh&isCorrectAnswer=true>' +
+                '    <span class="title">강남구 맛집</span>' +
                 '  </a>' +
                 '</div>';
 
                 // 커스텀 오버레이가 표시될 위치입니다 
-                var position = new kakao.maps.LatLng(37.51479595373416, 127.03147339800053);  
+                var position = new kakao.maps.LatLng(37.49808768696724, 127.02800593024848);  
 
                 // 커스텀 오버레이를 생성합니다
                 var customOverlay = new kakao.maps.CustomOverlay({
