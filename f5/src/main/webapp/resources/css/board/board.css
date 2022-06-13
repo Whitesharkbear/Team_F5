@@ -213,6 +213,9 @@
 	margin: 0 auto 20px;
 }
 
+.board-content img {
+	width: 80%;
+}
 
 .board-info {
 	text-align: center;
