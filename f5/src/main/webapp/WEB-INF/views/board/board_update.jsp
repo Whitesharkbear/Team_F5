@@ -79,7 +79,7 @@
 			<ul class="nav-col-ul">
 				<li><a href="board_list.do">자유게시판</a></li>
 				<li><a href="promote_list.do">홍보</a></li>
-				<li><a href="#"></a></li>
+				<li><a href="news_list.do">뉴스</a></li>
 				<li><a href="#"></a></li>
 				<li><a href="#"></a></li>
 			</ul>
@@ -95,11 +95,11 @@
 				<form name="update_form" action="board_update.do" method="post" enctype="multipart/form-data">
 					<input type="hidden" name="memberId" value="${sessionScope.memberId }">
 					<input type="hidden" name="boardIdx" value="${vo.boardIdx}">
-					<input class="updateFile" type="text" name="bsFile1" value="${vo.bsFile1 }">
-				    <input class="updateFile" type="text" name="bsFile2" value="${vo.bsFile2 }">
-				    <input class="updateFile" type="text" name="bsFile3" value="${vo.bsFile3 }">
-				    <input class="updateFile" type="text" name="bsFile4" value="${vo.bsFile4 }">
-				    <input class="updateFile" type="text" name="bsFile5" value="${vo.bsFile5 }">
+					<input class="updateFile" type="hidden" name="bsFile1" value="${vo.bsFile1 }">
+				    <input class="updateFile" type="hidden" name="bsFile2" value="${vo.bsFile2 }">
+				    <input class="updateFile" type="hidden" name="bsFile3" value="${vo.bsFile3 }">
+				    <input class="updateFile" type="hidden" name="bsFile4" value="${vo.bsFile4 }">
+				    <input class="updateFile" type="hidden" name="bsFile5" value="${vo.bsFile5 }">
 					<table class="board_table">
 						<tr>
 							<td><label id = "text2">제 목</label></td>

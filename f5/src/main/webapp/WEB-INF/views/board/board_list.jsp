@@ -44,7 +44,7 @@
 			<ul class="nav-col-ul">
 				<li><a href="board_list.do">자유게시판</a></li>
 				<li><a href="promote_list.do">홍보</a></li>
-				<li><a href="#"></a></li>
+				<li><a href="news_list.do">뉴스</a></li>
 				<li><a href="#"></a></li>
 				<li><a href="#"></a></li>
 			</ul>
