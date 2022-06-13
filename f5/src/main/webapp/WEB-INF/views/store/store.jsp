@@ -226,7 +226,7 @@
                         </div>
                     </div>
                 
-                <!-- 지도 끝 -->    	
+                <!-- 끝 -->  	
                    
                     <!-- Categories widget-->
                     <div class="card mb-4">
