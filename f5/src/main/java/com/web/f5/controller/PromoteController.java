@@ -17,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import com.web.f5.service.AdminBoardService;
 import com.web.f5.service.BoardPageServiceImpl;
 import com.web.f5.service.BoardService;
 import com.web.f5.service.BoardServiceImpl;
@@ -32,9 +31,6 @@ public class PromoteController {
 	
 	@Autowired
 	private BoardPageServiceImpl boardpageService;
-	
-	@Autowired
-	private AdminBoardService adminBoardService;
 	
 	@Autowired
 	private FileServiceImpl fileService;
@@ -112,9 +108,6 @@ public class PromoteController {
 	// 홍보 수정
 	@RequestMapping(value="/promote_update.do", method=RequestMethod.GET)
 	public ModelAndView promote_update(String boardIdx) {
-		
-		adminBoardService.getInsertPageview("promote_update");
-		
 		ModelAndView mv = new ModelAndView();
 		BoardVO vo = boardService.getContentList(boardIdx);
 		
@@ -146,8 +139,6 @@ public class PromoteController {
 	// 홍보 쓰기
 	@RequestMapping(value="/promote_write.do", method=RequestMethod.GET)
 	public String promote_write() {
-		
-		adminBoardService.getInsertPageview("promote_write");
 		
 		return "board/promote/promote_write";
 	}
@@ -204,9 +195,6 @@ public class PromoteController {
 	// 홍보 리스트
 	@RequestMapping(value="/promote_list.do", method=RequestMethod.GET)
 	public ModelAndView promote_list(String rpage, String search, String search_type) {
-		
-		adminBoardService.getInsertPageview("promote_list");
-		
 		ModelAndView mv = new ModelAndView();
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		String boardCategory = "1";

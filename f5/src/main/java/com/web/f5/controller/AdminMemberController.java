@@ -28,10 +28,15 @@ public class AdminMemberController {
 	private AdminMemberService adminMemberService;
 	
 	@Autowired
+	private AdminBoardService adminBoardService;
+	
+	@Autowired
 	private PageServiceImpl pageService;
 
 	@RequestMapping ( value = "/admin/member_list.do", method = RequestMethod.GET, produces = "application/text; charset=UTF-8" )
 	public ModelAndView admin_member_list(String rpage, String search, String search_type) {
+		
+		adminBoardService.getInsertPageview("member_list");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
@@ -142,6 +147,8 @@ public class AdminMemberController {
 	@RequestMapping ( value = "/admin/member_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_member_content(String id, String rno) {
 		
+		adminBoardService.getInsertPageview("member_content");
+		
 		ModelAndView mv = new ModelAndView();
 		AdminMemberVO vo = (AdminMemberVO) adminMemberService.getContent(id);
 		
@@ -155,6 +162,8 @@ public class AdminMemberController {
 	
 	@RequestMapping ( value = "/admin/member_insert.do", method = RequestMethod.GET )
 	public String admin_member_insert() {
+		
+		adminBoardService.getInsertPageview("member_insert");
 		
 		return "admin/member/member_insert";
 	}
@@ -198,6 +207,8 @@ public class AdminMemberController {
 	
 	@RequestMapping ( value = "/admin/member_update.do", method = RequestMethod.GET )
 	public ModelAndView admin_member_update(String id, String rno) {
+		
+		adminBoardService.getInsertPageview("member_update");
 		
 		ModelAndView mv = new ModelAndView();
 		AdminMemberVO vo = (AdminMemberVO) adminMemberService.getContent(id);
@@ -266,6 +277,8 @@ public class AdminMemberController {
 	@RequestMapping ( value = "/admin/ceo_member_list.do", method = RequestMethod.GET )
 	public ModelAndView admin_ceo_member_list(String rpage, String search, String search_type) {
 		
+		adminBoardService.getInsertPageview("ceo_member_list");
+		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
 		List<Object> olist = null;
@@ -273,7 +286,7 @@ public class AdminMemberController {
 		if ( search == null ) {
 			
 			param = pageService.getPageResult(rpage, "admin_ceo", adminMemberService);
-			
+			System.out.println(param);
 			int startCount = Integer.parseInt( param.get("start") );
 			int endCount = Integer.parseInt( param.get("end") );
 			
@@ -310,6 +323,8 @@ public class AdminMemberController {
 	@RequestMapping ( value = "/admin/ceo_member_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_ceo_member_content(String id, String rno) {
 		
+		adminBoardService.getInsertPageview("ceo_member_content");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		AdminMemberVO vo = (AdminMemberVO) adminMemberService.getContent(id);
@@ -324,6 +339,8 @@ public class AdminMemberController {
 	
 	@RequestMapping ( value = "admin/ceo_member_update.do", method = RequestMethod.GET )
 	public ModelAndView admin_ceo_member_update(String id) {
+		
+		adminBoardService.getInsertPageview("ceo_member_update");
 		
 		ModelAndView mv = new ModelAndView();
 		
@@ -373,6 +390,8 @@ public class AdminMemberController {
 	
 	@RequestMapping ( value = "admin/black_member_list.do", method = RequestMethod.GET )
 	public ModelAndView black_mber_list(String rpage, String search, String search_type) {
+		
+		adminBoardService.getInsertPageview("black_member_list");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;

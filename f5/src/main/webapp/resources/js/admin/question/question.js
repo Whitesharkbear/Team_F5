@@ -8,9 +8,13 @@ function send() {
 		
 		alert("제목을 입력해주세요.");
 		$("#question_title").focus();
-	}  else if ( content == "" ) {
+	} else if ( receiver == "" ) {
 		
-		alert("문의 내용을 입력해주세요.");
+		alert("받는사람 정보를 입력해주세요.");
+		$("#receiver").focus();
+	} else if ( content == "" ) {
+		
+		alert("답변 내용을 입력해주세요.");
 		$("#question_content").focus();
 	} else {
 		
@@ -22,7 +26,7 @@ function send() {
 		
 			return;
 		}
-		questionWrite.submit();
+//		submit();
 	}
 }
 
