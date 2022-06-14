@@ -18,6 +18,18 @@ function list() {
 		return;
 	}
 }
+
+function receive() {
+	if ( $("#question_answer").val() == "" ) {
+		
+		alert("답변을 입력해주세요.");
+		$("#question_answer").focus()
+	} else {
+		
+		alert("답변이 완료되었습니다.");
+		questionReceive.submit();
+	}
+}
 </script>
 </head>
 <body>
@@ -26,7 +38,7 @@ function list() {
 		<div class="row">
 			<div id="content">
 				<h4>문의관리 | 문의답변</h4>
-				<form action="question_receive.do" method="post">
+				<form action="question_receive.do" method="post" name="questionReceive">
 				<input type="hidden" name="memberEmail" value="${ vo.memberEmail }">
 				<input type="hidden" name="questionIdx" value="${ vo.questionIdx }">
 				<table id="question_table">
@@ -34,13 +46,13 @@ function list() {
 						<td><label>제목</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="question_title" name="questionTitle" value="${ vo.questionTitle }"></td>
+						<td><input type="text" id="question_title" name="questionTitle" value="${ vo.questionTitle }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td><label>받는사람</label></td>
 					</tr>
 					<tr>
-						<td><input type="text" id="receiver" name="memberId" value="${ vo.memberId }"></td>
+						<td><input type="text" id="receiver" name="memberId" value="${ vo.memberId }" readonly="readonly"></td>
 					</tr>
 					<tr>
 						<td><label>내용</label></td>
@@ -55,11 +67,11 @@ function list() {
 						<td><textarea rows="10" id="question_answer" name="questionAnswer"></textarea></td>
 					</tr>
 				</table>
+				</form>
 				<div class="question_btn">
-					<button type="submit" class="question_receive">보내기</button>
+					<button type="button" class="question_receive" onclick="receive()">보내기</button>
 					<button type="button" class="question_list" onclick="list()">목록</button>
 				</div>
-				</form>
 			</div>
 		</div>
 	</div>

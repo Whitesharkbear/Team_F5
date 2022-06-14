@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.web.f5.service.AdminBoardService;
 import com.web.f5.service.BoardPageServiceImpl;
 import com.web.f5.service.BoardServiceImpl;
 import com.web.f5.service.FileServiceImpl;
@@ -36,6 +37,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardPageServiceImpl boardpageService;
+	
+	@Autowired
+	private AdminBoardService adminBoardService;
 	
 	@Autowired
 	private FileServiceImpl fileService;
@@ -181,6 +185,9 @@ public class BoardController {
 	// 게시판 수정
 	@RequestMapping(value = "/board_update.do", method = RequestMethod.GET)
 	public ModelAndView board_update(String boardIdx) {
+		
+		adminBoardService.getInsertPageview("board_update");
+		
 		ModelAndView mv = new ModelAndView();
 		BoardVO vo = boardService.getContentList(boardIdx);
 		mv.addObject("vo", vo);
@@ -192,6 +199,9 @@ public class BoardController {
 	// 게시판 상세
 	@RequestMapping(value = "/board_content.do", method = RequestMethod.GET)
 	public ModelAndView boardContent(String boardIdx, HttpSession session) {
+		
+		adminBoardService.getInsertPageview("board_content");
+		
 		ModelAndView mv = new ModelAndView();
 		boardService.getUpdateHits(boardIdx);
 		
@@ -273,6 +283,8 @@ public class BoardController {
 	@RequestMapping(value = "/board_write.do", method = RequestMethod.GET)
 	public String board_write() {
 
+		adminBoardService.getInsertPageview("board_write");
+		
 		return "/board/board_write";
 	}
 	

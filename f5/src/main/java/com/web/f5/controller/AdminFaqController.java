@@ -26,15 +26,10 @@ public class AdminFaqController {
 	private AdminFaqService adminFaqService;
 	
 	@Autowired
-	private AdminBoardService adminBoardService;
-	
-	@Autowired
 	private PageServiceImpl pageService;
 	
 	@RequestMapping ( value = "admin/faq_list.do", method = RequestMethod.GET )
 	public ModelAndView faq_list(String rpage, String search, String search_type) {
-		
-		adminBoardService.getInsertPageview("admin/faq_list");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
@@ -111,8 +106,6 @@ public class AdminFaqController {
 	@RequestMapping ( value = "admin/faq_write.do", method = RequestMethod.GET )
 	public ModelAndView faq_write() {
 		
-		adminBoardService.getInsertPageview("admin/faq_write");
-		
 		ModelAndView mv = new ModelAndView();
 		
 		mv.setViewName("admin/faq/faq_write");
@@ -140,8 +133,6 @@ public class AdminFaqController {
 	
 	@RequestMapping ( value = "admin/faq_update.do", method = RequestMethod.GET )
 	public ModelAndView faq_update( String idx, String rno ) {
-		
-		adminBoardService.getInsertPageview("admin/faq_update");
 		
 		ModelAndView mv = new ModelAndView();
 		AdminFaqVO vo = (AdminFaqVO) adminFaqService.getContent(idx);
