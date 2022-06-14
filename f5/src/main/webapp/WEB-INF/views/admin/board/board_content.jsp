@@ -330,16 +330,53 @@
 							<dd>${vo.boardDate}</dd>
 						</dl>
 						<dl>
-							<dt>추천:</dt>
-							<dd>123</dd>
+						<c:choose>
+							<c:when test="${brvo.boardRecommendCheck eq '0'}">
+								<button class="recommend_btn" id="reco_${vo.boardIdx }" value='2'>
+									<img class="btn-img" src="/f5/resources/images/thumbs-up-click.png">
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button class="recommend_btn" id="reco_${vo.boardIdx }" value='0'>
+									<img class="btn-img" src="/f5/resources/images/thumbs-up.png">
+								</button>
+							</c:otherwise>
+						</c:choose>
+							<dd id="board_reco_${vo.boardIdx }">${reco }</dd>
 						</dl>
 						<dl>
-							<dt>비추천:</dt>
-							<dd>12</dd>
+						<c:choose>
+							<c:when test="${brvo.boardRecommendCheck eq '1'}">
+								<button class="derecommend_btn" id="deco_${vo.boardIdx }" value='2'>
+									<img class="btn-img" src="/f5/resources/images/thumbs-down-click.png">
+								</button>
+							</c:when>
+							<c:otherwise>
+								<button class="derecommend_btn" id="deco_${vo.boardIdx }" value='1'>
+									<img class="btn-img" src="/f5/resources/images/thumbs-down.png">
+								</button>
+							</c:otherwise>
+						</c:choose>
+							<dd id="board_deco_${vo.boardIdx }">${deco }</dd>
 						</dl>
 					</div>
 					<div class="board-content-article">
 						<div class="board-content">
+							<c:if test="${vo.bFile1 != null}">
+							<img alt="" src="/f5/resources/upload/${vo.bsFile1 }"><br><br>
+							</c:if>
+							<c:if test="${vo.bFile2 != null}">
+							<img alt="" src="/f5/resources/upload/${vo.bsFile2 }"><br><br>
+							</c:if>
+							<c:if test="${vo.bFile3 != null}">
+							<img alt="" src="/f5/resources/upload/${vo.bsFile3 }"><br><br>
+							</c:if>
+							<c:if test="${vo.bFile4 != null}">
+							<img alt="" src="/f5/resources/upload/${vo.bsFile4 }"><br><br>
+							</c:if>
+							<c:if test="${vo.bFile5 != null}">
+							<img alt="" src="/f5/resources/upload/${vo.bsFile5 }"><br><br>
+							</c:if>
 							<p>${vo.boardContent}</p>
 						</div>
 						<div class="board-reply-container">
@@ -362,18 +399,9 @@
 								<input type="hidden" name="boardIdx" value="${vo.boardIdx }">
 									<div class="reply-member">
 										<a>${list.memberId }</a>
-										<c:choose>
-											<c:when test="${sessionScope.memberId eq list.memberId }">											
-												<div>
-													<button type="button" class="reply_delete_btn" id="${list.replyIdx }">삭제</button>
-												</div>
-											</c:when>
-											<c:otherwise>
-												<div style="display: none">
-													<button type="button" class="reply_delete_btn" id="${list.replyIdx }">삭제</button>
-												</div>
-											</c:otherwise>
-										</c:choose>
+										<div>
+											<button type="button" class="reply_delete_btn" id="${list.replyIdx }">삭제</button>
+										</div>
 									</div>
 									<div class="reply-content-div" id="reply-content-div-${list.replyIdx }">${list.replyContent }</div>
 									<div class="reply-etc">

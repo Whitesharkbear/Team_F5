@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
+import com.web.f5.service.AdminBoardService;
 import com.web.f5.service.AdminFaqService;
 import com.web.f5.service.AdminQuestionService;
 import com.web.f5.service.PageServiceImpl;
@@ -34,10 +35,15 @@ public class ServiceController {
 	private AdminQuestionService adminQuestionService;
 	
 	@Autowired
+	private AdminBoardService adminBoardService;
+	
+	@Autowired
 	private PageServiceImpl pageService;
 	
 	@RequestMapping( value = "faq_list.do", method = RequestMethod.GET )
 	public ModelAndView faq_list(String rpage, String search, String search_type) {
+		
+		adminBoardService.getInsertPageview("faq_list");
 		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
@@ -114,6 +120,9 @@ public class ServiceController {
 	
 	@RequestMapping ( value = "/question_list.do", method = RequestMethod.GET )
 	public ModelAndView question_list(String rpage, String search, String search_type) {
+		
+		adminBoardService.getInsertPageview("question_list");
+		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
 		List<Object> olist = null;
@@ -192,6 +201,8 @@ public class ServiceController {
 	
 	@RequestMapping ( value = "question_write.do", method = RequestMethod.GET )
 	public ModelAndView question_write() {
+		
+		adminBoardService.getInsertPageview("question_write");
 		
 		ModelAndView mv = new ModelAndView();
 		

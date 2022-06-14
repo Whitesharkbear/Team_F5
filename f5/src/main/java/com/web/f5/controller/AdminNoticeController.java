@@ -48,8 +48,6 @@ public class AdminNoticeController {
 	@RequestMapping ( value = "/admin/notice_list.do", method = RequestMethod.GET )
 	public ModelAndView admin_notice_list(String rpage, String search, String search_type) {
 		
-		adminBoardService.getInsertPageview("notice_list");
-		
 		ModelAndView mv = new ModelAndView();
 		Map<String, String> param = null;
 		List<Object> olist = null;
@@ -128,9 +126,7 @@ public class AdminNoticeController {
 	@RequestMapping ( value = "/admin/notice_content.do", method = RequestMethod.GET )
 	public ModelAndView admin_notice_content(String idx, String rno, HttpSession session) {
 		
-		adminBoardService.getInsertPageview("notice_content");
-		
-ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView();
 		
 		String memberId = null;
 		
@@ -194,8 +190,6 @@ ModelAndView mv = new ModelAndView();
 	@RequestMapping ( value = "/admin/notice_write.do", method = RequestMethod.GET )
 	public String admin_notice_write() {
 		
-		adminBoardService.getInsertPageview("notice_write");
-		
 		return "admin/notice/notice_write";
 	}
 	
@@ -219,8 +213,6 @@ ModelAndView mv = new ModelAndView();
 	
 	@RequestMapping ( value = "/admin/notice_update.do", method = RequestMethod.GET )
 	public ModelAndView admin_notice_update(String idx, String rno) {
-		
-		adminBoardService.getInsertPageview("notice_update");
 		
 		ModelAndView mv = new ModelAndView();
 		AdminNoticeVO vo = (AdminNoticeVO) adminNoticeService.getContent(idx);
