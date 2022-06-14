@@ -226,7 +226,7 @@
 }
 
 .board-content img {
-	width: 80%;
+	max-width: 50%;
 }
 
 .board-info {

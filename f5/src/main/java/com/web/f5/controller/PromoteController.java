@@ -78,7 +78,7 @@ public class PromoteController {
 		oldFile.add(vo.getBsFile5());
 		
 		vo = fileService.mutiFileCheck(vo);
-		
+		vo.setBoardContent(vo.getBoardContent().replaceAll("\r\n", "<br>"));
 		int result = boardService.getContentUpdate(vo);
 		if( result == 1 ) {
 			int check = fileService.multiFileSave(vo, request, oldFile);
@@ -110,7 +110,7 @@ public class PromoteController {
 	public ModelAndView promote_update(String boardIdx) {
 		ModelAndView mv = new ModelAndView();
 		BoardVO vo = boardService.getContentList(boardIdx);
-		
+		vo.setBoardContent(vo.getBoardContent().replace("<br>", "\r\n"));
 		mv.addObject("vo", vo);
 		mv.setViewName("board/promote/promote_update");
 		
@@ -125,6 +125,7 @@ public class PromoteController {
 		ModelAndView mv = new ModelAndView();
 		vo = fileService.mutiFileCheck(vo);
 		vo.setBoardCategory("홍보");
+		vo.setBoardContent(vo.getBoardContent().replaceAll("\r\n", "<br>"));
 		int result = boardService.getInsertResult(vo);
 		if( result == 1) {
 			fileService.multiFileSave(vo, request);
