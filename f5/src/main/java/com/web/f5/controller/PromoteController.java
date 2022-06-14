@@ -161,7 +161,9 @@ public class PromoteController {
 		
 		List<BoardVO> list = new ArrayList<BoardVO>();
 		Map<String, String> param = null;
-			
+		
+		System.out.println(search);
+		
 		if(search == null) {
 			param = boardpageService.getPageResult(rpage, boardCategory);
 			int startCount = Integer.parseInt(param.get("start"));
@@ -192,6 +194,7 @@ public class PromoteController {
 			obj.addProperty("boardDate", bvo.getBoardDate());
 			obj.addProperty("boardUpdateDate", bvo.getBoardUpdateDate());
 			obj.addProperty("boardCategory", bvo.getBoardCategory());
+			obj.addProperty("bsFile1", bvo.getBsFile1());
 			
 			jlist.add(obj);
 		}
@@ -228,6 +231,8 @@ public class PromoteController {
 
 		}
 		mv.addObject("list", list);
+		mv.addObject("search", search);
+		mv.addObject("search_type", search_type);
 		mv.addObject("dbCount", Integer.parseInt(param.get("dbCount")));
 		mv.addObject("pageSize", Integer.parseInt(param.get("pageSize")));
 		mv.addObject("reqPage", Integer.parseInt(param.get("reqPage")));
