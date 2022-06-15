@@ -162,7 +162,7 @@ public class AdminNoticeController {
 		}
 		
 		BoardVO vo = boardService.getContentList(idx);
-		
+		vo.setBoardContent(vo.getBoardContent().replace("<br>", "\r\n"));
 		RecommendVO brvo = null;
 		
 		if(boardService.getRecoCheckResult(idx, memberId) !=0 ) {

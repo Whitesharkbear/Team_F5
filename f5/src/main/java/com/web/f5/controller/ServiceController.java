@@ -225,4 +225,16 @@ public class ServiceController {
 		
 		return mv;
 	}
+	
+	@RequestMapping ( value =  "question_content.do", method = RequestMethod.GET )
+	public ModelAndView question_content(String idx) {
+		
+		ModelAndView mv = new ModelAndView();
+		
+		AdminQuestionVO vo = (AdminQuestionVO) adminQuestionService.getQuestionContent(idx);
+		System.out.println(vo.getQuestionAnswer());
+		mv.addObject("vo", vo);
+		mv.setViewName("service/question_content");
+		return mv;
+	}
 }
